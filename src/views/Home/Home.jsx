@@ -1,7 +1,14 @@
+import Header from "../../components/Header/Header";
+
 export default function Home() {
 
 
     return (
-        <p>Esta es la home</p>
+        <>
+
+            <Header />
+            <div className="gradient">Esta es la home</div>
+        </>
+
     )
 }
