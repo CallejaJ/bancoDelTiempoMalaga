@@ -2,18 +2,19 @@ import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import AuthContextProvider from "./context/AuthContext";
 import LoginFormik from "./views/LoginFormik/LoginFormik"
 import { useLayoutEffect } from "react";
-import "./App.css";
+import PublicRoute from "./components/Router/PublicRoute";
+import PrivateRoute from "./components/Router/PrivateRoute"
 
 import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound/NotFound";
 import Landing from "./views/Landing/Landing";
 import UserView from "./views/UserView/UserView"
-import PublicRoute from "./components/Router/PublicRoute";
-import PrivateRoute from "./components/Router/PrivateRoute"
 import Layout from "./Layout";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
 import { blue, orange } from "@mui/material/colors";
+import "./App.css";
+import RegisterFormik from "./views/RegisterFormik/RegisterFormik";
 
 const orangeTheme = createTheme({
   palette: {
@@ -28,8 +29,8 @@ const orangeTheme = createTheme({
       dark: blue[800],
     },
     text: {
-      primary: "#000cff",
-      secondary: "#0000ff"
+      primary: "#006cff",
+      secondary: "#242424"
     }
   },
   components: {
@@ -86,9 +87,11 @@ export default function App() {
                 {/* Rutas públicas */}
                 <Route element={<PublicRoute />}>
                 <Route path="login" element={<LoginFormik />} />
+                  <Route path="register" element={<RegisterFormik />} />
+
               </Route>
 
-              {/* rutas privadas */}
+                {/* Rutas privadas */}
                 <Route path="/user" element={<PrivateRoute />} >
                   <Route element={<Layout />} >
                     <Route index element={<UserView />} />

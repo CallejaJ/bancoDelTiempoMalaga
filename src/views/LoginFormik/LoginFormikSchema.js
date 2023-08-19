@@ -5,7 +5,7 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 export const LoginFormikSchema = yup.object().shape({
 
-    email: yup.string().email("Por favor, escriba un email válido").required("Obligatorio"),
+    email: yup.string().email("Por favor, escriba un email válido").required("Requerido "),
 
     password: yup
         .string()
@@ -13,5 +13,5 @@ export const LoginFormikSchema = yup.object().shape({
             message:
                 "Al menos 5 caracteres, 1 mayúscula, 1 minúscula, 1 dígito numérico",
         })
-        .required("Obligatorio"),
+        .required("Requerido"),
 });

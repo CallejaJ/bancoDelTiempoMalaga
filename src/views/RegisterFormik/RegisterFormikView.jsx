@@ -14,14 +14,14 @@ import Footer from "../../components/Footer/Footer"
 import bdtlogin from "../../assets/bdtlogin.png"
 
 
-export default function LoginFormikView({ formik }) {
+export default function RegisterFormikView({ formik }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { loginMessage } = useAuthContext();
+    const { registerMessage } = useAuthContext();
     // es una respuesta del backend si hay errores en el endpoint
 
     setTimeout(() => {
-        loginMessage
+        registerMessage
     }, 4000)
 
 
@@ -71,7 +71,7 @@ export default function LoginFormikView({ formik }) {
                                 }}
                             >
                                 <Typography component="h1" variant="h5">
-                                    Iniciar sesión
+                                    Registro de usuario
                                 </Typography>
                                 <Box
                                     component="form"
@@ -88,9 +88,93 @@ export default function LoginFormikView({ formik }) {
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
-                                        type="email"
+                                        type="text"
                                         placeholder="Escribe tu email"
                                         value={values.email}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        className={errors.email && touched.email ? "input-error" : ""}
+
+                                    />
+                                    {errors.email && touched.email && (
+                                        <p className="error">{errors.email}</p>
+                                    )}
+
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Correo electrónico"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                        type="text"
+                                        placeholder="Escribe tu email"
+                                        value={values.email}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        className={errors.email && touched.email ? "input-error" : ""}
+
+                                    />
+                                    {errors.email && touched.email && (
+                                        <p className="error">{errors.email}</p>
+                                    )}
+
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Correo electrónico"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                        type="text"
+                                        placeholder="Escribe tu email"
+                                        value={values.email}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        className={errors.email && touched.email ? "input-error" : ""}
+
+                                    />
+                                    {errors.email && touched.email && (
+                                        <p className="error">{errors.email}</p>
+                                    )}
+
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Correo electrónico"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                        type="text"
+                                        placeholder="Escribe tu email"
+                                        value={values.email}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        className={errors.email && touched.email ? "input-error" : ""}
+
+                                    />
+                                    {errors.email && touched.email && (
+                                        <p className="error">{errors.email}</p>
+                                    )}
+
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Correo electrónico"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                        type="text"
+                                        placeholder="Escribe tu email"
+                                        value={values.newEmail}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         className={errors.email && touched.email ? "input-error" : ""}
@@ -122,9 +206,9 @@ export default function LoginFormikView({ formik }) {
                                         control={<Checkbox value="remember" color="primary" />}
                                         label="Recordarme"
                                     />
-                                    {loginMessage ? (
+                                    {registerMessage ? (
                                         <Alert variant="outlined" severity="info" >
-                                            {loginMessage}
+                                            {registerMessage}
                                         </Alert>
                                     ) : null}
                                     <Button
@@ -133,7 +217,7 @@ export default function LoginFormikView({ formik }) {
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
                                     >
-                                        Entrar
+                                        Terminar
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>

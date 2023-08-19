@@ -33,7 +33,7 @@ export default function AuthContextProvider({ children }) {
     async function login({ email, password }) {
         try {
 
-            const response = await fetch("http://localhost:3000/user/login", {
+            const response = await fetch("http://localhost:3006/user/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -51,9 +51,6 @@ export default function AuthContextProvider({ children }) {
                 setLoginMessage("Inténtalo de nuevo")
 
             }
-
-
-
         }
         catch (err) {
             throw new Error(err)
@@ -62,7 +59,7 @@ export default function AuthContextProvider({ children }) {
 
     async function register({ username, surname, newEmail, password }) {
         try {
-            const response = await fetch("http://localhost:3000/user/", {
+            const response = await fetch("http://localhost:3006/user/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
