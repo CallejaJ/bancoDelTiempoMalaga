@@ -4,14 +4,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Alert, Container } from "@mui/material";
 import Footer from "../../components/Footer/Footer"
-import bdtlogin from "../../assets/bdtlogin.png"
+import bdtlogin2 from "../../assets/bdtlogin2.png"
+import Header from '../../components/Header/Header';
 
 
 export default function LoginFormikView({ formik }) {
@@ -27,11 +28,12 @@ export default function LoginFormikView({ formik }) {
 
     return (
         <>
+            <Header />
             <Container component="main" maxWidth="lg">
                 <Box
                     sx={{
-                        marginTop: 8,
-                        marginBottom: 5
+                        marginTop: 5,
+                        marginBottom: 5,
                     }}
                 >
                     <Grid container>
@@ -42,7 +44,7 @@ export default function LoginFormikView({ formik }) {
                             sm={4}
                             md={7}
                             sx={{
-                                backgroundImage: 'url(' + bdtlogin + ')',
+                                backgroundImage: 'url(' + bdtlogin2 + ')',
                                 backgroundRepeat: "no-repeat",
                                 backgroundColor: (t) =>
                                     t.palette.mode === "light"
@@ -137,15 +139,19 @@ export default function LoginFormikView({ formik }) {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link href="#" variant="body2">
-                                                ¿Olvidaste tu contraseña?
+                                            <Link to="/home">
+                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
+                                                    ¿Olvidaste tu contraseña?                                                </Typography>
                                             </Link>
                                         </Grid>
-                                        <Grid item>
-                                            <Link href="#" variant="body2">
-                                                {"¿No tienes cuenta? Ir a registro"}
+                                        <Grid item xs>
+                                            <Link to="/register">
+                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
+                                                    ¿Tienes cuenta? Ir a registro
+                                                </Typography>
                                             </Link>
                                         </Grid>
+
                                     </Grid>
                                 </Box>
                             </Box>

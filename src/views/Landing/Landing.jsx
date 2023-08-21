@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import hourglass3 from "../../assets/hourglass3.gif"
+import hourglass5 from "../../assets/hourglass5.gif"
 import { Box, Grid } from "@mui/material";
 
 export default function Landing() {
 
     return (
         <>
-            <Grid className="gradient" >Esta es la landing
+            <Grid className="gradient" >
                 <Box sx={{
                     position: "absolute",
-                    bottom: "40%",
-                    left: "46%",
+                    bottom: "25%",
+                    left: "37%",
                 }}>
 
-                    <Link to="/home">  <img src={hourglass3} width={70} /></Link>
+                    <Link to="/home"><img src={hourglass5} width={350} /></Link>
                 </Box>
             </Grid>
 

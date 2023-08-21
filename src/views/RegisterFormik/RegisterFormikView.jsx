@@ -2,16 +2,16 @@ import { useAuthContext } from '../../context/AuthContext';
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { Alert, Container } from "@mui/material";
+import { Alert, Container, FormControlLabel } from "@mui/material";
 import Footer from "../../components/Footer/Footer"
-import bdtlogin from "../../assets/bdtlogin.png"
+import bdtlogin2 from "../../assets/bdtlogin2.png"
+import Header from '../../components/Header/Header';
 
 
 export default function RegisterFormikView({ formik }) {
@@ -27,6 +27,7 @@ export default function RegisterFormikView({ formik }) {
 
     return (
         <>
+            <Header />
             <Container component="main" maxWidth="lg">
                 <Box
                     sx={{
@@ -39,10 +40,10 @@ export default function RegisterFormikView({ formik }) {
                         <Grid
                             item
                             xs={false}
-                            sm={4}
+                            sm={5}
                             md={7}
                             sx={{
-                                backgroundImage: 'url(' + bdtlogin + ')',
+                                backgroundImage: 'url(' + bdtlogin2 + ')',
                                 backgroundRepeat: "no-repeat",
                                 backgroundColor: (t) =>
                                     t.palette.mode === "light"
@@ -83,106 +84,128 @@ export default function RegisterFormikView({ formik }) {
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="email"
-                                        label="Correo electrónico"
-                                        name="email"
-                                        autoComplete="email"
+                                        id="name"
+                                        label="Nombre"
+                                        name="name"
+                                        autoComplete="name"
                                         autoFocus
                                         type="text"
-                                        placeholder="Escribe tu email"
-                                        value={values.email}
+                                        placeholder="Escribe tu nombre"
+                                        value={values.name}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.email && touched.email ? "input-error" : ""}
+                                        className={errors.name && touched.name ? "input-error" : ""}
 
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="error">{errors.email}</p>
+                                    {errors.name && touched.name && (
+                                        <p className="error">{errors.name}</p>
                                     )}
 
                                     <TextField
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="email"
-                                        label="Correo electrónico"
-                                        name="email"
-                                        autoComplete="email"
+                                        id="surname"
+                                        label="Apellidos"
+                                        name="surname"
+                                        autoComplete="surname"
                                         autoFocus
                                         type="text"
-                                        placeholder="Escribe tu email"
-                                        value={values.email}
+                                        placeholder="Escribe tus apellidos"
+                                        value={values.surname}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.email && touched.email ? "input-error" : ""}
+                                        className={errors.surname && touched.surname ? "input-error" : ""}
 
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="error">{errors.email}</p>
+                                    {errors.surname && touched.surname && (
+                                        <p className="error">{errors.surname}</p>
                                     )}
 
                                     <TextField
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="email"
-                                        label="Correo electrónico"
-                                        name="email"
-                                        autoComplete="email"
+                                        id="address"
+                                        label="Dirección"
+                                        name="address"
+                                        autoComplete="address"
                                         autoFocus
                                         type="text"
-                                        placeholder="Escribe tu email"
-                                        value={values.email}
+                                        placeholder="Escribe tu dirección"
+                                        value={values.address}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.email && touched.email ? "input-error" : ""}
+                                        className={errors.address && touched.address ? "input-error" : ""}
 
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="error">{errors.email}</p>
+                                    {errors.address && touched.address && (
+                                        <p className="error">{errors.address}</p>
                                     )}
 
                                     <TextField
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="email"
-                                        label="Correo electrónico"
-                                        name="email"
-                                        autoComplete="email"
+                                        id="district"
+                                        label="Distrito"
+                                        name="district"
+                                        autoComplete="district"
                                         autoFocus
-                                        type="text"
-                                        placeholder="Escribe tu email"
-                                        value={values.email}
+                                        type="number"
+                                        placeholder="Escribe tu distrito"
+                                        value={values.district}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.email && touched.email ? "input-error" : ""}
+                                        className={errors.district && touched.district ? "input-error" : ""}
 
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="error">{errors.email}</p>
+                                    {errors.district && touched.district && (
+                                        <p className="error">{errors.district}</p>
                                     )}
 
                                     <TextField
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="email"
-                                        label="Correo electrónico"
-                                        name="email"
-                                        autoComplete="email"
+                                        id="pobox"
+                                        label="Código postal"
+                                        name="pobox"
+                                        autoComplete="pobox"
                                         autoFocus
                                         type="text"
+                                        placeholder="Escribe tu código postal"
+                                        value={values.pobox}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        className={errors.pobox && touched.pobox ? "input-error" : ""}
+
+                                    />
+                                    {errors.pobox && touched.pobox && (
+                                        <p className="error">{errors.pobox}</p>
+                                    )}
+
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="newEmail"
+                                        label="Correo electrónico"
+                                        name="newEmail"
+                                        autoComplete="newEmail"
+                                        autoFocus
+                                        type="email"
                                         placeholder="Escribe tu email"
                                         value={values.newEmail}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.email && touched.email ? "input-error" : ""}
+                                        className={errors.newEmail && touched.newEmail ? "input-error" : ""}
 
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="error">{errors.email}</p>
+                                    {errors.newEmail && touched.newEmail && (
+                                        <p className="error">{errors.newEmail}</p>
                                     )}
+
                                     <TextField
                                         margin="normal"
                                         required
@@ -202,9 +225,29 @@ export default function RegisterFormikView({ formik }) {
                                     {errors.password && touched.password && (
                                         <p className="error">{errors.password}</p>
                                     )}
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        name="confirmPassword"
+                                        label="Confirmar contraseña"
+                                        id="confirmPassword"
+                                        autoComplete="current-password"
+                                        placeholder="Confirma tu contraseña"
+                                        value={values.confirmPassword}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        type="password"
+
+                                        className={errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}
+                                    />
+                                    {errors.confirmPassword && touched.confirmPassword && (
+                                        <p className="error">{errors.confirmPassword}</p>
+                                    )}
+
                                     <FormControlLabel
-                                        control={<Checkbox value="remember" color="primary" />}
-                                        label="Recordarme"
+                                        control={<Checkbox type="checkbox" value="acceptedTC" color="primary" />}
+                                        label="Acepto los términos y condiciones"
                                     />
                                     {registerMessage ? (
                                         <Alert variant="outlined" severity="info" >
@@ -221,13 +264,17 @@ export default function RegisterFormikView({ formik }) {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link href="#" variant="body2">
-                                                ¿Olvidaste tu contraseña?
+                                            <Link to="/home">
+                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
+                                                    Volver al inicio
+                                                </Typography>
                                             </Link>
                                         </Grid>
-                                        <Grid item>
-                                            <Link href="#" variant="body2">
-                                                {"¿No tienes cuenta? Ir a registro"}
+                                        <Grid item xs>
+                                            <Link to="/login">
+                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
+                                                    ¿Tienes cuenta? Ir a login
+                                                </Typography>
                                             </Link>
                                         </Grid>
                                     </Grid>

@@ -16,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  position: relative;
 }
 
 .gradient {
@@ -46,18 +47,7 @@ body {
     background-position: 0% 50%;
   }
 }
-.css-3d-text {
-  font-size: 18px;
-  color: #ff8307;
-  font-family: Arial Black, Gadget, sans-serif;
-  text-shadow: 0px 0px 0 rgb(234, 110, 0),
-    1px -1px 0 rgb(213, 89, 0),
-    2px -2px 0 rgb(192, 68, 0),
-    3px -3px 0 rgb(171, 47, 0),
-    4px -4px 3px rgba(0, 0, 0, 0),
-    4px -4px 1px rgba(0, 0, 0, 0.5),
-    0px 0px 3px rgba(0, 0, 0, .2);
-}
+
 .br-footer {
   --footer-logo-height: 48px;
   --footer-logo-width: 180px;
@@ -261,4 +251,26 @@ body {
 .br-footer[inverted] .br-list,
 .br-footer.inverted .br-list {
   --background: var(--background-light);
+}
+.swiper {
+  width: 70%;
+  height: 70%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

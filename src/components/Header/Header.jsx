@@ -1,136 +1,55 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import logo3 from "../../assets/logo3.png"
+import { AccountCircle } from '@mui/icons-material';
+import { useAuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
+import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Typography, Menu, Tooltip, Button } from '@mui/material';
+import hourglass5 from "../../assets/hourglass5.gif"
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+//Picture/Icon Imports
+// import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import menu from "../../assets/icons/menu.png"
+
+
+// import SupportIcon from '@mui/icons-material/Support';
+// import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
+// import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import React from 'react';
 
 export default function Header() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+    const { user, logout } = useAuthContext()
+    function loggingOut() {
+        logout();
+    }
+
+    const DifferentPages = [
+        { Text: "Inicio", location: "/", Image: menu },
+        { Text: "Panel", location: "/panel", Image: menu },
+        { Text: "Ofertas", location: "/offers", Image: menu },
+        { Text: "Demandas", location: "/requests", Image: menu },
+        { Text: "Normativa", location: "/userguide", Image: menu },
+    ]
+
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
     return (
-        <AppBar position="static" className='gradient_header' sx={{ height: 70 }}>  
+        <AppBar position="absolute" className='gradient' sx={{ height: 70, marginTop: 0, marginBottom: 3 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <img src={logo3} height={40} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 4,
-                            ml: 3,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        BDT
-                    </Typography>
-
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
-
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                        <Tooltip title="Menu de navegación">
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
+                                <img src={hourglass5} width={40} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -149,13 +68,59 @@ export default function Header() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                            {DifferentPages.map((Text, index) => (
+                                // <MenuItem key={page} onClick={handleCloseUserMenu}>
+                                //     <Typography textAlign="center">{page}</Typography>
+                                // </MenuItem>
+                                <MenuItem key={index}
+                                    onClick={handleCloseUserMenu}
+                                    component={Link}
+                                    to={Text.location}>
+                                    {/* <img src={Text.Image} width="15" /> */}
+                                    <ListItemText
+                                        primary={Text.Text}
+                                        sx={{ display: "flex", justifyContent: "space-between" }} />
                                 </MenuItem>
                             ))}
+
                         </Menu>
                     </Box>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'whitesmoke' }}>
+                        Banco del tiempo de Málaga
+                    </Typography>
+                    {user ? (
+                        <>
+                            <Box>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    color="inherit"
+                                >
+                                    <AccountCircle style={{ color: '#FFF' }} />
+                                </IconButton>
+                                <Button style={{ color: '#FFF' }} onClick={loggingOut} >Logout</Button>
+                            </Box>
+
+                        </>
+                    ) : (
+                        <>
+                            <Box>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    color="inherit"
+                                >
+                                </IconButton>
+                                <Button>
+                                    <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
+                                </Button>
+                            </Box>
+                        </>
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>

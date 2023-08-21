@@ -57,18 +57,19 @@ export default function AuthContextProvider({ children }) {
         }
     }
 
-    async function register({ username, surname, newEmail, password }) {
+    async function register(
+        { name, surname, district, address, pobox, newEmail, password }) {
         try {
             const response = await fetch("http://localhost:3006/user/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ name: username, surname: surname, email: newEmail, password: password })
+                body: JSON.stringify({ name: name, surname: surname, district: district, address: address, pobox: pobox, email: newEmail, password: password })
             })
             if (response.ok) {
                 console.log("Usuario registrado");
-                setRegisterMessage("Registro correcto. Ir a login.")
+                setRegisterMessage("¡Registro correcto!")
             } else {
                 setRegisterMessage("El usuario ya existe.")
             }

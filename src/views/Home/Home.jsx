@@ -1,17 +1,14 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import StepperHome from "../../components/StepperHome/StepperHome";
-
-
+import SwiperHome from "../../components/SwipperHome/SwipperHome";
 
 
 export default function Home() {
 
-
     return (
         <>
             <Header />
-            <StepperHome />
+            <SwiperHome />
             <Footer />
         </>
     );

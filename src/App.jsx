@@ -8,13 +8,17 @@ import PrivateRoute from "./components/Router/PrivateRoute"
 import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound/NotFound";
 import Landing from "./views/Landing/Landing";
-import UserView from "./views/UserView/UserView"
 import Layout from "./Layout";
-import { ThemeProvider } from "@emotion/react";
-import { CssBaseline, createTheme } from "@mui/material";
-import { blue, orange } from "@mui/material/colors";
-import "./App.css";
+import Requests from "./views/Requests/Requests";
 import RegisterFormik from "./views/RegisterFormik/RegisterFormik";
+import Panel from "./views/Panel/Panel";
+import UserGuide from "./views/UserGuide/UserGuide";
+import Offers from "./views/Offers/Offers";
+
+import { blue, orange } from "@mui/material/colors";
+import { CssBaseline, createTheme } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import "./App.css";
 
 const orangeTheme = createTheme({
   palette: {
@@ -88,13 +92,15 @@ export default function App() {
                 <Route element={<PublicRoute />}>
                 <Route path="login" element={<LoginFormik />} />
                   <Route path="register" element={<RegisterFormik />} />
-
+                  <Route path="requests" element={<Requests />} />
+                  <Route path="offers" element={<Offers />} />
+                  <Route path="userguide" element={<UserGuide />} />
               </Route>
 
                 {/* Rutas privadas */}
-                <Route path="/user" element={<PrivateRoute />} >
+                <Route path="/panel" element={<PrivateRoute />} >
                   <Route element={<Layout />} >
-                    <Route index element={<UserView />} />
+                    <Route index element={<Panel />} />
                   </Route>
                 </Route>
               <Route path="*" element={<NotFound />} />
