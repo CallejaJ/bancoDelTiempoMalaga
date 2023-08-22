@@ -9,7 +9,7 @@ export default function Landing() {
             <Grid className="gradient" >
                 <Box sx={{
                     position: "absolute",
-                    bottom: "25%",
+                    bottom: "30%",
                     left: "37%",
                 }}>
 

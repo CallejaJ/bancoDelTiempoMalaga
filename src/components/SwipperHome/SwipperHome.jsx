@@ -1,79 +1,113 @@
+import caring from "../../assets/tasks/caring.png"
+import chauffeur from "../../assets/tasks/chauffeur.png"
+import children from "../../assets/tasks/children.png"
+import chinese from "../../assets/tasks/chinese.png"
+import cleaning from "../../assets/tasks/cleaning.png"
+import english from "../../assets/tasks/english.png"
+import gardening from "../../assets/tasks/gardening.png"
+import maintenance from "../../assets/tasks/maintenance.png"
+import maths from "../../assets/tasks/maths.png"
+import painter from "../../assets/tasks/painter.png"
+import pets from "../../assets/tasks/pets.png"
+import remove from "../../assets/tasks/remove.png"
+import school from "../../assets/tasks/school.png"
+import shopping from "../../assets/tasks/shopping.png"
+import technical from "../../assets/tasks/technical.png"
+import yoga from "../../assets/tasks/yoga.png"
+import plumber from "../../assets/tasks/plumber.png"
 
-// Import Swiper React components
+import { Box } from "@mui/material"
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/zoom';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 
-// import required modules
-import { Zoom, Navigation, Pagination } from 'swiper/modules';
 
 export default function SwiperHome() {
     return (
-        <>
+        <Box className="container">
             <Swiper
-                style={{
-                    '--swiper-navigation-color': '#fff',
-                    '--swiper-pagination-color': '#fff',
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                loop={true}
+                slidesPerView={'auto'}
+                coverflowEffect={{
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2.5,
                 }}
-                zoom={true}
-                navigation={true}
-                pagination={{
+                pagination={{ el: '.swiper-pagination', clickable: true }}
+                navigation={{
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                     clickable: true,
                 }}
-                modules={[Zoom, Navigation, Pagination]}
-                className="mySwiper"
+                className="swiper_container"
             >
-                <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                    </div>
+                <SwiperSlide >
+                    <img src={plumber} alt="plumber" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                    </div>
+                    <img src={caring} alt="caring" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                    </div>
+                    <img src={chauffeur} alt="chauffeur" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                    </div>
+                    <img src={children} alt="children" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                    </div>
+                    <img src={chinese} alt="chinese" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                    </div>
+                    <img src={cleaning} alt="cleaning" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                    </div>
+                    <img src={english} alt="english" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                    </div>
+                    <img src={gardening} alt="gardening" width={150} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className="swiper-zoom-container">
-                        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                    </div>
+                    <img src={maintenance} alt="maintenance" width={150} />
                 </SwiperSlide>
+                <SwiperSlide>
+                    <img src={maths} alt="maths" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={painter} alt="painter" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={pets} alt="pets" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={remove} alt="remove" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={school} alt="school" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={shopping} alt="shopping" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={technical} alt="technical" width={150} />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={yoga} alt="yoga" width={150} />
+                </SwiperSlide>
+
+                <div className="slider-controler">
+                    <div className="swiper-button-prev slider-arrow">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </div>
+                    <div className="swiper-button-next slider-arrow">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </div>
+
+                    <div className="swiper-pagination"></div>
+                </div>
             </Swiper>
-        </>
+        </Box>
     );
 }

@@ -28,7 +28,7 @@ export default function AuthContextProvider({ children }) {
 
     setTimeout(() => {
         setLoginMessage(null)
-    }, 5000)
+    }, 3000)
 
     async function login({ email, password }) {
         try {
@@ -43,6 +43,7 @@ export default function AuthContextProvider({ children }) {
             if (response.ok) {
                 const token = await response.json()
                 const user = jwtDecode(token.jwt)
+                console.log(user);
                 setUser(user)
                 localStorage.setItem(USER_KEY, JSON.stringify(user))
                 setLoginMessage("Ya puedes navegar")
@@ -71,6 +72,7 @@ export default function AuthContextProvider({ children }) {
                 console.log("Usuario registrado");
                 setRegisterMessage("¡Registro correcto!")
             } else {
+                console.log(response);
                 setRegisterMessage("El usuario ya existe.")
             }
         }

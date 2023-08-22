@@ -43,7 +43,7 @@ export default function Header() {
     };
 
     return (
-        <AppBar position="absolute" className='gradient' sx={{ height: 70, marginTop: 0, marginBottom: 3 }}>
+        <AppBar position="absolute" className='gradient_appbar'>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 0 }}>

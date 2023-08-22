@@ -4,7 +4,7 @@ export default function Checkbox({ ...props }) {
     const [field, meta] = useField(props);
     return (
         <>
-            <div className="checkbox mt-1">
+            <div className="checkbox mt-5">
                 <input
                     {...props}
                     {...field}

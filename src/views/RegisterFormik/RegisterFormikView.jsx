@@ -2,16 +2,19 @@ import { useAuthContext } from '../../context/AuthContext';
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { Alert, Container, FormControlLabel } from "@mui/material";
+import { Alert, Container, IconButton, InputAdornment } from "@mui/material";
 import Footer from "../../components/Footer/Footer"
 import bdtlogin2 from "../../assets/bdtlogin2.png"
 import Header from '../../components/Header/Header';
+import Checkbox from "../../views/RegisterFormik/utils/UI/Checkbox"
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useState } from 'react';
+
 
 
 export default function RegisterFormikView({ formik }) {
@@ -23,6 +26,11 @@ export default function RegisterFormikView({ formik }) {
     setTimeout(() => {
         registerMessage
     }, 4000)
+
+    // Add these variables to your component to track the state
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
 
     return (
@@ -218,7 +226,20 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        type="password"
+                                        type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+                                        InputProps={{ // <-- This is where the toggle button is added.
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                    >
+                                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            )
+                                        }}
 
                                         className={errors.password && touched.password ? "input-error" : ""}
                                     />
@@ -244,11 +265,8 @@ export default function RegisterFormikView({ formik }) {
                                     {errors.confirmPassword && touched.confirmPassword && (
                                         <p className="error">{errors.confirmPassword}</p>
                                     )}
+                                    <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones" />
 
-                                    <FormControlLabel
-                                        control={<Checkbox type="checkbox" value="acceptedTC" color="primary" />}
-                                        label="Acepto los términos y condiciones"
-                                    />
                                     {registerMessage ? (
                                         <Alert variant="outlined" severity="info" >
                                             {registerMessage}
