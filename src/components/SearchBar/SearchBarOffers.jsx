@@ -1,18 +1,54 @@
 import React from 'react';
-import { useAuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Typography, Menu, Tooltip, Button } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+import { Box, AppBar, IconButton, InputBase, ListItemText, MenuItem, Toolbar, Typography, Menu, Tooltip, } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import hourglass5 from "../../assets/hourglass5.gif"
 import menu from "../../assets/icons/menu.png"
+import { styled, alpha } from '@mui/material/styles';
 
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+    },
+}));
 
-export default function Header() {
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
 
-    const { user, logout } = useAuthContext()
-    function loggingOut() {
-        logout();
-    }
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
+    },
+}));
+
+export default function SearchBarOffers() {
 
     const DifferentPages = [
         { Text: "Inicio", location: "/home", Image: menu },
@@ -35,9 +71,11 @@ export default function Header() {
     };
 
     return (
-        <AppBar position="absolute" className='gradient_appbar'>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
+
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="absolute" className='gradient_appbar'>
+                <Toolbar>
+
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Menu de navegación">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
@@ -75,45 +113,23 @@ export default function Header() {
                     </Box>
                     <Typography
                         variant="h6"
-                        omponent="div"
-                        sx={{ flexGrow: 1, color: 'whitesmoke' }}>
-                        Banco del tiempo de Málaga
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: 'whitesmoke' }}
+                    >
+                        Ofertas del banco del tiempo
                     </Typography>
-                    {user ? (
-                        <>
-                            <Box>
-                                <IconButton
-                                    size="large"
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    color="inherit"
-                                >
-                                    <AccountCircle style={{ color: '#FFF' }} />
-                                </IconButton>
-                                <Button style={{ color: '#FFF' }} onClick={loggingOut}>Cerrar sesión</Button>
-                            </Box>
-
-                        </>
-                    ) : (
-                        <>
-                            <Box>
-                                <IconButton
-                                    size="large"
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    color="inherit"
-                                >
-                                </IconButton>
-                                <Button>
-                                    <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
-                                </Button>
-                            </Box>
-                        </>
-                    )}
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
                 </Toolbar>
-            </Container>
-        </AppBar>
+            </AppBar>
+        </Box>
     );
 }
