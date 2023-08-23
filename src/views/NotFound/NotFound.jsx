@@ -1,12 +1,16 @@
 import { Box, Button, Typography } from '@mui/material';
-import { purple } from '@mui/material/colors';
+import { blueGrey } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import Footer from '../../components/Footer/Footer';
 
-const primary = purple[500]; // #f44336
+const primary = blueGrey[800]; // #f44336
 
 export default function NotFound() {
     return (
+        <>
         <Box
+
             sx={{
                 maxWidth: "xl",
                 display: 'flex',
@@ -20,12 +24,15 @@ export default function NotFound() {
             <Typography variant="h1" style={{ color: 'white' }}>
                 404
             </Typography>
-            <Typography variant="h6" style={{ color: 'white' }}>
+                <Typography variant="h6" marginBottom={4} style={{ color: 'white' }}>
                 La página que está intentando acceder no existe
             </Typography>
             <Link to="/home">
-                <Button style={{ color: 'purple' }} variant="contained">Volver</Button>
+                    <Button style={{ color: '#1565c0' }} variant="contained">Volver</Button>
             </Link>
         </Box>
+            <ScrollToTop />
+            <Footer />
+        </>
     );
 }

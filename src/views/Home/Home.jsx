@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 
 const style = {
     position: 'absolute',
@@ -96,6 +97,7 @@ export default function Home() {
             </Box>
 
             {/* <CardMedia component="iframe" src={video} allow="autoPlay" /> */}
+            <ScrollToTop />
             <Footer />
         </>
     );

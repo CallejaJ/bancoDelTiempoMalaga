@@ -14,6 +14,7 @@ import Header from '../../components/Header/Header';
 import Checkbox from "../../views/RegisterFormik/utils/UI/Checkbox"
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 
 
@@ -302,6 +303,7 @@ export default function RegisterFormikView({ formik }) {
                     </Grid>
                 </Box>
             </Container>
+            <ScrollToTop />
             <Footer />
         </>
 

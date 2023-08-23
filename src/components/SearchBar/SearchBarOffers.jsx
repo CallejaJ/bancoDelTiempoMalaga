@@ -48,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SearchBarOffers() {
+export default function SearchBarOffers({ value, onChange }) {
 
     const DifferentPages = [
         { Text: "Inicio", location: "/home", Image: menu },
@@ -126,6 +126,8 @@ export default function SearchBarOffers() {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            value={value}
+                            onChange={onChange}
                         />
                     </Search>
                 </Toolbar>

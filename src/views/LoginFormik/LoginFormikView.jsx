@@ -15,6 +15,7 @@ import bdtlogin2 from "../../assets/bdtlogin2.png"
 import Header from '../../components/Header/Header';
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 
 export default function LoginFormikView({ formik }) {
@@ -177,8 +178,8 @@ export default function LoginFormikView({ formik }) {
                     </Grid>
                 </Box>
             </Container>
+            <ScrollToTop />
             <Footer />
         </>
-
     );
 }

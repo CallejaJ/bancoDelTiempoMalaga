@@ -1,139 +1,178 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Box, AppBar, IconButton, InputBase, ListItemText, MenuItem, Toolbar, Typography, Menu, Tooltip, } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import hourglass5 from "../../assets/hourglass5.gif"
-import menu from "../../assets/icons/menu.png"
-import { styled, alpha } from '@mui/material/styles';
+import { Box, Typography, Grid } from '@mui/material';
 import Footer from '../../components/Footer/Footer';
+import guide from "../../assets/guide.png"
+import credit from "../../assets/credit.png"
+import HeaderUserGuide from '../../components/Header/HeaderUserGuide';
+import video from "../../assets/video.mp4";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
 
 export default function UserGuide() {
 
-    const DifferentPages = [
-        { Text: "Inicio", location: "/home", Image: menu },
-        { Text: "Panel", location: "/panel", Image: menu },
-        { Text: "Ofertas", location: "/offers", Image: menu },
-        { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Normativa", location: "/userguide", Image: menu },
-    ]
-
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
 
     return (
         <>
 
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="absolute" className='gradient_appbar'>
-                    <Toolbar>
+            <HeaderUserGuide />
 
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Menu de navegación">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                                    <img src={hourglass5} width={40} />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {DifferentPages.map((Text, index) => (
-                                    <MenuItem key={index}
-                                        onClick={handleCloseUserMenu}
-                                        component={Link}
-                                        to={Text.location}>
-                                        <ListItemText
-                                            primary={Text.Text}
-                                            sx={{ display: "flex", justifyContent: "space-between" }} />
-                                    </MenuItem>
-                                ))}
+            <Grid
+                container
+                justifyContent={'center'}
+                direction={'column'}
+                alignItems={'center'}
+                style={{ minHeight: '100vh' }}
 
-                            </Menu>
-                        </Box>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: 'whitesmoke' }}
-                        >
-                            Guía de uso del banco del tiempo
+            >
+                <Grid
+                    item xs={3}
+                    marginTop={0}
+                    marginBottom={0}
+                >
+                    <video src={video} allow="autoPlay" width={600} />
+                </Grid>
+            </Grid>
+
+            {/* bloque de texto */}
+
+            <Box pt={1} sx={{ width: '100%' }}>
+                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
                         </Typography>
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
-                    </Toolbar>
-                </AppBar>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Se trata, en definitiva, de un sistema de ayuda mutua
+                            entre personas que viven en la misma comunidad, es
+                            la ayuda informal de toda la vida pero en este caso la
+                            formalizamos llevando un control de las ofertas y de-
+                            mandas de cada persona.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            En el banco del tiempo se intercambian servicios y actividades en donde
+                            la unidad de intercambio y de valor siempre es la misma: la hora, el tiempo.
+                            Todos los servicios tienen el mismo valor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Una persona ofrece lo que puede y recibe lo que necesita.
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </Box>
+
+            <Grid
+                container
+                justifyContent={'center'}
+                direction={'column'}
+                alignItems={'center'}
+                style={{ minHeight: '100vh' }}
+            >
+                <Grid item xs={3}>
+                    <img src={credit} width={500} />
+                </Grid>
+            </Grid>
+
+            {/* bloque de texto */}
+
+            <Box pt={1} sx={{ width: '100%' }}>
+                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Se trata, en definitiva, de un sistema de ayuda mutua
+                            entre personas que viven en la misma comunidad, es
+                            la ayuda informal de toda la vida pero en este caso la
+                            formalizamos llevando un control de las ofertas y de-
+                            mandas de cada persona.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            En el banco del tiempo se intercambian servicios y actividades en donde
+                            la unidad de intercambio y de valor siempre es la misma: la hora, el tiempo.
+                            Todos los servicios tienen el mismo valor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Una persona ofrece lo que puede y recibe lo que necesita.
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </Box>
+
+            <Grid
+                container
+                justifyContent={'center'}
+                direction={'column'}
+                alignItems={'center'}
+                style={{ minHeight: '100vh' }}
+
+            >
+                <Grid
+                    item xs={3}
+                    marginTop={0}
+                    marginBottom={0}
+                >
+                    <img src={guide} width={700} />
+                </Grid>
+            </Grid>
+
+            {/* bloque de texto */}
+
+            <Box pt={1} sx={{ width: '100%' }}>
+                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Se trata, en definitiva, de un sistema de ayuda mutua
+                            entre personas que viven en la misma comunidad, es
+                            la ayuda informal de toda la vida pero en este caso la
+                            formalizamos llevando un control de las ofertas y de-
+                            mandas de cada persona.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            En el banco del tiempo se intercambian servicios y actividades en donde
+                            la unidad de intercambio y de valor siempre es la misma: la hora, el tiempo.
+                            Todos los servicios tienen el mismo valor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Una persona ofrece lo que puede y recibe lo que necesita.
+                        </Typography>
+                    </Grid>
+                </Grid>
             </Box>
             <Footer />
+            <ScrollToTop />
         </>
     );
 }
