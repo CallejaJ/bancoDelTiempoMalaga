@@ -5,50 +5,96 @@ import SwiperHome from "../../components/SwipperHome/SwipperHome";
 // import video from "../../assets/video.mp4";
 // import CardMedia from "@mui/material"
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 800,
+    bgcolor: 'background.paper',
+    border: '2px solid #ef6c00',
+    boxShadow: 24,
+    p: 4,
+};
 
 
 export default function Home() {
-
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     return (
         <>
             <Header />
 
-            <Box sx={{ width: '100%', maxWidth: 500 }}>
-                <Typography variant="h1" gutterBottom>
-                    h1. Heading
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                    subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                    blanditiis tenetur
-                </Typography>
-                <Typography variant="subtitle2" gutterBottom>
-                    subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                    blanditiis tenetur
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                    body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                    blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-                    neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-                    quasi quidem quibusdam.
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                    body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                    blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-                    neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-                    quasi quidem quibusdam.
-                </Typography>
-                <Typography variant="button" display="block" gutterBottom>
-                    button text
-                </Typography>
-                <Typography variant="caption" display="block" gutterBottom>
-                    caption text
-                </Typography>
-                <Typography variant="overline" display="block" gutterBottom>
-                    overline text
-                </Typography>
+            <SwiperHome />
+
+            {/* bloque de texto */}
+
+            <Box pt={9} sx={{ width: '100%' }}>
+                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Se trata, en definitiva, de un sistema de ayuda mutua
+                            entre personas que viven en la misma comunidad, es
+                            la ayuda informal de toda la vida pero en este caso la
+                            formalizamos llevando un control de las ofertas y de-
+                            mandas de cada persona.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            En el banco del tiempo se intercambian servicios y actividades en donde
+                            la unidad de intercambio y de valor siempre es la misma: la hora, el tiempo.
+                            Todos los servicios tienen el mismo valor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Una persona ofrece lo que puede y recibe lo que necesita.
+                        </Typography>
+                    </Grid>
+                </Grid>
             </Box>
 
-            <SwiperHome />
+            {/* ventana de texto */}
+
+            <Box padding={2} margin={2}>
+                <Button onClick={handleOpen}>¿Qué es un banco de tiempo?</Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
+                            ¿Qué es un banco del tiempo?
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
+                        </Typography>
+                    </Box>
+                </Modal>
+            </Box>
+
             {/* <CardMedia component="iframe" src={video} allow="autoPlay" /> */}
             <Footer />
         </>

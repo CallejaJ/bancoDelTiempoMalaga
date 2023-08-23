@@ -34,7 +34,8 @@ const orangeTheme = createTheme({
     },
     text: {
       primary: "#006cff",
-      secondary: "#242424"
+      secondary: "#242424",
+      grey: '#f5f5f5'
     }
   },
   components: {
