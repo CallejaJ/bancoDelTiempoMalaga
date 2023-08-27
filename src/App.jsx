@@ -1,5 +1,6 @@
-import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import AuthContextProvider from "./context/AuthContext";
+import UserContextProvider from "./context/UserContext";
+import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import LoginFormik from "./views/LoginFormik/LoginFormik"
 import { useLayoutEffect } from "react";
 import PublicRoute from "./components/Router/PublicRoute";
@@ -11,9 +12,13 @@ import Landing from "./views/Landing/Landing";
 import Layout from "./Layout";
 import Requests from "./views/Requests/Requests";
 import RegisterFormik from "./views/RegisterFormik/RegisterFormik";
-import Panel from "./views/Panel/Panel";
+import PanelFormik from "./views/Panel/PanelFormik";
 import UserGuide from "./views/UserGuide/UserGuide";
 import Offers from "./views/Offers/Offers";
+
+// import ChatPage from './views/ChatPage/ChatPage';
+// import HomeChat from "./views/HomeChat/HomeChat";
+// import socketIO from 'socket.io-client';
 
 import { blue, orange } from "@mui/material/colors";
 import { CssBaseline, createTheme } from "@mui/material";
@@ -68,6 +73,9 @@ const orangeTheme = createTheme({
   }
 });
 
+// const socket = socketIO.connect('http://localhost:4000');
+
+
 export default function App() {
 
   const Wrapper = ({ children }) => {
@@ -81,6 +89,7 @@ export default function App() {
     <>
       <BrowserRouter>
         <AuthContextProvider>
+          <UserContextProvider>
           <Wrapper>
             <ThemeProvider theme={orangeTheme}>
               <CssBaseline />
@@ -101,13 +110,14 @@ export default function App() {
                 {/* Rutas privadas */}
                 <Route path="/panel" element={<PrivateRoute />} >
                   <Route element={<Layout />} >
-                    <Route index element={<Panel />} />
-                  </Route>
+                      <Route index element={<PanelFormik />} />
+                    </Route>
                 </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
             </ThemeProvider>
           </Wrapper>
+          </UserContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </>

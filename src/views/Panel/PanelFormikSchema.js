@@ -3,7 +3,7 @@ import * as yup from "yup";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 
-export const RegisterFormikSchema = yup.object().shape({
+export const PanelFormikSchema = yup.object().shape({
 
     name: yup
         .string()

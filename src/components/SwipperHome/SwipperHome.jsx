@@ -24,7 +24,8 @@ import 'swiper/css';
 
 export default function SwiperHome() {
     return (
-        <Box className="container">
+        <Box className="container"
+        >
             <Swiper
                 effect={'coverflow'}
                 grabCursor={true}
@@ -37,6 +38,7 @@ export default function SwiperHome() {
                     depth: 100,
                     modifier: 2.5,
                 }}
+
                 pagination={{ el: '.swiper-pagination', clickable: true }}
                 navigation={{
                     nextEl: '.swiper-button-next',
@@ -46,55 +48,55 @@ export default function SwiperHome() {
                 className="swiper_container"
             >
                 <SwiperSlide >
-                    <img src={plumber} alt="plumber" width={150} />
+                    <img src={plumber} alt="plumber" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={caring} alt="caring" width={150} />
+                    <img src={caring} alt="caring" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={chauffeur} alt="chauffeur" width={150} />
+                    <img src={chauffeur} alt="chauffeur" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={children} alt="children" width={150} />
+                    <img src={children} alt="children" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={chinese} alt="chinese" width={150} />
+                    <img src={chinese} alt="chinese" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={cleaning} alt="cleaning" width={150} />
+                    <img src={cleaning} alt="cleaning" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={english} alt="english" width={150} />
+                    <img src={english} alt="english" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={gardening} alt="gardening" width={150} />
+                    <img src={gardening} alt="gardening" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={maintenance} alt="maintenance" width={150} />
+                    <img src={maintenance} alt="maintenance" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={maths} alt="maths" width={150} />
+                    <img src={maths} alt="maths" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={painter} alt="painter" width={150} />
+                    <img src={painter} alt="painter" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={pets} alt="pets" width={150} />
+                    <img src={pets} alt="pets" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={remove} alt="remove" width={150} />
+                    <img src={remove} alt="remove" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={school} alt="school" width={150} />
+                    <img src={school} alt="school" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={shopping} alt="shopping" width={150} />
+                    <img src={shopping} alt="shopping" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={technical} alt="technical" width={150} />
+                    <img src={technical} alt="technical" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={yoga} alt="yoga" width={150} />
+                    <img src={yoga} alt="yoga" />
                 </SwiperSlide>
 
                 <div className="slider-controler">

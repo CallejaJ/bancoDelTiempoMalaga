@@ -57,7 +57,7 @@ export default function HeaderUserGuide() {
         { Text: "Panel", location: "/panel", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Normativa", location: "/userguide", Image: menu },
+        { Text: "Guía de uso", location: "/userguide", Image: menu },
     ]
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);

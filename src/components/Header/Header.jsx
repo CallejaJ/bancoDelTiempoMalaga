@@ -19,7 +19,7 @@ export default function Header() {
         { Text: "Panel", location: "/panel", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Normativa", location: "/userguide", Image: menu },
+        { Text: "Guía de uso", location: "/userguide", Image: menu },
     ]
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -75,9 +75,9 @@ export default function Header() {
                     </Box>
                     <Typography
                         variant="h6"
-                        omponent="div"
+                        component="div"
                         sx={{ flexGrow: 1, color: 'whitesmoke' }}>
-                        Banco del tiempo de Málaga
+                        Banco del Tiempo de Málaga
                     </Typography>
                     {user ? (
                         <>
@@ -107,7 +107,7 @@ export default function Header() {
                                 >
                                 </IconButton>
                                 <Button>
-                                    <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
+                                        <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
                                 </Button>
                             </Box>
                         </>

@@ -5,11 +5,12 @@ import { initialValues } from "./utils/registerForm";
 import { useAuthContext } from "../../context/AuthContext";
 
 export default function RegisterFormik() {
-    const { register } = useAuthContext();
+    const { register, actions } = useAuthContext();
 
     function onSubmit(values) {
+        console.log("onsubmit")
         register(values);
-        // actions.resetForm();
+        actions.resetForm();
     }
 
     return (

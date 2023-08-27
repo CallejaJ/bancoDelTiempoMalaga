@@ -37,11 +37,22 @@ export default function RegisterFormikView({ formik }) {
     return (
         <>
             <Header />
-            <Container component="main" maxWidth="lg">
+            <Box
+                sx={{
+                    top: "modal",
+                    position: "center",
+                    marginTop: 3,
+                    marginBottom: 3
+                }}
+            >
+                <Container component="main" maxWidth="md">
                 <Box
                     sx={{
                         marginTop: 8,
-                        marginBottom: 5
+                            marginBottom: 5,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
                     }}
                 >
                     <Grid container>
@@ -103,13 +114,9 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.name}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.name && touched.name ? "input-error" : ""}
-
-                                    />
-                                    {errors.name && touched.name && (
-                                        <p className="error">{errors.name}</p>
-                                    )}
-
+                                            error={touched.name && Boolean(errors.name)}
+                                            helperText={touched.name && errors.name}
+                                        />
                                     <TextField
                                         margin="normal"
                                         required
@@ -124,12 +131,9 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.surname}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.surname && touched.surname ? "input-error" : ""}
-
-                                    />
-                                    {errors.surname && touched.surname && (
-                                        <p className="error">{errors.surname}</p>
-                                    )}
+                                            error={touched.surname && Boolean(errors.surname)}
+                                            helperText={touched.surname && errors.surname}
+                                        />
 
                                     <TextField
                                         margin="normal"
@@ -145,12 +149,10 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.address}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.address && touched.address ? "input-error" : ""}
-
+                                            error={touched.address && Boolean(errors.address)}
+                                            helperText={touched.address && errors.address}
                                     />
-                                    {errors.address && touched.address && (
-                                        <p className="error">{errors.address}</p>
-                                    )}
+
 
                                     <TextField
                                         margin="normal"
@@ -166,12 +168,9 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.district}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.district && touched.district ? "input-error" : ""}
-
-                                    />
-                                    {errors.district && touched.district && (
-                                        <p className="error">{errors.district}</p>
-                                    )}
+                                            error={touched.district && Boolean(errors.district)}
+                                            helperText={touched.district && errors.district}
+                                        />
 
                                     <TextField
                                         margin="normal"
@@ -187,12 +186,9 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.pobox}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.pobox && touched.pobox ? "input-error" : ""}
-
-                                    />
-                                    {errors.pobox && touched.pobox && (
-                                        <p className="error">{errors.pobox}</p>
-                                    )}
+                                            error={touched.pobox && Boolean(errors.pobox)}
+                                            helperText={touched.pobox && errors.pobox}
+                                        />
 
                                     <TextField
                                         margin="normal"
@@ -208,12 +204,9 @@ export default function RegisterFormikView({ formik }) {
                                         value={values.newEmail}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.newEmail && touched.newEmail ? "input-error" : ""}
-
-                                    />
-                                    {errors.newEmail && touched.newEmail && (
-                                        <p className="error">{errors.newEmail}</p>
-                                    )}
+                                            error={touched.newEmail && Boolean(errors.newEmail)}
+                                            helperText={touched.newEmail && errors.newEmail}
+                                        />
 
                                     <TextField
                                         margin="normal"
@@ -242,11 +235,9 @@ export default function RegisterFormikView({ formik }) {
                                             )
                                         }}
 
-                                        className={errors.password && touched.password ? "input-error" : ""}
-                                    />
-                                    {errors.password && touched.password && (
-                                        <p className="error">{errors.password}</p>
-                                    )}
+                                            error={touched.password && Boolean(errors.password)}
+                                            helperText={touched.password && errors.password} />
+
                                     <TextField
                                         margin="normal"
                                         required
@@ -260,12 +251,10 @@ export default function RegisterFormikView({ formik }) {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         type="password"
-
-                                        className={errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}
+                                            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+                                            helperText={touched.confirmPassword && errors.confirmPassword}
                                     />
-                                    {errors.confirmPassword && touched.confirmPassword && (
-                                        <p className="error">{errors.confirmPassword}</p>
-                                    )}
+
                                     <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones" />
 
                                     {registerMessage ? (
@@ -303,8 +292,9 @@ export default function RegisterFormikView({ formik }) {
                     </Grid>
                 </Box>
             </Container>
-            <ScrollToTop />
+            </Box>
             <Footer />
+            <ScrollToTop />
         </>
 
     );

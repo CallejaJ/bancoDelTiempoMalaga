@@ -1,15 +1,15 @@
+import * as React from 'react';
 import { Box } from "@mui/material";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import SwiperHome from "../../components/SwipperHome/SwipperHome";
-// import video from "../../assets/video.mp4";
-// import CardMedia from "@mui/material"
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import video from "../../assets/video.mp4";
+
 
 const style = {
     position: 'absolute',
@@ -18,7 +18,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 800,
     bgcolor: 'background.paper',
-    border: '2px solid #ef6c00',
     boxShadow: 24,
     p: 4,
 };
@@ -32,7 +31,46 @@ export default function Home() {
         <>
             <Header />
 
-            <SwiperHome />
+            <Box
+                justifyContent={'center'}
+                alignItems={'center'}
+                style={{ minHeight: '100vh' }}
+
+            >
+                <Grid
+                    item xs={3}
+                    marginTop={3}
+                    marginBottom={3}
+                >
+                    <video src={video} allow="autoPlay" controls muted width={800} />
+                </Grid>
+            </Box>
+
+            {/* ventana de texto */}
+
+            <Box padding={2} margin={2}>
+                <Button onClick={handleOpen}>¿Qué es un banco de tiempo?</Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
+                            ¿Qué es un banco del tiempo?
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
+                        </Typography>
+                    </Box>
+                </Modal>
+            </Box>
+
 
             {/* bloque de texto */}
 
@@ -71,6 +109,7 @@ export default function Home() {
                 </Grid>
             </Box>
 
+            <SwiperHome />
             {/* ventana de texto */}
 
             <Box padding={2} margin={2}>
@@ -96,9 +135,8 @@ export default function Home() {
                 </Modal>
             </Box>
 
-            {/* <CardMedia component="iframe" src={video} allow="autoPlay" /> */}
-            <ScrollToTop />
             <Footer />
+            <ScrollToTop />
         </>
     );
 }

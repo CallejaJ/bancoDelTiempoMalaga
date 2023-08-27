@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { Box, AppBar, IconButton, InputBase, ListItemText, MenuItem, Toolbar, Typography, Menu, Tooltip, } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -48,42 +50,42 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SearchBarRequests({ value, onChange }) {
+export default function SearchBarRequests() {
 
-    const [searchValue, setSearchValue] = useState("")
-    const [message, setMessage] = useState(null)
+    // const [searchValue, setSearchValue] = useState("")
+    // const [message, setMessage] = useState(null)
 
-    function onSearchRequests(e) {
-        setSearchValue(e.target.value)
-    }
+    // function onSearchRequests(e) {
+    //     setSearchValue(e.target.value)
+    // }
 
-    useEffect(function () {
+    // useEffect(function () {
 
-        async function fetchData() {
-            const response = await fetch(`http://localhost:3006/user/requests=${searchValue}`
-            );
+    //     async function fetchData() {
+    //         const response = await fetch(`http://localhost:3006/user/requests=${searchValue}`
+    //         );
 
-            if (!response.ok) {
-                setMessage("No hay demandas para tu búsqueda");
-                setSearchValue(null)
-            }
-            else {
-                const data = await response.json();
-                setMessage(null);
-                setSearchValue(data);
-            }
-        }
+    //         if (!response.ok) {
+    //             setMessage("No hay demandas para tu búsqueda");
+    //             setSearchValue(null)
+    //         }
+    //         else {
+    //             const data = await response.json();
+    //             setMessage(null);
+    //             setSearchValue(data);
+    //         }
+    //     }
 
-        fetchData();
+    //     fetchData();
 
-    }, [searchValue]); // ---> results requests
+    // }, [searchValue]); // ---> results requests
 
     const DifferentPages = [
         { Text: "Inicio", location: "/home", Image: menu },
         { Text: "Panel", location: "/panel", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Normativa", location: "/userguide", Image: menu },
+        { Text: "Guía de uso", location: "/userguide", Image: menu },
     ]
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -154,11 +156,11 @@ export default function SearchBarRequests({ value, onChange }) {
                         <StyledInputBase
                             placeholder="Buscar..."
                             inputProps={{ 'aria-label': 'search' }}
-                            value={value}
-                            onChange={onChange}
-                            onSearch={onSearchRequests}
-                            searchValue={searchValue}
-                            message={message}
+                        //     value={value}
+                        //     onChange={onChange}
+                        //     onSearch={onSearchRequests}
+                        //     searchValue={searchValue}
+                        //     message={message}
                         />
                     </Search>
                 </Toolbar>

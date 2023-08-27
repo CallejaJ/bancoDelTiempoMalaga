@@ -12,6 +12,7 @@ const AuthContext = createContext(
     });
 
 const USER_KEY = "USER_KEY"
+const TOKEN_KEY = "TOKEN_KEY"
 
 export default function AuthContextProvider({ children }) {
 
@@ -24,7 +25,7 @@ export default function AuthContextProvider({ children }) {
 
     setTimeout(() => {
         setRegisterMessage(null)
-    }, 5000)
+    }, 3000)
 
     setTimeout(() => {
         setLoginMessage(null)
@@ -32,8 +33,7 @@ export default function AuthContextProvider({ children }) {
 
     async function login({ email, password }) {
         try {
-
-            const response = await fetch("http://localhost:3006/user/login", {
+            const response = await fetch("http://localhost:3006/user/login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -46,6 +46,7 @@ export default function AuthContextProvider({ children }) {
                 console.log(user);
                 setUser(user)
                 localStorage.setItem(USER_KEY, JSON.stringify(user))
+                localStorage.setItem(TOKEN_KEY, token.jwt)
                 setLoginMessage("Ya puedes navegar")
             }
             else {
@@ -61,6 +62,7 @@ export default function AuthContextProvider({ children }) {
     async function register(
         { name, surname, district, address, pobox, newEmail, password }) {
         try {
+            console.log("registrando")
             const response = await fetch("http://localhost:3006/user/", {
                 method: "POST",
                 headers: {

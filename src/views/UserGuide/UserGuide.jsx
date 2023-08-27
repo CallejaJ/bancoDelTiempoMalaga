@@ -3,7 +3,6 @@ import Footer from '../../components/Footer/Footer';
 import guide from "../../assets/guide.png"
 import credit from "../../assets/credit.png"
 import HeaderUserGuide from '../../components/Header/HeaderUserGuide';
-import video from "../../assets/video.mp4";
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 
@@ -11,26 +10,14 @@ export default function UserGuide() {
 
 
     return (
-        <>
 
+        <>
             <HeaderUserGuide />
 
-            <Grid
-                container
-                justifyContent={'center'}
-                direction={'column'}
-                alignItems={'center'}
-                style={{ minHeight: '100vh' }}
+            <div className="boxShadowOrange">
+                Hello
+            </div>
 
-            >
-                <Grid
-                    item xs={3}
-                    marginTop={0}
-                    marginBottom={0}
-                >
-                    <video src={video} allow="autoPlay" width={600} />
-                </Grid>
-            </Grid>
 
             {/* bloque de texto */}
 
@@ -75,6 +62,8 @@ export default function UserGuide() {
                 direction={'column'}
                 alignItems={'center'}
                 style={{ minHeight: '100vh' }}
+                marginTop={1}
+                marginBottom={1}
             >
                 <Grid item xs={3}>
                     <img src={credit} width={500} />

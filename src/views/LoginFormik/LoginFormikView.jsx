@@ -20,6 +20,7 @@ import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 export default function LoginFormikView({ formik }) {
 
+
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     const { loginMessage } = useAuthContext();
     // es una respuesta del backend si hay errores en el endpoint
@@ -36,14 +37,27 @@ export default function LoginFormikView({ formik }) {
     return (
         <>
             <Header />
-            <Container component="main" maxWidth="lg">
-                <Box
-                    sx={{
-                        marginTop: 5,
-                        marginBottom: 5,
-                    }}
-                >
-                    <Grid container>
+            <Box
+                sx={{
+                    top: "modal",
+                    position: "center",
+                    marginTop: 3,
+                    marginBottom: 3
+                }}
+            >
+                <Container
+                    component="main" maxWidth="md">
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
+                        }}
+                    ></Box>
+                    <Grid
+                        container
+                        justify="center"
+                    >
                         <CssBaseline />
                         <Grid
                             item
@@ -102,12 +116,10 @@ export default function LoginFormikView({ formik }) {
                                         value={values.email}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        className={errors.email && touched.email ? "input-error" : ""}
-
+                                        error={touched.email && Boolean(errors.email)}
+                                        helperText={touched.email && errors.email}
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="error">{errors.email}</p>
-                                    )}
+
                                     <TextField
                                         margin="normal"
                                         required
@@ -134,11 +146,10 @@ export default function LoginFormikView({ formik }) {
                                                 </InputAdornment>
                                             )
                                         }}
-                                        className={errors.password && touched.password ? "input-error" : ""}
+                                        error={touched.password && Boolean(errors.password)}
+                                        helperText={touched.password && errors.password}
                                     />
-                                    {errors.password && touched.password && (
-                                        <p className="error">{errors.password}</p>
-                                    )}
+
                                     <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
                                         label="Recordarme"
@@ -166,18 +177,17 @@ export default function LoginFormikView({ formik }) {
                                         <Grid item xs>
                                             <Link to="/register">
                                                 <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
-                                                    ¿Tienes cuenta? Ir a registro
+                                                    ¿No tienes cuenta? Ir a registro
                                                 </Typography>
                                             </Link>
                                         </Grid>
-
                                     </Grid>
                                 </Box>
                             </Box>
                         </Grid>
                     </Grid>
-                </Box>
             </Container>
+            </Box>
             <ScrollToTop />
             <Footer />
         </>
