@@ -33,17 +33,15 @@ export default function UserContextProvider({ children }) {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-
             })
             if (response.ok) {
-
                 console.log(user);
                 setUser(user)
+                setUpdateUserMessage("Inténtalo de nuevo")
 
             }
             else {
                 setUpdateUserMessage("Inténtalo de nuevo")
-
             }
         }
         catch (err) {
@@ -56,7 +54,7 @@ export default function UserContextProvider({ children }) {
         try {
             console.log("registrando")
             const response = await fetch("http://localhost:3006/user/", {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
