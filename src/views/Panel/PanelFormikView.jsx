@@ -1,11 +1,15 @@
 import { Alert, Box, Button, Checkbox, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
-import Header from "../../components/Header/Header";
+import { useAuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
+import { AppBar, MenuItem, ListItemText, Toolbar, Menu, Tooltip } from '@mui/material';
+import { AccountCircle } from '@mui/icons-material';
+import menu from "../../assets/icons/menu.png"
+import MenuIcon from '@mui/icons-material/Menu';
 import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import bdtlogin2 from "../../assets/bdtlogin2.png"
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 
 
@@ -22,11 +26,140 @@ export default function PanelFormikView({ formik }) {
         updateUserMessage
     }, 4000)
 
+    const { user, logout } = useAuthContext()
+    function loggingOut() {
+        logout();
+    }
+
+    const userMenuPages = [
+        { Text: "Inicio", location: "/home", Image: menu },
+        { Text: "Panel", location: "/panel", Image: menu },
+        { Text: "Ofertas", location: "/offers", Image: menu },
+        { Text: "Demandas", location: "/requests", Image: menu },
+        { Text: "Guía de uso", location: "/userguide", Image: menu },
+    ]
+
+    const visitorMenuPages = [
+        { Text: "Inicio", location: "/home", Image: menu },
+        { Text: "Ofertas", location: "/offers", Image: menu },
+        { Text: "Demandas", location: "/requests", Image: menu },
+        { Text: "Guía de uso", location: "/userguide", Image: menu },
+    ]
+
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
     return (
         <>
-            <div>Panel</div>
+            <AppBar position="absolute" className='gradient_appbar'>
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Menu de navegación">
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="primary"
+                                    aria-label="menu"
+                                    sx={{ mr: 2, p: 2 }}
+                                    onClick={handleOpenUserMenu}>
+                                    <MenuIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {user ? (
+                                    userMenuPages.map((Text, index) => [
+                                        <MenuItem key={index}
+                                            onClick={handleCloseUserMenu}
+                                            component={Link}
+                                            to={Text.location}>
+                                            <ListItemText
+                                                primary={Text.Text}
+                                                sx={{ display: "flex", justifyContent: "space-between" }} />
+                                        </MenuItem>
+                                    ])
+                                )
+                                    : (
+                                        visitorMenuPages.map((Text, index) => [
+                                            <MenuItem key={index}
+                                                onClick={handleCloseUserMenu}
+                                                component={Link}
+                                                to={Text.location}>
+                                                <ListItemText
+                                                    primary={Text.Text}
+                                                    sx={{ display: "flex", justifyContent: "space-between" }} />
+                                            </MenuItem>
+                                        ])
+                                    )
+                                }
+                            </Menu>
+                        </Box>
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{ flexGrow: 1, color: 'whitesmoke' }}>
+                            Panel del usuario `${user.name}`
+                        </Typography>
+                        {user ? (
+                            <>
+                                <Box>
+                                    <IconButton
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        color="primary"
+                                    >
+                                        <AccountCircle style={{ color: '#FFF' }} />
+                                    </IconButton>
+                                    <Button style={{ color: '#FFF' }} onClick={loggingOut}>Cerrar sesión</Button>
+                                </Box>
 
-            <Header />
+                            </>
+                        ) : (
+                            <>
+                                <Box>
+                                    <IconButton
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        color="inherit"
+                                    >
+                                    </IconButton>
+                                    <Button>
+                                        <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
+                                    </Button>
+                                </Box>
+                            </>
+                        )}
+                    </Toolbar>
+                </Container>
+            </AppBar>
             <Box
                 sx={{
                     top: "modal",
@@ -83,7 +216,7 @@ export default function PanelFormikView({ formik }) {
                                     }}
                                 >
                                     <Typography component="h1" variant="h5">
-                                        Panel de usuario
+                                        Datos de usuario
                                     </Typography>
                                     <Box
                                         component="form"

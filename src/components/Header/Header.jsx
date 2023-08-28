@@ -3,8 +3,8 @@ import { useAuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Typography, Menu, Tooltip, Button } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
-import hourglass5 from "../../assets/hourglass5.gif"
 import menu from "../../assets/icons/menu.png"
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 export default function Header() {
@@ -14,9 +14,16 @@ export default function Header() {
         logout();
     }
 
-    const DifferentPages = [
+    const userMenuPages = [
         { Text: "Inicio", location: "/home", Image: menu },
         { Text: "Panel", location: "/panel", Image: menu },
+        { Text: "Ofertas", location: "/offers", Image: menu },
+        { Text: "Demandas", location: "/requests", Image: menu },
+        { Text: "Guía de uso", location: "/userguide", Image: menu },
+    ]
+
+    const visitorMenuPages = [
+        { Text: "Inicio", location: "/home", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
         { Text: "Guía de uso", location: "/userguide", Image: menu },
@@ -40,8 +47,14 @@ export default function Header() {
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Menu de navegación">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                                <img src={hourglass5} width={40} />
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="primary"
+                                aria-label="menu"
+                                sx={{ mr: 2, p: 2 }}
+                                onClick={handleOpenUserMenu}>
+                                <MenuIcon />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -60,24 +73,38 @@ export default function Header() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {DifferentPages.map((Text, index) => (
-                                <MenuItem key={index}
-                                    onClick={handleCloseUserMenu}
-                                    component={Link}
-                                    to={Text.location}>
-                                    <ListItemText
-                                        primary={Text.Text}
-                                        sx={{ display: "flex", justifyContent: "space-between" }} />
-                                </MenuItem>
-                            ))}
-
+                            {user ? (
+                                userMenuPages.map((Text, index) => [
+                                    <MenuItem key={index}
+                                        onClick={handleCloseUserMenu}
+                                        component={Link}
+                                        to={Text.location}>
+                                        <ListItemText
+                                            primary={Text.Text}
+                                            sx={{ display: "flex", justifyContent: "space-between" }} />
+                                    </MenuItem>
+                                ])
+                            )
+                                : (
+                                    visitorMenuPages.map((Text, index) => [
+                                        <MenuItem key={index}
+                                            onClick={handleCloseUserMenu}
+                                            component={Link}
+                                            to={Text.location}>
+                                            <ListItemText
+                                                primary={Text.Text}
+                                                sx={{ display: "flex", justifyContent: "space-between" }} />
+                                        </MenuItem>
+                                    ])
+                                )
+                            }
                         </Menu>
                     </Box>
                     <Typography
                         variant="h6"
                         component="div"
                         sx={{ flexGrow: 1, color: 'whitesmoke' }}>
-                        Banco del Tiempo de Málaga
+                        Banco del Tiempo
                     </Typography>
                     {user ? (
                         <>
@@ -87,7 +114,7 @@ export default function Header() {
                                     aria-label="account of current user"
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
-                                    color="inherit"
+                                    color="primary"
                                 >
                                     <AccountCircle style={{ color: '#FFF' }} />
                                 </IconButton>
