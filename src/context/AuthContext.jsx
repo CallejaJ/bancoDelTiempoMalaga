@@ -50,7 +50,7 @@ export default function AuthContextProvider({ children }) {
                 setLoginMessage("Ya puedes navegar")
             }
             else {
-                setLoginMessage("Inténtalo de nuevo")
+                setLoginMessage("Hay errores en el formulario. Inténtalo de nuevo")
 
             }
         }
@@ -72,10 +72,10 @@ export default function AuthContextProvider({ children }) {
             })
             if (response.ok) {
                 console.log("Usuario registrado");
-                setRegisterMessage("¡Registro correcto!")
+                setRegisterMessage("¡Registro correcto! Ya puedes iniciar sesión.")
             } else {
                 console.log(response);
-                setRegisterMessage("El usuario ya existe.")
+                setRegisterMessage("El usuario ya existe. Inicia sesión.")
             }
         }
         catch (err) {
@@ -86,6 +86,7 @@ export default function AuthContextProvider({ children }) {
 
     function logout() {
         localStorage.removeItem(USER_KEY);
+        localStorage.removeItem(TOKEN_KEY);
         setUser(null)
     }
 
@@ -98,6 +99,7 @@ export default function AuthContextProvider({ children }) {
     );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuthContext() {
     return useContext(AuthContext);
 }

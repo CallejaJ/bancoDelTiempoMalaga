@@ -10,7 +10,7 @@ import React from "react";
 
 const steps = [
     {
-        label: '¿Qué puedo solicitar?',
+        label: '¿Qué puedo ofrecer?',
         description: `Cualquier servicio que se traduzca en tiempo sabiendo que las horas
         de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
         posible en qué consiste la tarea a realizar, para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,

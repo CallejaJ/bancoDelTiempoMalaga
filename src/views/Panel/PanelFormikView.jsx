@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Checkbox, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { useAuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { AppBar, MenuItem, ListItemText, Toolbar, Menu, Tooltip } from '@mui/material';
@@ -7,11 +7,10 @@ import menu from "../../assets/icons/menu.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import bdtlogin2 from "../../assets/bdtlogin2.png"
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
-
+import { ImageUpload } from "./utils/Avatar/ImageUpload";
 
 export default function PanelFormikView({ formik }) {
 
@@ -57,6 +56,7 @@ export default function PanelFormikView({ formik }) {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
 
     return (
         <>
@@ -122,7 +122,7 @@ export default function PanelFormikView({ formik }) {
                             variant="h6"
                             component="div"
                             sx={{ flexGrow: 1, color: 'whitesmoke' }}>
-                            Panel del usuario `${user.name}`
+                            Panel de usuario
                         </Typography>
                         {user ? (
                             <>
@@ -175,35 +175,21 @@ export default function PanelFormikView({ formik }) {
                             marginTop: 8,
                             marginBottom: 5,
                             display: 'flex',
-                            flexDirection: 'column',
+                            flexDirection: 'row',
                             alignItems: 'center'
                         }}
                     >
                         <Grid container>
                             <CssBaseline />
+                            <ImageUpload />
+
                             <Grid
                                 item
-                                xs={false}
-                                sm={5}
-                                md={7}
-                                sx={{
-                                    backgroundImage: 'url(' + bdtlogin2 + ')',
-                                    backgroundRepeat: "no-repeat",
-                                    backgroundColor: (t) =>
-                                        t.palette.mode === "light"
-                                            ? t.palette.grey[50]
-                                            : t.palette.grey[900],
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center",
-                                }}
-                            />
-                            <Grid
-                                item
-                                xs={12}
-                                sm={8}
-                                md={5}
+                                xs={6}
+                                sm={4}
+                                md={3}
                                 component={Paper}
-                                elevation={6}
+                                elevation={2}
                                 square
                             >
                                 <Box
@@ -216,10 +202,13 @@ export default function PanelFormikView({ formik }) {
                                     }}
                                 >
                                     <Typography component="h1" variant="h5">
-                                        Datos de usuario
+                                        Datos del usuario
+                                    </Typography>
+                                    <Typography color="primary" component="h1" variant="h5" sx={{ textTransform: 'uppercase' }}>
+                                        {user.name}
                                     </Typography>
                                     <Box
-                                        component="form"
+                                        component="form"    
                                         noValidate
                                         onSubmit={handleSubmit}
                                         sx={{ mt: 1 }}
@@ -379,8 +368,6 @@ export default function PanelFormikView({ formik }) {
                                             helperText={touched.confirmPassword && errors.confirmPassword}
                                         />
 
-                                        <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones" />
-
                                         {updateUserMessage ? (
                                             <Alert variant="outlined" severity="info" >
                                                 {updateUserMessage}
@@ -390,26 +377,11 @@ export default function PanelFormikView({ formik }) {
                                             type="submit"
                                             fullWidth
                                             variant="contained"
-                                            sx={{ mt: 3, mb: 2 }}
+                                            sx={{ mt: 6, mb: 2 }}
                                         >
-                                            Terminar
+                                            Actualizar
                                         </Button>
-                                        <Grid container>
-                                            <Grid item xs>
-                                                <Link to="/home">
-                                                    <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
-                                                        Volver al inicio
-                                                    </Typography>
-                                                </Link>
-                                            </Grid>
-                                            <Grid item xs>
-                                                <Link to="/login">
-                                                    <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
-                                                        ¿Tienes cuenta? Ir a login
-                                                    </Typography>
-                                                </Link>
-                                            </Grid>
-                                        </Grid>
+
                                     </Box>
                                 </Box>
                             </Grid>

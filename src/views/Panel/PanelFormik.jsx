@@ -5,11 +5,11 @@ import { initialValues } from "./utils/panelForm";
 import { useUserContext } from "../../context/UserContext";
 
 export default function PanelFormik() {
-    const { getUser } = useUserContext();
+    const { getUser, putUser } = useUserContext();
 
-    function onSubmit() {
-        // register(values);
+    function onSubmit(values) {
         // actions.resetForm();
+        putUser(values)
     }
 
     const user = getUser()

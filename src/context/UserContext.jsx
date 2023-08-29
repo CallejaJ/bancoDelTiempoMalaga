@@ -2,6 +2,7 @@ import { createContext, useState, useContext } from 'react';
 
 const UserContext = createContext(
     {
+        userMessagge: null,
         getUser: () => { },
         putUser: () => { }
     });
@@ -24,6 +25,7 @@ export default function UserContextProvider({ children }) {
     }, 3000)
 
 
+
     async function getUser() {
         try {
             console.log(user);
@@ -35,13 +37,8 @@ export default function UserContextProvider({ children }) {
                 },
             })
             if (response.ok) {
-                console.log(user);
-                setUser(user)
-                setUpdateUserMessage("Inténtalo de nuevo")
-
-            }
-            else {
-                setUpdateUserMessage("Inténtalo de nuevo")
+                setUser(response)
+                setToken(response)
             }
         }
         catch (err) {
@@ -49,8 +46,9 @@ export default function UserContextProvider({ children }) {
         }
     }
 
-    async function putUser(
-        { name, surname, district, address, pobox, newEmail, password }) {
+
+
+    async function putUser({ name, surname, district, address, pobox, newEmail, password }) {
         try {
             console.log("registrando")
             const response = await fetch("http://localhost:3006/user/", {
@@ -60,14 +58,19 @@ export default function UserContextProvider({ children }) {
                 },
                 body: JSON.stringify({ name: name, surname: surname, district: district, address: address, pobox: pobox, email: newEmail, password: password })
             })
-
+            if (response.ok) {
+                console.log("Usuario actualizado");
+                updateUserMessage("Tus datos han sido actualizados.")
+            } else {
+                console.log(response);
+                updateUserMessage("Inténtalo de nuevo.")
+            }
         }
         catch (err) {
             throw new Error(err.message)
         }
+
     }
-
-
 
 
     const value = {
@@ -79,6 +82,7 @@ export default function UserContextProvider({ children }) {
     );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useUserContext() {
     return useContext(UserContext);
 }

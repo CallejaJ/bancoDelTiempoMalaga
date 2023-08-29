@@ -8,6 +8,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import React from "react";
 import { Link } from "react-router-dom";
 import { AccountCircle } from "@mui/icons-material";
+// import RequestDataTable from "../../components/RequestData/RequestDataTable";
 
 export default function Requests() {
 
@@ -151,9 +152,9 @@ export default function Requests() {
             <Box>
                 <StepperRequests />
             </Box>
-            {/* <Box>
-                <RequestDataTable />
-            </Box> */}
+            <Box>
+                {/* <RequestDataTable /> */}
+            </Box>
             <ScrollToTop />
             <Footer />
         </>
