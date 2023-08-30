@@ -8,12 +8,10 @@ export default function PanelFormik() {
     const { getUser, putUser } = useUserContext();
 
     function onSubmit(values) {
-        // actions.resetForm();
         putUser(values)
     }
 
     const user = getUser()
-    console.log(user);
 
     return (
         <Formik

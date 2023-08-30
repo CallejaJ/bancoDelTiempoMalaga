@@ -17,7 +17,6 @@ export default function Requests() {
         logout();
     }
 
-
     const userMenuPages = [
         { Text: "Inicio", location: "/home", Image: menu },
         { Text: "Panel", location: "/panel", Image: menu },
@@ -35,11 +34,9 @@ export default function Requests() {
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -158,7 +155,5 @@ export default function Requests() {
             <ScrollToTop />
             <Footer />
         </>
-
-
     )
 }

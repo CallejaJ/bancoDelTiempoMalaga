@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 
 const baseStyle = {
     display: "flex",
-    borderWidth: 3,
+    borderWidth: 0,
     width: "120px",
     height: "120px",
     borderRadius: "50%",
@@ -11,7 +11,7 @@ const baseStyle = {
     borderStyle: "dashed",
     backgroundColor: "#fafafa",
     color: "#bdbdbd",
-    transition: "border .3s ease-in-out"
+    transition: "border .4s ease-in-out"
 };
 
 const activeStyle = {

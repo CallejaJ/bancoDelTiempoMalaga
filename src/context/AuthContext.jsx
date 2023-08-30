@@ -62,7 +62,6 @@ export default function AuthContextProvider({ children }) {
     async function register(
         { name, surname, district, address, pobox, newEmail, password }) {
         try {
-            console.log("registrando")
             const response = await fetch("http://localhost:3006/user/", {
                 method: "POST",
                 headers: {
@@ -74,7 +73,6 @@ export default function AuthContextProvider({ children }) {
                 console.log("Usuario registrado");
                 setRegisterMessage("¡Registro correcto! Ya puedes iniciar sesión.")
             } else {
-                console.log(response);
                 setRegisterMessage("El usuario ya existe. Inicia sesión.")
             }
         }

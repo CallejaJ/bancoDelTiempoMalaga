@@ -8,6 +8,8 @@ import { useAuthContext } from "../../context/AuthContext";
 import React from "react";
 import { Link } from "react-router-dom";
 import { AccountCircle } from "@mui/icons-material";
+import AddOfferForm from "../../components/AddOfferForm/AddOfferForm";
+import OffersTable from "../../components/OffersTable/OffersTable"
 
 export default function Offers() {
 
@@ -150,6 +152,8 @@ export default function Offers() {
             </AppBar>
             <Box>
                 <StepperRequests />
+                <OffersTable />
+                <AddOfferForm />
             </Box>
             <ScrollToTop />
             <Footer />

@@ -13,9 +13,6 @@ const TOKEN_KEY = "TOKEN_KEY"
 
 export default function UserContextProvider({ children }) {
 
-
-    // children es todo lo que abraza el contexto en la APP
-    // el estado lo inicializo nulo porque no hay usuario
     const [user, setUser] = useState(JSON.parse(localStorage.getItem(USER_KEY)) ?? null);
     const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY))
     const [updateUserMessage, setUpdateUserMessage] = useState(null);
@@ -23,8 +20,6 @@ export default function UserContextProvider({ children }) {
     setTimeout(() => {
         setUpdateUserMessage(null)
     }, 3000)
-
-
 
     async function getUser() {
         try {
@@ -62,7 +57,6 @@ export default function UserContextProvider({ children }) {
                 console.log("Usuario actualizado");
                 updateUserMessage("Tus datos han sido actualizados.")
             } else {
-                console.log(response);
                 updateUserMessage("Inténtalo de nuevo.")
             }
         }

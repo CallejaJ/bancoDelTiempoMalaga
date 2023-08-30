@@ -1,4 +1,4 @@
-import RequestListService from "../../components/RequestListservice/RequestListservice";
+import RequestListService from "../../components/RequestListService/RequestListService";
 
 export default function RequestList({ services, setState }) {
     function removeItem(e, id) {
