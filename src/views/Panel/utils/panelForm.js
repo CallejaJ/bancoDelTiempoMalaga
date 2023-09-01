@@ -3,9 +3,9 @@ export const initialValues = {
     surname: "",
     district: "",
     address: "",
+    email: "",
     pobox: "",
-    newEmail: "",
     password: "",
     confirmPassword: "",
-    acceptedTC: false,
+    credits: "",
 };

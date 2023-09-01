@@ -2,20 +2,47 @@ import { Formik } from "formik"
 import PanelFormikView from "../Panel/PanelFormikView";
 import { PanelFormikSchema } from "../Panel/PanelFormikSchema";
 import { initialValues } from "./utils/panelForm";
-import { useUserContext } from "../../context/UserContext";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 export default function PanelFormik() {
-    const { getUser, putUser } = useUserContext();
 
-    function onSubmit(values) {
-        putUser(values)
+    const [userProfile, setUserProfile] = useState(null)
+    const { user, token } = useAuthContext()
+
+    function onSubmit() {
+        console.log("onsubmit, obteniendo datos")
+        // putUser(values)
     }
 
-    const user = getUser()
+    useEffect(function () {
+        async function getProfile() {
+            try {
+                const response = await fetch(`http://localhost:3006/user/${user.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                })
+                if (response.ok) {
+                    setUserProfile(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getProfile()
+    },
+        [user, token, setUserProfile]
+    )
+
+
 
     return (
         <Formik
-            initialValues={user.id ? user : initialValues}
+            initialValues={userProfile ?? initialValues}
             enableReinitialize={true}
             validationSchema={PanelFormikSchema}
             onSubmit={onSubmit}

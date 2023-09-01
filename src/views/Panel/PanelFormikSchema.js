@@ -30,8 +30,6 @@ export const PanelFormikSchema = yup.object().shape({
         .min(5, "Al menos 5 digitos numéricos.")
         .required("Requerido"),
 
-    newEmail: yup.string().email("Por favor, escriba un email válido").required("Requerido"),
-
     password: yup
         .string()
         .matches(passwordRules, {
@@ -45,7 +43,4 @@ export const PanelFormikSchema = yup.object().shape({
         .oneOf([yup.ref("password"), null], "Las contraseñas no coinciden")
         .required("Requerido"),
 
-    acceptedTC: yup
-        .boolean()
-        .oneOf([true], "Por favor, acepta los términos y condiciones."),
 });

@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
-import { useUserContext } from "../../context/UserContext";
+// import { useUserContext } from "../../context/UserContext";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
 
 export default function PanelFormikView({ formik }) {
@@ -19,7 +19,10 @@ export default function PanelFormikView({ formik }) {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const { updateUserMessage } = useUserContext();
+    const [updateUserMessage] = useState(null);
+
+
+
 
     setTimeout(() => {
         updateUserMessage
@@ -307,18 +310,28 @@ export default function PanelFormikView({ formik }) {
                                             margin="normal"
                                             required
                                             fullWidth
-                                            id="newEmail"
+                                            id="credits"
+                                            label="Créditos disponibles"
+                                            name="credits"
+                                            autoComplete="credits"
+                                            autoFocus
+                                            type="text"
+                                            value={values.credits}
+                                        />
+
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="email"
                                             label="Correo electrónico"
-                                            name="newEmail"
+                                            name="email"
                                             autoComplete="newEmail"
                                             autoFocus
                                             type="email"
-                                            placeholder="Escribe tu email"
-                                            value={values.newEmail}
-                                            onBlur={handleBlur}
-                                            onChange={handleChange}
-                                            error={touched.newEmail && Boolean(errors.newEmail)}
-                                            helperText={touched.newEmail && errors.newEmail}
+                                            placeholder="Modifica tu correo electrónico"
+                                            value={values.email}
+
                                         />
 
                                         <TextField
@@ -329,7 +342,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Contraseña"
                                             id="password"
                                             autoComplete="current-password"
-                                            placeholder="Escribe tu contraseña"
+                                            placeholder="Modifica tu contraseña"
                                             value={values.password}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
@@ -359,7 +372,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Confirmar contraseña"
                                             id="confirmPassword"
                                             autoComplete="current-password"
-                                            placeholder="Confirma tu contraseña"
+                                            placeholder="Confirma tu nueva contraseña"
                                             value={values.confirmPassword}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
@@ -381,6 +394,7 @@ export default function PanelFormikView({ formik }) {
                                         >
                                             Actualizar
                                         </Button>
+                                        <pre>{JSON.stringify({ values, errors }, null, 1)}</pre>
 
                                     </Box>
                                 </Box>

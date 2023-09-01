@@ -1,5 +1,4 @@
 import AuthContextProvider from "./context/AuthContext";
-import UserContextProvider from "./context/UserContext";
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import LoginFormik from "./views/LoginFormik/LoginFormik"
 import { useLayoutEffect } from "react";
@@ -89,7 +88,6 @@ export default function App() {
     <>
       <BrowserRouter>
         <AuthContextProvider>
-          <UserContextProvider>
           <Wrapper>
             <ThemeProvider theme={orangeTheme}>
               <CssBaseline />
@@ -117,7 +115,6 @@ export default function App() {
             </Routes>
             </ThemeProvider>
           </Wrapper>
-          </UserContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </>

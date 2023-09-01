@@ -17,23 +17,23 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import SendIcon from '@mui/icons-material/Send';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(name, credits, description, register_date, update_date) {
+function createData(name, credits, description, register_date, update_date, labels) {
     return {
         name,
         credits,
         description,
         register_date,
-        update_date
+        update_date,
+        labels
     };
 }
 
 const rows = [
-    createData('Pasear el perro', 12, "Necesito ayuda", "2023/08/31 22:23:34", "2023/09/02 22:23:34"),
-    createData('Cuidar a mi hija', 12, "Necesito ayuda", "2023/08/31 22:23:34", "2023/09/02 22:23:34"),
-    createData('Cuidar a mi padre', 12, "Necesito ayuda", "2023/08/31 22:23:34", "2023/09/02 22:23:34"),
+    createData('Pasear el perro', 6, "Necesito que saquen mi perro por las tardes", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "cuidado, mascotas, animales"),
+    createData('Cuidar a mi hija', 2, "Necesito que cuiden de mi hija los lunes por la tarde", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "niños, cuidado, acompañamiento"),
+    createData('Cuidar a mi padre', 4, "Mi padre está mayor y necesita ayuda para pasear", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "ancianos, cuidado, acompañamiento, pasear"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -98,6 +98,12 @@ const headCells = [
         numeric: false,
         disablePadding: false,
         label: 'Fecha de actualización'
+    },
+    {
+        id: 'labels',
+        numeric: false,
+        disablePadding: false,
+        label: 'Etiquetas'
     }
 ];
 
@@ -173,10 +179,10 @@ function EnhancedTableToolbar(props) {
         >
             {numSelected > 0 ? (
                 <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
+                    sx={{ color: 'grey' }}
                     variant="subtitle1"
                     component="div"
+                    align="justify" 
                 >
                     Has seleccionado {numSelected} oferta
                 </Typography>
@@ -198,11 +204,13 @@ function EnhancedTableToolbar(props) {
                     </IconButton>
                 </Tooltip>
             ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
+                    <Typography sx={{ flex: '1 1 50 %', alignContent: 'right', color: "grey" }}
+                        variant="h6" color="text.primary"
+                        type='subtitle1'
+                        id="tableTitle"
+                        component="div">
+                        Selecciona una tarea
+                    </Typography>
             )}
         </Toolbar>
     );
@@ -334,6 +342,8 @@ export default function EnhancedTable() {
                                         <TableCell align="center">{row.description}</TableCell>
                                         <TableCell align="center">{row.register_date}</TableCell>
                                         <TableCell align="center">{row.update_date}</TableCell>
+                                        <TableCell align="center">{row.labels}</TableCell>
+
                                     </TableRow>
                                 );
                             })}

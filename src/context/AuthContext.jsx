@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 const AuthContext = createContext(
     {
         user: null,
+        token: null,
         loginMessage: null,
         registerMessage: null,
         login: () => { },
@@ -22,6 +23,8 @@ export default function AuthContextProvider({ children }) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem(USER_KEY)) ?? null);
     const [loginMessage, setLoginMessage] = useState(null);
     const [registerMessage, setRegisterMessage] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) ?? null)
+
 
     setTimeout(() => {
         setRegisterMessage(null)
@@ -43,10 +46,12 @@ export default function AuthContextProvider({ children }) {
             if (response.ok) {
                 const token = await response.json()
                 const user = jwtDecode(token.jwt)
-                console.log(user);
+                // lo guarda en el contexto
                 setUser(user)
+                setToken(token.jwt)
+                // lo guarda en el almacena.local
                 localStorage.setItem(USER_KEY, JSON.stringify(user))
-                localStorage.setItem(TOKEN_KEY, token.jwt)
+                localStorage.setItem(TOKEN_KEY, `${token.jwt}`)
                 setLoginMessage("Ya puedes navegar")
             }
             else {
@@ -70,7 +75,6 @@ export default function AuthContextProvider({ children }) {
                 body: JSON.stringify({ name: name, surname: surname, district: district, address: address, pobox: pobox, email: newEmail, password: password })
             })
             if (response.ok) {
-                console.log("Usuario registrado");
                 setRegisterMessage("¡Registro correcto! Ya puedes iniciar sesión.")
             } else {
                 setRegisterMessage("El usuario ya existe. Inicia sesión.")
@@ -86,10 +90,11 @@ export default function AuthContextProvider({ children }) {
         localStorage.removeItem(USER_KEY);
         localStorage.removeItem(TOKEN_KEY);
         setUser(null)
+        setToken(null)
     }
 
     const value = {
-        user, login, logout, loginMessage, registerMessage, register
+        user, token, login, logout, loginMessage, registerMessage, register
     };
 
     return (
