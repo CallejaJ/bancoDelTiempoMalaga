@@ -7,9 +7,11 @@ const AuthContext = createContext(
         token: null,
         loginMessage: null,
         registerMessage: null,
+        updateUserMessage: null,
         login: () => { },
         logout: () => { },
-        register: () => { }
+        register: () => { },
+        refresh: () => { }
     });
 
 const USER_KEY = "USER_KEY"
@@ -23,15 +25,21 @@ export default function AuthContextProvider({ children }) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem(USER_KEY)) ?? null);
     const [loginMessage, setLoginMessage] = useState(null);
     const [registerMessage, setRegisterMessage] = useState(null);
+    const [updateUserMessage, setUpdateUserMessage] = useState(null);
+
     const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) ?? null)
 
+    setTimeout(() => {
+        setLoginMessage(null)
+    }, 3000)
 
     setTimeout(() => {
         setRegisterMessage(null)
     }, 3000)
 
+
     setTimeout(() => {
-        setLoginMessage(null)
+        setUpdateUserMessage(null)
     }, 3000)
 
     async function login({ email, password }) {
@@ -56,7 +64,6 @@ export default function AuthContextProvider({ children }) {
             }
             else {
                 setLoginMessage("Hay errores en el formulario. Inténtalo de nuevo")
-
             }
         }
         catch (err) {
@@ -85,6 +92,27 @@ export default function AuthContextProvider({ children }) {
         }
     }
 
+    async function refresh() {
+
+        const response = await fetch(
+            `http://localhost:3006/user/${user.id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+        if (response.ok) {
+            setUser(await response.json())
+            setUpdateUserMessage("¡Usuario actualizado!")
+        } else {
+            setUpdateUserMessage("Inténtalo de nuevo.")
+        }
+
+    }
+
 
     function logout() {
         localStorage.removeItem(USER_KEY);
@@ -94,7 +122,7 @@ export default function AuthContextProvider({ children }) {
     }
 
     const value = {
-        user, token, login, logout, loginMessage, registerMessage, register
+        user, token, login, logout, register, refresh, loginMessage, registerMessage, updateUserMessage
     };
 
     return (

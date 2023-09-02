@@ -8,12 +8,36 @@ import { useAuthContext } from "../../context/AuthContext";
 export default function PanelFormik() {
 
     const [userProfile, setUserProfile] = useState(null)
-    const { user, token } = useAuthContext()
 
-    function onSubmit() {
-        console.log("onsubmit, obteniendo datos")
-        // putUser(values)
+    const { user, token, refresh } = useAuthContext()
+
+    async function onSubmit(values) {
+        console.log(values);
+        try {
+            const response = await fetch(`http://localhost:3006/user/${user.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(values)
+            })
+            console.log(values);
+
+            if (response.ok) {
+                refresh()
+                console.log("Tus datos han sido actualizados.")
+            } else {
+                console.log("Inténtalo de nuevo.")
+            }
+        }
+
+        catch (err) {
+            throw new Error(err)
+        }
     }
+
+
 
     useEffect(function () {
         async function getProfile() {

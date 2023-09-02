@@ -9,7 +9,6 @@ import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
-// import { useUserContext } from "../../context/UserContext";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
 
 export default function PanelFormikView({ formik }) {
@@ -19,14 +18,7 @@ export default function PanelFormikView({ formik }) {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const [updateUserMessage] = useState(null);
-
-
-
-
-    setTimeout(() => {
-        updateUserMessage
-    }, 4000)
+    const { updateUserMessage } = useAuthContext();
 
     const { user, logout } = useAuthContext()
     function loggingOut() {
@@ -197,21 +189,21 @@ export default function PanelFormikView({ formik }) {
                             >
                                 <Box
                                     sx={{
-                                        my: 8,
-                                        mx: 4,
+                                        my: 1,
+                                        mx: 1,
                                         display: "flex",
                                         flexDirection: "column",
                                         alignItems: "center",
                                     }}
                                 >
                                     <Typography component="h1" variant="h5">
-                                        Datos del usuario
+                                        Detalles de
                                     </Typography>
-                                    <Typography color="primary" component="h1" variant="h5" sx={{ textTransform: 'uppercase' }}>
+                                    <Typography color="primary" component="h1" variant="h6" sx={{ textTransform: 'uppercase' }}>
                                         {user.name}
                                     </Typography>
                                     <Box
-                                        component="form"    
+                                        component="form"
                                         noValidate
                                         onSubmit={handleSubmit}
                                         sx={{ mt: 1 }}
@@ -319,6 +311,37 @@ export default function PanelFormikView({ formik }) {
                                             value={values.credits}
                                         />
 
+
+                                    </Box>
+                                </Box>
+
+                            </Grid>
+                            <Grid
+                                item
+                                xs={6}
+                                sm={4}
+                                md={3}
+                                component={Paper}
+                                elevation={2}
+                                square
+                            >
+                                <Box
+                                    sx={{
+                                        my: 1,
+                                        mx: 1,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <Box
+                                        component="form"
+                                        noValidate
+                                        onSubmit={handleSubmit}
+                                        sx={{ mt: 9 }}
+                                    >
+
+
                                         <TextField
                                             margin="normal"
                                             required
@@ -381,23 +404,25 @@ export default function PanelFormikView({ formik }) {
                                             helperText={touched.confirmPassword && errors.confirmPassword}
                                         />
 
+
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            sx={{ mt: 3, mb: 3 }}
+                                        >
+                                            Actualizar
+                                        </Button>
+
                                         {updateUserMessage ? (
                                             <Alert variant="outlined" severity="info" >
                                                 {updateUserMessage}
                                             </Alert>
                                         ) : null}
-                                        <Button
-                                            type="submit"
-                                            fullWidth
-                                            variant="contained"
-                                            sx={{ mt: 6, mb: 2 }}
-                                        >
-                                            Actualizar
-                                        </Button>
-                                        <pre>{JSON.stringify({ values, errors }, null, 1)}</pre>
 
                                     </Box>
                                 </Box>
+
                             </Grid>
                         </Grid>
                     </Box>

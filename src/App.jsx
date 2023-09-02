@@ -95,14 +95,14 @@ export default function App() {
               <Route path="/" element={<Landing />}>
                 </Route>
                 <Route path="home" element={<Home />} />
+                <Route path="requests" element={<Requests />} />
+                <Route path="offers" element={<Offers />} />
+                <Route path="userguide" element={<UserGuide />} />
 
                 {/* Rutas públicas */}
                 <Route element={<PublicRoute />}>
                 <Route path="login" element={<LoginFormik />} />
                   <Route path="register" element={<RegisterFormik />} />
-                  <Route path="requests" element={<Requests />} />
-                  <Route path="offers" element={<Offers />} />
-                  <Route path="userguide" element={<UserGuide />} />
               </Route>
 
                 {/* Rutas privadas */}
