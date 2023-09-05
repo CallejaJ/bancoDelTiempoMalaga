@@ -1,0 +1,56 @@
+import { Paper, Box, Typography } from "@mui/material";
+
+function Item({ item }) {
+    return (
+        <Paper>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{ width: "25%", height: "20rem" }}
+                />
+            </Box>
+            <Box sx={{ display: { xs: "block", sm: "none" } }}>
+                <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{ width: "25%", height: "10rem" }}
+                />
+            </Box>
+            <Box
+                sx={{
+                    display: { xs: "none", sm: "flex" },
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    paddingBottom: "center",
+                }}
+            >
+                <Typography
+                    variant="h4"
+                    marginTop={3}
+                >
+                    {item.title}
+                </Typography>
+            </Box>
+            <Box
+                sx={{
+                    display: { xs: "flex", sm: "none" },
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    paddingBottom: "center",
+
+                }}
+            >
+                <Typography
+                    variant="h6"
+                    marginTop={3}
+                >{item.title}
+                </Typography>
+            </Box>
+        </Paper>
+    );
+}
+
+export default Item;

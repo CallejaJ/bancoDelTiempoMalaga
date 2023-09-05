@@ -11,6 +11,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
 
+
 export default function PanelFormikView({ formik }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
@@ -177,7 +178,6 @@ export default function PanelFormikView({ formik }) {
                         <Grid container>
                             <CssBaseline />
                             <ImageUpload />
-
                             <Grid
                                 item
                                 xs={6}

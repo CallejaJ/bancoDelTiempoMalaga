@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Box } from "@mui/material";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import SwiperHome from "../../components/SwipperHome/SwipperHome";
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import video from "../../assets/video.mp4";
+import CarouselHome from '../../components/Carousel/CarouselHome';
 
 
 const style = {
@@ -71,6 +71,7 @@ export default function Home() {
                 </Modal>
             </Box>
 
+            <CarouselHome />
 
             {/* bloque de texto */}
 
@@ -109,7 +110,6 @@ export default function Home() {
                 </Grid>
             </Box>
 
-            <SwiperHome />
             {/* ventana de texto */}
 
             <Box padding={2} margin={2}>

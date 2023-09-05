@@ -19,21 +19,21 @@ import Tooltip from '@mui/material/Tooltip';
 import SendIcon from '@mui/icons-material/Send';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(name, credits, description, register_date, update_date, labels) {
+function createData(name, description, register_date, update_date, user, credits) {
     return {
         name,
-        credits,
         description,
         register_date,
         update_date,
-        labels
+        user,
+        credits
     };
 }
 
 const rows = [
-    createData('Pasear el perro', 6, "Necesito que saquen mi perro por las tardes", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "cuidado, mascotas, animales"),
-    createData('Cuidar a mi hija', 2, "Necesito que cuiden de mi hija los lunes por la tarde", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "niños, cuidado, acompañamiento"),
-    createData('Cuidar a mi padre', 4, "Mi padre está mayor y necesita ayuda para pasear", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "ancianos, cuidado, acompañamiento, pasear"),
+    createData('Pasear el perro', "Necesito que saquen mi perro por las tardes", "2023/08/31 22:23:34", "2023/09/02 22:23:34", 6, "Luis"),
+    createData('Cuidar a mi hija', "Necesito que cuiden de mi hija los lunes por la tarde", "2023/08/31 22:23:34", "2023/09/02 22:23:34", 8, "Pedro"),
+    createData('Cuidar a mi padre', "Mi padre está mayor y necesita ayuda para pasear", "2023/08/31 22:23:34", "2023/09/02 22:23:34", 2, "Mayte"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -73,13 +73,7 @@ const headCells = [
         id: 'name',
         numeric: false,
         disablePadding: true,
-        label: 'Ordenar alfabéticamente',
-    },
-    {
-        id: 'credits',
-        numeric: true,
-        disablePadding: false,
-        label: 'Créditos',
+        label: 'Nombre',
     },
     {
         id: 'description',
@@ -91,7 +85,7 @@ const headCells = [
         id: 'register_date',
         numeric: false,
         disablePadding: false,
-        label: 'Fecha de creación',
+        label: 'Fecha de publicación',
     },
     {
         id: 'update_date',
@@ -100,11 +94,17 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'labels',
+        id: 'credits',
+        numeric: true,
+        disablePadding: false,
+        label: 'Créditos'
+    },
+    {
+        id: 'user',
         numeric: false,
         disablePadding: false,
-        label: 'Etiquetas'
-    }
+        label: 'Usuario',
+    },
 ];
 
 function EnhancedTableHead(props) {
@@ -119,7 +119,7 @@ function EnhancedTableHead(props) {
             <TableRow>
                 <TableCell padding="checkbox">
                     <Checkbox
-                        color="primary"
+                        color="secondary"
                         indeterminate={numSelected > 0 && numSelected < rowCount}
                         checked={rowCount > 0 && numSelected === rowCount}
 
@@ -173,7 +173,7 @@ function EnhancedTableToolbar(props) {
                 pr: { xs: 1, sm: 1 },
                 ...(numSelected > 0 && {
                     bgcolor: (theme) =>
-                        alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+                        alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
                 }),
             }}
         >
@@ -182,7 +182,7 @@ function EnhancedTableToolbar(props) {
                     sx={{ color: 'grey' }}
                     variant="subtitle1"
                     component="div"
-                    align="justify" 
+                    align="justify"
                 >
                     Has seleccionado {numSelected} oferta
                 </Typography>
@@ -204,13 +204,12 @@ function EnhancedTableToolbar(props) {
                     </IconButton>
                 </Tooltip>
             ) : (
-                    <Typography sx={{ flex: '1 1 50 %', alignContent: 'right', color: "grey" }}
-                        variant="h6" color="text.primary"
-                        type='subtitle1'
-                        id="tableTitle"
-                        component="div">
-                        Selecciona una tarea
-                    </Typography>
+                <Typography sx={{ flex: '1 1 50 %', alignContent: 'left', color: "grey" }}
+                    variant="h6" color="text.primary"
+                    type='subtitle1'
+                    id="tableTitle"
+                    component="div">
+                </Typography>
             )}
         </Toolbar>
     );
@@ -220,9 +219,9 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function OffersTableView() {
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Créditos');
+    const [orderBy, setOrderBy] = React.useState('Nombre');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -338,12 +337,11 @@ export default function EnhancedTable() {
                                         >
                                             {row.name}
                                         </TableCell>
-                                        <TableCell align="center">{row.credits}</TableCell>
-                                        <TableCell align="center">{row.description}</TableCell>
-                                        <TableCell align="center">{row.register_date}</TableCell>
-                                        <TableCell align="center">{row.update_date}</TableCell>
-                                        <TableCell align="center">{row.labels}</TableCell>
-
+                                        <TableCell align="left">{row.description}</TableCell>
+                                        <TableCell align="left">{row.register_date}</TableCell>
+                                        <TableCell align="left">{row.update_date}</TableCell>
+                                        <TableCell align="left">{row.user}</TableCell>
+                                        <TableCell align="left">{row.credits}</TableCell>
                                     </TableRow>
                                 );
                             })}

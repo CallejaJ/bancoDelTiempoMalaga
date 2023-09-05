@@ -7,7 +7,7 @@ const baseStyle = {
     width: "120px",
     height: "120px",
     borderRadius: "50%",
-    borderColor: "#eeeeee",
+    borderColor: "#1565c0",
     borderStyle: "dashed",
     backgroundColor: "#fafafa",
     color: "#bdbdbd",
@@ -15,11 +15,11 @@ const baseStyle = {
 };
 
 const activeStyle = {
-    borderColor: "#2196f3"
+    borderColor: "#1565c0"
 };
 
 const acceptStyle = {
-    borderColor: "#00e676"
+    borderColor: "#1565c0"
 };
 
 const rejectStyle = {
