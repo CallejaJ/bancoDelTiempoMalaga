@@ -19,17 +19,17 @@ export default function Requests() {
 
     const userMenuPages = [
         { Text: "Inicio", location: "/home", Image: menu },
-        { Text: "Panel", location: "/panel", Image: menu },
+        { Text: "Panel de usuario", location: "/panel", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Guía de uso", location: "/userguide", Image: menu },
+        { Text: "¿Cómo funciona?", location: "/userguide", Image: menu },
     ]
 
     const visitorMenuPages = [
         { Text: "Inicio", location: "/home", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Guía de uso", location: "/userguide", Image: menu },
+        { Text: "¿Cómo funciona?", location: "/userguide", Image: menu },
     ]
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -45,7 +45,7 @@ export default function Requests() {
 
     return (
         <>
-            <AppBar position="absolute" className='gradient_appbar'>
+            <AppBar position="fixed" className='gradient_appbar'>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box sx={{ flexGrow: 0 }}>
