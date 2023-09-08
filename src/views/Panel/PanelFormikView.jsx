@@ -1,15 +1,12 @@
 import { Alert, Box, Button, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { useAuthContext } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
-import { AppBar, MenuItem, ListItemText, Toolbar, Menu, Tooltip } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
-import menu from "../../assets/icons/menu.png"
-import MenuIcon from '@mui/icons-material/Menu';
 import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import React, { useState } from "react";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
+import StepperPanel from "../../components/Steppers/StepperPanel";
+import Header from "../../components/Header/Header";
+import { useState } from "react";
 
 
 export default function PanelFormikView({ formik }) {
@@ -21,151 +18,22 @@ export default function PanelFormikView({ formik }) {
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const { updateUserMessage } = useAuthContext();
 
-    const { user, logout } = useAuthContext()
-    function loggingOut() {
-        logout();
-    }
-
-    const userMenuPages = [
-        { Text: "Inicio", location: "/home", Image: menu },
-        { Text: "Panel", location: "/panel", Image: menu },
-        { Text: "Ofertas", location: "/offers", Image: menu },
-        { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Guía de uso", location: "/userguide", Image: menu },
-    ]
-
-    const visitorMenuPages = [
-        { Text: "Inicio", location: "/home", Image: menu },
-        { Text: "Ofertas", location: "/offers", Image: menu },
-        { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Guía de uso", location: "/userguide", Image: menu },
-    ]
-
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
+    const { user } = useAuthContext()
 
 
     return (
         <>
-            <AppBar position="absolute" className='gradient_appbar'>
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Menu de navegación">
-                                <IconButton
-                                    size="large"
-                                    edge="start"
-                                    color="primary"
-                                    aria-label="menu"
-                                    sx={{ mr: 2, p: 2 }}
-                                    onClick={handleOpenUserMenu}>
-                                    <MenuIcon />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {user ? (
-                                    userMenuPages.map((Text, index) => [
-                                        <MenuItem key={index}
-                                            onClick={handleCloseUserMenu}
-                                            component={Link}
-                                            to={Text.location}>
-                                            <ListItemText
-                                                primary={Text.Text}
-                                                sx={{ display: "flex", justifyContent: "space-between" }} />
-                                        </MenuItem>
-                                    ])
-                                )
-                                    : (
-                                        visitorMenuPages.map((Text, index) => [
-                                            <MenuItem key={index}
-                                                onClick={handleCloseUserMenu}
-                                                component={Link}
-                                                to={Text.location}>
-                                                <ListItemText
-                                                    primary={Text.Text}
-                                                    sx={{ display: "flex", justifyContent: "space-between" }} />
-                                            </MenuItem>
-                                        ])
-                                    )
-                                }
-                            </Menu>
-                        </Box>
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{ flexGrow: 1, color: 'whitesmoke' }}>
-                            Panel de usuario
-                        </Typography>
-                        {user ? (
-                            <>
-                                <Box>
-                                    <IconButton
-                                        size="large"
-                                        aria-label="account of current user"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        color="primary"
-                                    >
-                                        <AccountCircle style={{ color: '#FFF' }} />
-                                    </IconButton>
-                                    <Button style={{ color: '#FFF' }} onClick={loggingOut}>Cerrar sesión</Button>
-                                </Box>
-
-                            </>
-                        ) : (
-                            <>
-                                <Box>
-                                    <IconButton
-                                        size="large"
-                                        aria-label="account of current user"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        color="inherit"
-                                    >
-                                    </IconButton>
-                                    <Button>
-                                        <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
-                                    </Button>
-                                </Box>
-                            </>
-                        )}
-                    </Toolbar>
-                </Container>
-            </AppBar>
+            <Header />
             <Box
                 sx={{
                     top: "modal",
                     position: "center",
-                    marginTop: 3,
-                    marginBottom: 3
+                    marginTop: 1,
+                    marginBottom: 1
                 }}
             >
                 <Container
-                    component="main" maxWidth="md">
+                    component="main">
                     <Box
                         sx={{
                             marginTop: 8,
@@ -184,7 +52,7 @@ export default function PanelFormikView({ formik }) {
                                 sm={4}
                                 md={3}
                                 component={Paper}
-                                elevation={2}
+                                elevation={0}
                                 square
                             >
                                 <Box
@@ -196,10 +64,10 @@ export default function PanelFormikView({ formik }) {
                                         alignItems: "center",
                                     }}
                                 >
-                                    <Typography component="h1" variant="h5">
-                                        Detalles de
+                                    <Typography component="h5" variant="h6">
+                                        Bienvenido
                                     </Typography>
-                                    <Typography color="primary" component="h1" variant="h6" sx={{ textTransform: 'uppercase' }}>
+                                    <Typography color="primary" component="h5" variant="h6" sx={{ textTransform: 'uppercase' }}>
                                         {user.name}
                                     </Typography>
                                     <Box
@@ -260,8 +128,6 @@ export default function PanelFormikView({ formik }) {
                                             error={touched.address && Boolean(errors.address)}
                                             helperText={touched.address && errors.address}
                                         />
-
-
                                         <TextField
                                             margin="normal"
                                             required
@@ -310,8 +176,6 @@ export default function PanelFormikView({ formik }) {
                                             type="text"
                                             value={values.credits}
                                         />
-
-
                                     </Box>
                                 </Box>
 
@@ -322,7 +186,7 @@ export default function PanelFormikView({ formik }) {
                                 sm={4}
                                 md={3}
                                 component={Paper}
-                                elevation={2}
+                                elevation={0}
                                 square
                             >
                                 <Box
@@ -422,7 +286,28 @@ export default function PanelFormikView({ formik }) {
 
                                     </Box>
                                 </Box>
+                            </Grid>
+                            <Grid
+                                item
+                                xs={6}
+                                sm={4}
+                                md={3}
+                                component={Paper}
+                                elevation={0}
+                                square
+                            >
+                                <Box
+                                    sx={{
+                                        my: 1,
+                                        mx: 1,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                    }}
+                                >
 
+                                    <StepperPanel />
+                                </Box>
                             </Grid>
                         </Grid>
                     </Box>

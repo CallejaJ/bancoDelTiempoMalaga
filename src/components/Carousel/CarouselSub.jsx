@@ -2,19 +2,20 @@ import { Paper, Box, Typography } from "@mui/material";
 
 function Item({ item }) {
     return (
-        <Paper>
+        <Paper
+            elevation={0}>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
                 <img
                     src={item.image}
                     alt={item.title}
-                    style={{ width: "25%", height: "20rem" }}
+                    style={{ width: "20%", height: "20%" }}
                 />
             </Box>
             <Box sx={{ display: { xs: "block", sm: "none" } }}>
                 <img
                     src={item.image}
                     alt={item.title}
-                    style={{ width: "25%", height: "10rem" }}
+                    style={{ width: "20%", height: "20% " }}
                 />
             </Box>
             <Box

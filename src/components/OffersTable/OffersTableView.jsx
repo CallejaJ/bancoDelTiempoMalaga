@@ -13,27 +13,31 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import SendIcon from '@mui/icons-material/Send';
 import { visuallyHidden } from '@mui/utils';
+import { Button } from '@mui/material';
 
-function createData(name, description, register_date, update_date, user, credits) {
+function createData(name, description, register_date, update_date, user, credits, info) {
     return {
         name,
         description,
         register_date,
         update_date,
         user,
-        credits
+        credits,
+        info
     };
 }
 
+// Aquí hago un map de lo que me viene por la bbdd para que se inserte en createData
+//  offersList.map((offer) => {
+//  const { name, description, register_date, update_date, user, credits } = offer;
+// })
+// const rows: [Row] = []
+
 const rows = [
-    createData('Pasear el perro', "Necesito que saquen mi perro por las tardes", "2023/08/31 22:23:34", "2023/09/02 22:23:34", 6, "Luis"),
-    createData('Cuidar a mi hija', "Necesito que cuiden de mi hija los lunes por la tarde", "2023/08/31 22:23:34", "2023/09/02 22:23:34", 8, "Pedro"),
-    createData('Cuidar a mi padre', "Mi padre está mayor y necesita ayuda para pasear", "2023/08/31 22:23:34", "2023/09/02 22:23:34", 2, "Mayte"),
+    createData('Pasear el perro', "Necesito que saquen mi perro por las tardes", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "Luis", 6),
+    createData('Cuidar a mi hija', "Necesito que cuiden de mi hija los lunes por la tarde", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "Pedro", 8),
+    createData('Cuidar a mi padre', "Mi padre está mayor y necesita ayuda para pasear", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "Mayte", 2),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -56,6 +60,7 @@ function getComparator(order, orderBy) {
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
 // with exampleArray.slice().sort(exampleComparator)
+
 function stableSort(array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -94,21 +99,27 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'credits',
+        id: 'user',
         numeric: true,
         disablePadding: false,
-        label: 'Créditos'
+        label: 'Usuario'
     },
     {
-        id: 'user',
+        id: 'credits',
         numeric: false,
         disablePadding: false,
-        label: 'Usuario',
+        label: 'Créditos',
+    },
+    {
+        id: 'info',
+        numeric: false,
+        disablePadding: false,
+        label: 'Detalles',
     },
 ];
 
 function EnhancedTableHead(props) {
-    const { order, orderBy, numSelected, rowCount, onRequestSort } =
+    const { order, orderBy, onRequestSort } =
         props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -117,16 +128,8 @@ function EnhancedTableHead(props) {
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
-                    <Checkbox
-                        color="secondary"
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
+                <TableCell >
 
-                        inputProps={{
-                            'aria-label': 'seleccionar todas las ofertas',
-                        }}
-                    />
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
@@ -163,54 +166,36 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
+function EnhancedTableToolbar() {
+
 
     return (
         <Toolbar
             sx={{
                 pl: { sm: 2 },
                 pr: { xs: 1, sm: 1 },
-                ...(numSelected > 0 && {
-                    bgcolor: (theme) =>
-                        alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
-                }),
+                bgcolor: (theme) =>
+                    alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
+
             }}
         >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ color: 'grey' }}
-                    variant="subtitle1"
-                    component="div"
-                    align="justify"
-                >
-                    Has seleccionado {numSelected} oferta
-                </Typography>
-            ) : (
-                <Typography
+            <Typography
                     sx={{ flex: '1 1 100%' }}
                     variant="h6"
                     id="tableTitle"
                     component="div"
                 >
                     Ofertas disponibles
-                </Typography>
-            )}
+            </Typography>
 
-            {numSelected > 0 ? (
-                <Tooltip title="Postular por esta oferta">
-                    <IconButton>
-                        <SendIcon />
-                    </IconButton>
-                </Tooltip>
-            ) : (
+
                 <Typography sx={{ flex: '1 1 50 %', alignContent: 'left', color: "grey" }}
                     variant="h6" color="text.primary"
                     type='subtitle1'
                     id="tableTitle"
                     component="div">
                 </Typography>
-            )}
+
         </Toolbar>
     );
 }
@@ -288,7 +273,7 @@ export default function OffersTableView() {
     );
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box padding={1} margin={1} sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer>
@@ -320,14 +305,8 @@ export default function OffersTableView() {
                                         selected={isItemSelected}
                                         sx={{ cursor: 'pointer' }}
                                     >
-                                        <TableCell padding="checkbox">
-                                            <Checkbox
-                                                color="primary"
-                                                checked={isItemSelected}
-                                                inputProps={{
-                                                    'aria-labelledby': labelId,
-                                                }}
-                                            />
+                                        <TableCell>
+
                                         </TableCell>
                                         <TableCell
                                             component="th"
@@ -342,6 +321,15 @@ export default function OffersTableView() {
                                         <TableCell align="left">{row.update_date}</TableCell>
                                         <TableCell align="left">{row.user}</TableCell>
                                         <TableCell align="left">{row.credits}</TableCell>
+                                        <TableCell align="center">
+                                            <Button
+                                                type="submit"
+                                                fullWidth
+                                                variant="contained"
+                                                sx={{ mt: 1, mb: 1 }}
+                                            >Solicitar
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 );
                             })}
@@ -358,7 +346,7 @@ export default function OffersTableView() {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[3, 5]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}

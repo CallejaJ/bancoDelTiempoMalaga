@@ -20,6 +20,7 @@ const style = {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
+    border: '2px solid #1565c0',
 };
 
 
@@ -34,12 +35,12 @@ export default function Home() {
             <Box
                 justifyContent={'center'}
                 alignItems={'center'}
-                style={{ minHeight: '100vh' }}
+                // style={{ minHeight: '100vh' }}
 
             >
                 <Grid
                     item xs={3}
-                    marginTop={3}
+                    marginTop={4}
                     marginBottom={3}
                 >
                     <video src={video} allow="autoPlay" controls muted width={800} />
@@ -71,11 +72,49 @@ export default function Home() {
                 </Modal>
             </Box>
 
+            {/* bloque de texto */}
+
+            <Box pt={1} sx={{ width: '100%' }}>
+                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
+                            y también en algunas ciudades de España.
+                            Consiste en crear un sistema gratuito de colaboración mutua,
+                            de intercambio de habilidades, conocimientos y ganas
+                            para crear una comunidad mejor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Se trata, en definitiva, de un sistema de ayuda mutua
+                            entre personas que viven en la misma comunidad, es
+                            la ayuda informal de toda la vida pero en este caso la
+                            formalizamos llevando un control de las ofertas y de-
+                            mandas de cada persona.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            En el banco del tiempo se intercambian servicios y actividades en donde
+                            la unidad de intercambio y de valor siempre es la misma: la hora, el tiempo.
+                            Todos los servicios tienen el mismo valor.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
+                            Una persona ofrece lo que puede y recibe lo que necesita.
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </Box>
+
+
             <CarouselHome />
 
             {/* bloque de texto */}
 
-            <Box pt={9} sx={{ width: '100%' }}>
+            <Box pt={1} sx={{ width: '100%' }}>
                 <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>

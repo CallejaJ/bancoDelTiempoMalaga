@@ -5,9 +5,13 @@ import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Ty
 import { AccountCircle } from '@mui/icons-material';
 import menu from "../../assets/icons/menu.png"
 import MenuIcon from '@mui/icons-material/Menu';
+import styled from '@emotion/styled';
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+
 
 
 export default function Header() {
+
 
     const { user, logout } = useAuthContext()
     function loggingOut() {
@@ -16,17 +20,17 @@ export default function Header() {
 
     const userMenuPages = [
         { Text: "Inicio", location: "/home", Image: menu },
-        { Text: "Panel", location: "/panel", Image: menu },
+        { Text: "Panel de usuario", location: "/panel", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Guía de uso", location: "/userguide", Image: menu },
+        { Text: "¿Cómo funciona?", location: "/userguide", Image: menu },
     ]
 
     const visitorMenuPages = [
         { Text: "Inicio", location: "/home", Image: menu },
         { Text: "Ofertas", location: "/offers", Image: menu },
         { Text: "Demandas", location: "/requests", Image: menu },
-        { Text: "Guía de uso", location: "/userguide", Image: menu },
+        { Text: "¿Cómo funciona?", location: "/userguide", Image: menu },
     ]
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -42,11 +46,13 @@ export default function Header() {
     };
 
     return (
-        <AppBar position="absolute" className='gradient_appbar'>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Menu de navegación">
+        <>
+            <React.Fragment>
+                <AppBar position='fixed' className='gradient_appbar'>
+                    <Container maxWidth="xl">
+                        <Toolbar disableGutters>
+                            <Box sx={{ flexGrow: 0 }}>
+                                <Tooltip title="Menu de navegación">
                             <IconButton
                                 size="large"
                                 edge="start"
@@ -118,7 +124,13 @@ export default function Header() {
                                 >
                                     <AccountCircle style={{ color: '#FFF' }} />
                                 </IconButton>
-                                <Button style={{ color: '#FFF' }} onClick={loggingOut}>Cerrar sesión</Button>
+                                        <Button
+                                            style={{
+                                                color: '#FFF',
+                                                borderColor: 'text.white',
+                                                m: 1,
+                                                border: 1,
+                                            }} onClick={loggingOut}>Cerrar sesión</Button>
                             </Box>
 
                         </>
@@ -133,7 +145,7 @@ export default function Header() {
                                     color="inherit"
                                 >
                                 </IconButton>
-                                <Button>
+                                            <Button >
                                         <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
                                 </Button>
                             </Box>
@@ -142,5 +154,9 @@ export default function Header() {
                 </Toolbar>
             </Container>
         </AppBar>
+                <Offset />
+            </React.Fragment>
+
+        </>
     );
 }

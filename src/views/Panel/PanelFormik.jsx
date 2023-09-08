@@ -12,7 +12,6 @@ export default function PanelFormik() {
     const { user, token, refresh } = useAuthContext()
 
     async function onSubmit(values) {
-        console.log(values);
         try {
             const response = await fetch(`http://localhost:3006/user/${user.id}`, {
                 method: "PUT",

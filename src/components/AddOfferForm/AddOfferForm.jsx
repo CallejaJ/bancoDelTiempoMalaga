@@ -4,6 +4,7 @@ import { AddOfferFormSchema } from "../AddOfferForm/AddOfferFormSchema";
 import Input from "../AddOfferForm/ui/Input";
 import Select from "../AddOfferForm/ui/Select";
 import Checkbox from "../AddOfferForm/ui/Checkbox";
+import { Box, TextField } from "@mui/material";
 
 async function onSubmit(actions) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -19,6 +20,15 @@ export default function AddOfferForm() {
       onSubmit={onSubmit}
     >
       {({ isSubmitting, values, errors }) => (
+        <>
+          <Box
+            sx={{
+              width: 500,
+              maxWidth: '100%',
+            }}
+          >
+            <TextField fullWidth label="fullWidth" id="fullWidth" />
+          </Box>
         <Form>
           <Select
             label="Tipo de oferta"
@@ -39,7 +49,7 @@ export default function AddOfferForm() {
           <Input
             label="Descripción"
             name="description"
-            placeholder="Explica en que consiste tu oferta"
+              placeholder="Explica en qué consiste tu oferta"
           />
 
           <Checkbox type="checkbox" name="acceptedTC" />
@@ -48,6 +58,7 @@ export default function AddOfferForm() {
           </button>
           <pre>{JSON.stringify({ values, errors }, null, 1)}</pre>
         </Form>
+        </>
       )}
     </Formik>
   );

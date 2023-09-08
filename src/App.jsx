@@ -65,7 +65,7 @@ const orangeTheme = createTheme({
     styleOverrides: {
       root: {
         button: {
-          color: '#ffa726',
+          color: '#1565c0',
         },
       },
     },

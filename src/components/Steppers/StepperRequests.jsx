@@ -1,12 +1,9 @@
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import { useTheme } from "@emotion/react";
 import React from "react";
+import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
@@ -44,10 +41,7 @@ const steps = [
 ];
 
 export default function StepperRequests() {
-
-    const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = steps.length;
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -56,88 +50,61 @@ export default function StepperRequests() {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
+
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
     return (
-        <>
-            <Box
-                sx={{
-                    maxWidth: 800,
-                    flexGrow: 1,
-                    marginTop: 3,
-                    marginBottom: 5
-                }}>
-                <Paper
-                    square
-                    elevation={0}
-                    sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        justifyContent: "center",
-                        display: 'flex',
-                        direction: 'row',
-                        alignItems: 'center',
-                        height: 50,
-                        pl: 2,
-                        bgcolor: 'background.default',
-                    }}
-                >
-                </Paper>
-                <Typography
-                    align="justify" style={{ color: 'grey' }}
-                >{steps[activeStep].label}</Typography>
-                <Box
-                    marginBottom={3}
-                    sx={{
-                        height: 255,
-                        maxWidth: 400,
-                        width: '100%',
-                        p: 2
-                    }}>
-                    <Typography
-                        align="justify" style={{ color: 'grey' }}
-                    >{steps[activeStep].description}</Typography>
-
-                </Box>
-                <MobileStepper
-                    variant="text"
-                    steps={maxSteps}
-                    position="static"
-                    activeStep={activeStep}
-                    nextButton={
-                        <Button
-                            size="small"
-                            style={{ color: 'grey' }}
-                            onClick={handleNext}
-                            disabled={activeStep === maxSteps - 1}
+        <Box
+            sx={{ maxWidth: 800 }}
+            marginTop={4}
+            marginBottom={4}
+        >
+            <Stepper activeStep={activeStep} orientation="vertical">
+                {steps.map((step, index) => (
+                    <Step key={step.label}>
+                        <StepLabel
+                            optional={
+                                index === 2 ? (
+                                    <Typography variant="caption"></Typography>
+                                ) : null
+                            }
                         >
-                            Siguiente
-                            {theme.direction === 'rtl' ? (
-                                <KeyboardArrowLeft />
-                            ) : (
-                                <KeyboardArrowRight />
-                            )}
-                        </Button>
-                    }
-                    backButton={
-                        <Button
-                            size="small"
-                            style={{ color: 'grey' }}
-                            onClick={handleBack}
-                            disabled={activeStep === 0}>
-
-                            {theme.direction === 'rtl' ? (
-                                <KeyboardArrowRight />
-                            ) : (
-                                <KeyboardArrowLeft />
-                            )}
-                            Atrás
-                        </Button>
-                    }
-                />
-            </Box>
-        </>
+                            {step.label}
+                        </StepLabel>
+                        <StepContent>
+                            <Typography>{step.description}</Typography>
+                            <Box sx={{ mb: 2 }}>
+                                <div>
+                                    <Button
+                                        variant="contained"
+                                        onClick={handleNext}
+                                        sx={{ mt: 1, mr: 1 }}
+                                    >
+                                        {index === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
+                                    </Button>
+                                    <Button
+                                        disabled={index === 0}
+                                        onClick={handleBack}
+                                        sx={{ mt: 1, mr: 1 }}
+                                    >
+                                        Anterior
+                                    </Button>
+                                </div>
+                            </Box>
+                        </StepContent>
+                    </Step>
+                ))}
+            </Stepper>
+            {activeStep === steps.length && (
+                <Paper square elevation={0} sx={{ p: 3 }}>
+                    <Typography>¡Perfecto! Ya puedes crear una oferta.</Typography>
+                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                        Reiniciar
+                    </Button>
+                </Paper>
+            )}
+        </Box>
     );
 }
-
