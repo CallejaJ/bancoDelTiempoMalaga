@@ -28,8 +28,8 @@ div {
 body {
   margin: 0;
   padding: 0;
-  text-align: center;
-  position: relative;
+  /* text-align: center;
+                  position: relative; */
 }
 
 .gradient {
@@ -61,6 +61,10 @@ body {
 
 /* FOOTER */
 
+.footer {
+  display: "flex";
+  justify-content: center;
+}
 .br-footer {
   --footer-logo-height: 48px;
   --footer-logo-width: 180px;

@@ -60,6 +60,7 @@ export default function StepperRequests() {
             sx={{ maxWidth: 800 }}
             marginTop={4}
             marginBottom={4}
+            padding={5}
         >
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (

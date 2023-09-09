@@ -4,14 +4,14 @@ function Item({ item }) {
     return (
         <Paper
             elevation={0}>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box alignItems="center" justifyContent="center" sx={{ display: { xs: "none", sm: "flex" } }}>
                 <img
                     src={item.image}
                     alt={item.title}
                     style={{ width: "20%", height: "20%" }}
                 />
             </Box>
-            <Box sx={{ display: { xs: "block", sm: "none" } }}>
+            <Box alignItems="center" justifyContent="center" sx={{ display: { xs: "flex", sm: "none" } }}>
                 <img
                     src={item.image}
                     alt={item.title}

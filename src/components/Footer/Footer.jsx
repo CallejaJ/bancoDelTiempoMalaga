@@ -8,8 +8,8 @@ import { Box } from "@mui/material";
 
 export default function Footer() {
     return (
-        <Box    
-            component="div"
+        <div className="footer">
+            <Box    
             sx={{
                 backgroundColor: (theme) =>
                     theme.palette.mode === "light"
@@ -21,10 +21,14 @@ export default function Footer() {
                 width: '100%'
             }}
         >
-            <Container maxWidth="lg">
-                <Grid container spacing={5}>
-                    <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="text.primary" gutterBottom>
+                <Container
+                    maxWidth="lg"
+                >
+                    <Grid container
+                        spacing={5}
+                    >
+                        <Grid item xs={12} sm={4} >
+                            <Typography display={"flex"} variant="h6" color="text.primary" gutterBottom>
                             Sobre nosotros
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -82,6 +86,7 @@ export default function Footer() {
                 </Box>
             </Container>
         </Box>
+        </div>
     );
 }
 

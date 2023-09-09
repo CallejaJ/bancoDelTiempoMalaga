@@ -33,15 +33,17 @@ export default function Home() {
             <Header />
 
             <Box
-                justifyContent={'center'}
                 alignItems={'center'}
-                // style={{ minHeight: '100vh' }}
+                display={'flex'}
+                justifyContent={'center'}
 
             >
                 <Grid
-                    item xs={3}
+                    item xs={4}
                     marginTop={4}
                     marginBottom={3}
+
+
                 >
                     <video src={video} allow="autoPlay" controls muted width={800} />
                 </Grid>
@@ -49,8 +51,12 @@ export default function Home() {
 
             {/* ventana de texto */}
 
-            <Box padding={2} margin={2}>
-                <Button onClick={handleOpen}>¿Qué es un banco de tiempo?</Button>
+            <Box
+                padding={2}
+                margin={2}
+                display={'flex'}
+                justifyContent={'center'}>
+                <Button variant='outlined' onClick={handleOpen}>¿Cúales son sus ventajas?</Button>
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -59,14 +65,13 @@ export default function Home() {
                 >
                     <Box sx={style}>
                         <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
-                            ¿Qué es un banco del tiempo?
+                            ¿Cúales son sus ventajas?
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
-                            y también en algunas ciudades de España.
-                            Consiste en crear un sistema gratuito de colaboración mutua,
-                            de intercambio de habilidades, conocimientos y ganas
-                            para crear una comunidad mejor.
+                            El Banco del Tiempo resuelve necesidades de la vida diaria,
+                            permite conciliar la vida personal, familiar y laboral. Además facilita
+                            ocupar el tiempo libre de forma útil y gratificante, fomentando las relaciones
+                            intergeneracionales, multiculturales y en general, las relaciones sociales.
                         </Typography>
                     </Box>
                 </Modal>
@@ -108,71 +113,53 @@ export default function Home() {
                     </Grid>
                 </Grid>
             </Box>
+
+
 
 
             <CarouselHome />
 
             {/* bloque de texto */}
 
-            <Box pt={1} sx={{ width: '100%' }}>
+            <Box
+                pt={1}
+                sx={{ width: '100%' }}
+            >
                 <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
-                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
-                            y también en algunas ciudades de España.
-                            Consiste en crear un sistema gratuito de colaboración mutua,
-                            de intercambio de habilidades, conocimientos y ganas
-                            para crear una comunidad mejor.
+                            Una hora siempre es a cambio de otra hora, independientemente
+                            de los servicios y actividades que tú ofrezcas o
+                            demandes, es decir, vale lo mismo una hora de clases de
+                            inglés que una hora para arreglar un enchufe o acompañar
+                            a una persona.
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
-                            Se trata, en definitiva, de un sistema de ayuda mutua
-                            entre personas que viven en la misma comunidad, es
-                            la ayuda informal de toda la vida pero en este caso la
-                            formalizamos llevando un control de las ofertas y de-
-                            mandas de cada persona.
+                            Cuando muchas personas se unen para ofrecer y recibir
+                            su tiempo se generan numerosas actividades y recursos
+                            de los que comunidad en general se puede beneficiar.
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
-                            En el banco del tiempo se intercambian servicios y actividades en donde
-                            la unidad de intercambio y de valor siempre es la misma: la hora, el tiempo.
-                            Todos los servicios tienen el mismo valor.
+                            Todos tenemos habilidades, capacidades y conocimientos
+                            que ofrecer y de los cuales se pueden beneficiar otras personas.
+                            Cuanto más intercambiamos con los demás más nos enriquecemos como personas y como
+                            grupo.
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
-                            Una persona ofrece lo que puede y recibe lo que necesita.
+                            Todos los servicios tienen el mismo valor.
                         </Typography>
                     </Grid>
                 </Grid>
             </Box>
 
-            {/* ventana de texto */}
 
-            <Box padding={2} margin={2}>
-                <Button onClick={handleOpen}>¿Qué es un banco de tiempo?</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
-                            ¿Qué es un banco del tiempo?
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
-                            y también en algunas ciudades de España.
-                            Consiste en crear un sistema gratuito de colaboración mutua,
-                            de intercambio de habilidades, conocimientos y ganas
-                            para crear una comunidad mejor.
-                        </Typography>
-                    </Box>
-                </Modal>
-            </Box>
+
 
             <Footer />
             <ScrollToTop />

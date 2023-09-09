@@ -109,6 +109,7 @@ export default function Header() {
                     <Typography
                         variant="h6"
                         component="div"
+                                textAlign="center"
                         sx={{ flexGrow: 1, color: 'whitesmoke' }}>
                         Banco del Tiempo
                     </Typography>
@@ -124,13 +125,13 @@ export default function Header() {
                                 >
                                     <AccountCircle style={{ color: '#FFF' }} />
                                 </IconButton>
-                                        <Button
+                                        <Button 
                                             style={{
                                                 color: '#FFF',
-                                                borderColor: 'text.white',
                                                 m: 1,
-                                                border: 1,
-                                            }} onClick={loggingOut}>Cerrar sesión</Button>
+                                                textDecoration: "none"
+                                            }}
+                                            onClick={loggingOut}>Cerrar sesión</Button>
                             </Box>
 
                         </>
@@ -146,7 +147,12 @@ export default function Header() {
                                 >
                                 </IconButton>
                                             <Button >
-                                        <Link style={{ color: '#FFF' }} to="/login">Iniciar sesión</Link>
+                                                <Link style={{
+                                                    color: '#FFF',
+                                                    m: 1,
+                                                    textDecoration: "none"
+                                                }}
+                                                    to="/login">Iniciar sesión</Link>
                                 </Button>
                             </Box>
                         </>

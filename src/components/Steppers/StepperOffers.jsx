@@ -63,6 +63,8 @@ export default function StepperOffers() {
             sx={{ maxWidth: 800 }}
             marginTop={4}
             marginBottom={4}
+            alignItems={'center'}
+            padding={5}
         >
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
@@ -70,7 +72,9 @@ export default function StepperOffers() {
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption"></Typography>
+                                    <Typography variant="caption"
+                                        align={'justify'}
+                                    ></Typography>
                                 ) : null
                             }
                         >

@@ -16,29 +16,9 @@ import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { Button } from '@mui/material';
 
-function createData(name, description, register_date, update_date, user, credits, info) {
-    return {
-        name,
-        description,
-        register_date,
-        update_date,
-        user,
-        credits,
-        info
-    };
-}
+let offersList
+const rows = [offersList]
 
-// Aquí hago un map de lo que me viene por la bbdd para que se inserte en createData
-//  offersList.map((offer) => {
-//  const { name, description, register_date, update_date, user, credits } = offer;
-// })
-// const rows: [Row] = []
-
-const rows = [
-    createData('Pasear el perro', "Necesito que saquen mi perro por las tardes", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "Luis", 6),
-    createData('Cuidar a mi hija', "Necesito que cuiden de mi hija los lunes por la tarde", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "Pedro", 8),
-    createData('Cuidar a mi padre', "Mi padre está mayor y necesita ayuda para pasear", "2023/08/31 22:23:34", "2023/09/02 22:23:34", "Mayte", 2),
-];
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -56,10 +36,6 @@ function getComparator(order, orderBy) {
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 
 function stableSort(array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
@@ -203,8 +179,7 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-
-export default function OffersTableView() {
+export default function OffersTableView({ offersList }) {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('Nombre');
     const [selected, setSelected] = React.useState([]);
@@ -273,7 +248,7 @@ export default function OffersTableView() {
     );
 
     return (
-        <Box padding={1} margin={1} sx={{ width: '100%' }}>
+        <Box padding={0} margin={1} sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer>
@@ -290,7 +265,8 @@ export default function OffersTableView() {
                             rowCount={rows.length}
                         />
                         <TableBody>
-                            {visibleRows.map((row, index) => {
+                            {visibleRows ?? (
+                                offersList.map((row, index) => {
                                 const isItemSelected = isSelected(row.name);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -332,7 +308,7 @@ export default function OffersTableView() {
                                         </TableCell>
                                     </TableRow>
                                 );
-                            })}
+                                }))}
                             {emptyRows > 0 && (
                                 <TableRow
                                     style={{
