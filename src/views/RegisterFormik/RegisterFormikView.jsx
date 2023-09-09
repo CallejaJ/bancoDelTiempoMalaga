@@ -38,12 +38,11 @@ export default function RegisterFormikView({ formik }) {
         <>
             <Header />
             <Box
-                sx={{
-                    top: "modal",
-                    position: "center",
-                    marginTop: 3,
-                    marginBottom: 3
-                }}
+                alignItems={'center'}
+                display={'flex'}
+                justifyContent={'center'}
+                marginBottom={3}
+                marginTop={2}  
             >
                 <Container component="main" maxWidth="md">
                 <Box
@@ -272,14 +271,14 @@ export default function RegisterFormikView({ formik }) {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link to="/home">
+                                                <Link to="/home" style={{ textDecoration: 'none' }}>
                                                 <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
                                                     Volver al inicio
                                                 </Typography>
                                             </Link>
                                         </Grid>
                                         <Grid item xs>
-                                            <Link to="/login">
+                                                <Link to="/login" style={{ textDecoration: 'none' }} >
                                                 <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
                                                     ¿Tienes cuenta? Ir a login
                                                 </Typography>

@@ -169,13 +169,13 @@ export default function LoginFormikView({ formik }) {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link to="/home">
+                                            <Link to="/home" style={{ textDecoration: 'none' }}>
                                                 <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
                                                     ¿Olvidaste tu contraseña?                                                </Typography>
                                             </Link>
                                         </Grid>
                                         <Grid item xs>
-                                            <Link to="/register">
+                                            <Link to="/register" style={{ textDecoration: 'none' }}>
                                                 <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
                                                     ¿No tienes cuenta? Ir a registro
                                                 </Typography>

@@ -36,7 +36,7 @@ export default function PanelFormikView({ formik }) {
                     component="main">
                     <Box
                         sx={{
-                            marginTop: 8,
+                            marginTop: 5,
                             marginBottom: 5,
                             display: 'flex',
                             flexDirection: 'row',
@@ -64,11 +64,9 @@ export default function PanelFormikView({ formik }) {
                                         alignItems: "center",
                                     }}
                                 >
-                                    <Typography component="h5" variant="h6">
-                                        Bienvenido
-                                    </Typography>
-                                    <Typography color="primary" component="h5" variant="h6" sx={{ textTransform: 'uppercase' }}>
-                                        {user.name}
+
+                                    <Typography color="primary" component="h5" variant="h6">
+                                        ¡Hola de nuevo {user.name} !
                                     </Typography>
                                     <Box
                                         component="form"
@@ -202,7 +200,7 @@ export default function PanelFormikView({ formik }) {
                                         component="form"
                                         noValidate
                                         onSubmit={handleSubmit}
-                                        sx={{ mt: 9 }}
+                                        sx={{ mt: 5 }}
                                     >
 
 

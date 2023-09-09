@@ -14,12 +14,13 @@ export default function Requests() {
     return (
         <>
             <Header />
-            <Box>
+            <Box
+                alignItems={'center'}
+                display={'flex'}
+                justifyContent={'center'}>
                 <StepperRequests />
             </Box>
-            <Box>
-                {/* <RequestDataTable /> */}
-            </Box>
+
             <ScrollToTop />
             <Footer />
         </>

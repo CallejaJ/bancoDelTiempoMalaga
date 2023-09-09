@@ -86,7 +86,7 @@ const ImageUpload = () => {
     );
 
     return (
-        <section style={{ margin: "1rem" }}>
+        <section style={{ margin: "2rem" }}>
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <div className="fileDrop">Haz click o arrastra tu imagen aquí</div>

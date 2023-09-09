@@ -1,23 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import {
+    Box, Table, TableBody, TableCell, TableContainer,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Button
+} from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import { Button } from '@mui/material';
 
-let offersList
-const rows = [offersList]
 
 
 function descendingComparator(a, b, orderBy) {
@@ -75,7 +64,7 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'user',
+        id: 'user_id',
         numeric: true,
         disablePadding: false,
         label: 'Usuario'
@@ -180,6 +169,7 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 export default function OffersTableView({ offersList }) {
+
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('Nombre');
     const [selected, setSelected] = React.useState([]);
@@ -194,7 +184,7 @@ export default function OffersTableView({ offersList }) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = rows.map((n) => n.name);
+            const newSelected = offersList.map((n) => n.name);
             setSelected(newSelected);
             return;
         }
@@ -236,19 +226,29 @@ export default function OffersTableView({ offersList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - offersList.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(rows, getComparator(order, orderBy)).slice(
+            stableSort(offersList, getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage],
+        [order, orderBy, page, rowsPerPage, offersList],
     );
 
     return (
-        <Box padding={0} margin={1} sx={{ width: '100%' }}>
+        <>
+            <Box
+                alignItems={'center'}
+                display={'flex'}
+                justifyContent={'center'}
+            >
+
+                <Box
+
+                    padding={2} margin={2}
+                    sx={{ width: '90%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer>
@@ -262,11 +262,10 @@ export default function OffersTableView({ offersList }) {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
+                                    rowCount={offersList.length}
                         />
                         <TableBody>
-                            {visibleRows ?? (
-                                offersList.map((row, index) => {
+                                    {visibleRows.map((row, index) => {
                                 const isItemSelected = isSelected(row.name);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -282,7 +281,6 @@ export default function OffersTableView({ offersList }) {
                                         sx={{ cursor: 'pointer' }}
                                     >
                                         <TableCell>
-
                                         </TableCell>
                                         <TableCell
                                             component="th"
@@ -295,7 +293,7 @@ export default function OffersTableView({ offersList }) {
                                         <TableCell align="left">{row.description}</TableCell>
                                         <TableCell align="left">{row.register_date}</TableCell>
                                         <TableCell align="left">{row.update_date}</TableCell>
-                                        <TableCell align="left">{row.user}</TableCell>
+                                        <TableCell align="left">{row.user_id}</TableCell>
                                         <TableCell align="left">{row.credits}</TableCell>
                                         <TableCell align="center">
                                             <Button
@@ -308,7 +306,7 @@ export default function OffersTableView({ offersList }) {
                                         </TableCell>
                                     </TableRow>
                                 );
-                                }))}
+                            })}
                             {emptyRows > 0 && (
                                 <TableRow
                                     style={{
@@ -324,15 +322,16 @@ export default function OffersTableView({ offersList }) {
                 <TablePagination
                     rowsPerPageOptions={[3, 5]}
                     component="div"
-                    count={rows.length}
+                            count={offersList.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                     labelRowsPerPage={"Ofertas por página"}
                 />
-            </Paper>
-
-        </Box>
+                    </Paper>
+                </Box>
+</Box>
+</>
     );
 }

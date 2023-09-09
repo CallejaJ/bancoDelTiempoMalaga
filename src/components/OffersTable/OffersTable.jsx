@@ -3,7 +3,7 @@ import OffersTableView from "./OffersTableView"
 
 export default function OffersTable() {
 
-    let [offersList, setOffersList] = useState(null)
+    let [offersList, setOffersList] = useState([])
 
     useEffect(function () {
         async function getOffersList() {
@@ -24,7 +24,7 @@ export default function OffersTable() {
         }
         getOffersList()
     },
-        [setOffersList]
+        []
     )
 
 
