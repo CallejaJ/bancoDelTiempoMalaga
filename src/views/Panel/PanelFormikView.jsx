@@ -1,12 +1,15 @@
-import { Alert, Box, Button, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 import { useAuthContext } from '../../context/AuthContext';
-import Footer from "../../components/Footer/Footer";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import Header from "../../components/Header/Header";
+import { Alert, Box, Button, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
-import StepperPanel from "../../components/Steppers/StepperPanel";
-import Header from "../../components/Header/Header";
-import { useState } from "react";
+import UserOffersTable from "../../components/UserTable/Offers/UserOffersTable"
+import UserRequestsTable from "../../components/UserTable/Requests/UserRequestsTable";
+import StepperDataPanel from "../../components/Steppers/StepperDataPanel";
+import StepperTasksPanel from "../../components/Steppers/StepperTasksPanel";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import Footer from "../../components/Footer/Footer";
 
 
 export default function PanelFormikView({ formik }) {
@@ -34,6 +37,7 @@ export default function PanelFormikView({ formik }) {
             >
                 <Container
                     component="main">
+                    <ImageUpload />
                     <Box
                         sx={{
                             marginTop: 5,
@@ -45,7 +49,6 @@ export default function PanelFormikView({ formik }) {
                     >
                         <Grid container>
                             <CssBaseline />
-                            <ImageUpload />
                             <Grid
                                 item
                                 xs={6}
@@ -304,13 +307,39 @@ export default function PanelFormikView({ formik }) {
                                     }}
                                 >
 
-                                    <StepperPanel />
+                                    <StepperDataPanel />
                                 </Box>
                             </Grid>
+                            <Grid
+                                item
+                                xs={6}
+                                sm={4}
+                                md={3}
+                                component={Paper}
+                                elevation={0}
+                                square
+                            >
+                                <Box
+                                    sx={{
+                                        my: 1,
+                                        mx: 1,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                    }}
+                                >
+
+                                    <StepperTasksPanel />
+                                </Box>
+                            </Grid>
+
                         </Grid>
+
                     </Box>
                 </Container>
             </Box>
+            <UserOffersTable />
+            <UserRequestsTable />
             <Footer />
             <ScrollToTop />
         </>

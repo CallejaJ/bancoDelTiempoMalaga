@@ -8,10 +8,11 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 const steps = [
     {
         label: '¿Qué puedo ofrecer?',
-        description: `Antes de nada ten en cuenta que no tiene que parecerse necesariamente 
-        a un anuncio de busco/ofrezco empleo. Precisamente es un sistema alternativo a la economía
-         y éste es el lugar para ofrecer algo que
-        nos apetezca aportar más allá de nuestra profesión. Es una habilidad, 
+        description: `Antes de nada ten en cuenta que no tiene que parecerse 
+        necesariamente a un anuncio de busco/ofrezco empleo. 
+        Precisamente es un sistema alternativo a la economía
+        y éste es el lugar para solicitar algo que nos sepamos hacer por 
+        nosotros mismos y que otro usuario sepa hacer. Es una habilidad, 
         algo que hago muy bien y es muy importante que los demás lo encuentren, 
         para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
     },

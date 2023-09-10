@@ -7,30 +7,21 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo solicitar?',
-        description: `Cualquier tarea que se traduzca en tiempo sabiendo que las horas
-        de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
-        posible en qué consiste la tarea a realizar, para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        label: '¿Puedo cambiar mis ofertas?',
+        description: `Sí, haz click en el botón para modificar la tarea a realizar y los créditos o tiempo que puede requerir la tarea.`,
     },
     {
-        label: '¿Puedo solicitar una tarea si no tengo créditos?',
+        label: '¿Puedo cambiar mis demandas?',
         description:
-            'Si, hasta un máximo de -20 créditos. Ten en cuenta que por registrarte en la aplicación te regalamos un crédito.'
+            'Sí, haz click en el botón para modificar la tarea a realizar y los créditos o tiempo que puede requerir la tarea.'
     },
     {
-        label: '¿Quién puede ver mis demandas o solicitudes?',
-        description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus demandas estarán disponibles para todos los visitantes de la aplicación web.`,
+        label: '¿Puedo eliminar mis ofertas?',
+        description: `¡Claro que si! Pinchando en el botón se eliminará la oferta seleccionada.`,
     },
     {
-        label: '¿Cómo contactan conmigo?',
-        description: `A través del chat, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la demanda se facilitará información confidencial como teléfono o dirección.`,
-    },
-    {
-        label: '¿Cómo transfiero mis créditos?',
-        description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
-        Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
+        label: '¿Puedo eliminar mis demandas?',
+        description: `¡Claro que si! Pinchando el botón se eliminará la demanda seleccionada.`,
     },
 
     {
@@ -40,7 +31,7 @@ const steps = [
     },
 ];
 
-export default function StepperRequests() {
+export default function StepperTasksPanel() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -57,11 +48,10 @@ export default function StepperRequests() {
 
     return (
         <Box
-            sx={{ maxWidth: 800 }}
             marginTop={4}
             marginBottom={4}
-            padding={5}
-        >
+            marginLeft={6}
+            sx={{ maxWidth: 600 }}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                     <Step key={step.label}>
@@ -100,7 +90,7 @@ export default function StepperRequests() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Ya puedes crear una oferta.</Typography>
+                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
                     <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
                         Reiniciar
                     </Button>

@@ -151,21 +151,21 @@ function EnhancedTableToolbar() {
             }}
         >
             <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    Ofertas disponibles
+                sx={{ flex: '1 1 100%' }}
+                variant="h6"
+                id="tableTitle"
+                component="div"
+            >
+                Ofertas publicadas
             </Typography>
 
 
-                <Typography sx={{ flex: '1 1 50 %', alignContent: 'left', color: "grey" }}
-                    variant="h6" color="text.primary"
-                    type='subtitle1'
-                    id="tableTitle"
-                    component="div">
-                </Typography>
+            <Typography sx={{ flex: '1 1 50 %', alignContent: 'left', color: "grey" }}
+                variant="h6" color="text.primary"
+                type='subtitle1'
+                id="tableTitle"
+                component="div">
+            </Typography>
 
         </Toolbar>
     );
@@ -174,7 +174,7 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function OffersTableView({ offersList }) {
+export default function UserOffersTableView({ userOffersList }) {
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('Nombre');
@@ -190,7 +190,7 @@ export default function OffersTableView({ offersList }) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = offersList.map((n) => n.id);
+            const newSelected = userOffersList.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -232,15 +232,15 @@ export default function OffersTableView({ offersList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - offersList.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userOffersList.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(offersList, getComparator(order, orderBy)).slice(
+            stableSort(userOffersList, getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage, offersList],
+        [order, orderBy, page, rowsPerPage, userOffersList],
     );
 
     return (
@@ -255,90 +255,90 @@ export default function OffersTableView({ offersList }) {
 
                     padding={2} margin={2}
                     sx={{ width: '90%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar numSelected={selected.length} />
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 750 }}
-                        aria-labelledby="tableTitle"
-                    >
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                                    rowCount={offersList.length}
-                        />
-                        <TableBody>
+                    <Paper sx={{ width: '100%', mb: 2 }}>
+                        <EnhancedTableToolbar numSelected={selected.length} />
+                        <TableContainer>
+                            <Table
+                                sx={{ minWidth: 750 }}
+                                aria-labelledby="tableTitle"
+                            >
+                                <EnhancedTableHead
+                                    numSelected={selected.length}
+                                    order={order}
+                                    orderBy={orderBy}
+                                    onSelectAllClick={handleSelectAllClick}
+                                    onRequestSort={handleRequestSort}
+                                    rowCount={userOffersList.length}
+                                />
+                                <TableBody>
                                     {visibleRows.map((row, index) => {
                                         const isItemSelected = isSelected(row.id);
-                                const labelId = `enhanced-table-checkbox-${index}`;
+                                        const labelId = `enhanced-table-checkbox-${index}`;
 
-                                return (
-                                    <TableRow
-                                        hover
-                                        onClick={(event) => handleClick(event, row.id)}
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.id}
-                                        selected={isItemSelected}
-                                        sx={{ cursor: 'pointer' }}
-                                    >
-                                        <TableCell>
-                                        </TableCell>
-                                        <TableCell
-                                            component="th"
-                                            id={labelId}
-                                            scope="row"
-                                            padding="none"
+                                        return (
+                                            <TableRow
+                                                hover
+                                                onClick={(event) => handleClick(event, row.id)}
+                                                role="checkbox"
+                                                aria-checked={isItemSelected}
+                                                tabIndex={-1}
+                                                key={row.id}
+                                                selected={isItemSelected}
+                                                sx={{ cursor: 'pointer' }}
+                                            >
+                                                <TableCell>
+                                                </TableCell>
+                                                <TableCell
+                                                    component="th"
+                                                    id={labelId}
+                                                    scope="row"
+                                                    padding="none"
+                                                >
+                                                    {row.id}
+                                                </TableCell>
+                                                <TableCell align="left">{row.name}</TableCell>
+                                                <TableCell align="left">{row.description}</TableCell>
+                                                <TableCell align="left">{row.register_date}</TableCell>
+                                                <TableCell align="left">{row.update_date}</TableCell>
+                                                <TableCell align="left">{row.user_id}</TableCell>
+                                                <TableCell align="left">{row.credits}</TableCell>
+                                                <TableCell align="center">
+                                                    <Button
+                                                        type="submit"
+                                                        fullWidth
+                                                        variant="contained"
+                                                        sx={{ mt: 1, mb: 1 }}
+                                                    >Solicitar
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                                    {emptyRows > 0 && (
+                                        <TableRow
+                                            style={{
+                                                height: (53) * emptyRows,
+                                            }}
                                         >
-                                            {row.id}
-                                        </TableCell>
-                                        <TableCell align="left">{row.name}</TableCell>
-                                        <TableCell align="left">{row.description}</TableCell>
-                                        <TableCell align="left">{row.register_date}</TableCell>
-                                        <TableCell align="left">{row.update_date}</TableCell>
-                                        <TableCell align="left">{row.user_id}</TableCell>
-                                        <TableCell align="left">{row.credits}</TableCell>
-                                        <TableCell align="center">
-                                            <Button
-                                                type="submit"
-                                                fullWidth
-                                                variant="contained"
-                                                sx={{ mt: 1, mb: 1 }}
-                                            >Solicitar
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                );
-                            })}
-                            {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: (53) * emptyRows,
-                                    }}
-                                >
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[3, 5]}
-                    component="div"
-                            count={offersList.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    labelRowsPerPage={"Ofertas por página"}
-                />
+                                            <TableCell colSpan={6} />
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <TablePagination
+                            rowsPerPageOptions={[3, 5]}
+                            component="div"
+                            count={userOffersList.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            labelRowsPerPage={"Ofertas por página"}
+                        />
                     </Paper>
                 </Box>
-</Box>
-</>
+            </Box>
+        </>
     );
 }

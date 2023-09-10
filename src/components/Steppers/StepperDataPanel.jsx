@@ -38,7 +38,7 @@ const steps = [
     },
 ];
 
-export default function StepperPanel() {
+export default function StepperDataPanel() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -97,7 +97,7 @@ export default function StepperPanel() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Ya puedes crear una oferta.</Typography>
+                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
                     <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
                         Reiniciar
                     </Button>
