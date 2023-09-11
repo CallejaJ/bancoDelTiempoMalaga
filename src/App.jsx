@@ -14,6 +14,9 @@ import RegisterFormik from "./views/RegisterFormik/RegisterFormik";
 import PanelFormik from "./views/Panel/PanelFormik";
 import UserGuide from "./views/UserGuide/UserGuide";
 import Offers from "./views/Offers/Offers";
+import OffersDetails from "./views/OffersDetails/OffersDetails";
+import RequestsDetails from "./views/RequestsDetails/RequestsDetails";
+
 
 // import ChatPage from './views/ChatPage/ChatPage';
 // import HomeChat from "./views/HomeChat/HomeChat";
@@ -109,6 +112,8 @@ export default function App() {
                 <Route path="/panel" element={<PrivateRoute />} >
                   <Route element={<Layout />} >
                       <Route index element={<PanelFormik />} />
+                    <Route path="/panel/offersdetails/" element={<OffersDetails />} />
+                    <Route path="/panel/requestsdetails/" element={<RequestsDetails />} />
                     </Route>
                 </Route>
               <Route path="*" element={<NotFound />} />

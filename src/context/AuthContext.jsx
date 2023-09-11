@@ -42,6 +42,7 @@ export default function AuthContextProvider({ children }) {
         setUpdateUserMessage(null)
     }, 3000)
 
+
     async function login({ email, password }) {
         try {
             const response = await fetch("http://localhost:3006/user/login/", {

@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { useAuthContext } from '../../context/AuthContext';
 import Header from "../../components/Header/Header";
-import { Alert, Box, Button, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { Box, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
 import UserOffersTable from "../../components/UserTable/Offers/UserOffersTable"
@@ -10,6 +9,9 @@ import StepperDataPanel from "../../components/Steppers/StepperDataPanel";
 import StepperTasksPanel from "../../components/Steppers/StepperTasksPanel";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
+import { LoadingButton } from '@mui/lab';
+import SaveIcon from '@mui/icons-material/Save';
+import { useState } from 'react';
 
 
 export default function PanelFormikView({ formik }) {
@@ -19,7 +21,7 @@ export default function PanelFormikView({ formik }) {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const { updateUserMessage } = useAuthContext();
+    // const { updateUserMessage } = useAuthContext();
 
     const { user } = useAuthContext()
 
@@ -268,22 +270,22 @@ export default function PanelFormikView({ formik }) {
                                             error={touched.confirmPassword && Boolean(errors.confirmPassword)}
                                             helperText={touched.confirmPassword && errors.confirmPassword}
                                         />
-
-
-                                        <Button
+                                        <LoadingButton
+                                            color="secondary"
+                                            loadingPosition="start"
+                                            startIcon={<SaveIcon />}
+                                            variant="contained"
                                             type="submit"
                                             fullWidth
-                                            variant="contained"
                                             sx={{ mt: 3, mb: 3 }}
                                         >
-                                            Actualizar
-                                        </Button>
-
-                                        {updateUserMessage ? (
+                                            <span>Actualizar</span>
+                                        </LoadingButton>
+                                        {/* {updateUserMessage ? (
                                             <Alert variant="outlined" severity="info" >
                                                 {updateUserMessage}
                                             </Alert>
-                                        ) : null}
+                                        ) : null} */}
 
                                     </Box>
                                 </Box>

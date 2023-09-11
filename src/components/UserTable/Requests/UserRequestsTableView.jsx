@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Button
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
+import { LoadingButton } from '@mui/lab';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import { Link } from 'react-router-dom';
 
 
 
@@ -85,7 +88,7 @@ const headCells = [
         id: 'info',
         numeric: false,
         disablePadding: false,
-        label: 'Detalles',
+        label: 'Acciones',
     },
 ];
 
@@ -303,13 +306,19 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                                 <TableCell align="left">{row.user_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <Button
+                                                    <Link to="/panel/requestsdetails/">
+                                                        <LoadingButton
+                                                            color="secondary"
+                                                            loadingPosition="start"
+                                                            startIcon={<ModeEditOutlineOutlinedIcon />}
+                                                            variant="contained"
                                                         type="submit"
-                                                        fullWidth
-                                                        variant="contained"
+                                                            fullWidth
                                                         sx={{ mt: 1, mb: 1 }}
-                                                    >Solicitar
-                                                    </Button>
+                                                        >
+                                                            <span>Editar</span>
+                                                        </LoadingButton>
+                                                    </Link> 
                                                 </TableCell>
                                             </TableRow>
                                         );

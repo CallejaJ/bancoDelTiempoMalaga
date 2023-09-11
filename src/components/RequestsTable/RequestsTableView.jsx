@@ -87,7 +87,7 @@ const headCells = [
         id: 'info',
         numeric: false,
         disablePadding: false,
-        label: 'Detalles',
+        label: 'Acciones',
     },
 ];
 

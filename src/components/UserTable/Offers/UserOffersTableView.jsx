@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Button
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import { LoadingButton } from '@mui/lab';
+import { Link } from 'react-router-dom';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -85,7 +87,7 @@ const headCells = [
         id: 'info',
         numeric: false,
         disablePadding: false,
-        label: 'Detalles',
+        label: 'Acciones',
     },
 ];
 
@@ -181,6 +183,8 @@ export default function UserOffersTableView({ userOffersList }) {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    // const deleteOffer()
+
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -303,16 +307,24 @@ export default function UserOffersTableView({ userOffersList }) {
                                                 <TableCell align="left">{row.user_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <Button
+                                                    <Link to="/panel/offersdetails/">
+                                                        <LoadingButton
+                                                            color="secondary"
+                                                            loadingPosition="start"
+                                                            startIcon={<ModeEditOutlineOutlinedIcon />}
+                                                            variant="contained"
                                                         type="submit"
-                                                        fullWidth
-                                                        variant="contained"
+                                                            fullWidth
                                                         sx={{ mt: 1, mb: 1 }}
-                                                    >Solicitar
-                                                    </Button>
+                                                        >
+                                                            <span>Editar</span>
+                                                        </LoadingButton>
+                                                    </Link> 
                                                 </TableCell>
                                             </TableRow>
+
                                         );
+
                                     })}
                                     {emptyRows > 0 && (
                                         <TableRow
@@ -326,6 +338,13 @@ export default function UserOffersTableView({ userOffersList }) {
                                 </TableBody>
                             </Table>
                         </TableContainer>
+                        {/* {
+                            deleteOfferMessage ? (
+                                <Alert variant="outlined" severity="info" >
+                                    {deleteOfferMessage}
+                                </Alert>
+                            ) : null
+                        } */}
                         <TablePagination
                             rowsPerPageOptions={[3, 5]}
                             component="div"

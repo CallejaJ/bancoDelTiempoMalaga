@@ -57,7 +57,7 @@ export const Sliders =
         {
             "id": 4,
             "image": school,
-            "title": "Clases de idiomas: conversación"
+            "title": "Conciliación familiar"
         },
         {
             "id": 4,

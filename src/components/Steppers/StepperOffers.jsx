@@ -9,11 +9,10 @@ const steps = [
     {
         label: '¿Qué puedo ofrecer?',
         description: `Antes de nada ten en cuenta que no tiene que parecerse 
-        necesariamente a un anuncio de busco/ofrezco empleo. 
+        necesariamente a un anuncio de busco empleo.
         Precisamente es un sistema alternativo a la economía
-        y éste es el lugar para solicitar algo que nos sepamos hacer por 
-        nosotros mismos y que otro usuario sepa hacer. Es una habilidad, 
-        algo que hago muy bien y es muy importante que los demás lo encuentren, 
+        y éste es el lugar para solicitar ofrecer algo que te gusta hacer. Es una habilidad,
+        algo que haces muy bien. Es muy importante que los demás lo encuentren,
         para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
     },
     {

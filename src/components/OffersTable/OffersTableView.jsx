@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Button
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-
+import InfoIcon from '@mui/icons-material/Info';
+import { LoadingButton } from '@mui/lab';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -85,7 +86,7 @@ const headCells = [
         id: 'info',
         numeric: false,
         disablePadding: false,
-        label: 'Detalles',
+        label: 'Acciones',
     },
 ];
 
@@ -100,7 +101,6 @@ function EnhancedTableHead(props) {
         <TableHead>
             <TableRow>
                 <TableCell >
-
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
@@ -303,13 +303,17 @@ export default function OffersTableView({ offersList }) {
                                         <TableCell align="left">{row.user_id}</TableCell>
                                         <TableCell align="left">{row.credits}</TableCell>
                                         <TableCell align="center">
-                                            <Button
+                                            <LoadingButton
+                                                color="secondary"
+                                                loadingPosition="start"
+                                                startIcon={<InfoIcon />}
+                                                variant="contained"
                                                 type="submit"
                                                 fullWidth
-                                                variant="contained"
                                                 sx={{ mt: 1, mb: 1 }}
-                                            >Solicitar
-                                            </Button>
+                                            >
+                                                <span>Solicitar</span>
+                                            </LoadingButton>
                                         </TableCell>
                                     </TableRow>
                                 );

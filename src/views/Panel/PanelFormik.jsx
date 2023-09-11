@@ -8,8 +8,8 @@ import { useAuthContext } from "../../context/AuthContext";
 export default function PanelFormik() {
 
     const [userProfile, setUserProfile] = useState(null)
-
     const { user, token, refresh } = useAuthContext()
+
 
     async function onSubmit(values) {
         try {
@@ -60,6 +60,8 @@ export default function PanelFormik() {
     },
         [user, token, setUserProfile]
     )
+
+
 
 
 

@@ -5,9 +5,11 @@ import { Sliders } from "../../components/Carousel/helper/Sliders";
 function CarouselHome() {
   return (
     <Carousel>
-      {Sliders.map((item) => (
+      {Sliders.map((item) =>
+      (
         <CarouselSub key={item.id} item={item} />
-      ))}
+      ))
+      }
     </Carousel>
   );
 }
