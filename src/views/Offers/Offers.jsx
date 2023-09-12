@@ -1,7 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-// import AddOfferForm from "../../components/AddOfferForm/AddOfferForm";
 import StepperOffers from "../../components/Steppers/StepperOffers";
 import Header from "../../components/Header/Header";
 import OffersTable from "../../components/OffersTable/OffersTable";
@@ -15,7 +14,7 @@ export default function Offers() {
 
     return (
         <>
-            <Header />
+            <Header title='Ofertas' />
             <Grid
                 container
                 justifyContent={'center'}
@@ -35,8 +34,7 @@ export default function Offers() {
                 justifyContent={'center'}>
                 <StepperOffers />
             </Box>
-                <OffersTable />
-            {/* <AddOfferForm /> */}
+            <OffersTable />
             <ScrollToTop />
             <Footer />
         </>

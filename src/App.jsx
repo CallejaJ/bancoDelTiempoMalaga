@@ -14,8 +14,8 @@ import RegisterFormik from "./views/RegisterFormik/RegisterFormik";
 import PanelFormik from "./views/Panel/PanelFormik";
 import UserGuide from "./views/UserGuide/UserGuide";
 import Offers from "./views/Offers/Offers";
-import OffersDetails from "./views/OffersDetails/OffersDetails";
-import RequestsDetails from "./views/RequestsDetails/RequestsDetails";
+import OffersFormikDetails from "./views/OffersDetails/OffersFormikDetails";
+import RequestsFormikDetails from "./views/RequestsDetails/RequestsFormikDetails";
 
 
 // import ChatPage from './views/ChatPage/ChatPage';
@@ -26,6 +26,8 @@ import { blue, orange } from "@mui/material/colors";
 import { CssBaseline, createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import "./App.css";
+import PanelContextProvider from "./context/PanelContext";
+import AddOfferformik from "./views/AddOffer/AddOfferFormik";
 
 const orangeTheme = createTheme({
   palette: {
@@ -91,35 +93,39 @@ export default function App() {
     <>
       <BrowserRouter>
         <AuthContextProvider>
+          <PanelContextProvider>
           <Wrapper>
             <ThemeProvider theme={orangeTheme}>
               <CssBaseline />
             <Routes>
               <Route path="/" element={<Landing />}>
                 </Route>
-                <Route path="home" element={<Home />} />
-                <Route path="requests" element={<Requests />} />
-                <Route path="offers" element={<Offers />} />
-                <Route path="userguide" element={<UserGuide />} />
+                  <Route path="home" element={<Home />} />
+                  <Route path="requests" element={<Requests />} />
+                  <Route path="offers" element={<Offers />} />
+                  <Route path="userguide" element={<UserGuide />} />
 
                 {/* Rutas públicas */}
                 <Route element={<PublicRoute />}>
-                <Route path="login" element={<LoginFormik />} />
-                  <Route path="register" element={<RegisterFormik />} />
+                    <Route path="login" element={<LoginFormik />} />
+                    <Route path="register" element={<RegisterFormik />} />
               </Route>
 
                 {/* Rutas privadas */}
-                <Route path="/panel" element={<PrivateRoute />} >
+                  <Route path="/panel" element={<PrivateRoute />} >
                   <Route element={<Layout />} >
                       <Route index element={<PanelFormik />} />
-                    <Route path="/panel/offersdetails/" element={<OffersDetails />} />
-                    <Route path="/panel/requestsdetails/" element={<RequestsDetails />} />
+                      <Route path="/panel/offersdetails/:id" element={<OffersFormikDetails />} />
+                      <Route path="/panel/requestsdetails/:id" element={<RequestsFormikDetails />} />
+                      <Route path="/panel/addoffer/" element={<AddOfferformik />} />
+
                     </Route>
                 </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
             </ThemeProvider>
           </Wrapper>
+          </PanelContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </>

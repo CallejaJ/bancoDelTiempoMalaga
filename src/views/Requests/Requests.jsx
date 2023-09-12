@@ -11,7 +11,7 @@ export default function Requests() {
 
     return (
         <>
-            <Header />
+            <Header title='Demandas' />
             <Grid
                 container
                 justifyContent={'center'}

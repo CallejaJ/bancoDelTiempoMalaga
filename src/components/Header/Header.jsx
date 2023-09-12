@@ -10,7 +10,7 @@ const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 
 
-export default function Header() {
+export default function Header({ title }) {
 
 
     const { user, logout } = useAuthContext()
@@ -111,8 +111,8 @@ export default function Header() {
                         component="div"
                                 textAlign="center"
                         sx={{ flexGrow: 1, color: 'whitesmoke' }}>
-                        Banco del Tiempo
-                    </Typography>
+                                {title}
+                            </Typography>
                     {user ? (
                         <>
                             <Box>

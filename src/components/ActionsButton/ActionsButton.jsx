@@ -11,17 +11,17 @@ import cooperation from "../../assets/cooperation.png"
 const images = [
     {
         url: 'url(' + unity + ')',
-        title: 'Añadir ofertas',
+        title: 'Modificar tu oferta',
         width: '33.33%',
     },
     {
         url: 'url(' + selfsteem + ')',
-        title: 'Modificar ofertas',
+        title: 'Eliminar tu oferta',
         width: '33.34%',
     },
     {
         url: 'url(' + cooperation + ')',
-        title: 'Eliminar ofertas',
+        title: 'Añadir una nueva oferta',
         width: '33.33%',
     },
 ];

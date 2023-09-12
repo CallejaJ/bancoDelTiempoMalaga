@@ -8,7 +8,9 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { LoadingButton } from '@mui/lab';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
+
 
 
 function descendingComparator(a, b, orderBy) {
@@ -158,7 +160,7 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Ofertas publicadas
+                Tus ofertas publicadas
             </Typography>
 
 
@@ -178,13 +180,12 @@ EnhancedTableToolbar.propTypes = {
 };
 export default function UserOffersTableView({ userOffersList }) {
 
+
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('Nombre');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    // const deleteOffer()
-
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -307,19 +308,31 @@ export default function UserOffersTableView({ userOffersList }) {
                                                 <TableCell align="left">{row.user_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <Link to="/panel/offersdetails/">
+                                                    <Link to={`/panel/offersdetails/${row.id}`}>
                                                         <LoadingButton
                                                             color="secondary"
-                                                            loadingPosition="start"
+                                                            loadingPosition="center"
                                                             startIcon={<ModeEditOutlineOutlinedIcon />}
                                                             variant="contained"
-                                                        type="submit"
+                                                            type="submit"
                                                             fullWidth
-                                                        sx={{ mt: 1, mb: 1 }}
+                                                            sx={{ display: "inline-flex", mb: 1 }}
                                                         >
                                                             <span>Editar</span>
                                                         </LoadingButton>
-                                                    </Link> 
+                                                    </Link>
+                                                    <LoadingButton
+                                                        color="secondary"
+                                                        loadingPosition="center"
+                                                        startIcon={<DeleteIcon />}
+                                                        variant="outlined"
+                                                        type="submit"
+                                                        fullWidth
+                                                        sx={{ display: "inline-flex" }}
+
+                                                    >
+                                                        <span>Eliminar</span>
+                                                    </LoadingButton>
                                                 </TableCell>
                                             </TableRow>
 
@@ -338,13 +351,6 @@ export default function UserOffersTableView({ userOffersList }) {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        {/* {
-                            deleteOfferMessage ? (
-                                <Alert variant="outlined" severity="info" >
-                                    {deleteOfferMessage}
-                                </Alert>
-                            ) : null
-                        } */}
                         <TablePagination
                             rowsPerPageOptions={[3, 5]}
                             component="div"

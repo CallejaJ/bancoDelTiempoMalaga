@@ -36,7 +36,7 @@ export default function LoginFormikView({ formik }) {
 
     return (
         <>
-            <Header />
+            <Header title='Iniciar sesión' />
             <Box
                 sx={{
                     top: "modal",

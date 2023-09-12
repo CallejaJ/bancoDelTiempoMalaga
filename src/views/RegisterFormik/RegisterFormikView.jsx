@@ -36,7 +36,7 @@ export default function RegisterFormikView({ formik }) {
 
     return (
         <>
-            <Header />
+            <Header title='Registro de usuario' />
             <Box
                 alignItems={'center'}
                 display={'flex'}

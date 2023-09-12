@@ -33,7 +33,7 @@ export default function UserGuide() {
 
     return (
         <>
-            <Header />
+            <Header title='Guía y funcionamiento' />
 
             <Grid
                 container
@@ -53,7 +53,7 @@ export default function UserGuide() {
             {/* bloque de texto */}
 
             <Box sx={{ width: '100%' }}>
-                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             El intercambio consiste en ofrecer un determinado servicio
@@ -106,7 +106,7 @@ export default function UserGuide() {
             {/* bloque de texto */}
 
             <Box sx={{ width: '100%' }}>
-                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             Para formar parte del Banco del Tiempo y formar partes de los intercambios
@@ -159,7 +159,7 @@ export default function UserGuide() {
             {/* bloque de texto */}
 
             <Box pt={1} sx={{ width: '100%' }}>
-                <Grid container padding={2} margin={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             Por ejemplo, si un usuario ha realizado servicios a

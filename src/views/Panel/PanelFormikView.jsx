@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../context/AuthContext';
 import Header from "../../components/Header/Header";
-import { Box, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { Alert, Box, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ImageUpload } from "./utils/Avatar/ImageUpload";
 import UserOffersTable from "../../components/UserTable/Offers/UserOffersTable"
@@ -21,14 +21,14 @@ export default function PanelFormikView({ formik }) {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    // const { updateUserMessage } = useAuthContext();
+    const { updateUserMessage } = useAuthContext();
 
     const { user } = useAuthContext()
 
 
     return (
         <>
-            <Header />
+            <Header title='Panel de usuario' />
             <Box
                 sx={{
                     top: "modal",
@@ -281,11 +281,11 @@ export default function PanelFormikView({ formik }) {
                                         >
                                             <span>Actualizar</span>
                                         </LoadingButton>
-                                        {/* {updateUserMessage ? (
+                                        {updateUserMessage ? (
                                             <Alert variant="outlined" severity="info" >
                                                 {updateUserMessage}
                                             </Alert>
-                                        ) : null} */}
+                                        ) : null}
 
                                     </Box>
                                 </Box>
@@ -330,13 +330,10 @@ export default function PanelFormikView({ formik }) {
                                         alignItems: "center",
                                     }}
                                 >
-
                                     <StepperTasksPanel />
                                 </Box>
                             </Grid>
-
                         </Grid>
-
                     </Box>
                 </Container>
             </Box>
