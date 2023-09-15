@@ -1,5 +1,5 @@
-export const initialValues = {
+export const initialValuesRequest = {
     name: "",
     description: "",
-    credits: "",
+    credits: 0,
 };

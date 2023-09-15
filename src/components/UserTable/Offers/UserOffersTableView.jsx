@@ -1,15 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import { LoadingButton } from '@mui/lab';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+import { useAuthContext } from '../../../context/AuthContext';
 
 
 
@@ -186,6 +186,8 @@ export default function UserOffersTableView({ userOffersList }) {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const { deleteOffer } = useAuthContext();
+
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -309,30 +311,16 @@ export default function UserOffersTableView({ userOffersList }) {
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Link to={`/panel/offersdetails/${row.id}`}>
-                                                        <LoadingButton
+                                                        <IconButton
+                                                            aria-label="edit"
                                                             color="secondary"
-                                                            loadingPosition="center"
-                                                            startIcon={<ModeEditOutlineOutlinedIcon />}
                                                             variant="contained"
                                                             type="submit"
-                                                            fullWidth
-                                                            sx={{ display: "inline-flex", mb: 1 }}
                                                         >
-                                                            <span>Editar</span>
-                                                        </LoadingButton>
+                                                            <EditIcon />
+                                                        </IconButton>
                                                     </Link>
-                                                    <LoadingButton
-                                                        color="secondary"
-                                                        loadingPosition="center"
-                                                        startIcon={<DeleteIcon />}
-                                                        variant="outlined"
-                                                        type="submit"
-                                                        fullWidth
-                                                        sx={{ display: "inline-flex" }}
-
-                                                    >
-                                                        <span>Eliminar</span>
-                                                    </LoadingButton>
+                                                    <IconButton onClick={() => deleteOffer(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
                                                 </TableCell>
                                             </TableRow>
 

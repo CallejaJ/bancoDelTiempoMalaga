@@ -1,20 +1,21 @@
-import { LoadingButton } from "@mui/lab";
+import { usePanelContext } from "../../context/PanelContext";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import { useAuthContext } from "../../context/AuthContext";
-// import { LoadingButton } from '@mui/lab';
-import SaveIcon from '@mui/icons-material/Save';
-import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
 import StepperModifyOffers from "../../components/Steppers/StepperModifyOffers";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import SaveIcon from '@mui/icons-material/Save';
+
 
 export default function OffersFormikDetailsView({ formik }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { updateOfferMessage } = useAuthContext();
+    const { updateOfferMessage } = usePanelContext();
+
 
     return (
         <>
-            <Header title='Acciones con tus ofertas' />
+            <Header title='Editar tu oferta' />
             <Box
                 sx={{
                     top: "modal",
@@ -116,6 +117,11 @@ export default function OffersFormikDetailsView({ formik }) {
                                             helperText={touched.credits && errors.credits}
                                         />
 
+                                        {updateOfferMessage ? (
+                                            <Alert variant="outlined" severity="info" >
+                                                {updateOfferMessage}
+                                            </Alert>
+                                        ) : null}
                                         <LoadingButton
                                             color="secondary"
                                             loadingPosition="start"
@@ -123,16 +129,11 @@ export default function OffersFormikDetailsView({ formik }) {
                                             variant="contained"
                                             type="submit"
                                             fullWidth
-                                            sx={{ mt: 3, mb: 3 }}
+                                            sx={{ mt: 2, mb: 2, height: "50px" }}
                                         >
-                                            <span>Actualizar</span>
+                                            <span>Guardar cambios</span>
                                         </LoadingButton>
                                     </Box>
-                                    {updateOfferMessage ? (
-                                        <Alert variant="outlined" severity="info" >
-                                            {updateOfferMessage}
-                                        </Alert>
-                                    ) : null}
                                 </Box>
                             </Grid>
 

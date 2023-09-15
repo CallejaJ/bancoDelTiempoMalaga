@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import { LoadingButton } from '@mui/lab';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
-
 
 
 function descendingComparator(a, b, orderBy) {
@@ -306,19 +305,21 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                                 <TableCell align="left">{row.user_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <Link to="/panel/requestsdetails/">
-                                                        <LoadingButton
+                                                    <Link to={`/panel/requestsdetails/${row.id}`}>
+                                                        <IconButton
+                                                            aria-label="edit"
                                                             color="secondary"
-                                                            loadingPosition="start"
-                                                            startIcon={<ModeEditOutlineOutlinedIcon />}
                                                             variant="contained"
-                                                        type="submit"
-                                                            fullWidth
-                                                        sx={{ mt: 1, mb: 1 }}
+                                                            type="submit"
                                                         >
-                                                            <span>Editar</span>
-                                                        </LoadingButton>
-                                                    </Link> 
+                                                            <EditIcon />
+                                                        </IconButton>
+                                                    </Link>
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        color="secondary">
+                                                        <DeleteIcon />
+                                                    </IconButton>
                                                 </TableCell>
                                             </TableRow>
                                         );

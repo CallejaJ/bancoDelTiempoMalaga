@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Alert, Container, IconButton, InputAdornment } from "@mui/material";
 import Footer from "../../components/Footer/Footer"
-import bdtlogin2 from "../../assets/bdtlogin2.png"
+import bdtlogin from "../../assets/bdtlogin.png"
 import Header from '../../components/Header/Header';
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -37,22 +37,24 @@ export default function LoginFormikView({ formik }) {
     return (
         <>
             <Header title='Iniciar sesión' />
+            <Container
+                component="main" maxWidth="md">
             <Box
                 sx={{
                     top: "modal",
                     position: "center",
                     marginTop: 3,
-                    marginBottom: 3
+                        marginBottom: 3,
                 }}
-            >
-                <Container
-                    component="main" maxWidth="md">
+                    style={{ position: 'sticky' }}
+                >
                     <Box
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center'
                         }}
+
                     ></Box>
                     <Grid
                         container
@@ -65,7 +67,7 @@ export default function LoginFormikView({ formik }) {
                             sm={4}
                             md={7}
                             sx={{
-                                backgroundImage: 'url(' + bdtlogin2 + ')',
+                                backgroundImage: 'url(' + bdtlogin + ')',
                                 backgroundRepeat: "no-repeat",
                                 backgroundColor: (t) =>
                                     t.palette.mode === "light"
@@ -81,7 +83,7 @@ export default function LoginFormikView({ formik }) {
                             sm={8}
                             md={5}
                             component={Paper}
-                            elevation={6}
+                            elevation={0}
                             square
                         >
                             <Box
@@ -94,7 +96,7 @@ export default function LoginFormikView({ formik }) {
                                 }}
                             >
                                 <Typography component="h1" variant="h5">
-                                    Iniciar sesión
+                                    Inicia sesión
                                 </Typography>
                                 <Box
                                     component="form"
@@ -186,8 +188,8 @@ export default function LoginFormikView({ formik }) {
                             </Box>
                         </Grid>
                     </Grid>
+                </Box>
             </Container>
-            </Box>
             <ScrollToTop />
             <Footer />
         </>

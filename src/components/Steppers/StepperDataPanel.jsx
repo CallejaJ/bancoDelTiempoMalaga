@@ -33,7 +33,7 @@ const steps = [
 
     {
         label: '¿Qué hago si algo sale mal?',
-        description: `Ante cualquier incidencia puede ponerse en contacto con 
+        description: `Ante cualquier incidencia puedes ponerte en contacto con 
         los gestores del banco del tiempo a través del chat atención al usuario.`,
     },
 ];

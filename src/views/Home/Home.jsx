@@ -65,7 +65,7 @@ export default function Home() {
                 >
                     <Box sx={style}>
                         <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
-                            ¿Cúales son sus ventajas?
+                            Beneficios del banco del tiempo
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             El Banco del Tiempo resuelve necesidades de la vida diaria,

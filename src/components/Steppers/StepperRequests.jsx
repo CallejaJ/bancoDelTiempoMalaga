@@ -35,7 +35,7 @@ const steps = [
 
     {
         label: '¿Qué hago si algo sale mal?',
-        description: `Ante cualquier incidencia puede ponerse en contacto con 
+        description: `Ante cualquier incidencia puedes ponerte en contacto con 
         los gestores del banco del tiempo a través del chat atención al usuario.`,
     },
 ];
@@ -100,7 +100,7 @@ export default function StepperRequests() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Ya puedes crear una oferta.</Typography>
+                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
                     <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
                         Reiniciar
                     </Button>

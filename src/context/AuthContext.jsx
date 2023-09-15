@@ -11,7 +11,11 @@ const AuthContext = createContext(
         login: () => { },
         logout: () => { },
         register: () => { },
-        refresh: () => { }
+        refresh: () => { },
+        deleteOffer: () => { },
+        deleteOfferMessage: null,
+        refreshOffersList: () => { },
+        addOffer: () => { }
     });
 
 const USER_KEY = "USER_KEY"
@@ -23,11 +27,17 @@ export default function AuthContextProvider({ children }) {
     // children es todo lo que abraza el contexto en la APP
     // el estado lo inicializo nulo porque no hay usuario
     const [user, setUser] = useState(JSON.parse(localStorage.getItem(USER_KEY)) ?? null);
+    const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) ?? null)
+
     const [loginMessage, setLoginMessage] = useState(null);
     const [registerMessage, setRegisterMessage] = useState(null);
     const [updateUserMessage, setUpdateUserMessage] = useState(null);
+    const [deleteOfferMessage, setDeleteOfferMessage] = useState(null);
+    const [newUserOffersList, setNewUserOffersList] = useState(null);
+    let [userOffersList, setUserOffersList] = useState([])
 
-    const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) ?? null)
+
+
 
     setTimeout(() => {
         setLoginMessage(null)
@@ -41,6 +51,11 @@ export default function AuthContextProvider({ children }) {
     setTimeout(() => {
         setUpdateUserMessage(null)
     }, 3000)
+
+    setTimeout(() => {
+        setDeleteOfferMessage(null)
+    }, 3000)
+
 
 
     async function login({ email, password }) {
@@ -115,6 +130,71 @@ export default function AuthContextProvider({ children }) {
     }
 
 
+    async function addOffer(values) {
+        try {
+            const response = await fetch(`http://localhost:3006/offers/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(values)
+            })
+            console.log(values);
+
+            if (response.ok) {
+                console.log("Tu oferta ha sido creada.")
+            } else {
+                console.log("Inténtalo de nuevo.")
+            }
+        }
+
+        catch (err) {
+            throw new Error(err)
+        }
+    }
+
+
+    async function deleteOffer(id) {
+        try {
+            const response = await fetch(
+                `http://localhost:3006/offers/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            if (response.ok) {
+                refreshOffersList()
+            }
+        }
+        catch (err) {
+            throw new Error(err)
+        }
+
+    }
+
+
+
+    async function refreshOffersList() {
+        try {
+            const response = await fetch(`http://localhost:3006/offers/${user.id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            if (response.ok) {
+                setUserOffersList(await response.json())
+                console.log(setNewUserOffersList);
+            }
+        }
+        catch (err) {
+            throw new Error(err)
+        }
+    }
+
+
     function logout() {
         localStorage.removeItem(USER_KEY);
         localStorage.removeItem(TOKEN_KEY);
@@ -123,7 +203,11 @@ export default function AuthContextProvider({ children }) {
     }
 
     const value = {
-        user, token, login, logout, register, refresh, loginMessage, registerMessage, updateUserMessage
+        user, token,
+        login, logout, register, refresh, refreshOffersList,
+        loginMessage, registerMessage, updateUserMessage, userOffersList,
+        deleteOffer, deleteOfferMessage, setNewUserOffersList, newUserOffersList,
+        addOffer
     };
 
     return (

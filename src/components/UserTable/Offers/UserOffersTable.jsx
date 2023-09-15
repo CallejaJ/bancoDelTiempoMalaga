@@ -32,6 +32,7 @@ export default function UserOffersTable() {
 
 
 
+
     return (
         <UserOffersTableView userOffersList={userOffersList} />
     )

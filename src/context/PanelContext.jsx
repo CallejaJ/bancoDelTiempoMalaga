@@ -2,53 +2,49 @@ import { createContext, useState, useContext } from 'react';
 
 const PanelContext = createContext(
     {
-        // addOfferMessage: null,
-        // deleteOfferMessage: null,
-        updateOfferMessage: null,
-        // addOffer: () => { },
-        // deleteOffer: () => { },
         updateOffer: () => { },
-        // addRequestMessage: null,
-        // deleteRequestMessage: null,
-        // updateRequestMessage: null,
-        // addRequest: () => { },
+        updateOfferMessage: null,
+        updateRequest: () => { },
+        updateRequestMessage: null,
+        // refreshOffersList: () => { },
         // deleteRequest: () => { },
-        // updateRequest: () => { },
+        // deleteRequestMessage: null,
+        // addRequest: () => { },
+        // addRequestMessage: null,
+        // addOffer: () => { },
+        // addOfferMessage: null,
     });
 
 
 export default function PanelContextProvider({ children }) {
 
-    const [setOffer] = useState(null);
+    const [offer, setOffer] = useState(null);
+    const [request, setRequest] = useState(null);
+
     const [updateOfferMessage, setUpdateOfferMessage] = useState(null);
+    const [updateRequestMessage, setUpdateRequestMessage] = useState(null);
+
+    // const [deleteRequestMessage, setDeleteRequestMessage] = useState(null);
 
     // const [addOfferMessage, setAddOfferMessage] = useState(null);
-    // const [deleteOfferMessage, setDeleteOfferMessage] = useState(null);
     // const [addRequestMessage, setAddRequestMessage] = useState(null);
-    // const [deleteRequestMessage, setDeleteRequestMessage] = useState(null);
-    // const [updateRequestMessage, setUpdateRequestMessage] = useState(null);
 
 
     // setTimeout(() => {
     //     setAddOfferMessage(null)
     // }, 3000)
 
-    setTimeout(() => {
-        setUpdateOfferMessage(null)
-    }, 3000)
-
-
-    // setTimeout(() => {
-    //     setDeleteOfferMessage(null)
-    // }, 3000)
-
     // setTimeout(() => {
     //     setAddRequestMessage(null)
     // }, 3000)
 
-    // setTimeout(() => {
-    //     setUpdateRequestMessage(null)
-    // }, 3000)
+    setTimeout(() => {
+        setUpdateOfferMessage(null)
+    }, 3000)
+
+    setTimeout(() => {
+        setUpdateRequestMessage(null)
+    }, 3000)
 
 
     // setTimeout(() => {
@@ -68,44 +64,45 @@ export default function PanelContextProvider({ children }) {
         )
         if (response.ok) {
             setOffer(await response.json())
-            setUpdateOfferMessage("Oferta actualizada!")
+            setUpdateOfferMessage("¡Oferta actualizada!")
         } else {
             setUpdateOfferMessage("Inténtalo de nuevo.")
         }
     }
 
+    async function updateRequest(id) {
 
-    // useEffect(function () {
-    //     async function deleteOffer(id) {
-    //         try {
-    //             const response = await fetch(`http://localhost:3006/offers/${id}`, {
-    //                 method: "DELETE",
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //             })
-    //             if (response.ok) {
-    //                 setDeleteOfferMessage(await response.json())
-    //             }
-    //         }
-    //         catch (err) {
-    //             throw new Error(err)
-    //         }
-    //     }
-    //     deleteOffer()
-    // },
-    //     []
-    // )
+        const response = await fetch(
+            `http://localhost:3006/requests/${id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+        if (response.ok) {
+            setRequest(await response.json())
+            setUpdateRequestMessage("¡Demanda actualizada!")
+        } else {
+            setUpdateRequestMessage("Inténtalo de nuevo.")
+        }
+    }
+
+
+
+
+
 
 
 
 
     const value = {
-        updateOffer, updateOfferMessage
-        // addOffer, addOfferMessage , 
-        // deleteOfferMessage, deleteOffer, 
+        updateOffer, updateOfferMessage, offer,
+        // addOffer, addOfferMessage ,
+        // refreshOffersList,
         // addRequestMessage, deleteRequestMessage, 
-        // request, updateRequestMessage
+        request, updateRequestMessage, updateRequest
     };
 
     return (

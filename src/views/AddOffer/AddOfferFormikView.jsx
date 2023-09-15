@@ -1,38 +1,40 @@
-import { usePanelContext } from "../../context/PanelContext";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
+import Header from "../../components/Header/Header";
+import StepperAddOffer from "../../components/Steppers/StepperAddOffer";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteIcon from '@mui/icons-material/Delete';
-import StepperModifyRequests from "../../components/Steppers/StepperModifyRequests";
+import Select from "./ui/Select";
+import Checkbox from "../AddOffer/ui/Checkbox"
+import { useAuthContext } from "../../context/AuthContext";
 
 
-
-export default function RequestsFormikDetailsView({ formik }) {
+export default function AddOfferFormikView({ formik }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { updateRequestMessage,
-        deleteRequest, deleteRequestMessage
-    } = usePanelContext();
+    const { newOfferMessage } = useAuthContext();
+
+    // const services = [
+    //     { value: 1, key: "Cuidado de ancianos" }, { value: 2, key: "Conductor" }, { value: 3, key: "Cuidado de niños" }, { value: 4, key: "Clases de idiomas" },
+    //     { value: 5, key: "Limpieza del hogar" }, { value: 6, key: "Reformas" }, { value: 7, key: "Clases de gramática" }, { value: 8, key: "Jardinería" },
+    //     { value: 9, key: "Mantenimiento general" }, { value: 10, key: "Clases de matemáticas" }, { value: 11, key: "Clases de música" }, { value: 12, key: "Pintura y bricolaje" },
+    //     { value: 13, key: "Clases de pintura" }, { value: 14, key: "Pasear mascotas" }, { value: 15, key: "Fontanería" }, { value: 16, key: "Mudanzas" },
+    //     { value: 17, key: "Acompañamiento niños" }, { value: 18, key: "Hacer la compra" }, { value: 19, key: "Apoyo tecnológico" }, { value: 20, key: "Clases de yoga" },
+    // ]
+
 
 
     return (
         <>
-            <Header title='Editar tu demanda' />
+            <Header title="Añadir una oferta" />
             <Box
-                sx={{
-                    top: "modal",
-                    position: "center",
-                    marginTop: 3,
-                    marginBottom: 1
-                }}
-            >
+                alignItems={'center'}
+                display={'flex'}
+                justifyContent={'center'}>
+
                 <Container
                     component="main">
                     <Box
                         sx={{
-                            marginTop: 6,
+                            marginTop: 4,
                             marginBottom: 5,
                             display: 'flex',
                             flexDirection: 'row',
@@ -41,7 +43,7 @@ export default function RequestsFormikDetailsView({ formik }) {
                     >
                         <Grid container>
                             <CssBaseline />
-                            <StepperModifyRequests />
+                            <StepperAddOffer />
                             <Grid
                                 item
                                 xs={6}
@@ -57,7 +59,7 @@ export default function RequestsFormikDetailsView({ formik }) {
                                         mx: 1,
                                         display: "flex",
                                         flexDirection: "column",
-                                        alignItems: "center",
+                                        alignItems: "right",
                                     }}
                                 >
 
@@ -69,16 +71,18 @@ export default function RequestsFormikDetailsView({ formik }) {
                                         sx={{ mt: 8 }}
                                     >
                                         <TextField
+                                            sx={{ width: 400 }}
+
                                             margin="normal"
                                             required
                                             fullWidth
                                             id="name"
-                                            label="Título"
+                                            label="Título de la oferta"
                                             name="name"
                                             autoComplete="name"
                                             autoFocus
                                             type="text"
-                                            placeholder="Título de la demanda"
+                                            placeholder="Resumen tu oferta"
                                             value={values.name}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
@@ -86,6 +90,8 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             helperText={touched.name && errors.name}
                                         />
                                         <TextField
+                                            sx={{ width: 400 }}
+
                                             margin="normal"
                                             required
                                             fullWidth
@@ -95,15 +101,53 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             autoComplete="description"
                                             autoFocus
                                             type="text"
-                                            placeholder="Describe que necesitas"
+                                            placeholder="Describe que ofreces"
                                             value={values.description}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
                                             error={touched.description && Boolean(errors.description)}
                                             helperText={touched.description && errors.description}
                                         />
+                                        <Select
+                                            label="Tipo de oferta"
+                                            name="services_id"
+                                            style={{ height: '40px', }}
+                                            placeholder="Por favor, selecciona uno de los servicios de la lista:"
+
+                                        >
+                                            <option value="">Por favor, selecciona un servicio</option>
+                                            <option value="1">Cuidado de ancianos</option>
+                                            <option value="2">Conductor</option>
+                                            <option value="3">Cuidado de niños</option>
+                                            <option value="4">Clases de idiomas</option>
+                                            <option value="chinese">Reparaciones del hogar</option>
+                                            <option value="english">Clases de idiomas: gramática</option>
+                                            <option value="gardening">Jardinería</option>
+                                            <option value="maintenance">Mantenimiento y reparaciones</option>
+                                            <option value="maths">Clases de matemáticas</option>
+                                        </Select>
+                                        {/* <TextField
+                                            label="Tipo de servicio"
+                                            placeholder="Por favor, selecciona uno de los servicios de la lista:"
+
+                                            sx={{ width: 300 }}
+                                            name="services_id"
+                                            select
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={services.value}
+
+                                        >
+                                            {services.map((service) => (
+                                                <MenuItem key={service} value={services.value}>
+                                                    {service.key}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField> */}
 
                                         <TextField
+                                            sx={{ width: 400 }}
+
                                             margin="normal"
                                             required
                                             fullWidth
@@ -120,12 +164,7 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             error={touched.credits && Boolean(errors.credits)}
                                             helperText={touched.credits && errors.credits}
                                         />
-                                        {updateRequestMessage ? (
-                                            <Alert variant="outlined" severity="info" >
-                                                {updateRequestMessage}
-                                            </Alert>
-                                        ) : null}
-
+                                        <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones" />
                                         <LoadingButton
                                             color="secondary"
                                             loadingPosition="start"
@@ -135,25 +174,16 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             fullWidth
                                             sx={{ mt: 2, mb: 2, height: "50px" }}
                                         >
-                                            <span>Guardar cambios</span>
+                                            <span>Crear oferta</span>
                                         </LoadingButton>
-                                        <LoadingButton
-                                            onClick={() => deleteRequest()}
-                                            color="secondary"
-                                            loadingPosition="start"
-                                            startIcon={<DeleteIcon />}
-                                            variant="outlined"
-                                            fullWidth
-                                            sx={{ mt: 2, mb: 2 }}
-                                        >
-                                            <span>Eliminar demanda</span>
-                                        </LoadingButton>
-                                        {deleteRequestMessage ? (
+                                        {newOfferMessage ? (
                                             <Alert variant="outlined" severity="info" >
-                                                {deleteRequestMessage}
+                                                {newOfferMessage}
                                             </Alert>
                                         ) : null}
                                     </Box>
+                                    <pre>{JSON.stringify({ values, errors }, null, 1)}</pre>
+
                                 </Box>
                             </Grid>
 
@@ -161,8 +191,6 @@ export default function RequestsFormikDetailsView({ formik }) {
                     </Box>
                 </Container>
             </Box>
-            <ScrollToTop />
-            <Footer />
         </>
     )
 }

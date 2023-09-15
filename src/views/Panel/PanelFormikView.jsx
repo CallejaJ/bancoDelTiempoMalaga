@@ -277,7 +277,7 @@ export default function PanelFormikView({ formik }) {
                                             variant="contained"
                                             type="submit"
                                             fullWidth
-                                            sx={{ mt: 3, mb: 3 }}
+                                            sx={{ mt: 2, mb: 2, height: "50px" }}
                                         >
                                             <span>Actualizar</span>
                                         </LoadingButton>

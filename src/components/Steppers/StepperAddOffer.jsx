@@ -38,7 +38,7 @@ const steps = [
 
     {
         label: '¿Qué hago si algo sale mal?',
-        description: `Ante cualquier incidencia puede ponerse en contacto con 
+        description: `Ante cualquier incidencia puedes ponerte en contacto con 
         los gestores del banco del tiempo por el chat de atención al usuario.`,
     },
 ];
@@ -60,7 +60,7 @@ export default function StepperAddOffer() {
 
     return (
         <Box
-            sx={{ maxWidth: 800 }}
+            sx={{ maxWidth: 600 }}
             marginTop={4}
             marginBottom={4}
             padding={5}

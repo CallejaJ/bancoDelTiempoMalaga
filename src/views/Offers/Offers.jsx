@@ -1,15 +1,31 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import Footer from "../../components/Footer/Footer";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import StepperOffers from "../../components/Steppers/StepperOffers";
 import Header from "../../components/Header/Header";
 import OffersTable from "../../components/OffersTable/OffersTable";
 import offers from "../../assets/offers.png"
+import React from "react";
+import { Link } from "react-router-dom";
 
 
-
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 800,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    border: '2px solid #1565c0',
+};
 
 export default function Offers() { 
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
 
     return (
@@ -33,6 +49,31 @@ export default function Offers() {
                 display={'flex'}
                 justifyContent={'center'}>
                 <StepperOffers />
+            </Box>
+            <Box
+                padding={2}
+                margin={4}
+                display={'flex'}
+                justifyContent={'center'}>
+                <Button variant='outlined' onClick={handleOpen}>
+                    Quiero añadir una oferta
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
+                            Cómo añadir una oferta
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            Para añadir una nueva oferta a la lista de ofertas publicadas en el
+                            Banco del Tiempo haz click <Link to="/panel/addoffer">aquí</Link>
+                        </Typography>
+                    </Box>
+                </Modal>
             </Box>
             <OffersTable />
             <ScrollToTop />
