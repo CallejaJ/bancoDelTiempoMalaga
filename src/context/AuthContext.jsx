@@ -8,14 +8,18 @@ const AuthContext = createContext(
         loginMessage: null,
         registerMessage: null,
         updateUserMessage: null,
+        newOfferMessage: null,
+        newRequestMessage: null,
+        deleteOfferMessage: null,
         login: () => { },
         logout: () => { },
         register: () => { },
         refresh: () => { },
         deleteOffer: () => { },
-        deleteOfferMessage: null,
         refreshOffersList: () => { },
-        addOffer: () => { }
+        addOffer: () => { },
+        addRequest: () => { },
+
     });
 
 const USER_KEY = "USER_KEY"
@@ -34,6 +38,9 @@ export default function AuthContextProvider({ children }) {
     const [updateUserMessage, setUpdateUserMessage] = useState(null);
     const [deleteOfferMessage, setDeleteOfferMessage] = useState(null);
     const [newUserOffersList, setNewUserOffersList] = useState(null);
+    const [newOfferMessage, setNewOfferMessage] = useState(null);
+    const [newRequestMessage, setNewRequestMessage] = useState(null);
+
     let [userOffersList, setUserOffersList] = useState([])
 
 
@@ -54,6 +61,14 @@ export default function AuthContextProvider({ children }) {
 
     setTimeout(() => {
         setDeleteOfferMessage(null)
+    }, 3000)
+
+    setTimeout(() => {
+        setNewOfferMessage(null)
+    }, 3000)
+
+    setTimeout(() => {
+        setNewRequestMessage(null)
     }, 3000)
 
 
@@ -143,9 +158,33 @@ export default function AuthContextProvider({ children }) {
             console.log(values);
 
             if (response.ok) {
-                console.log("Tu oferta ha sido creada.")
+                setNewOfferMessage("Tu oferta ha sido creada.")
             } else {
-                console.log("Inténtalo de nuevo.")
+                setNewOfferMessage("Inténtalo de nuevo.")
+            }
+        }
+
+        catch (err) {
+            throw new Error(err)
+        }
+    }
+
+    async function addRequest(values) {
+        try {
+            const response = await fetch(`http://localhost:3006/requests/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(values)
+            })
+            console.log(values);
+
+            if (response.ok) {
+                setNewRequestMessage("Tu oferta ha sido creada.")
+            } else {
+                setNewRequestMessage("Inténtalo de nuevo.")
             }
         }
 
@@ -173,8 +212,6 @@ export default function AuthContextProvider({ children }) {
         }
 
     }
-
-
 
     async function refreshOffersList() {
         try {
@@ -204,10 +241,12 @@ export default function AuthContextProvider({ children }) {
 
     const value = {
         user, token,
-        login, logout, register, refresh, refreshOffersList,
-        loginMessage, registerMessage, updateUserMessage, userOffersList,
-        deleteOffer, deleteOfferMessage, setNewUserOffersList, newUserOffersList,
-        addOffer
+        login, logout, register, refresh, refreshOffersList, 
+        newOfferMessage, newRequestMessage,
+        loginMessage, registerMessage, updateUserMessage,
+        userOffersList, newUserOffersList,
+        deleteOffer, deleteOfferMessage, setNewUserOffersList,
+        addOffer, addRequest
     };
 
     return (

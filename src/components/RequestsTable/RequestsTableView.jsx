@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Button
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
+import InfoIcon from '@mui/icons-material/Info';
 
 
 
@@ -305,13 +306,14 @@ export default function requestsTableView({ requestsList }) {
                                                 <TableCell align="left">{row.user_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <Button
-                                                        type="submit"
-                                                        fullWidth
+                                                    <IconButton
+                                                        aria-label="edit"
+                                                        color="secondary"
                                                         variant="contained"
-                                                        sx={{ mt: 1, mb: 1 }}
-                                                    >Solicitar
-                                                    </Button>
+                                                        type="submit"
+                                                    >
+                                                        <InfoIcon />
+                                                    </IconButton>
                                                 </TableCell>
                                             </TableRow>
                                         );

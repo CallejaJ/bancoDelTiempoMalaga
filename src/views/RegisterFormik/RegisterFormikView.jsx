@@ -308,7 +308,7 @@ export default function RegisterFormikView({ formik }) {
                                             helperText={touched.confirmPassword && errors.confirmPassword}
                                         />
 
-                                        <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones" />
+                                        <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT. del BDT" />
 
                                         {registerMessage ? (
                                             <Alert variant="outlined" severity="info" >
@@ -334,7 +334,7 @@ export default function RegisterFormikView({ formik }) {
                                             <Grid item xs>
                                                 <Link to="/login" style={{ textDecoration: 'none' }} >
                                                     <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00", alignContent: "center" }}>
-                                                        ¿Tienes cuenta? Ir a login
+                                                        ¿Tienes cuenta? Iniciar sesion
                                                     </Typography>
                                                 </Link>
                                             </Grid>

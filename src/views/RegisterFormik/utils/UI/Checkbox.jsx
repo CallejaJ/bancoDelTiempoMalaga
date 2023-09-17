@@ -10,9 +10,9 @@ export default function Checkbox({ ...props }) {
                     {...field}
                     className={meta.touched && meta.error ? "input-error" : ""}
                 />
-                <span className="text-primary">  Acepto los términos y condiciones</span>
+                <span className="text-secondary " style={{ fontSize: "14px" }}>Acepto los términos y condiciones del BDT.</span>
             </div>
-            {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+            {meta.touched && meta.error && <div className="error" style={{ fontSize: "12px", color: '#d50000' }}>{meta.error}</div>}
         </>
     );
 }

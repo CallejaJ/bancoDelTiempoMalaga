@@ -28,6 +28,7 @@ import { ThemeProvider } from "@emotion/react";
 import "./App.css";
 import PanelContextProvider from "./context/PanelContext";
 import AddOfferformik from "./views/AddOffer/AddOfferFormik";
+import AddRequestFormik from "./views/AddRequest/AddrequestFormik";
 
 const orangeTheme = createTheme({
   palette: {
@@ -74,6 +75,31 @@ const orangeTheme = createTheme({
         },
       },
     },
+  },
+
+  MuiSelect: {
+    defaultProps: {
+      variant: 'standard',
+    },
+    styleOverrides: {
+
+      root: {
+        "&.MuiSelect-root": {
+          font: "inherit",
+          color: "currentColor",
+          border: "0",
+          background: "none",
+          height: "1.4375em",
+          margin: "0",
+          display: "block",
+          width: "100%",
+          padding: "14px",
+          typography: 'body1'
+        }
+
+
+      },
+    }
   }
 });
 
@@ -118,6 +144,7 @@ export default function App() {
                       <Route path="/panel/offersdetails/:id" element={<OffersFormikDetails />} />
                       <Route path="/panel/requestsdetails/:id" element={<RequestsFormikDetails />} />
                       <Route path="/panel/addoffer/" element={<AddOfferformik />} />
+                      <Route path="/panel/addrequest/" element={<AddRequestFormik />} />
 
                     </Route>
                 </Route>

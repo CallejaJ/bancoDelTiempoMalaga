@@ -8,49 +8,18 @@ import { useAuthContext } from "../../context/AuthContext";
 
 export default function AddOfferFormik() {
 
-    // const { id } = useParams();
-    // const [newOffer, setNewOffer] = useState(null)
     const { addOffer } = useAuthContext()
 
 
-    function onSubmit(values) {
+    function onSubmit(values, actions) {
         console.log("onsubmit")
         addOffer(values);
+        actions.resetForm()
     }
-
-
-
-// useEffect(function () {
-//     async function getNewOffer() {
-//         try {
-//             const response = await fetch(`http://localhost:3006/offers/${id}`, {
-//                 method: "GET",
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                 },
-//             })
-//             if (response.ok) {
-//                 setNewOffer(await response.json())
-//             }
-//         }
-//         catch (err) {
-//             throw new Error(err)
-//         }
-//     }
-//     getNewOffer()
-// },
-//     [id]
-// )
-
-
-
-
 
     return (
         <Formik
-            initialValues={
-                // newOffer ?? 
-                initialValuesAddOffer}
+            initialValues={initialValuesAddOffer}
             enableReinitialize={true}
             validationSchema={AddOfferFormSchema}
             onSubmit={onSubmit}

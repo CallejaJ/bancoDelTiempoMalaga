@@ -10,9 +10,9 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
 
 
-export default function AddOfferFormikView({ formik }) {
+export default function AddRequestFormikView({ formik }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { newOfferMessage } = useAuthContext();
+    const { newRequestMessage } = useAuthContext();
 
 
     // endpoint a getServices
@@ -31,7 +31,7 @@ export default function AddOfferFormikView({ formik }) {
 
     return (
         <>
-            <Header title="Añadir una oferta" />
+            <Header title="Añadir una demanda" />
             <Box
                 alignItems={'center'}
                 display={'flex'}
@@ -83,12 +83,12 @@ export default function AddOfferFormikView({ formik }) {
                                             required
                                             fullWidth
                                             id="name"
-                                            label="Título de la oferta"
+                                            label="Título de la demanda"
                                             name="name"
                                             autoComplete="name"
                                             autoFocus
                                             type="text"
-                                            placeholder="Resumen tu oferta"
+                                            placeholder="Resumen tu demanda"
                                             value={values.name}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
@@ -102,12 +102,12 @@ export default function AddOfferFormikView({ formik }) {
                                             required
                                             fullWidth
                                             id="description"
-                                            label="Descripción de la oferta"
+                                            label="Descripción de la demanda"
                                             name="description"
                                             autoComplete="description"
                                             autoFocus
                                             type="text"
-                                            placeholder="Describe que ofreces"
+                                            placeholder="Describe que necesitas"
                                             value={values.description}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
@@ -169,9 +169,9 @@ export default function AddOfferFormikView({ formik }) {
                                             helperText={touched.credits && errors.credits}
                                         />
                                         <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT." />
-                                        {newOfferMessage ? (
+                                        {newRequestMessage ? (
                                             <Alert variant="outlined" severity="info" >
-                                                {newOfferMessage}
+                                                {newRequestMessage}
                                             </Alert>
                                         ) : null}
                                         <LoadingButton
@@ -183,7 +183,7 @@ export default function AddOfferFormikView({ formik }) {
                                             fullWidth
                                             sx={{ mt: 2, mb: 2, height: "50px" }}
                                         >
-                                            <span>Crear oferta</span>
+                                            <span>Crear demanda</span>
                                         </LoadingButton>
                                     </Box>
                                 </Box>

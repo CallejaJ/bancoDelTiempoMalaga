@@ -6,6 +6,8 @@ const PanelContext = createContext(
         updateOfferMessage: null,
         updateRequest: () => { },
         updateRequestMessage: null,
+        getServices: () => { },
+
         // refreshOffersList: () => { },
         // deleteRequest: () => { },
         // deleteRequestMessage: null,
@@ -20,6 +22,8 @@ export default function PanelContextProvider({ children }) {
 
     const [offer, setOffer] = useState(null);
     const [request, setRequest] = useState(null);
+    const [service, setServices] = useState(null);
+
 
     const [updateOfferMessage, setUpdateOfferMessage] = useState(null);
     const [updateRequestMessage, setUpdateRequestMessage] = useState(null);
@@ -90,7 +94,22 @@ export default function PanelContextProvider({ children }) {
     }
 
 
-
+    async function getServices() {
+        try {
+            const response = await fetch("http://localhost:3006/services/", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            if (response.ok) {
+                setServices(await response.json())
+            }
+        }
+        catch (err) {
+            throw new Error(err)
+        }
+    }
 
 
 
@@ -98,7 +117,7 @@ export default function PanelContextProvider({ children }) {
 
 
     const value = {
-        updateOffer, updateOfferMessage, offer,
+        updateOffer, updateOfferMessage, offer, getServices, service,
         // addOffer, addOfferMessage ,
         // refreshOffersList,
         // addRequestMessage, deleteRequestMessage, 

@@ -5,9 +5,9 @@ import { initialValues } from "./utils/registerForm";
 import { useAuthContext } from "../../context/AuthContext";
 
 export default function RegisterFormik() {
-    const { register, actions } = useAuthContext();
+    const { register } = useAuthContext();
 
-    function onSubmit(values) {
+    function onSubmit(values, actions) {
         console.log("onsubmit")
         register(values);
         actions.resetForm();

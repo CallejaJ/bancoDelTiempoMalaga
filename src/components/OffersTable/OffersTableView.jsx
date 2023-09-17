@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import InfoIcon from '@mui/icons-material/Info';
-import { LoadingButton } from '@mui/lab';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -303,17 +302,14 @@ export default function OffersTableView({ offersList }) {
                                         <TableCell align="left">{row.user_id}</TableCell>
                                         <TableCell align="left">{row.credits}</TableCell>
                                         <TableCell align="center">
-                                            <LoadingButton
+                                            <IconButton
+                                                aria-label="edit"
                                                 color="secondary"
-                                                loadingPosition="start"
-                                                startIcon={<InfoIcon />}
                                                 variant="contained"
                                                 type="submit"
-                                                fullWidth
-                                                sx={{ mt: 1, mb: 1 }}
                                             >
-                                                <span>Solicitar</span>
-                                            </LoadingButton>
+                                                <InfoIcon />
+                                            </IconButton>
                                         </TableCell>
                                     </TableRow>
                                 );
