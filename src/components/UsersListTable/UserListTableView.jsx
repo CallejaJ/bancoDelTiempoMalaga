@@ -49,46 +49,64 @@ const headCells = [
         label: '',
     },
     {
-        id: 'id',
+        id: 'name',
         numeric: false,
         disablePadding: true,
         label: 'Nombre',
     },
     {
-        id: 'description',
+        id: 'surname',
         numeric: false,
         disablePadding: false,
-        label: 'Descripción',
+        label: 'Apellidos',
+    },
+    {
+        id: 'district',
+        numeric: true,
+        disablePadding: false,
+        label: 'Distrito',
+    },
+    {
+        id: 'email',
+        numeric: false,
+        disablePadding: false,
+        label: 'E-mail'
+    },
+    {
+        id: 'address',
+        numeric: false,
+        disablePadding: false,
+        label: 'Dirección',
+    },
+    {
+        id: 'pobox',
+        numeric: true,
+        disablePadding: false,
+        label: 'Acciones',
+    },
+    {
+        id: 'role',
+        numeric: true,
+        disablePadding: false,
+        label: 'Rol',
     },
     {
         id: 'register_date',
-        numeric: false,
+        numeric: true,
         disablePadding: false,
-        label: 'Fecha de publicación',
+        label: 'Fecha de registro',
     },
     {
         id: 'update_date',
-        numeric: false,
-        disablePadding: false,
-        label: 'Fecha de actualización'
-    },
-    {
-        id: 'user_id',
         numeric: true,
         disablePadding: false,
-        label: 'Usuario'
+        label: 'Fecha actualizada',
     },
     {
         id: 'credits',
-        numeric: false,
+        numeric: true,
         disablePadding: false,
         label: 'Créditos',
-    },
-    {
-        id: 'info',
-        numeric: false,
-        disablePadding: false,
-        label: 'Acciones',
     },
 ];
 
@@ -159,7 +177,7 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Demandas disponibles
+                Usuarios registrados
             </Typography>
 
 
@@ -177,7 +195,7 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function RequestsTableView({ requestsList }) {
+export default function UsersListTableView({ usersList }) {
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('Nombre');
@@ -193,7 +211,7 @@ export default function RequestsTableView({ requestsList }) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = requestsList.map((n) => n.id);
+            const newSelected = usersList.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -235,15 +253,15 @@ export default function RequestsTableView({ requestsList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - requestsList.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - usersList.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(requestsList, getComparator(order, orderBy)).slice(
+            stableSort(usersList, getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage, requestsList],
+        [order, orderBy, page, rowsPerPage, usersList],
     );
 
     return (
@@ -271,7 +289,7 @@ export default function RequestsTableView({ requestsList }) {
                                     orderBy={orderBy}
                                     onSelectAllClick={handleSelectAllClick}
                                     onRequestSort={handleRequestSort}
-                                    rowCount={requestsList.length}
+                                    rowCount={usersList.length}
                                 />
                                 <TableBody>
                                     {visibleRows.map((row, index) => {
@@ -300,10 +318,14 @@ export default function RequestsTableView({ requestsList }) {
                                                     {row.id}
                                                 </TableCell>
                                                 <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.description}</TableCell>
+                                                <TableCell align="left">{row.surname}</TableCell>
+                                                <TableCell align="left">{row.district}</TableCell>
+                                                <TableCell align="left">{row.email}</TableCell>
+                                                <TableCell align="left">{row.address}</TableCell>
+                                                <TableCell align="left">{row.pobox}</TableCell>
+                                                <TableCell align="left">{row.role}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
                                                 <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">{row.user_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <IconButton
@@ -333,12 +355,12 @@ export default function RequestsTableView({ requestsList }) {
                         <TablePagination
                             rowsPerPageOptions={[5, 10]}
                             component="div"
-                            count={requestsList.length}
+                            count={usersList.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                            labelRowsPerPage={"Demandas por página"}
+                            labelRowsPerPage={"Usuarios por página"}
                         />
                     </Paper>
                 </Box>

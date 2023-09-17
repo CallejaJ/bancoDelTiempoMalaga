@@ -181,7 +181,7 @@ export default function AddOfferFormikView({ formik }) {
                                             variant="contained"
                                             type="submit"
                                             fullWidth
-                                            sx={{ mt: 2, mb: 2, height: "50px" }}
+                                            sx={{ mt: 2, mb: 2, height: "54px" }}
                                         >
                                             <span>Crear oferta</span>
                                         </LoadingButton>

@@ -133,7 +133,7 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             variant="contained"
                                             type="submit"
                                             fullWidth
-                                            sx={{ mt: 2, mb: 2, height: "50px" }}
+                                            sx={{ mt: 2, mb: 2, height: "54px" }}
                                         >
                                             <span>Guardar cambios</span>
                                         </LoadingButton>

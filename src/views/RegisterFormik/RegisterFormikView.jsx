@@ -319,7 +319,7 @@ export default function RegisterFormikView({ formik }) {
                                             type="submit"
                                             fullWidth
                                             variant="contained"
-                                            sx={{ mt: 2, mb: 2, height: "50px" }}
+                                            sx={{ mt: 1.8, mb: 2, height: "54px" }}
                                         >
                                             Terminar
                                         </Button>

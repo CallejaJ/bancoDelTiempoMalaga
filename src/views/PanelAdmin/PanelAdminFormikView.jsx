@@ -2,7 +2,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import Header from "../../components/Header/Header";
 import { Alert, Box, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { ImageUpload } from "./utils/Avatar/ImageUpload";
+import { ImageUpload } from "./Avatar/ImageUpload";
 import UserOffersTable from "../../components/UserTable/Offers/UserOffersTable"
 import UserRequestsTable from "../../components/UserTable/Requests/UserRequestsTable";
 import StepperDataPanel from "../../components/Steppers/StepperDataPanel";
@@ -12,9 +12,10 @@ import Footer from "../../components/Footer/Footer";
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
 import { useState } from 'react';
+import UsersListTable from '../../components/UsersListTable/UsersListTable';
 
 
-export default function PanelFormikView({ formik }) {
+export default function PanelAdminFormikView({ formik }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     // Add these variables to your component to track the state
@@ -28,7 +29,7 @@ export default function PanelFormikView({ formik }) {
 
     return (
         <>
-            <Header title='Panel de usuario' />
+            <Header title='Panel de administrador' />
             <Box
                 sx={{
                     top: "modal",
@@ -339,6 +340,7 @@ export default function PanelFormikView({ formik }) {
             </Box>
             <UserOffersTable />
             <UserRequestsTable />
+            <UsersListTable />
             <Footer />
             <ScrollToTop />
         </>

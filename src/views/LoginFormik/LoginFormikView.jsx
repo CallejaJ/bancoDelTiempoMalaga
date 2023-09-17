@@ -165,7 +165,7 @@ export default function LoginFormikView({ formik }) {
                                         type="submit"
                                         fullWidth
                                         variant="contained"
-                                        sx={{ mt: 3, mb: 2 }}
+                                        sx={{ height: "50px", mt: 3, mb: 2 }}
                                     >
                                         Entrar
                                     </Button>

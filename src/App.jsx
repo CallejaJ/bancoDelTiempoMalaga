@@ -16,6 +16,7 @@ import UserGuide from "./views/UserGuide/UserGuide";
 import Offers from "./views/Offers/Offers";
 import OffersFormikDetails from "./views/OffersDetails/OffersFormikDetails";
 import RequestsFormikDetails from "./views/RequestsDetails/RequestsFormikDetails";
+import { roles } from "./const/roles";
 
 
 // import ChatPage from './views/ChatPage/ChatPage';
@@ -29,6 +30,7 @@ import "./App.css";
 import PanelContextProvider from "./context/PanelContext";
 import AddOfferformik from "./views/AddOffer/AddOfferFormik";
 import AddRequestFormik from "./views/AddRequest/AddrequestFormik";
+import PanelAdminFormik from "./views/PanelAdmin/PanelAdminFormik";
 
 const orangeTheme = createTheme({
   palette: {
@@ -138,16 +140,18 @@ export default function App() {
               </Route>
 
                 {/* Rutas privadas */}
-                  <Route path="/panel" element={<PrivateRoute />} >
+                  <Route path="/panel" element={<PrivateRoute allowedRoles={roles.ALL_USERS} />} >
                   <Route element={<Layout />} >
                       <Route index element={<PanelFormik />} />
                       <Route path="/panel/offersdetails/:id" element={<OffersFormikDetails />} />
                       <Route path="/panel/requestsdetails/:id" element={<RequestsFormikDetails />} />
                       <Route path="/panel/addoffer/" element={<AddOfferformik />} />
                       <Route path="/panel/addrequest/" element={<AddRequestFormik />} />
-
                     </Route>
-                </Route>
+                  </Route>
+                  <Route path="adminpanel" element={<PrivateRoute allowedRoles={[roles.ADMIN]} />}>
+                    <Route index element={<PanelAdminFormik />} />
+                  </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
             </ThemeProvider>
