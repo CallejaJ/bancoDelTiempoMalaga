@@ -19,10 +19,6 @@ import RequestsFormikDetails from "./views/RequestsDetails/RequestsFormikDetails
 import { roles } from "./const/roles";
 
 
-// import ChatPage from './views/ChatPage/ChatPage';
-// import HomeChat from "./views/HomeChat/HomeChat";
-// import socketIO from 'socket.io-client';
-
 import { blue, orange } from "@mui/material/colors";
 import { CssBaseline, createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
@@ -31,6 +27,8 @@ import PanelContextProvider from "./context/PanelContext";
 import AddOfferformik from "./views/AddOffer/AddOfferFormik";
 import AddRequestFormik from "./views/AddRequest/AddrequestFormik";
 import PanelAdminFormik from "./views/PanelAdmin/PanelAdminFormik";
+import ServiceFormikDetails from "./views/ServicesDetails/ServiceFormikDetails";
+import DrawerUser from "./views/DrawerUser/DrawerUser";
 
 const orangeTheme = createTheme({
   palette: {
@@ -107,6 +105,8 @@ const orangeTheme = createTheme({
 
 // const socket = socketIO.connect('http://localhost:4000');
 
+{/* <SkewLoader color="rgba(0, 108, 255, 1)" /> */ }
+
 
 export default function App() {
 
@@ -132,6 +132,7 @@ export default function App() {
                   <Route path="requests" element={<Requests />} />
                   <Route path="offers" element={<Offers />} />
                   <Route path="userguide" element={<UserGuide />} />
+                  <Route path="mailbox" element={<DrawerUser />} />
 
                 {/* Rutas públicas */}
                 <Route element={<PublicRoute />}>
@@ -151,6 +152,8 @@ export default function App() {
                   </Route>
                   <Route path="adminpanel" element={<PrivateRoute allowedRoles={[roles.ADMIN]} />}>
                     <Route index element={<PanelAdminFormik />} />
+                    <Route path="/adminpanel/servicedetails/:id" element={<ServiceFormikDetails />} />
+
                   </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

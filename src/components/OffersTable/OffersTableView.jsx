@@ -6,8 +6,7 @@ import {
     TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import InfoIcon from '@mui/icons-material/Info';
-
+import EmailIcon from '@mui/icons-material/Email';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -43,7 +42,7 @@ const headCells = [
         id: 'id',
         numeric: true,
         disablePadding: true,
-        label: '',
+        label: 'ID',
     },
     {
         id: 'name',
@@ -104,7 +103,7 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        // align={headCell.numeric ? 'right' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -308,7 +307,7 @@ export default function OffersTableView({ offersList }) {
                                                 variant="contained"
                                                 type="submit"
                                             >
-                                                <InfoIcon />
+                                                <EmailIcon />
                                             </IconButton>
                                         </TableCell>
                                     </TableRow>

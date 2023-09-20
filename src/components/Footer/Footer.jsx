@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 
 export default function Footer() {
     return (
-        <div className="footer">
+
             <Box    
             sx={{
                 backgroundColor: (theme) =>
@@ -86,7 +86,6 @@ export default function Footer() {
                 </Box>
             </Container>
         </Box>
-        </div>
     );
 }
 

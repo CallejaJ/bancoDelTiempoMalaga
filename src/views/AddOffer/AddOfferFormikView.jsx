@@ -170,7 +170,9 @@ export default function AddOfferFormikView({ formik }) {
                                         />
                                         <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT." />
                                         {newOfferMessage ? (
-                                            <Alert variant="outlined" severity="info" >
+                                            <Alert
+                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                variant="outlined" severity="info" >
                                                 {newOfferMessage}
                                             </Alert>
                                         ) : null}

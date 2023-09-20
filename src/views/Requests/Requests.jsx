@@ -1,12 +1,12 @@
-import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import Footer from "../../components/Footer/Footer";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import StepperRequests from "../../components/Steppers/StepperRequests";
-import Header from "../../components/Header/Header";
-import RequestsTable from "../../components/RequestsTable/RequestsTable";
-import requests from "../../assets/requests.png"
-import { Link } from "react-router-dom";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Box, Button, Grid, Modal, Typography } from "@mui/material";
+import Header from "../../components/Header/Header";
+import requests from "../../assets/requests.png"
+import StepperRequestInfo from "../../components/Steppers/StepperRequestInfo";
+import RequestsTable from "../../components/RequestsTable/RequestsTable";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import Footer from "../../components/Footer/Footer";
 
 const style = {
     position: 'absolute',
@@ -46,7 +46,7 @@ export default function Requests() {
                 alignItems={'center'}
                 display={'flex'}
                 justifyContent={'center'}>
-                <StepperRequests />
+                <StepperRequestInfo />
             </Box>
             <Box
                 padding={2}

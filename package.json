@@ -25,6 +25,7 @@
     "react-dropzone": "11.4.2",
     "react-icons": "4.10.1",
     "react-joyride": "2.5.5",
+    "react-loader-spinner": "^5.4.5",
     "react-material-ui-carousel": "3.4.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "6.15.0",

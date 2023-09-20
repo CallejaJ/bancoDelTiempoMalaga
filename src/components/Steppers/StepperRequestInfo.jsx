@@ -7,40 +7,34 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo solicitar?',
-        description: `Cualquier tarea que se traduzca en tiempo sabiendo que las horas
-        de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
-        posible en qué consiste la tarea a realizar, para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        label: '¿Cómo puedo contactar con el usuario de la demanda?',
+        description: `A traves del botón situado en la parte derecha de la oferta.`,
     },
     {
-        label: '¿Puedo solicitar una tarea si no tengo créditos?',
-        description:
-            'Si, hasta un máximo de -20 créditos. Ten en cuenta que por registrarte en la aplicación te regalamos un crédito.'
+        label: '¿Cómo puedo conocer los detalles de la demanda?',
+        description: 'Al hacer click en el icono azul del buzón de mensajería podrás ver una nueva pantalla con un campo para incluir un mensaje directo al usuario ofertante.  ',
     },
     {
-        label: '¿Quién puede ver mis demandas o solicitudes?',
-        description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus demandas estarán disponibles para todos los visitantes de la aplicación web.`,
+        label: '¿Cómo puedo ver si el usuario demandante ha respondido a mis mensajes?',
+        description: `En tu panel de usuario hay un campo donde puedes leer los mensajes recibidos.`,
     },
     {
-        label: '¿Cómo contactan conmigo?',
-        description: `A través del chat, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la demanda se facilitará información confidencial como teléfono o dirección.`,
+        label: '¿Qué hago si no contactan conmigo?',
+        description: `Puedes solicitar más información llamando a los teléfonos de atención al usuario.`,
     },
     {
-        label: '¿Cómo transfiero mis créditos?',
-        description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
-        Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
+        label: '¿Puedo facilitar mi teléfono a otros usuarios?',
+        description: `Es recomendable que todos los mensajes queden reflejados en la aplicación, para que, en caso de alguna incidencia, el equipo de gestores pueda conoces el proceso de intercambio.`,
     },
 
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo a través del chat atención al usuario.`,
+        los gestores del banco del tiempo por el buzón de mensajería interna.`,
     },
 ];
 
-export default function StepperRequests() {
+export default function StepperRequestInfo() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -57,7 +51,7 @@ export default function StepperRequests() {
 
     return (
         <Box
-            sx={{ maxWidth: 800 }}
+            sx={{ maxWidth: 600 }}
             marginTop={4}
             marginBottom={4}
             padding={5}
@@ -68,7 +62,9 @@ export default function StepperRequests() {
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption"></Typography>
+                                    <Typography variant="caption"
+                                        align={'justify'}
+                                    ></Typography>
                                 ) : null
                             }
                         >
@@ -101,7 +97,7 @@ export default function StepperRequests() {
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
                     <Typography>¡Perfecto! Has terminado el tour.</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                    <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
                         Reiniciar
                     </Button>
                 </Paper>

@@ -7,31 +7,28 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo ofrecer?',
-        description: `Antes de nada ten en cuenta que no tiene que parecerse 
-        necesariamente a un anuncio de busco empleo.
-        Precisamente es un sistema alternativo a la economía
-        y éste es el lugar para solicitar ofrecer algo que te gusta hacer. Es una habilidad,
-        algo que haces muy bien. Es muy importante que los demás lo encuentren,
-        para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        label: '¿Qué puedo solicitar?',
+        description: `Cualquier tarea que se traduzca en tiempo sabiendo que las horas
+        de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
+        posible en qué consiste la tarea a realizar, para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
     },
     {
-        label: '¿Qué incluyo en la oferta?',
+        label: '¿Puedo solicitar una tarea si no tengo créditos?',
         description:
-            'Añade un texto que describa lo que puedes ofrecer a los usuarios. No olvides incluir tu disponibilidad horaria. Es importante para los usuarios conocer cuantas horas puedes prestar el servicio.',
+            'Si, hasta un máximo de -20 créditos. Ten en cuenta que por registrarte en la aplicación te regalamos un crédito.'
     },
     {
-        label: '¿Quién puede ver mis ofertas?',
+        label: '¿Quién puede ver mis demandas o solicitudes?',
         description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus ofertas estarán disponibles para todos los visitantes de la aplicación web.`,
+        tus demandas estarán disponibles para todos los visitantes de la aplicación web.`,
     },
     {
         label: '¿Cómo contactan conmigo?',
         description: `A través del buzón de mensajería interna, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la oferta se facilitará información confidencial como teléfono o dirección.`,
+        En ningún caso en la demanda se facilitará información confidencial como teléfono o dirección.`,
     },
     {
-        label: '¿Cómo recibo mis créditos?',
+        label: '¿Cómo transfiero mis créditos?',
         description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
         Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
     },
@@ -39,11 +36,11 @@ const steps = [
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo por el buzón de mensajería interna.`,
+        los gestores del banco del tiempo A través del buzón de mensajería interna atención al usuario.`,
     },
 ];
 
-export default function StepperAddOffer() {
+export default function StepperAddRequest() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -60,7 +57,7 @@ export default function StepperAddOffer() {
 
     return (
         <Box
-            sx={{ maxWidth: 600 }}
+            sx={{ maxWidth: 800 }}
             marginTop={4}
             marginBottom={4}
             padding={5}
@@ -71,9 +68,7 @@ export default function StepperAddOffer() {
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption"
-                                        align={'justify'}
-                                    ></Typography>
+                                    <Typography variant="caption"></Typography>
                                 ) : null
                             }
                         >
@@ -105,8 +100,8 @@ export default function StepperAddOffer() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Ya puedes crear una oferta.</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
+                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
+                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
                         Reiniciar
                     </Button>
                 </Paper>

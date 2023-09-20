@@ -1,7 +1,7 @@
 import { useAuthContext } from "../../context/AuthContext";
 import { Outlet } from "react-router-dom"
 import { Navigate } from "react-router-dom"
-
+// import { roles } from "../../const/roles"
 
 export default function PublicRoute() {
 
@@ -17,6 +17,11 @@ export default function PublicRoute() {
             <Outlet />
         </div>
     );
+
+
+
+
+
 }
 
 // if (user.role === roles.USER) {
@@ -29,4 +34,3 @@ export default function PublicRoute() {
 //     <div>
 //         <Outlet />
 //     </div>
-// );

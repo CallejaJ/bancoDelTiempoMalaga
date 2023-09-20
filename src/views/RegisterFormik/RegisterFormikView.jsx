@@ -15,7 +15,12 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
-
+// const commonStyles = {
+//     bgcolor: 'background.paper',
+//     borderColor: 'text.primary',
+//     m: 1,
+//     border: 1,
+// };
 
 export default function RegisterFormikView({ formik }) {
 
@@ -51,11 +56,12 @@ export default function RegisterFormikView({ formik }) {
                             marginBottom: 5,
                             display: 'flex',
                             flexDirection: 'row',
-                            alignItems: 'center'
+                            alignItems: 'center',
                         }}
                     >
 
                         <Grid container
+                            // sx={{ ...commonStyles, borderRadius: '8px' }}
 
                         >
                         <CssBaseline />
@@ -73,7 +79,7 @@ export default function RegisterFormikView({ formik }) {
                                         : t.palette.grey[900],
                                 backgroundSize: "cover",
                                     backgroundPosition: "right",
-                                    alignContent: "center"
+                                alignContent: "center",
                                 }}
                             />
                             <Grid
@@ -311,7 +317,9 @@ export default function RegisterFormikView({ formik }) {
                                         <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT. del BDT" />
 
                                         {registerMessage ? (
-                                            <Alert variant="outlined" severity="info" >
+                                            <Alert
+                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                variant="outlined" severity="info" >
                                                 {registerMessage}
                                             </Alert>
                                         ) : null}

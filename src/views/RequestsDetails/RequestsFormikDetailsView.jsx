@@ -5,16 +5,13 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteIcon from '@mui/icons-material/Delete';
 import StepperModifyRequests from "../../components/Steppers/StepperModifyRequests";
 
 
 
 export default function RequestsFormikDetailsView({ formik }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { updateRequestMessage,
-        deleteRequest, deleteRequestMessage
-    } = usePanelContext();
+    const { updateRequestMessage } = usePanelContext();
 
 
     return (
@@ -73,7 +70,7 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             required
                                             fullWidth
                                             id="name"
-                                            label="Título"
+                                            label="Título de la demanda"
                                             name="name"
                                             autoComplete="name"
                                             autoFocus
@@ -90,7 +87,7 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             required
                                             fullWidth
                                             id="description"
-                                            label="Descripción de la oferta"
+                                            label="Descripción de la demanda"
                                             name="description"
                                             autoComplete="description"
                                             autoFocus
@@ -121,7 +118,9 @@ export default function RequestsFormikDetailsView({ formik }) {
                                             helperText={touched.credits && errors.credits}
                                         />
                                         {updateRequestMessage ? (
-                                            <Alert variant="outlined" severity="info" >
+                                            <Alert
+                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                variant="outlined" severity="info" >
                                                 {updateRequestMessage}
                                             </Alert>
                                         ) : null}
@@ -137,22 +136,6 @@ export default function RequestsFormikDetailsView({ formik }) {
                                         >
                                             <span>Guardar cambios</span>
                                         </LoadingButton>
-                                        <LoadingButton
-                                            onClick={() => deleteRequest()}
-                                            color="secondary"
-                                            loadingPosition="start"
-                                            startIcon={<DeleteIcon />}
-                                            variant="outlined"
-                                            fullWidth
-                                            sx={{ mt: 2, mb: 2 }}
-                                        >
-                                            <span>Eliminar demanda</span>
-                                        </LoadingButton>
-                                        {deleteRequestMessage ? (
-                                            <Alert variant="outlined" severity="info" >
-                                                {deleteRequestMessage}
-                                            </Alert>
-                                        ) : null}
                                     </Box>
                                 </Box>
                             </Grid>

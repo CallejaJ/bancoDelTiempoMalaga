@@ -1,12 +1,12 @@
-import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import Footer from "../../components/Footer/Footer";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import StepperOffers from "../../components/Steppers/StepperOffers";
-import Header from "../../components/Header/Header";
-import OffersTable from "../../components/OffersTable/OffersTable";
-import offers from "../../assets/offers.png"
 import React from "react";
 import { Link } from "react-router-dom";
+import { Box, Button, Grid, Modal, Typography } from "@mui/material";
+import Header from "../../components/Header/Header";
+import offers from "../../assets/offers.png"
+import StepperOfferInfo from "../../components/Steppers/StepperOfferInfo";
+import OffersTable from "../../components/OffersTable/OffersTable";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import Footer from "../../components/Footer/Footer";
 
 
 const style = {
@@ -48,7 +48,7 @@ export default function Offers() {
                 alignItems={'center'}
                 display={'flex'}
                 justifyContent={'center'}>
-                <StepperOffers />
+                <StepperOfferInfo />
             </Box>
             <Box
                 padding={2}

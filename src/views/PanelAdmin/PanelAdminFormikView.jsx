@@ -13,6 +13,7 @@ import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
 import { useState } from 'react';
 import UsersListTable from '../../components/UsersListTable/UsersListTable';
+import ServicesListTable from '../../components/ServicesListTable/ServicesListTable';
 
 
 export default function PanelAdminFormikView({ formik }) {
@@ -22,9 +23,7 @@ export default function PanelAdminFormikView({ formik }) {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const { updateUserMessage } = useAuthContext();
-
-    const { user } = useAuthContext()
+    const { updateUserMessage, user } = useAuthContext();
 
 
     return (
@@ -283,7 +282,9 @@ export default function PanelAdminFormikView({ formik }) {
                                             <span>Actualizar</span>
                                         </LoadingButton>
                                         {updateUserMessage ? (
-                                            <Alert variant="outlined" severity="info" >
+                                            <Alert
+                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                variant="outlined" severity="info" >
                                                 {updateUserMessage}
                                             </Alert>
                                         ) : null}
@@ -341,6 +342,7 @@ export default function PanelAdminFormikView({ formik }) {
             <UserOffersTable />
             <UserRequestsTable />
             <UsersListTable />
+            <ServicesListTable />
             <Footer />
             <ScrollToTop />
         </>

@@ -27,7 +27,7 @@ const steps = [
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo a través del chat atención al usuario.`,
+        los gestores del banco del tiempo A través del buzón de mensajería interna atención al usuario.`,
     },
 ];
 

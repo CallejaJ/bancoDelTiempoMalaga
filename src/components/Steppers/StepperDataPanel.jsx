@@ -22,7 +22,7 @@ const steps = [
     },
     {
         label: '¿Cómo contactan conmigo?',
-        description: `A través del chat, se acuerda fecha y hora, tiempo convenido y lugar. 
+        description: `A través del buzón de mensajería interna, se acuerda fecha y hora, tiempo convenido y lugar. 
         En ningún caso en la demanda se facilitará información confidencial como teléfono o dirección.`,
     },
     {
@@ -34,7 +34,7 @@ const steps = [
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo a través del chat atención al usuario.`,
+        los gestores del banco del tiempo A través del buzón de mensajería interna atención al usuario.`,
     },
 ];
 

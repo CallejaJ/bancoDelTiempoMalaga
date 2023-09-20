@@ -9,6 +9,7 @@ import { visuallyHidden } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../../context/AuthContext';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -45,7 +46,7 @@ const headCells = [
         id: 'id',
         numeric: true,
         disablePadding: true,
-        label: '',
+        label: 'ID',
     },
     {
         id: 'name',
@@ -72,10 +73,10 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'user_id',
+        id: 'services_id',
         numeric: true,
         disablePadding: false,
-        label: 'Usuario'
+        label: 'Categoría'
     },
     {
         id: 'credits',
@@ -107,7 +108,7 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        // align={headCell.numeric ? 'right' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -183,6 +184,8 @@ export default function UserRequestsTableView({ userRequestsList }) {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const { deleteRequest } = useAuthContext();
+
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -302,7 +305,7 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                                 <TableCell align="left">{row.description}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
                                                 <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">{row.user_id}</TableCell>
+                                                <TableCell align="left">{row.services_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Link to={`/panel/requestsdetails/${row.id}`}>
@@ -315,11 +318,7 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                                             <EditIcon />
                                                         </IconButton>
                                                     </Link>
-                                                    <IconButton
-                                                        aria-label="delete"
-                                                        color="secondary">
-                                                        <DeleteIcon />
-                                                    </IconButton>
+                                                    <IconButton onClick={() => deleteRequest(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
                                                 </TableCell>
                                             </TableRow>
                                         );

@@ -8,45 +8,16 @@ import {
     TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import InfoIcon from '@mui/icons-material/Info';
+import { useAuthContext } from '../../context/AuthContext';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-
-function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0]);
-        if (order !== 0) {
-            return order;
-        }
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-}
 
 const headCells = [
     {
         id: 'id',
         numeric: true,
         disablePadding: true,
-        label: '',
+        label: 'ID',
     },
     {
         id: 'name',
@@ -82,7 +53,7 @@ const headCells = [
         id: 'pobox',
         numeric: true,
         disablePadding: false,
-        label: 'Acciones',
+        label: 'C.P.',
     },
     {
         id: 'role',
@@ -94,13 +65,7 @@ const headCells = [
         id: 'register_date',
         numeric: true,
         disablePadding: false,
-        label: 'Fecha de registro',
-    },
-    {
-        id: 'update_date',
-        numeric: true,
-        disablePadding: false,
-        label: 'Fecha actualizada',
+        label: 'Registrado',
     },
     {
         id: 'credits',
@@ -108,13 +73,18 @@ const headCells = [
         disablePadding: false,
         label: 'Créditos',
     },
+    {
+        id: '',
+        numeric: true,
+        disablePadding: false,
+        label: 'Acciones',
+    },
 ];
 
 function EnhancedTableHead(props) {
-    const { order, orderBy, onRequestSort } =
         props;
     const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
+        (event, property);
     };
 
     return (
@@ -126,18 +96,14 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        // align={headCell.numeric ? 'right' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.id ? order : false}
                     >
                         <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
                         >
-                            {orderBy === headCell.id ? (
+                            {headCell.id ? (
                                 <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                 </Box>
                             ) : null}
                             {headCell.label}
@@ -151,10 +117,7 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-    orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
 };
 
@@ -197,17 +160,12 @@ EnhancedTableToolbar.propTypes = {
 };
 export default function UsersListTableView({ usersList }) {
 
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Nombre');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const { deleteUser } = useAuthContext();
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
+
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
@@ -257,11 +215,11 @@ export default function UsersListTableView({ usersList }) {
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(usersList, getComparator(order, orderBy)).slice(
+            (usersList).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage, usersList],
+        [page, rowsPerPage, usersList],
     );
 
     return (
@@ -273,8 +231,8 @@ export default function UsersListTableView({ usersList }) {
             >
 
                 <Box
-
-                    padding={2} margin={2}
+                    padding={2}
+                    margin={2}
                     sx={{ width: '90%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
                         <EnhancedTableToolbar numSelected={selected.length} />
@@ -285,10 +243,7 @@ export default function UsersListTableView({ usersList }) {
                             >
                                 <EnhancedTableHead
                                     numSelected={selected.length}
-                                    order={order}
-                                    orderBy={orderBy}
                                     onSelectAllClick={handleSelectAllClick}
-                                    onRequestSort={handleRequestSort}
                                     rowCount={usersList.length}
                                 />
                                 <TableBody>
@@ -325,17 +280,10 @@ export default function UsersListTableView({ usersList }) {
                                                 <TableCell align="left">{row.pobox}</TableCell>
                                                 <TableCell align="left">{row.role}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">{row.update_date}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <IconButton
-                                                        aria-label="edit"
-                                                        color="secondary"
-                                                        variant="contained"
-                                                        type="submit"
-                                                    >
-                                                        <InfoIcon />
-                                                    </IconButton>
+                                                    <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
+
                                                 </TableCell>
                                             </TableRow>
                                         );

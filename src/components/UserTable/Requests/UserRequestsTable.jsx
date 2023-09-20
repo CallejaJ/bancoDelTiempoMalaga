@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import UserRequestsTableView from "./UserRequestsTableView"
 import { useAuthContext } from "../../../context/AuthContext"
 
 export default function UserRequestsTable() {
 
-    let [userRequestsList, setUserRequestsList] = useState([])
-    const { user } = useAuthContext()
+    const { user, userRequestsList, setUserRequestsList } = useAuthContext()
 
     useEffect(function () {
         async function getUserRequestsList() {
@@ -26,7 +25,7 @@ export default function UserRequestsTable() {
         }
         getUserRequestsList()
     },
-        [user.id]
+        [user.id, setUserRequestsList]
     )
 
 

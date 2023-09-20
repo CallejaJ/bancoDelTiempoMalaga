@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
 import Header from "../../components/Header/Header";
 import { Alert, Box, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
@@ -11,7 +12,6 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
-import { useState } from 'react';
 
 
 export default function PanelFormikView({ formik }) {
@@ -21,9 +21,7 @@ export default function PanelFormikView({ formik }) {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const { updateUserMessage } = useAuthContext();
-
-    const { user } = useAuthContext()
+    const { updateUserMessage, user } = useAuthContext();
 
 
     return (
@@ -270,6 +268,13 @@ export default function PanelFormikView({ formik }) {
                                             error={touched.confirmPassword && Boolean(errors.confirmPassword)}
                                             helperText={touched.confirmPassword && errors.confirmPassword}
                                         />
+                                        {updateUserMessage ? (
+                                            <Alert
+                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                variant="outlined" severity="info" >
+                                                {updateUserMessage}
+                                            </Alert>
+                                        ) : null}
                                         <LoadingButton
                                             color="secondary"
                                             loadingPosition="start"
@@ -281,11 +286,6 @@ export default function PanelFormikView({ formik }) {
                                         >
                                             <span>Actualizar</span>
                                         </LoadingButton>
-                                        {updateUserMessage ? (
-                                            <Alert variant="outlined" severity="info" >
-                                                {updateUserMessage}
-                                            </Alert>
-                                        ) : null}
 
                                     </Box>
                                 </Box>

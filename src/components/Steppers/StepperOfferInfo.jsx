@@ -7,33 +7,24 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo ofrecer?',
-        description: `Antes de nada ten en cuenta que no tiene que parecerse 
-        necesariamente a un anuncio de busco empleo.
-        Precisamente es un sistema alternativo a la economía
-        y éste es el lugar para solicitar ofrecer algo que te gusta hacer. Es una habilidad,
-        algo que haces muy bien. Es muy importante que los demás lo encuentren,
-        para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        label: '¿Cómo puedo contactar con el usuario de la oferta?',
+        description: `A traves del botón situado en la parte derecha de la oferta.`,
     },
     {
-        label: '¿Qué incluyo en la oferta?',
-        description:
-            'Añade un texto que describa lo que puedes ofrecer a los usuarios. No olvides incluir tu disponibilidad horaria. Es importante para los usuarios conocer cuantas horas puedes prestar el servicio.',
+        label: '¿Cómo puedo conocer los detalles de la oferta?',
+        description: 'Al hacer click en el icono azul del buzón de mensajería podrás ver una nueva pantalla con un campo para incluir un mensaje directo al usuario ofertante.  ',
     },
     {
-        label: '¿Quién puede ver mis ofertas?',
-        description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus ofertas estarán disponibles para todos los visitantes de la aplicación web.`,
+        label: '¿Cómo puedo ver si el usuario ofertante ha respondido a mis mensajes?',
+        description: `En tu panel de usuario hay un campo donde puedes leer los mensajes recibidos.`,
     },
     {
-        label: '¿Cómo contactan conmigo?',
-        description: `A través del buzón de mensajería interna, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la oferta se facilitará información confidencial como teléfono o dirección.`,
+        label: '¿Qué hago si no contactan conmigo?',
+        description: `Puedes solicitar más información llamando a los teléfonos de atención al usuario.`,
     },
     {
-        label: '¿Cómo recibo mis créditos?',
-        description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
-        Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
+        label: '¿Puedo facilitar mi teléfono a otros usuarios?',
+        description: `Es recomendable que todos los mensajes queden reflejados en la aplicación, para que, en caso de alguna incidencia, el equipo de gestores pueda conoces el proceso de intercambio.`,
     },
 
     {
@@ -43,7 +34,7 @@ const steps = [
     },
 ];
 
-export default function StepperAddOffer() {
+export default function StepperOfferInfo() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -105,7 +96,7 @@ export default function StepperAddOffer() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Ya puedes crear una oferta.</Typography>
+                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
                     <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
                         Reiniciar
                     </Button>

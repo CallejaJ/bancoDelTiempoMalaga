@@ -7,43 +7,22 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo ofrecer?',
-        description: `Antes de nada ten en cuenta que no tiene que parecerse 
-        necesariamente a un anuncio de busco empleo.
-        Esta herramienta es  un sistema alternativo a la economía donde puedes
-        practicas tus hobbies ayudando a los demás. Es importante que sea una habilidad que
-        te guste y que sepas hacerla muy bien. Para que los demás la encuentren,
-        puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        label: '¿Qué puedo modificar?',
+        description: `A continuación encontrarás el título de la categoría. Puedes modificar
+        el título para que defina lo mejor posible qué servicios o tareas contempla y que no porvoque malentendidos.`,
     },
     {
-        label: '¿Qué incluyo en la oferta?',
+        label: '¿Puedo añadir nuevas categorías?',
         description:
-            'Añade un texto que describa lo que puedes ofrecer a los usuarios. No olvides incluir tu disponibilidad horaria. Es importante para los usuarios conocer cuantas horas puedes prestar el servicio.',
+            'Claro que si, cuando las soliciten los usuarios del Banco del Tiempo o cuando haya consenso de los administradores para agregar una nueva categoría.',
     },
-    {
-        label: '¿Quién puede ver mis ofertas?',
-        description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus ofertas estarán disponibles para todos los visitantes de la aplicación web.`,
-    },
-    {
-        label: '¿Cómo contactan conmigo?',
-        description: `A través del chat, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la oferta se facilitará información confidencial como teléfono o dirección.`,
-    },
-    {
-        label: '¿Cómo recibo mis créditos?',
-        description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
-        Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
-    },
-
     {
         label: '¿Qué hago si algo sale mal?',
-        description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo por el chat de atención al usuario.`,
+        description: `Ante cualquier incidencia puedes ponerte en contacto con el equipo técnico del banco del tiempo.`,
     },
 ];
 
-export default function StepperOffers() {
+export default function StepperModifyServices() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -59,11 +38,11 @@ export default function StepperOffers() {
     };
 
     return (
-        <Box 
+        <Box
             sx={{ maxWidth: 800 }}
-            marginTop={4}
+            marginTop={5}
             marginBottom={4}
-            padding={5}
+            padding={6}
         >
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (

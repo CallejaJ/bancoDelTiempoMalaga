@@ -5,16 +5,10 @@ const PanelContext = createContext(
         updateOffer: () => { },
         updateOfferMessage: null,
         updateRequest: () => { },
-        updateRequestMessage: null,
-        getServices: () => { },
+        updateRequestMessage: null, 
+        updateService: () => { },
+        updateServiceMessage: null
 
-        // refreshOffersList: () => { },
-        // deleteRequest: () => { },
-        // deleteRequestMessage: null,
-        // addRequest: () => { },
-        // addRequestMessage: null,
-        // addOffer: () => { },
-        // addOfferMessage: null,
     });
 
 
@@ -22,25 +16,13 @@ export default function PanelContextProvider({ children }) {
 
     const [offer, setOffer] = useState(null);
     const [request, setRequest] = useState(null);
-    const [service, setServices] = useState(null);
+    const [service, setService] = useState(null);
 
 
     const [updateOfferMessage, setUpdateOfferMessage] = useState(null);
     const [updateRequestMessage, setUpdateRequestMessage] = useState(null);
+    const [updateServiceMessage, setUpdateServiceMessage] = useState(null);
 
-    // const [deleteRequestMessage, setDeleteRequestMessage] = useState(null);
-
-    // const [addOfferMessage, setAddOfferMessage] = useState(null);
-    // const [addRequestMessage, setAddRequestMessage] = useState(null);
-
-
-    // setTimeout(() => {
-    //     setAddOfferMessage(null)
-    // }, 3000)
-
-    // setTimeout(() => {
-    //     setAddRequestMessage(null)
-    // }, 3000)
 
     setTimeout(() => {
         setUpdateOfferMessage(null)
@@ -48,6 +30,10 @@ export default function PanelContextProvider({ children }) {
 
     setTimeout(() => {
         setUpdateRequestMessage(null)
+    }, 3000)
+
+    setTimeout(() => {
+        setUpdateServiceMessage(null)
     }, 3000)
 
 
@@ -93,21 +79,22 @@ export default function PanelContextProvider({ children }) {
         }
     }
 
+    async function updateService(id) {
 
-    async function getServices() {
-        try {
-            const response = await fetch("http://localhost:3006/services/", {
-                method: "GET",
+        const response = await fetch(
+            `http://localhost:3006/services/${id}`,
+            {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-            })
-            if (response.ok) {
-                setServices(await response.json())
             }
-        }
-        catch (err) {
-            throw new Error(err)
+        )
+        if (response.ok) {
+            setService(await response.json())
+            setUpdateServiceMessage("Categoría actualizada!")
+        } else {
+            setUpdateServiceMessage("Inténtalo de nuevo.")
         }
     }
 
@@ -117,11 +104,12 @@ export default function PanelContextProvider({ children }) {
 
 
     const value = {
-        updateOffer, updateOfferMessage, offer, getServices, service,
+        updateOffer, updateOfferMessage, offer,
+        updateService, updateServiceMessage, service,
         // addOffer, addOfferMessage ,
         // refreshOffersList,
         // addRequestMessage, deleteRequestMessage, 
-        request, updateRequestMessage, updateRequest
+        updateRequestMessage, updateRequest, request
     };
 
     return (

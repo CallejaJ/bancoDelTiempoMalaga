@@ -157,7 +157,9 @@ export default function LoginFormikView({ formik }) {
                                         label="Recordarme"
                                     />
                                     {loginMessage ? (
-                                        <Alert variant="outlined" severity="info" >
+                                        <Alert
+                                            sx={{ mt: 2, mb: 2, height: "54px" }}
+                                            variant="outlined" severity="info" >
                                             {loginMessage}
                                         </Alert>
                                     ) : null}

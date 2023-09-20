@@ -47,7 +47,7 @@ const headCells = [
         id: 'id',
         numeric: true,
         disablePadding: true,
-        label: '',
+        label: 'ID',
     },
     {
         id: 'name',
@@ -74,10 +74,10 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'user_id',
+        id: 'services_id',
         numeric: true,
         disablePadding: false,
-        label: 'Usuario'
+        label: 'Categoría'
     },
     {
         id: 'credits',
@@ -109,7 +109,7 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        // align={headCell.numeric ? 'right' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -307,7 +307,7 @@ export default function UserOffersTableView({ userOffersList }) {
                                                 <TableCell align="left">{row.description}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
                                                 <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">{row.user_id}</TableCell>
+                                                <TableCell align="left">{row.services_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Link to={`/panel/offersdetails/${row.id}`}>

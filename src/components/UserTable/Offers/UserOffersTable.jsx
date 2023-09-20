@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import UserOffersTableView from "./UserOffersTableView"
 import { useAuthContext } from "../../../context/AuthContext"
 
 export default function UserOffersTable() {
 
-    let [userOffersList, setUserOffersList] = useState([])
-    const { user } = useAuthContext()
+    const { user, userOffersList, setUserOffersList } = useAuthContext()
 
 
     useEffect(function () {
@@ -27,7 +26,7 @@ export default function UserOffersTable() {
         }
         getUserOffersList()
     },
-        [user.id]
+        [user.id, setUserOffersList]
     )
 
 

@@ -1,6 +1,5 @@
 import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
 import Header from "../../components/Header/Header";
-import StepperAddOffer from "../../components/Steppers/StepperAddOffer";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
 import Select from "./ui/Select";
@@ -8,6 +7,7 @@ import Checkbox from "../AddOffer/ui/Checkbox"
 import { useAuthContext } from "../../context/AuthContext";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
+import StepperAddRequest from "../../components/Steppers/StepperAddRequest";
 
 
 export default function AddRequestFormikView({ formik }) {
@@ -49,7 +49,7 @@ export default function AddRequestFormikView({ formik }) {
                     >
                         <Grid container>
                             <CssBaseline />
-                            <StepperAddOffer />
+                            <StepperAddRequest />
                             <Grid
                                 item
                                 xs={6}
@@ -170,7 +170,9 @@ export default function AddRequestFormikView({ formik }) {
                                         />
                                         <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT." />
                                         {newRequestMessage ? (
-                                            <Alert variant="outlined" severity="info" >
+                                            <Alert
+                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                variant="outlined" severity="info" >
                                                 {newRequestMessage}
                                             </Alert>
                                         ) : null}

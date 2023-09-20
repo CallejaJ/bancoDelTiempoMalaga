@@ -3,7 +3,7 @@ import PanelAdminFormikView from "../PanelAdmin/PanelAdminFormikView";
 import { initialAdminValues } from "../PanelAdmin/utils/panelAdminForm";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
-import { PanelAdminFormikSchema } from "./PanelFormikSchema";
+import { PanelAdminFormikSchema } from "./PanelAdminFormikSchema";
 
 export default function PanelAdminFormik() {
 

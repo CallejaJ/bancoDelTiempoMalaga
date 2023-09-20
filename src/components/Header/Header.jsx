@@ -1,17 +1,45 @@
 import React from 'react';
 import { useAuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Typography, Menu, Tooltip, Button } from '@mui/material';
+import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Typography, Menu, Tooltip, Button, CssBaseline } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import menu from "../../assets/icons/menu.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from '@emotion/styled';
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 // import { roles } from "../../const/roles";
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Slide from '@mui/material/Slide';
+import PropTypes from 'prop-types';
 
 
+function HideOnScroll(props) {
+    const { children, window } = props;
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+        target: window ? window() : undefined,
+    });
 
-export default function Header({ title }) {
+    return (
+        <Slide appear={false} direction="down" in={!trigger}>
+            {children}
+        </Slide>
+    );
+}
+
+HideOnScroll.propTypes = {
+    children: PropTypes.element.isRequired,
+    /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+    window: PropTypes.func,
+};
+
+
+export default function Header({ title, props }) {
 
 
     const { user, logout } = useAuthContext()
@@ -57,6 +85,8 @@ export default function Header({ title }) {
     return (
         <>
             <React.Fragment>
+                <CssBaseline />
+                <HideOnScroll {...props}>
                 <AppBar position='fixed' className='gradient_appbar'>
                     <Container maxWidth="xl">
                         <Toolbar disableGutters>
@@ -202,6 +232,8 @@ export default function Header({ title }) {
                 </Toolbar>
             </Container>
         </AppBar>
+                </HideOnScroll>
+
                 <Offset />
             </React.Fragment>
 

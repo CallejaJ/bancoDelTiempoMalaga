@@ -1,36 +1,36 @@
 import { useEffect } from "react"
-import UsersListTableView from "./UserListTableView"
+import ServicesListTableView from "./ServicesListTableView"
 import { useAuthContext } from "../../context/AuthContext"
 
-export default function UsersListTable() {
+export default function ServicesListTable() {
 
-    const { usersList, setUsersList } = useAuthContext();
-
+    const { servicesList, setServicesList } = useAuthContext();
 
     useEffect(function () {
-        async function getUsersList() {
+        async function getServicesList() {
             try {
-                const response = await fetch(`http://localhost:3006/user`, {
+                const response = await fetch(`http://localhost:3006/services`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
+
                     },
                 })
                 if (response.ok) {
-                    setUsersList(await response.json())
+                    setServicesList(await response.json())
                 }
             }
             catch (err) {
                 throw new Error(err)
             }
         }
-        getUsersList()
+        getServicesList()
     },
-        [setUsersList]
+        [setServicesList]
     )
 
 
     return (
-        <UsersListTableView usersList={usersList} />
+        <ServicesListTableView servicesList={servicesList} />
     )
 }

@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from '@mui/material';
-import { blueGrey } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import Footer from '../../components/Footer/Footer';
 
-const primary = blueGrey[800]; // #f44336
+const primary = blue[800]; // #f44336
 
 export default function NotFound() {
     return (
