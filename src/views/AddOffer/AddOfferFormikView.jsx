@@ -1,33 +1,19 @@
-import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
+import { Alert, Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
 import Header from "../../components/Header/Header";
 import StepperAddOffer from "../../components/Steppers/StepperAddOffer";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
-import Select from "./ui/Select";
+// import Select from "./ui/Select";
 import Checkbox from "../AddOffer/ui/Checkbox"
 import { useAuthContext } from "../../context/AuthContext";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
 
 
-export default function AddOfferFormikView({ formik }) {
+export default function AddOfferFormikView({ formik, services }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     const { newOfferMessage } = useAuthContext();
 
-
-    // endpoint a getServices
-    // const services = [
-    //     { value: 1, key: "Cuidado de ancianos" }, { value: 2, key: "Conductor" }, { value: 3, key: "Cuidado de niños" }, { value: 4, key: "Clases de idiomas" },
-    //     { value: 5, key: "Limpieza del hogar" }, { value: 6, key: "Reformas" }, { value: 7, key: "Clases de gramática" }, { value: 8, key: "Jardinería" },
-    //     { value: 9, key: "Mantenimiento general" }, { value: 10, key: "Clases de matemáticas" }, { value: 11, key: "Clases de música" }, { value: 12, key: "Pintura y bricolaje" },
-    //     { value: 13, key: "Clases de pintura" }, { value: 14, key: "Pasear mascotas" }, { value: 15, key: "Fontanería" }, { value: 16, key: "Mudanzas" },
-    //     { value: 17, key: "Acompañamiento niños" }, { value: 18, key: "Hacer la compra" }, { value: 19, key: "Apoyo tecnológico" }, { value: 20, key: "Clases de yoga" },
-    // ]
-
-    // const [servicesValue, setServicesValue] = useState('');
-    // const handleChangeServiceValue = (event) => {
-    //     setServicesValue(event.target.value);
-    // };
 
     return (
         <>
@@ -114,23 +100,17 @@ export default function AddOfferFormikView({ formik }) {
                                             error={touched.description && Boolean(errors.description)}
                                             helperText={touched.description && errors.description}
                                         />
-                                        <Select
+                                        {/* <Select
 
                                             name="services_id"
                                             style={{ height: '60px', width: "400px", marginTop: 9 }}
                                         >
                                             <option value="">Por favor, selecciona un servicio</option>
-                                            <option value="1">Cuidado de ancianos</option>
-                                            <option value="2">Conductor</option>
-                                            <option value="3">Cuidado de niños</option>
-                                            <option value="4">Clases de idiomas</option>
-                                            <option value="5">Reparaciones del hogar</option>
-                                            <option value="6">Clases de idiomas: gramática</option>
-                                            <option value="7">Jardinería</option>
-                                            <option value="8">Mantenimiento y reparaciones</option>
-                                            <option value="9">Clases de matemáticas</option>
-                                        </Select>
-                                        {/* <TextField
+                                            {services.map(service => (
+                                                <option key={service.id} value={service.id}>{service.name}</option>
+                                            ))}
+                                        </Select> */}
+                                        <TextField
                                             label="Tipo de servicio"
                                             placeholder="Por favor, selecciona uno de los servicios de la lista:"
 
@@ -139,16 +119,15 @@ export default function AddOfferFormikView({ formik }) {
                                             select
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            onChangeService={handleChangeServiceValue}
-                                            value={values.servicesValue}
+                                            value={values.services_id}
 
                                         >
                                             {services.map((service) => (
-                                                <MenuItem key={service.value} value={services.value}>
-                                                    {service.key}
+                                                <MenuItem key={service.id} value={`${service.id}`}>
+                                                    {service.name}
                                                 </MenuItem>
                                             ))}
-                                        </TextField> */}
+                                        </TextField>
 
                                         <TextField
                                             sx={{ width: 400 }}

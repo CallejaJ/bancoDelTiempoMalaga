@@ -333,7 +333,11 @@ export default function UserOffersTableView({ userOffersList }) {
                                                 height: (53) * emptyRows,
                                             }}
                                         >
-                                            <TableCell colSpan={6} />
+                                            <TableCell colSpan={6}>
+                                                <Typography>
+                                                    No dispones de ofertas
+                                                </Typography>
+                                            </TableCell>
                                         </TableRow>
                                     )}
                                 </TableBody>

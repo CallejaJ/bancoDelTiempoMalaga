@@ -88,6 +88,7 @@ export default function PanelContextProvider({ children }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                // body: 
             }
         )
         if (response.ok) {

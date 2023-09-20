@@ -11,26 +11,9 @@ export default function PublicRoute() {
     if (user) {
         return <Navigate to="/panel" />;
     }
-
     return (
         <div>
             <Outlet />
         </div>
     );
-
-
-
-
-
 }
-
-// if (user.role === roles.USER) {
-//     return <Navigate to="/panel" />;
-// }
-// else if (user.role === roles.ADMIN) {
-//     return <Navigate to="/adminpanel" />
-// }
-// return (
-//     <div>
-//         <Outlet />
-//     </div>
