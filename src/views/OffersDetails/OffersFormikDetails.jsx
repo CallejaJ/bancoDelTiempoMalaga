@@ -63,6 +63,26 @@ export default function OffersFormikDetails() {
         [id, setUserOffer]
     )
 
+    const [servicesList, setServicesList] = useState([]);
+
+    useEffect(function () {
+        async function getServicesList() {
+            try {
+                const response = await fetch(`http://localhost:3006/services`)
+                if (response.ok) {
+                    setServicesList(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getServicesList()
+    },
+        [setServicesList]
+    )
+
+
 
 
     return (
@@ -72,7 +92,7 @@ export default function OffersFormikDetails() {
             validationSchema={OffersFormikSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <OffersFormikDetailsView formik={props} />}
+            {(props) => <OffersFormikDetailsView formik={props} services={servicesList} />}
         </Formik>
     )
 }

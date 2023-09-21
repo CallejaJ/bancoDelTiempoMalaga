@@ -1,4 +1,3 @@
-import { usePanelContext } from "../../context/PanelContext";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
@@ -6,12 +5,13 @@ import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
 import StepperModifyServices from "../../components/Steppers/StepperModifyServices";
+import { useAuthContext } from "../../context/AuthContext";
 
 
 
 export default function ServiceFormikDetailsView({ formik }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { updateServiceMessage } = usePanelContext();
+    const { updateServiceMessage } = useAuthContext();
 
 
     return (
@@ -81,7 +81,6 @@ export default function ServiceFormikDetailsView({ formik }) {
                                             error={touched.name && Boolean(errors.name)}
                                             helperText={touched.name && errors.name}
                                         />
-
                                         {updateServiceMessage ? (
                                             <Alert
                                                 sx={{ mt: 2, mb: 2, height: "54px" }}

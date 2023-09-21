@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function AddOfferFormik() {
 
-    // useeffect endpoint getservices
+    // useEffect endpoint a getservices
     // lo guardo en un estado y se lo paso al formik en options
 
     const [servicesList, setServicesList] = useState([]);

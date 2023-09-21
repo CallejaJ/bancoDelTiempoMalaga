@@ -63,7 +63,24 @@ export default function RequestsFormikDetails() {
         [id, setUserRequest]
     )
 
+    const [servicesList, setServicesList] = useState([]);
 
+    useEffect(function () {
+        async function getServicesList() {
+            try {
+                const response = await fetch(`http://localhost:3006/services`)
+                if (response.ok) {
+                    setServicesList(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getServicesList()
+    },
+        [setServicesList]
+    )
 
     return (
         <Formik
@@ -72,7 +89,7 @@ export default function RequestsFormikDetails() {
             validationSchema={RequestFormikSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <RequestsFormikDetailsView formik={props} />}
+            {(props) => <RequestsFormikDetailsView formik={props} services={servicesList} />}
         </Formik>
     )
 }

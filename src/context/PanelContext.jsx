@@ -6,8 +6,6 @@ const PanelContext = createContext(
         updateOfferMessage: null,
         updateRequest: () => { },
         updateRequestMessage: null, 
-        updateService: () => { },
-        updateServiceMessage: null
 
     });
 
@@ -16,12 +14,10 @@ export default function PanelContextProvider({ children }) {
 
     const [offer, setOffer] = useState(null);
     const [request, setRequest] = useState(null);
-    const [service, setService] = useState(null);
 
 
     const [updateOfferMessage, setUpdateOfferMessage] = useState(null);
     const [updateRequestMessage, setUpdateRequestMessage] = useState(null);
-    const [updateServiceMessage, setUpdateServiceMessage] = useState(null);
 
 
     setTimeout(() => {
@@ -32,14 +28,9 @@ export default function PanelContextProvider({ children }) {
         setUpdateRequestMessage(null)
     }, 3000)
 
-    setTimeout(() => {
-        setUpdateServiceMessage(null)
-    }, 3000)
 
 
-    // setTimeout(() => {
-    //     setDeleteRequestMessage(null)
-    // }, 3000)
+
 
     async function updateOffer(id) {
 
@@ -79,36 +70,12 @@ export default function PanelContextProvider({ children }) {
         }
     }
 
-    async function updateService(id) {
-
-        const response = await fetch(
-            `http://localhost:3006/services/${id}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                // body: 
-            }
-        )
-        if (response.ok) {
-            setService(await response.json())
-            setUpdateServiceMessage("Categoría actualizada!")
-        } else {
-            setUpdateServiceMessage("Inténtalo de nuevo.")
-        }
-    }
-
-
-
 
 
 
     const value = {
         updateOffer, updateOfferMessage, offer,
-        updateService, updateServiceMessage, service,
         // addOffer, addOfferMessage ,
-        // refreshOffersList,
         // addRequestMessage, deleteRequestMessage, 
         updateRequestMessage, updateRequest, request
     };

@@ -3,7 +3,6 @@ import Header from "../../components/Header/Header";
 import StepperAddOffer from "../../components/Steppers/StepperAddOffer";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
-// import Select from "./ui/Select";
 import Checkbox from "../AddOffer/ui/Checkbox"
 import { useAuthContext } from "../../context/AuthContext";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
@@ -100,16 +99,6 @@ export default function AddOfferFormikView({ formik, services }) {
                                             error={touched.description && Boolean(errors.description)}
                                             helperText={touched.description && errors.description}
                                         />
-                                        {/* <Select
-
-                                            name="services_id"
-                                            style={{ height: '60px', width: "400px", marginTop: 9 }}
-                                        >
-                                            <option value="">Por favor, selecciona un servicio</option>
-                                            {services.map(service => (
-                                                <option key={service.id} value={service.id}>{service.name}</option>
-                                            ))}
-                                        </Select> */}
                                         <TextField
                                             label="Tipo de servicio"
                                             placeholder="Por favor, selecciona uno de los servicios de la lista:"
@@ -120,7 +109,6 @@ export default function AddOfferFormikView({ formik, services }) {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.services_id}
-
                                         >
                                             {services.map((service) => (
                                                 <MenuItem key={service.id} value={`${service.id}`}>

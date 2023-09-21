@@ -3,12 +3,12 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import StepperModifyOffers from "../../components/Steppers/StepperModifyOffers";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import { Alert, Box, Container, CssBaseline, Grid, Paper, TextField } from "@mui/material";
+import { Alert, Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
 
 
-export default function OffersFormikDetailsView({ formik }) {
+export default function OffersFormikDetailsView({ formik, services }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     const { updateOfferMessage } = usePanelContext();
 
@@ -98,6 +98,23 @@ export default function OffersFormikDetailsView({ formik }) {
                                             error={touched.description && Boolean(errors.description)}
                                             helperText={touched.description && errors.description}
                                         />
+                                        <TextField
+                                            label="Tipo de servicio"
+                                            placeholder="Por favor, selecciona uno de los servicios de la lista:"
+
+                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                                            name="services_id"
+                                            select
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.services_id}
+                                        >
+                                            {services.map((service) => (
+                                                <MenuItem key={service.id} value={`${service.id}`}>
+                                                    {service.name}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
 
                                         <TextField
                                             margin="normal"
@@ -138,7 +155,6 @@ export default function OffersFormikDetailsView({ formik }) {
                                     </Box>
                                 </Box>
                             </Grid>
-
                         </Grid>
                     </Box>
                 </Container>

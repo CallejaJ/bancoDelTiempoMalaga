@@ -6,6 +6,5 @@ export const ServiceFormikSchema = yup.object().shape({
         .string()
         .min(10, "Al menos 10 caracteres.")
         .max(20, "Menos de 20 caracteres.")
-        .required("Requerido")
-
+        .required("Requerido"),
 });

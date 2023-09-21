@@ -12,6 +12,7 @@ const AuthContext = createContext(
         newRequestMessage: null,
         deleteOfferMessage: null,
         deleteRequestMessage: null,
+        updateServiceMessage: null,
         login: () => { },
         logout: () => { },
         register: () => { },
@@ -21,6 +22,9 @@ const AuthContext = createContext(
         addOffer: () => { },
         addRequest: () => { },
         deleteUser: () => { },
+        updateService: () => { },
+        setUpdateServiceMessage: () => { },
+        servicesList: null
     });
 
 const USER_KEY = "USER_KEY"
@@ -38,11 +42,9 @@ export default function AuthContextProvider({ children }) {
     const [registerMessage, setRegisterMessage] = useState(null);
 
     const [updateUserMessage, setUpdateUserMessage] = useState(null);
-
     const [deleteOfferMessage, setDeleteOfferMessage] = useState(null);
     const [deleteRequestMessage, setDeleteRequestMessage] = useState(null);
     const [deleteServiceMessage, setDeleteServiceMessage] = useState(null);
-
 
     const [newOfferMessage, setNewOfferMessage] = useState(null);
     const [newRequestMessage, setNewRequestMessage] = useState(null);
@@ -50,7 +52,8 @@ export default function AuthContextProvider({ children }) {
     let [userOffersList, setUserOffersList] = useState([])
     let [userRequestsList, setUserRequestsList] = useState([])
     let [usersList, setUsersList] = useState([])
-    let [servicesList, setServicesList] = useState([])
+    let [servicesList, setServicesList] = useState([]);
+    const [updateServiceMessage, setUpdateServiceMessage] = useState(null)
 
 
 
@@ -78,6 +81,10 @@ export default function AuthContextProvider({ children }) {
 
     setTimeout(() => {
         setDeleteServiceMessage(null)
+    }, 3000)
+
+    setTimeout(() => {
+        setUpdateServiceMessage(null)
     }, 3000)
 
 
@@ -153,7 +160,6 @@ export default function AuthContextProvider({ children }) {
 
     }
 
-
     async function addOffer(values) {
         try {
             const response = await fetch(`http://localhost:3006/offers/`, {
@@ -202,7 +208,6 @@ export default function AuthContextProvider({ children }) {
         }
     }
 
-
     async function deleteOffer(id) {
         try {
             const response = await fetch(
@@ -223,7 +228,6 @@ export default function AuthContextProvider({ children }) {
         }
     }
 
-
     async function deleteRequest(id) {
         try {
             const response = await fetch(
@@ -243,8 +247,6 @@ export default function AuthContextProvider({ children }) {
             throw new Error(err)
         }
     }
-
-
 
     async function deleteUser(id) {
         try {
@@ -305,8 +307,8 @@ export default function AuthContextProvider({ children }) {
         addOffer, addRequest,
         deleteService, deleteServiceMessage,
         usersList, deleteUser, setUsersList,
-        servicesList, setServicesList,
-        deleteRequest, deleteRequestMessage
+        deleteRequest, deleteRequestMessage,
+        servicesList, setServicesList, updateServiceMessage, setUpdateServiceMessage
     };
 
     return (

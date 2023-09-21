@@ -10,7 +10,7 @@ const steps = [
         label: '¿Qué puedo solicitar?',
         description: `Cualquier tarea que se traduzca en tiempo sabiendo que las horas
         de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
-        posible en qué consiste la tarea a realizar, para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        posible en qué consiste la tarea a realizar, para eso puedes añadir el tipo de servicio o categoría (acompañamiento, clases, taller, apoyo)  .`,
     },
     {
         label: '¿Puedo solicitar una tarea si no tengo créditos?',

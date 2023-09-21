@@ -10,7 +10,7 @@ const steps = [
         label: '¿Qué puedo modificar?',
         description: `A continuación encontrarás los detalles de tu oferta. Puedes modificar
         los campos título, descripción y créditos. Es muy importante que los demás lo encuentren,
-        para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        para eso puedes añadir el tipo de servicio o categoría (acompañamiento, clases, taller, apoyo)  .`,
     },
     {
         label: '¿Puedo modificar el tiempo ofrecido?',

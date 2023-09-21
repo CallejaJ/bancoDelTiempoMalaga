@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
-import { usePanelContext } from "../../context/PanelContext";
 import { useParams } from "react-router-dom";
 import { initialServiceValues } from "./UI/serviceForm";
 import { ServiceFormikSchema } from "./ServiceFormikSchema";
 import ServiceFormikDetailsView from "./ServiceFormikDetailsView";
+import { useAuthContext } from "../../context/AuthContext";
 
 
 
 
 export default function ServiceFormikDetails() {
 
-    const [services, setServices] = useState(null)
-    const { updateService, updateServiceMessage } = usePanelContext()
+    const { token, setUpdateServiceMessage } = useAuthContext()
     const { id } = useParams();
+    let [servicesList, setServicesList] = useState([])
 
 
     async function onSubmit(values) {
@@ -22,16 +22,16 @@ export default function ServiceFormikDetails() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
 
             if (response.ok) {
-                updateService(id) // le mando el id a la función del contexto
-                updateServiceMessage("La categoría ha sido actualizada.")
+                setUpdateServiceMessage("¡Categoría actualizada!.")
             } else {
-                updateServiceMessage("Inténtalo de nuevo.")
+                setUpdateServiceMessage("Inténtalo de nuevo.")
             }
         }
 
@@ -44,14 +44,9 @@ export default function ServiceFormikDetails() {
     useEffect(function () {
         async function getServices() {
             try {
-                const response = await fetch(`http://localhost:3006/services/${id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
+                const response = await fetch(`http://localhost:3006/services/${id}`)
                 if (response.ok) {
-                    setServices(await response.json())
+                    setServicesList(await response.json())
                 }
             }
             catch (err) {
@@ -60,19 +55,19 @@ export default function ServiceFormikDetails() {
         }
         getServices()
     },
-        [id, setServices]
+        [id, setServicesList]
     )
 
 
 
     return (
         <Formik
-            initialValues={services ?? initialServiceValues}
+            initialValues={servicesList ?? initialServiceValues}
             enableReinitialize={true}
             validationSchema={ServiceFormikSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <ServiceFormikDetailsView formik={props} />}
+            {(props) => <ServiceFormikDetailsView formik={props} services={servicesList} />}
         </Formik>
     )
 }

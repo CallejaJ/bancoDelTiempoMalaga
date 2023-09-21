@@ -141,7 +141,7 @@ export default function App() {
               </Route>
 
                 {/* Rutas privadas */}
-                  <Route path="/panel" element={<PrivateRoute allowedRoles={roles.ALL_USERS} />} >
+                  <Route path="/panel" element={<PrivateRoute allowedRoles={[roles.USER]} />} >
                   <Route element={<Layout />} >
                       <Route index element={<PanelFormik />} />
                       <Route path="/panel/offersdetails/:id" element={<OffersFormikDetails />} />
@@ -153,7 +153,6 @@ export default function App() {
                   <Route path="adminpanel" element={<PrivateRoute allowedRoles={[roles.ADMIN]} />}>
                     <Route index element={<PanelAdminFormik />} />
                     <Route path="/adminpanel/servicedetails/:id" element={<ServiceFormikDetails />} />
-
                   </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

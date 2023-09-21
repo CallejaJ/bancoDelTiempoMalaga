@@ -13,7 +13,7 @@ const steps = [
         Precisamente es un sistema alternativo a la economía
         y éste es el lugar para solicitar ofrecer algo que te gusta hacer. Es una habilidad,
         algo que haces muy bien. Es muy importante que los demás lo encuentren,
-        para eso puedes añadir una etiqueta (acompañamiento, limpieza, reparaciones)`,
+        para eso puedes añadir el tipo de servicio o categoría (acompañamiento, clases, taller, apoyo)  .`,
     },
     {
         label: '¿Qué incluyo en la oferta?',
