@@ -1,32 +1,34 @@
-import { Alert, Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
-import Header from "../../components/Header/Header";
+import { Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
+import Header from "../../../components/Header/Header";
+import StepperModifyOffers from "../../../components/Steppers/StepperModifyOffers";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
-import Checkbox from "../AddOffer/ui/Checkbox"
-import { useAuthContext } from "../../context/AuthContext";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import Footer from "../../components/Footer/Footer";
-import StepperAddRequest from "../../components/Steppers/StepperAddRequest";
+import ScrollToTop from "../../../components/ScrollToTop/ScrollToTop";
+import Footer from "../../../components/Footer/Footer";
+import OfferMessagesList from "../../../components/MessagesList/OfferMessagesList/OfferMessagesList";
 
 
-export default function AddRequestFormikView({ formik, services }) {
-    const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
-    const { newRequestMessage } = useAuthContext();
 
-
+export default function OfferTrackingView({ formik, services }) {
+    const { values, touched, errors, handleChange, handleSubmit, handleBlur, onMessageSubmit } = formik;
+    console.log(onMessageSubmit);
 
     return (
         <>
-            <Header title="Añadir una demanda" />
+            <Header title='Seguimiento de tu oferta' />
             <Box
-                alignItems={'center'}
-                display={'flex'}
-                justifyContent={'center'}>
+                sx={{
+                    top: "modal",
+                    position: "center",
+                    marginTop: 3,
+                    marginBottom: 1
+                }}
+            >
                 <Container
                     component="main">
                     <Box
                         sx={{
-                            marginTop: 4,
+                            marginTop: 6,
                             marginBottom: 5,
                             display: 'flex',
                             flexDirection: 'row',
@@ -35,7 +37,7 @@ export default function AddRequestFormikView({ formik, services }) {
                     >
                         <Grid container>
                             <CssBaseline />
-                            <StepperAddRequest />
+                            <StepperModifyOffers />
                             <Grid
                                 item
                                 xs={6}
@@ -51,7 +53,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                         mx: 1,
                                         display: "flex",
                                         flexDirection: "column",
-                                        alignItems: "right",
+                                        alignItems: "center",
                                     }}
                                 >
 
@@ -63,18 +65,16 @@ export default function AddRequestFormikView({ formik, services }) {
                                         sx={{ mt: 8 }}
                                     >
                                         <TextField
-                                            sx={{ width: 400 }}
-
                                             margin="normal"
                                             required
                                             fullWidth
                                             id="name"
-                                            label="Título de la demanda"
+                                            label="Título"
                                             name="name"
                                             autoComplete="name"
                                             autoFocus
                                             type="text"
-                                            placeholder="Resumen tu demanda"
+                                            placeholder="Título de la oferta"
                                             value={values.name}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
@@ -82,18 +82,16 @@ export default function AddRequestFormikView({ formik, services }) {
                                             helperText={touched.name && errors.name}
                                         />
                                         <TextField
-                                            sx={{ width: 400 }}
-
                                             margin="normal"
                                             required
                                             fullWidth
                                             id="description"
-                                            label="Descripción de la demanda"
+                                            label="Descripción de la oferta"
                                             name="description"
                                             autoComplete="description"
                                             autoFocus
                                             type="text"
-                                            placeholder="Describe que necesitas"
+                                            placeholder="Describe que ofreces"
                                             value={values.description}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
@@ -104,11 +102,14 @@ export default function AddRequestFormikView({ formik, services }) {
                                             label="Tipo de servicio"
                                             placeholder="Por favor, selecciona uno de los servicios de la lista:"
 
-                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }} name="services_id"
+                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                                            name="services_id"
                                             select
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.services_id}
+                                            error={touched.services_id && Boolean(errors.services_id)}
+                                            helperText={touched.services_id && errors.services_id}
                                         >
                                             {services.map((service) => (
                                                 <MenuItem key={service.id} value={`${service.id}`}>
@@ -118,7 +119,6 @@ export default function AddRequestFormikView({ formik, services }) {
                                         </TextField>
 
                                         <TextField
-                                            sx={{ width: 400 }}
                                             margin="normal"
                                             required
                                             fullWidth
@@ -135,16 +135,8 @@ export default function AddRequestFormikView({ formik, services }) {
                                             error={touched.credits && Boolean(errors.credits)}
                                             helperText={touched.credits && errors.credits}
                                         />
-                                        <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT." />
-                                        {newRequestMessage ? (
-                                            <Alert
-                                                sx={{ mt: 2, mb: 2, height: "54px" }}
-                                                variant="outlined" severity="info" >
-                                                {newRequestMessage}
-                                            </Alert>
-                                        ) : null}
                                         <LoadingButton
-                                            color="secondary"
+                                            color="primary"
                                             loadingPosition="start"
                                             startIcon={<SaveIcon />}
                                             variant="contained"
@@ -152,16 +144,28 @@ export default function AddRequestFormikView({ formik, services }) {
                                             fullWidth
                                             sx={{ mt: 2, mb: 2, height: "54px" }}
                                         >
-                                            <span>Crear demanda</span>
+                                            <span>Tarea completada</span>
+                                        </LoadingButton>
+                                        <LoadingButton
+                                            color="secondary"
+                                            loadingPosition="start"
+                                            startIcon={<SaveIcon />}
+                                            variant="contained"
+                                            type="submit"
+                                            fullWidth
+                                            sx={{ mt: 1, mb: 1, height: "54px" }}
+                                        >
+                                            <span>Transferir créditos</span>
                                         </LoadingButton>
                                     </Box>
                                 </Box>
                             </Grid>
-
                         </Grid>
                     </Box>
                 </Container>
+                <OfferMessagesList />
             </Box>
+
             <ScrollToTop />
             <Footer />
         </>

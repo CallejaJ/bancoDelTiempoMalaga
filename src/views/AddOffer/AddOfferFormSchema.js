@@ -3,8 +3,8 @@ import * as yup from "yup";
 export const AddOfferFormSchema = yup.object().shape({
   name: yup
     .string()
-    .min(10, "La descripción debe tener al menos 10 caracteres.")
-    .max(30, "La descripción debe tener menos de 30 caracteres.")
+    .min(10, "El título debe tener al menos 10 caracteres.")
+    .max(30, "El título debe tener menos de 30 caracteres.")
     .required("Requerido"),
   description: yup
     .string()

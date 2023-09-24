@@ -13,6 +13,8 @@ const AuthContext = createContext(
         deleteOfferMessage: null,
         deleteRequestMessage: null,
         updateServiceMessage: null,
+        servicesList: null,
+        newServiceMessage: null,
         login: () => { },
         logout: () => { },
         register: () => { },
@@ -24,7 +26,7 @@ const AuthContext = createContext(
         deleteUser: () => { },
         updateService: () => { },
         setUpdateServiceMessage: () => { },
-        servicesList: null
+        addService: () => { }
     });
 
 const USER_KEY = "USER_KEY"
@@ -49,10 +51,15 @@ export default function AuthContextProvider({ children }) {
     const [newOfferMessage, setNewOfferMessage] = useState(null);
     const [newRequestMessage, setNewRequestMessage] = useState(null);
 
+    const [newServiceMessage, setNewServiceMessage] = useState(null);
+
+
     let [userOffersList, setUserOffersList] = useState([])
     let [userRequestsList, setUserRequestsList] = useState([])
     let [usersList, setUsersList] = useState([])
+
     let [servicesList, setServicesList] = useState([]);
+
     const [updateServiceMessage, setUpdateServiceMessage] = useState(null)
 
 
@@ -86,6 +93,11 @@ export default function AuthContextProvider({ children }) {
     setTimeout(() => {
         setUpdateServiceMessage(null)
     }, 3000)
+
+    setTimeout(() => {
+        setNewServiceMessage(null)
+    }, 3000)
+
 
 
 
@@ -194,8 +206,6 @@ export default function AuthContextProvider({ children }) {
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
-
             if (response.ok) {
                 setNewRequestMessage("Tu demanda ha sido creada.")
             } else {
@@ -288,6 +298,28 @@ export default function AuthContextProvider({ children }) {
         }
     }
 
+    async function addService(values) {
+        try {
+            const response = await fetch(
+                `http://localhost:3006/services/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(values)
+            })
+            if (response.ok) {
+                const newServicesList = await response.json()
+                setServicesList(newServicesList)
+                setNewServiceMessage("Categoría creada")
+            }
+        }
+        catch (err) {
+            throw new Error(err)
+        }
+    }
+
 
     function logout() {
         localStorage.removeItem(USER_KEY);
@@ -308,7 +340,9 @@ export default function AuthContextProvider({ children }) {
         deleteService, deleteServiceMessage,
         usersList, deleteUser, setUsersList,
         deleteRequest, deleteRequestMessage,
-        servicesList, setServicesList, updateServiceMessage, setUpdateServiceMessage
+        servicesList, setServicesList,
+        updateServiceMessage, setUpdateServiceMessage,
+        addService, newServiceMessage
     };
 
     return (

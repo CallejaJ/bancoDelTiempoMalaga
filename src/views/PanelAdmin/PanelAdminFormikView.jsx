@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../context/AuthContext';
 import Header from "../../components/Header/Header";
-import { Alert, Box, Container, CssBaseline, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Container, CssBaseline, Grid, IconButton, InputAdornment, Modal, Paper, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ImageUpload } from "./Avatar/ImageUpload";
 import UserOffersTable from "../../components/UserTable/Offers/UserOffersTable"
@@ -11,9 +11,23 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import UsersListTable from '../../components/UsersListTable/UsersListTable';
 import ServicesListTable from '../../components/ServicesListTable/ServicesListTable';
+import { Link } from 'react-router-dom';
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 800,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    border: '2px solid #1565c0',
+};
 
 
 export default function PanelAdminFormikView({ formik }) {
@@ -24,7 +38,9 @@ export default function PanelAdminFormikView({ formik }) {
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const { updateUserMessage, user } = useAuthContext();
-
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
         <>
@@ -342,6 +358,31 @@ export default function PanelAdminFormikView({ formik }) {
             <UserOffersTable />
             <UserRequestsTable />
             <UsersListTable />
+            {/* ventana de texto */}
+
+            <Box
+                padding={2}
+                margin={4}
+                display={'flex'}
+                justifyContent={'center'}>
+                <Button variant='outlined' onClick={handleOpen}>¿Cómo se añade un nuevo servicio o categoría?</Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
+                            ¿Cómo se añade un nuevo servicio o categoría?
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            Accede al formulario de registro de servicios <Link to="/adminpanel/addservice"> aquí</Link>
+                        </Typography>
+                    </Box>
+                </Modal>
+            </Box>
+
             <ServicesListTable />
             <Footer />
             <ScrollToTop />

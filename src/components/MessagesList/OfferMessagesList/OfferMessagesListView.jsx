@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Container, Grid, CssBaseline, TextField,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 // import EmailIcon from '@mui/icons-material/Email';
 import { Watch } from 'react-loader-spinner';
-import { Link } from 'react-router-dom';
-import InfoIcon from '@mui/icons-material/Info';
+import { LoadingButton } from '@mui/lab';
+// import InfoIcon from '@mui/icons-material/Info';
+import SaveIcon from '@mui/icons-material/Save';
+
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -41,23 +43,23 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    {
-        id: 'id',
-        numeric: true,
-        disablePadding: true,
-        label: 'ID',
-    },
+    // {
+    //     id: 'id',
+    //     numeric: true,
+    //     disablePadding: true,
+    //     label: 'ID',
+    // },
     {
         id: 'name',
-        numeric: false,
-        disablePadding: true,
-        label: 'Nombre',
+        numeric: true,
+        disablePadding: false,
+        label: 'Usuario'
     },
     {
-        id: 'description',
+        id: 'message',
         numeric: false,
-        disablePadding: false,
-        label: 'Descripción',
+        disablePadding: true,
+        label: 'Mensaje',
     },
     {
         id: 'register_date',
@@ -65,30 +67,7 @@ const headCells = [
         disablePadding: false,
         label: 'Fecha de publicación',
     },
-    {
-        id: 'update_date',
-        numeric: false,
-        disablePadding: false,
-        label: 'Fecha de actualización'
-    },
-    {
-        id: 'user_id',
-        numeric: true,
-        disablePadding: false,
-        label: 'Usuario'
-    },
-    {
-        id: 'credits',
-        numeric: false,
-        disablePadding: false,
-        label: 'Créditos',
-    },
-    {
-        id: 'info',
-        numeric: false,
-        disablePadding: false,
-        label: 'Acciones',
-    },
+
 ];
 
 function EnhancedTableHead(props) {
@@ -175,10 +154,12 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function OffersTableView({ offersList }) {
+export default function OfferMessagesListView({ messagesList, formik }) {
+
+    const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Nombre');
+    const [orderBy, setOrderBy] = React.useState('Usuario');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -191,7 +172,7 @@ export default function OffersTableView({ offersList }) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = offersList.map((n) => n.id);
+            const newSelected = messagesList.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -233,20 +214,20 @@ export default function OffersTableView({ offersList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - offersList.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - messagesList.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(offersList, getComparator(order, orderBy)).slice(
+            stableSort(messagesList, getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage, offersList],
+        [order, orderBy, page, rowsPerPage, messagesList],
     );
 
     return (
         <>
-            {offersList.length > 0 ? (
+            {messagesList.length > 0 ? (
                 <Box
                     alignItems={'center'}
                     display={'flex'}
@@ -270,12 +251,12 @@ export default function OffersTableView({ offersList }) {
                                         orderBy={orderBy}
                                         onSelectAllClick={handleSelectAllClick}
                                         onRequestSort={handleRequestSort}
-                                        rowCount={offersList.length}
+                                        rowCount={messagesList.length}
                                     />
                                     <TableBody>
-                                        {visibleRows.map((row, index) => {
+                                        {visibleRows.map((row) => {
                                             const isItemSelected = isSelected(row.id);
-                                            const labelId = `enhanced-table-checkbox-${index}`;
+                                            // const labelId = `enhanced-table-checkbox-${index}`;
 
                                             return (
                                                 <TableRow
@@ -290,32 +271,27 @@ export default function OffersTableView({ offersList }) {
                                                 >
                                                     <TableCell>
                                                     </TableCell>
-                                                    <TableCell
+                                                    {/* <TableCell
                                                         component="th"
                                                         id={labelId}
                                                         scope="row"
                                                         padding="none"
                                                     >
                                                         {row.id}
-                                                    </TableCell>
-                                                    <TableCell align="left">{row.name}</TableCell>
-                                                    <TableCell align="left">{row.description}</TableCell>
+                                                    </TableCell> */}
+                                                    <TableCell align="left" > {row.name}</TableCell>
+                                                    <TableCell align="left">{row.message}</TableCell>
                                                     <TableCell align="left">{row.register_date}</TableCell>
-                                                    <TableCell align="left">{row.update_date}</TableCell>
-                                                    <TableCell align="left">{row.user_id}</TableCell>
-                                                    <TableCell align="left">{row.credits}</TableCell>
-                                                    <TableCell align="center">
-                                                        <Link to={`/panel/offertracking/${row.id}`}>
-                                                            <IconButton
-                                                                aria-label="edit"
-                                                                color="secondary"
-                                                                variant="contained"
-                                                                type="submit"
-                                                            >
-                                                                <InfoIcon />
-                                                            </IconButton>
-                                                        </Link>
-                                                    </TableCell>
+                                                    {/* <TableCell align="center">
+                                                        <IconButton
+                                                            aria-label="edit"
+                                                            color="secondary"
+                                                            variant="contained"
+                                                            type="submit"
+                                                        >
+                                                            <InfoIcon />
+                                                        </IconButton>
+                                                    </TableCell> */}
                                                 </TableRow>
                                             );
                                         })}
@@ -334,16 +310,16 @@ export default function OffersTableView({ offersList }) {
                             <TablePagination
                                 rowsPerPageOptions={[5, 10]}
                                 component="div"
-                                count={offersList.length}
+                                count={messagesList.length}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
                                 onPageChange={handleChangePage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}
-                                labelRowsPerPage={"Ofertas por página"}
+                                labelRowsPerPage={"Mensajes por página"}
                             />
                         </Paper>
-                    </Box>
-                </Box>) : (<Box
+                    </Box >
+                </Box >) : (<Box
                     alignItems={'center'}
                     display={'flex'}
                     justifyContent={'center'}
@@ -351,18 +327,101 @@ export default function OffersTableView({ offersList }) {
                     marginBottom={6}
                 >
                     <Watch
-                        height="80"
-                        width="80"
+                        height="200"
+                        width="200"
                         radius="48"
-                        color="#4fa94d"
+                        color="#1565c0"
                         ariaLabel="watch-loading"
                         wrapperStyle={{}}
                         wrapperClassName=""
                         visible={true}
                     />
                 </Box>
-            )}
+            )
+            }
+            <Box
+                sx={{
+                    top: "modal",
+                    position: "center",
+                    marginTop: 3,
+                    marginBottom: 1
+                }}
+            >
+                <Container
+                    component="main">
+                    <Box
+                        sx={{
+                            marginTop: 3,
+                            marginBottom: 3,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Grid container>
+                            <CssBaseline />
+                            <Grid
+                                item
+                                xs={6}
+                                sm={4}
+                                md={3}
+                                component={Paper}
+                                elevation={0}
+                                square
+                            >
+                                <Box
+                                    sx={{
+                                        my: 1,
+                                        mx: 1,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                    }}
+                                >
 
+
+                                    <Box
+                                        component="form"
+                                        noValidate
+                                        onSubmit={handleSubmit}
+                                        sx={{ mt: 8 }}
+                                    >
+                                        <TextField
+                                            multiline
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="message"
+                                            label="Mensaje a los usuarios demandantes"
+                                            name="message"
+                                            autoComplete="message"
+                                            autoFocus
+                                            type="text"
+                                            text="Escribe tu mensaje a los usuarios"
+                                            value={values.message}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            error={touched.message && Boolean(errors.message)}
+                                            helperText={touched.message && errors.message}
+                                        />
+                                        <LoadingButton
+                                            color="secondary"
+                                            loadingPosition="start"
+                                            startIcon={<SaveIcon />}
+                                            variant="contained"
+                                            type="submit"
+                                            fullWidth
+                                            sx={{ mt: 2, mb: 2, height: "54px" }}
+                                        >
+                                            <span>Enviar mensaje</span>
+                                        </LoadingButton>
+                                    </Box>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Container>
+            </Box>
         </>
     );
 }

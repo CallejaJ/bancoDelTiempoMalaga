@@ -103,12 +103,13 @@ export default function AddOfferFormikView({ formik, services }) {
                                             label="Tipo de servicio"
                                             placeholder="Por favor, selecciona uno de los servicios de la lista:"
 
-                                            sx={{ width: 300 }}
-                                            name="services_id"
+                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }} name="services_id"
                                             select
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.services_id}
+                                            error={touched.services_id && Boolean(errors.services_id)}
+                                            helperText={touched.services_id && errors.services_id}
                                         >
                                             {services.map((service) => (
                                                 <MenuItem key={service.id} value={`${service.id}`}>

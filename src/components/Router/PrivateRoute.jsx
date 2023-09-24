@@ -42,23 +42,13 @@ export default function PrivateRoute() {
 //     // comprobar en el contexto si existe usuario
 //     const { user } = useAuthContext();
 
-//     // 1) revisar si el rol es ADMIN, mandar a /adminpanel
-//     // 2) revisar si el rol es USER, mandar a /panel
-//     // 3) mandar a /register
+// 1) revisar si el rol es ADMIN, mandar a /adminpanel
+// 2) revisar si el rol es USER, mandar a /panel
+// 3) mandar a /register
 
-//     if (allowedRoles?.includes(user?.role)) {
-//         (
-//             <Outlet />
-//         )
-//     }
-//     else if (user?.role === roles.ADMIN) {
-//         (<Navigate to="/adminpanel" />)
-//     }
-//     else if (user?.role === roles.USER) {
-//         (<Navigate to="/panel" />)
-//     }
-//     else {
-//         (<Navigate to="/register" />)
-//     }
+// if (allowedRoles?.includes(user?.role)) { (<Outlet />)}
+// else if (user?.role === roles.ADMIN) {(<Navigate to="/adminpanel" />) }
+// else if (user?.role === roles.USER) { (<Navigate to="/panel" />)}
+// else {(<Navigate to="/register" />)}
 
-// }
+

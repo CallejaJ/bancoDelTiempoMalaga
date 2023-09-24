@@ -59,7 +59,6 @@ export default function Header({ title, props }) {
         setAnchorElUser(null);
     };
     const menuToMap = user?.role ?? 2;
-    console.log(menu[menuToMap]);
     return (
         <>
             <React.Fragment>

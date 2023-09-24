@@ -1,16 +1,13 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import EmailIcon from '@mui/icons-material/Email';
-
-
+// import EmailIcon from '@mui/icons-material/Email';
+import InfoIcon from '@mui/icons-material/Info';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -49,7 +46,7 @@ const headCells = [
         label: 'ID',
     },
     {
-        id: 'id',
+        id: 'name',
         numeric: false,
         disablePadding: true,
         label: 'Nombre',
@@ -103,7 +100,6 @@ function EnhancedTableHead(props) {
         <TableHead>
             <TableRow>
                 <TableCell >
-
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
@@ -312,7 +308,7 @@ export default function RequestsTableView({ requestsList }) {
                                                         variant="contained"
                                                         type="submit"
                                                     >
-                                                        <EmailIcon />
+                                                        <InfoIcon />
                                                     </IconButton>
                                                 </TableCell>
                                             </TableRow>
@@ -331,7 +327,7 @@ export default function RequestsTableView({ requestsList }) {
                             </Table>
                         </TableContainer>
                         <TablePagination
-                            rowsPerPageOptions={[5, 10]}
+                            rowsPerPageOptions={[3, 5]}
                             component="div"
                             count={requestsList.length}
                             rowsPerPage={rowsPerPage}
@@ -342,7 +338,7 @@ export default function RequestsTableView({ requestsList }) {
                         />
                     </Paper>
                 </Box>
-            </Box>
-        </>
+</Box>
+</>
     );
 }

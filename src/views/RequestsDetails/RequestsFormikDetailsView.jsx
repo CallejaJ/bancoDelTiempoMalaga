@@ -109,6 +109,8 @@ export default function RequestsFormikDetailsView({ formik, services }) {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.services_id}
+                                            error={touched.services_id && Boolean(errors.services_id)}
+                                            helperText={touched.services_id && errors.services_id}
                                         >
                                             {services.map((service) => (
                                                 <MenuItem key={service.id} value={`${service.id}`}>

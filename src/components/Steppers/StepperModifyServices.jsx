@@ -39,7 +39,7 @@ export default function StepperModifyServices() {
 
     return (
         <Box
-            sx={{ maxWidth: 800 }}
+            sx={{ maxWidth: 600 }}
             marginTop={5}
             marginBottom={4}
             padding={6}
