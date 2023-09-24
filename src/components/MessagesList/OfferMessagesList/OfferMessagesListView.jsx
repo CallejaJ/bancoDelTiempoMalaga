@@ -3,15 +3,27 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Container, Grid, CssBaseline, TextField,
+    TableHead, TablePagination, TableRow, TableSortLabel,
+    Toolbar, Typography, Paper, TextField, Button, Modal, Container, Alert
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-// import EmailIcon from '@mui/icons-material/Email';
+import EmailIcon from '@mui/icons-material/Email';
 import { Watch } from 'react-loader-spinner';
 import { LoadingButton } from '@mui/lab';
 // import InfoIcon from '@mui/icons-material/Info';
-import SaveIcon from '@mui/icons-material/Save';
+// import SaveIcon from '@mui/icons-material/Save';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    border: '2px solid #1565c0',
+};
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -136,10 +148,8 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Ofertas disponibles
+                Histórico de mensajes 
             </Typography>
-
-
             <Typography sx={{ flex: '1 1 50 %', alignContent: 'left', color: "grey" }}
                 variant="h6" color="text.primary"
                 type='subtitle1'
@@ -154,7 +164,7 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function OfferMessagesListView({ messagesList, formik }) {
+export default function OfferMessagesListView({ messagesList, formik, newMessage }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -163,6 +173,10 @@ export default function OfferMessagesListView({ messagesList, formik }) {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -227,6 +241,73 @@ export default function OfferMessagesListView({ messagesList, formik }) {
 
     return (
         <>
+            <Box
+                padding={2}
+                margin={2}
+                display={'flex'}
+                justifyContent={'center'}>
+                <Button
+                    variant='contained'
+                    sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                    onClick={handleOpen}
+                >Enviar mensaje
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+
+                        <Box
+                            component="form"
+                            noValidate
+                            onSubmit={handleSubmit}
+
+                        >
+                            <TextField
+                                sx={{ mt: 1, mb: 2, width: "280px" }}
+                                multiline
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="message"
+                                label="Responder al hilo de mensajes"
+                                name="message"
+                                autoComplete="message"
+                                autoFocus
+                                type="text"
+                                text="Responder al hilo de mensajes"
+                                value={values.message}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={touched.message && Boolean(errors.message)}
+                                helperText={touched.message && errors.message}
+                            />
+                            {newMessage ? (
+                                <Alert
+                                    sx={{ mt: 0, mb: 2, height: "54px", width: "280px" }}
+                                    variant="outlined" severity="info" >
+                                    {newMessage}
+                                </Alert>
+                            ) : null}
+                            <LoadingButton
+                                color="secondary"
+                                loadingPosition="start"
+                                startIcon={<EmailIcon />}
+                                variant="contained"
+                                type="submit"
+                                fullWidth
+                                sx={{ height: "54px", width: "180px" }}
+                            >
+                                <span>Enviar</span>
+                            </LoadingButton>
+                        </Box>
+                    </Box>
+                </Modal>
+            </Box>
+
             {messagesList.length > 0 ? (
                 <Box
                     alignItems={'center'}
@@ -235,10 +316,9 @@ export default function OfferMessagesListView({ messagesList, formik }) {
                 >
 
                     <Box
-
                         padding={2} margin={2}
                         sx={{ width: '90%' }}>
-                        <Paper sx={{ width: '100%', mb: 2 }}>
+                        <Paper sx={{ width: '100%', mb: 1 }}>
                             <EnhancedTableToolbar numSelected={selected.length} />
                             <TableContainer>
                                 <Table
@@ -339,89 +419,36 @@ export default function OfferMessagesListView({ messagesList, formik }) {
                 </Box>
             )
             }
+
             <Box
                 sx={{
                     top: "modal",
                     position: "center",
                     marginTop: 3,
-                    marginBottom: 1
+                    marginBottom: 1,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center'
                 }}
             >
                 <Container
                     component="main">
                     <Box
                         sx={{
-                            marginTop: 3,
-                            marginBottom: 3,
+                            marginTop: 1,
+                            marginBottom: 1,
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'center'
                         }}
                     >
-                        <Grid container>
-                            <CssBaseline />
-                            <Grid
-                                item
-                                xs={6}
-                                sm={4}
-                                md={3}
-                                component={Paper}
-                                elevation={0}
-                                square
-                            >
-                                <Box
-                                    sx={{
-                                        my: 1,
-                                        mx: 1,
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        alignItems: "center",
-                                    }}
-                                >
 
+                        {/* ventana de texto */}
 
-                                    <Box
-                                        component="form"
-                                        noValidate
-                                        onSubmit={handleSubmit}
-                                        sx={{ mt: 8 }}
-                                    >
-                                        <TextField
-                                            multiline
-                                            margin="normal"
-                                            required
-                                            fullWidth
-                                            id="message"
-                                            label="Mensaje a los usuarios demandantes"
-                                            name="message"
-                                            autoComplete="message"
-                                            autoFocus
-                                            type="text"
-                                            text="Escribe tu mensaje a los usuarios"
-                                            value={values.message}
-                                            onBlur={handleBlur}
-                                            onChange={handleChange}
-                                            error={touched.message && Boolean(errors.message)}
-                                            helperText={touched.message && errors.message}
-                                        />
-                                        <LoadingButton
-                                            color="secondary"
-                                            loadingPosition="start"
-                                            startIcon={<SaveIcon />}
-                                            variant="contained"
-                                            type="submit"
-                                            fullWidth
-                                            sx={{ mt: 2, mb: 2, height: "54px" }}
-                                        >
-                                            <span>Enviar mensaje</span>
-                                        </LoadingButton>
-                                    </Box>
-                                </Box>
-                            </Grid>
-                        </Grid>
                     </Box>
                 </Container>
             </Box>
+
         </>
     );
 }

@@ -175,7 +175,7 @@ export default function UserGuide() {
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             Los gestores del banco de tiempo garantizan la confidencialidad de los usuarios, por lo que
                             en ningún caso aparece información detallada en los listados de ofertas y demandas.
-                            Para ello se facilita un buzón de mensajería interna entre usuarios. Los usuarios se
+                            Para ello se facilita un teléfono del Banco del Tiempo de tu distrito entre usuarios. Los usuarios se
                             comunican a través de la aplicación para que queden registrados los mensajes en caso de
                             incidencias.
                         </Typography>

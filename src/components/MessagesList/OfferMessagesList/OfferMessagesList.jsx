@@ -7,7 +7,7 @@ import { Formik } from "formik";
 import { NewOfferMessageSchema } from "./newOfferMessageSchema";
 
 export default function OfferMessagesList() {
-
+    const [newMessage, setNewMessage] = useState(null)
     let [messagesList, setMessagesList] = useState([])
     const { token } = useAuthContext();
     const { id } = useParams();
@@ -37,7 +37,6 @@ export default function OfferMessagesList() {
     )
 
     function onSubmit(values, actions) {
-        console.log("onsubmit")
         addMessage(values);
         actions.resetForm()
     }
@@ -58,7 +57,11 @@ export default function OfferMessagesList() {
             if (response.ok) {
                 const newOfferMessagesList = await response.json()
                 setMessagesList(newOfferMessagesList)
-                // setNewMessage("¡Mensaje enviado!")
+                setNewMessage("¡Mensaje enviado!")
+            }
+            else {
+                setNewMessage("¡Inténtalo de nuevo!")
+
             }
         }
         catch (err) {
@@ -74,7 +77,7 @@ export default function OfferMessagesList() {
             validationSchema={NewOfferMessageSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <OfferMessagesListView formik={props} messagesList={messagesList} />}
+            {(props) => <OfferMessagesListView formik={props} messagesList={messagesList} newMessage={newMessage} />}
         </Formik>
 
     )

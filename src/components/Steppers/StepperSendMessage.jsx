@@ -7,28 +7,30 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo solicitar?',
-        description: `Cualquier tarea que se traduzca en tiempo sabiendo que las horas
-        de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
-        posible en qué consiste la tarea a realizar, para eso puedes añadir el tipo de servicio o categoría (acompañamiento, clases, taller, apoyo)  .`,
+        label: '¿Puedo enviar mensajes al usuario de la oferta?',
+        description: `Claro que sí, pulsando el botón naranja, puedes enviar una 
+        consulta al usuario de la oferta para conocer los detalles y acordar fecha y hora.
+        Es muy importante que no facilites tus datos personales, puedes acordar un lugar de 
+        encuentro para conocer al otro usuario y que todo quede reflejado en el hilo de mensajes.`,
     },
     {
-        label: '¿Puedo solicitar una tarea si no tengo créditos?',
+        label: '¿Hay algún límite de mensajes?',
         description:
-            'Si, hasta un máximo de -20 créditos. Ten en cuenta que por registrarte en la aplicación te regalamos un crédito.'
+            'No hay límites de mensajes, puedes enviar todos los mensajes que necesites para conocer los detalles de la oferta y puedas proponer tus necesidades, horarios y disponibilidad.',
     },
     {
-        label: '¿Quién puede ver mis demandas o solicitudes?',
-        description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus demandas estarán disponibles para todos los visitantes de la aplicación web.`,
+        label: '¿Quién puede ver mis mensajes?',
+        description: `Todos los usuarios registrados pueden leer los mensajes en referencia a 
+        ésta oferta. Es un hilo de mensajes abierto para facilitar a los usuarios interesados y al usuario
+        ofertante que el servicio se realize lo antes posible.`,
     },
     {
         label: '¿Cómo contactan conmigo?',
         description: `A través del teléfono del Banco del Tiempo de tu distrito, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la demanda se facilitará información confidencial como teléfono o dirección.`,
+        En ningún caso en la oferta se facilitará información confidencial como teléfono o dirección.`,
     },
     {
-        label: '¿Cómo transfiero mis créditos?',
+        label: '¿Cómo recibo mis créditos?',
         description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
         Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
     },
@@ -36,11 +38,11 @@ const steps = [
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo A través del teléfono del Banco del Tiempo de tu distrito atención al usuario.`,
+        los gestores del banco del tiempo llamando al teléfono del Banco del Tiempo de tu distrito.`,
     },
 ];
 
-export default function StepperAddRequest() {
+export default function StepperSendMessage() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -58,9 +60,8 @@ export default function StepperAddRequest() {
     return (
         <Box
             sx={{ maxWidth: 800 }}
-            marginTop={4}
-            marginBottom={4}
-            padding={5}
+            marginTop={1}
+            marginBottom={1}
         >
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
@@ -68,7 +69,9 @@ export default function StepperAddRequest() {
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption"></Typography>
+                                    <Typography variant="caption"
+                                        align={'justify'}
+                                    ></Typography>
                                 ) : null
                             }
                         >
@@ -100,8 +103,8 @@ export default function StepperAddRequest() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                    <Typography>¡Perfecto! Ya puedes enviar mensajes a otros usuarios.</Typography>
+                    <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
                         Reiniciar
                     </Button>
                 </Paper>

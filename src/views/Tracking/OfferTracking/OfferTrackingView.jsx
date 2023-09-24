@@ -1,35 +1,67 @@
 import { Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
 import Header from "../../../components/Header/Header";
-import StepperModifyOffers from "../../../components/Steppers/StepperModifyOffers";
 import { LoadingButton } from "@mui/lab";
-import SaveIcon from '@mui/icons-material/Save';
+import EmailIcon from '@mui/icons-material/Email';
 import ScrollToTop from "../../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../../components/Footer/Footer";
 import OfferMessagesList from "../../../components/MessagesList/OfferMessagesList/OfferMessagesList";
+import StepperSendMessage from "../../../components/Steppers/StepperSendMessage";
+import clockbdt from "../../../assets/clockbdt.png"
+import StepperTrackingOffer from "../../../components/Steppers/StepperTrackingOffer";
 
 
 
 export default function OfferTrackingView({ formik, services }) {
-    const { values, touched, errors, handleChange, handleSubmit, handleBlur, onMessageSubmit } = formik;
-    console.log(onMessageSubmit);
+
+    const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
     return (
         <>
-            <Header title='Seguimiento de tu oferta' />
+            <Header title='Información de ofertas' />
+            <Grid
+                container
+                justifyContent={'center'}
+                direction={'column'}
+                alignItems={'center'}
+                marginTop={4}
+                padding={1}
+
+            >
+                <Grid item xs={3}>
+                    <img src={clockbdt} width={600} />
+                </Grid>
+            </Grid>
+            <Box
+                alignItems={'center'}
+                display={'flex'}
+                justifyContent={'center'}
+                padding={1}
+                margin={1}
+            >
+                <StepperSendMessage />
+
+            </Box>
+            <Box
+                padding={1}
+                margin={1}
+                display={'flex'}
+                justifyContent={'center'}>
+            </Box>
             <Box
                 sx={{
                     top: "modal",
                     position: "center",
-                    marginTop: 3,
+                    marginTop: 1,
                     marginBottom: 1
                 }}
             >
+                <OfferMessagesList />
                 <Container
                     component="main">
                     <Box
                         sx={{
-                            marginTop: 6,
-                            marginBottom: 5,
+                            marginTop: 3,
+                            marginBottom: 3,
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'center'
@@ -37,7 +69,7 @@ export default function OfferTrackingView({ formik, services }) {
                     >
                         <Grid container>
                             <CssBaseline />
-                            <StepperModifyOffers />
+                            <StepperTrackingOffer />
                             <Grid
                                 item
                                 xs={6}
@@ -68,6 +100,19 @@ export default function OfferTrackingView({ formik, services }) {
                                             margin="normal"
                                             required
                                             fullWidth
+                                            label="Usuario"
+                                            name="offer_user_name"
+                                            autoComplete="offer_user_name"
+                                            placeholder="Usuario"
+                                            autoFocus
+                                            type="text"
+                                            onBlur={handleBlur}
+                                            value={values.offer_user_name}
+                                        />
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
                                             id="name"
                                             label="Título"
                                             name="name"
@@ -85,7 +130,6 @@ export default function OfferTrackingView({ formik, services }) {
                                             margin="normal"
                                             required
                                             fullWidth
-                                            id="description"
                                             label="Descripción de la oferta"
                                             name="description"
                                             autoComplete="description"
@@ -136,26 +180,15 @@ export default function OfferTrackingView({ formik, services }) {
                                             helperText={touched.credits && errors.credits}
                                         />
                                         <LoadingButton
-                                            color="primary"
-                                            loadingPosition="start"
-                                            startIcon={<SaveIcon />}
-                                            variant="contained"
-                                            type="submit"
-                                            fullWidth
-                                            sx={{ mt: 2, mb: 2, height: "54px" }}
-                                        >
-                                            <span>Tarea completada</span>
-                                        </LoadingButton>
-                                        <LoadingButton
                                             color="secondary"
                                             loadingPosition="start"
-                                            startIcon={<SaveIcon />}
+                                            startIcon={<EmailIcon />}
                                             variant="contained"
                                             type="submit"
                                             fullWidth
                                             sx={{ mt: 1, mb: 1, height: "54px" }}
                                         >
-                                            <span>Transferir créditos</span>
+                                            <span>Solicitar créditos</span>
                                         </LoadingButton>
                                     </Box>
                                 </Box>
@@ -163,9 +196,7 @@ export default function OfferTrackingView({ formik, services }) {
                         </Grid>
                     </Box>
                 </Container>
-                <OfferMessagesList />
             </Box>
-
             <ScrollToTop />
             <Footer />
         </>

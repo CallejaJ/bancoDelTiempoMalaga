@@ -25,7 +25,7 @@ const steps = [
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo por el buzón de mensajería interna.`,
+        los gestores del banco del tiempo llamando al teléfono del Banco del Tiempo de tu distrito.`,
     },
 ];
 
