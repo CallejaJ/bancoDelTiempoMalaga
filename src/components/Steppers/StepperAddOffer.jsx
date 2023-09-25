@@ -27,7 +27,7 @@ const steps = [
     },
     {
         label: '¿Cómo contactan conmigo?',
-        description: `A través del teléfono del Banco del Tiempo de tu distrito, se acuerda fecha y hora, tiempo convenido y lugar. 
+        description: `A través del hilo de mensajes de la información detallada de cada oferta o demanda solicitada, se acuerda fecha y hora, tiempo convenido y lugar. 
         En ningún caso en la oferta se facilitará información confidencial como teléfono o dirección.`,
     },
     {

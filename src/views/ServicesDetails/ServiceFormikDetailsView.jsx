@@ -10,7 +10,7 @@ import { useAuthContext } from "../../context/AuthContext";
 
 
 export default function ServiceFormikDetailsView({ formik }) {
-    const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
+    const { touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     const { updateServiceMessage } = useAuthContext();
 
 
@@ -69,13 +69,13 @@ export default function ServiceFormikDetailsView({ formik }) {
                                             required
                                             fullWidth
                                             id="name"
-                                            label="Título"
+                                            label="Típo de servicio"
                                             name="name"
                                             autoComplete="name"
                                             autoFocus
                                             type="text"
                                             placeholder="Título de la categoría"
-                                            value={values.name}
+                                            // value={values.name}
                                             onBlur={handleBlur}
                                             onChange={handleChange}
                                             error={touched.name && Boolean(errors.name)}

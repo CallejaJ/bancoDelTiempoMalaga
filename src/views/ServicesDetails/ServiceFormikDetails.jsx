@@ -67,7 +67,9 @@ export default function ServiceFormikDetails() {
             validationSchema={ServiceFormikSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <ServiceFormikDetailsView formik={props} services={servicesList} />}
+            {(props) => <ServiceFormikDetailsView formik={props}
+            //  services={servicesList}
+            />}
         </Formik>
     )
 }

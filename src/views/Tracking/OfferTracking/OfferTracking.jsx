@@ -23,10 +23,8 @@ export default function OfferTracking() {
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
-
             if (response.ok) {
-                console.log("Tu oferta ha sido actualizada.")
+                console.log("Tu solicitud se ha enviado.")
             } else {
                 console.log("Inténtalo de nuevo.")
             }
@@ -75,6 +73,26 @@ export default function OfferTracking() {
         [setServicesList]
     )
 
+    const [usersList, setUsersList] = useState([]);
+
+    useEffect(function () {
+        async function getUsersList() {
+            try {
+                const response = await fetch(`http://localhost:3006/user`)
+                if (response.ok) {
+                    setUsersList(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getUsersList()
+    },
+        [setUsersList]
+    )
+
+
 
 
 
@@ -85,7 +103,9 @@ export default function OfferTracking() {
             validationSchema={OffersFormikSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <OfferTrackingView formik={props} services={servicesList} />}
+            {(props) => <OfferTrackingView formik={props}
+                users={usersList}
+                services={servicesList} />}
         </Formik>
     )
 }

@@ -11,7 +11,9 @@ import StepperTrackingOffer from "../../../components/Steppers/StepperTrackingOf
 
 
 
-export default function OfferTrackingView({ formik, services }) {
+export default function OfferTrackingView({ formik, services,
+    users
+}) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -100,10 +102,10 @@ export default function OfferTrackingView({ formik, services }) {
                                             margin="normal"
                                             required
                                             fullWidth
-                                            label="Usuario"
+                                            label="Usuario ofertante"
                                             name="offer_user_name"
                                             autoComplete="offer_user_name"
-                                            placeholder="Usuario"
+                                            placeholder="Usuario ofertante"
                                             autoFocus
                                             type="text"
                                             onBlur={handleBlur}
@@ -143,12 +145,11 @@ export default function OfferTrackingView({ formik, services }) {
                                             helperText={touched.description && errors.description}
                                         />
                                         <TextField
+                                            select
+                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
                                             label="Tipo de servicio"
                                             placeholder="Por favor, selecciona uno de los servicios de la lista:"
-
-                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
                                             name="services_id"
-                                            select
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.services_id}
@@ -161,7 +162,24 @@ export default function OfferTrackingView({ formik, services }) {
                                                 </MenuItem>
                                             ))}
                                         </TextField>
-
+                                        <TextField
+                                            select
+                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                                            label="Usuario demandante"
+                                            placeholder="Por favor, selecciona tu nombre de usuario de la lista:"
+                                            name="holder_user_name"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.holder_user_name}
+                                            error={touched.holder_user_name && Boolean(errors.holder_user_name)}
+                                            helperText={touched.holder_user_name && errors.holder_user_name}
+                                        >
+                                            {users.map((user) => (
+                                                <MenuItem key={user.id} value={`${user.id}`}>
+                                                    {user.name}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
                                         <TextField
                                             margin="normal"
                                             required

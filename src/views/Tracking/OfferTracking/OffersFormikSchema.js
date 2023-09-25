@@ -14,7 +14,12 @@ export const OffersFormikSchema = yup.object().shape({
 
     services_id: yup
         .number()
-        .oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22], "Oferta no válida")
+        .oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "Categoría no válida")
+        .required("Requerido"),
+
+    holder_user_name: yup
+        .number()
+        .oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], "Usuario no válido")
         .required("Requerido"),
 
     credits: yup
