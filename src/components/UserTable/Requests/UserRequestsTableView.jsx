@@ -52,7 +52,7 @@ const headCells = [
         id: 'name',
         numeric: false,
         disablePadding: true,
-        label: 'Nombre',
+        label: 'Título',
     },
     {
         id: 'description',
@@ -180,7 +180,7 @@ EnhancedTableToolbar.propTypes = {
 export default function UserRequestsTableView({ userRequestsList }) {
 
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Nombre');
+    const [orderBy, setOrderBy] = React.useState('Título');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);

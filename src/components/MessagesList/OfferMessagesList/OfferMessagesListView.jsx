@@ -4,7 +4,7 @@ import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
     TableHead, TablePagination, TableRow, TableSortLabel,
-    Toolbar, Typography, Paper, TextField, Button, Modal, Container, Alert
+    Toolbar, Typography, Paper, TextField, Button, Modal, Alert
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import EmailIcon from '@mui/icons-material/Email';
@@ -362,16 +362,6 @@ export default function OfferMessagesListView({ messagesList, formik, newMessage
                                                     <TableCell align="left" > {row.name}</TableCell>
                                                     <TableCell align="left">{row.message}</TableCell>
                                                     <TableCell align="left">{row.register_date}</TableCell>
-                                                    {/* <TableCell align="center">
-                                                        <IconButton
-                                                            aria-label="edit"
-                                                            color="secondary"
-                                                            variant="contained"
-                                                            type="submit"
-                                                        >
-                                                            <InfoIcon />
-                                                        </IconButton>
-                                                    </TableCell> */}
                                                 </TableRow>
                                             );
                                         })}
@@ -419,35 +409,6 @@ export default function OfferMessagesListView({ messagesList, formik, newMessage
                 </Box>
             )
             }
-
-            <Box
-                sx={{
-                    top: "modal",
-                    position: "center",
-                    marginTop: 3,
-                    marginBottom: 1,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center'
-                }}
-            >
-                <Container
-                    component="main">
-                    <Box
-                        sx={{
-                            marginTop: 1,
-                            marginBottom: 1,
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}
-                    >
-
-                        {/* ventana de texto */}
-
-                    </Box>
-                </Container>
-            </Box>
 
         </>
     );

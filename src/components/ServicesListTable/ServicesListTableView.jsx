@@ -25,7 +25,7 @@ const headCells = [
         id: 'name',
         numeric: false,
         disablePadding: true,
-        label: 'Nombre',
+        label: 'Título',
     },
     {
         id: 'register_date',

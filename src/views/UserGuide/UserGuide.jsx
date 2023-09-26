@@ -1,7 +1,6 @@
 import Footer from '../../components/Footer/Footer';
 import guide from "../../assets/guide.png"
-import advantages1 from "../../assets/advantages1.png"
-
+import clockbdt from "../../assets/clockbdt.png"
 import credit from "../../assets/credit.png"
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import { Box, Typography, Grid, Button, Modal } from '@mui/material';
@@ -45,7 +44,7 @@ export default function UserGuide() {
 
             >
                 <Grid item xs={3}>
-                    <img src={advantages1} width={600} />
+                    <img src={clockbdt} width={600} />
                 </Grid>
             </Grid>
 

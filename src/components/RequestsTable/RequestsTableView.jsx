@@ -8,6 +8,7 @@ import {
 import { visuallyHidden } from '@mui/utils';
 // import EmailIcon from '@mui/icons-material/Email';
 import InfoIcon from '@mui/icons-material/Info';
+import { Link } from 'react-router-dom';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -39,17 +40,17 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    {
-        id: 'id',
-        numeric: true,
-        disablePadding: true,
-        label: 'ID',
-    },
+    // {
+    //     id: 'id',
+    //     numeric: true,
+    //     disablePadding: true,
+    //     label: 'ID',
+    // },
     {
         id: 'name',
         numeric: false,
         disablePadding: true,
-        label: 'Nombre',
+        label: 'Título',
     },
     {
         id: 'description',
@@ -104,7 +105,7 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        // align={headCell.numeric ? 'right' : 'left'}
+                        align={'center'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -176,7 +177,7 @@ EnhancedTableToolbar.propTypes = {
 export default function RequestsTableView({ requestsList }) {
 
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Nombre');
+    const [orderBy, setOrderBy] = React.useState('Título');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -270,9 +271,9 @@ export default function RequestsTableView({ requestsList }) {
                                     rowCount={requestsList.length}
                                 />
                                 <TableBody>
-                                    {visibleRows.map((row, index) => {
+                                    {visibleRows.map((row) => {
                                         const isItemSelected = isSelected(row.id);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
+                                        // const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -287,21 +288,22 @@ export default function RequestsTableView({ requestsList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell
+                                                {/* <TableCell
                                                     component="th"
                                                     id={labelId}
                                                     scope="row"
                                                     padding="none"
                                                 >
                                                     {row.id}
-                                                </TableCell>
+                                                </TableCell> */}
                                                 <TableCell align="left">{row.name}</TableCell>
                                                 <TableCell align="left">{row.description}</TableCell>
-                                                <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">{row.user_id}</TableCell>
-                                                <TableCell align="left">{row.credits}</TableCell>
+                                                <TableCell align="center">{row.register_date}</TableCell>
+                                                <TableCell align="center">{row.update_date}</TableCell>
+                                                <TableCell align="center">{row.user_id}</TableCell>
+                                                <TableCell align="center">{row.credits}</TableCell>
                                                 <TableCell align="center">
+                                                    <Link to={`/panel/requesttracking/${row.id}`}>
                                                     <IconButton
                                                         aria-label="edit"
                                                         color="secondary"
@@ -310,6 +312,7 @@ export default function RequestsTableView({ requestsList }) {
                                                     >
                                                         <InfoIcon />
                                                     </IconButton>
+                                                    </Link>
                                                 </TableCell>
                                             </TableRow>
                                         );

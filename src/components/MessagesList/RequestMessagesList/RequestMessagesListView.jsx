@@ -3,13 +3,27 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
+    TableHead, TablePagination, TableRow, TableSortLabel,
+    Toolbar, Typography, Paper, TextField, Button, Modal, Alert,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-// import EmailIcon from '@mui/icons-material/Email';
+import EmailIcon from '@mui/icons-material/Email';
 import { Watch } from 'react-loader-spinner';
-import { Link } from 'react-router-dom';
-import InfoIcon from '@mui/icons-material/Info';
+import { LoadingButton } from '@mui/lab';
+// import InfoIcon from '@mui/icons-material/Info';
+// import SaveIcon from '@mui/icons-material/Save';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    border: '2px solid #1565c0',
+};
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -49,15 +63,15 @@ const headCells = [
     // },
     {
         id: 'name',
-        numeric: false,
-        disablePadding: true,
-        label: 'Título',
+        numeric: true,
+        disablePadding: false,
+        label: 'Usuario'
     },
     {
-        id: 'description',
+        id: 'message',
         numeric: false,
-        disablePadding: false,
-        label: 'Descripción',
+        disablePadding: true,
+        label: 'Mensaje',
     },
     {
         id: 'register_date',
@@ -65,30 +79,7 @@ const headCells = [
         disablePadding: false,
         label: 'Fecha de publicación',
     },
-    {
-        id: 'update_date',
-        numeric: false,
-        disablePadding: false,
-        label: 'Fecha de actualización'
-    },
-    {
-        id: 'user_id',
-        numeric: true,
-        disablePadding: false,
-        label: 'Usuario'
-    },
-    {
-        id: 'credits',
-        numeric: false,
-        disablePadding: false,
-        label: 'Créditos',
-    },
-    {
-        id: 'info',
-        numeric: false,
-        disablePadding: false,
-        label: 'Acciones',
-    },
+
 ];
 
 function EnhancedTableHead(props) {
@@ -106,7 +97,7 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={'center'}
+                        // align={headCell.numeric ? 'right' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -157,10 +148,8 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Ofertas disponibles
+                Histórico de mensajes
             </Typography>
-
-
             <Typography sx={{ flex: '1 1 50 %', alignContent: 'left', color: "grey" }}
                 variant="h6" color="text.primary"
                 type='subtitle1'
@@ -175,13 +164,19 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function OffersTableView({ offersList }) {
+export default function RequestMessagesListView({ messagesList, formik, newMessage }) {
+
+    const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Título');
+    const [orderBy, setOrderBy] = React.useState('Usuario');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -191,7 +186,7 @@ export default function OffersTableView({ offersList }) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = offersList.map((n) => n.id);
+            const newSelected = messagesList.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -233,20 +228,87 @@ export default function OffersTableView({ offersList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - offersList.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - messagesList.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(offersList, getComparator(order, orderBy)).slice(
+            stableSort(messagesList, getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage, offersList],
+        [order, orderBy, page, rowsPerPage, messagesList],
     );
 
     return (
         <>
-            {offersList.length > 0 ? (
+            <Box
+                padding={2}
+                margin={2}
+                display={'flex'}
+                justifyContent={'center'}>
+                <Button
+                    variant='contained'
+                    sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                    onClick={handleOpen}
+                >Enviar mensaje
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+
+                        <Box
+                            component="form"
+                            noValidate
+                            onSubmit={handleSubmit}
+
+                        >
+                            <TextField
+                                sx={{ mt: 1, mb: 2, width: "280px" }}
+                                multiline
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="message"
+                                label="Responder al hilo de mensajes"
+                                name="message"
+                                autoComplete="message"
+                                autoFocus
+                                type="text"
+                                text="Responder al hilo de mensajes"
+                                value={values.message}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={touched.message && Boolean(errors.message)}
+                                helperText={touched.message && errors.message}
+                            />
+                            {newMessage ? (
+                                <Alert
+                                    sx={{ mt: 0, mb: 2, height: "54px", width: "280px" }}
+                                    variant="outlined" severity="info" >
+                                    {newMessage}
+                                </Alert>
+                            ) : null}
+                            <LoadingButton
+                                color="secondary"
+                                loadingPosition="start"
+                                startIcon={<EmailIcon />}
+                                variant="contained"
+                                type="submit"
+                                fullWidth
+                                sx={{ height: "54px", width: "180px" }}
+                            >
+                                <span>Enviar</span>
+                            </LoadingButton>
+                        </Box>
+                    </Box>
+                </Modal>
+            </Box>
+
+            {messagesList.length > 0 ? (
                 <Box
                     alignItems={'center'}
                     display={'flex'}
@@ -256,7 +318,7 @@ export default function OffersTableView({ offersList }) {
                     <Box
                         padding={2} margin={2}
                         sx={{ width: '90%' }}>
-                        <Paper sx={{ width: '100%', mb: 2 }}>
+                        <Paper sx={{ width: '100%', mb: 1 }}>
                             <EnhancedTableToolbar numSelected={selected.length} />
                             <TableContainer>
                                 <Table
@@ -269,7 +331,7 @@ export default function OffersTableView({ offersList }) {
                                         orderBy={orderBy}
                                         onSelectAllClick={handleSelectAllClick}
                                         onRequestSort={handleRequestSort}
-                                        rowCount={offersList.length}
+                                        rowCount={messagesList.length}
                                     />
                                     <TableBody>
                                         {visibleRows.map((row) => {
@@ -297,24 +359,9 @@ export default function OffersTableView({ offersList }) {
                                                     >
                                                         {row.id}
                                                     </TableCell> */}
-                                                    <TableCell align="left">{row.name}</TableCell>
-                                                    <TableCell align="left">{row.description}</TableCell>
+                                                    <TableCell align="left" > {row.name}</TableCell>
+                                                    <TableCell align="left">{row.message}</TableCell>
                                                     <TableCell align="left">{row.register_date}</TableCell>
-                                                    <TableCell align="left">{row.update_date}</TableCell>
-                                                    <TableCell align="left">{row.user_id}</TableCell>
-                                                    <TableCell align="left">{row.credits}</TableCell>
-                                                    <TableCell align="center">
-                                                        <Link to={`/panel/offertracking/${row.id}`}>
-                                                            <IconButton
-                                                                aria-label="edit"
-                                                                color="secondary"
-                                                                variant="contained"
-                                                                type="submit"
-                                                            >
-                                                                <InfoIcon />
-                                                            </IconButton>
-                                                        </Link>
-                                                    </TableCell>
                                                 </TableRow>
                                             );
                                         })}
@@ -333,16 +380,16 @@ export default function OffersTableView({ offersList }) {
                             <TablePagination
                                 rowsPerPageOptions={[5, 10]}
                                 component="div"
-                                count={offersList.length}
+                                count={messagesList.length}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
                                 onPageChange={handleChangePage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}
-                                labelRowsPerPage={"Ofertas por página"}
+                                labelRowsPerPage={"Mensajes por página"}
                             />
                         </Paper>
-                    </Box>
-                </Box>) : (<Box
+                    </Box >
+                </Box >) : (<Box
                     alignItems={'center'}
                     display={'flex'}
                     justifyContent={'center'}
@@ -350,17 +397,32 @@ export default function OffersTableView({ offersList }) {
                     marginBottom={6}
                 >
                     <Watch
-                        height="80"
-                        width="80"
+                        height="200"
+                        width="200"
                         radius="48"
-                        color="#4fa94d"
+                        color="#1565c0"
                         ariaLabel="watch-loading"
                         wrapperStyle={{}}
                         wrapperClassName=""
                         visible={true}
                     />
                 </Box>
-            )}
+            )
+            }
+
+            <Box
+                sx={{
+                    top: "modal",
+                    position: "center",
+                    marginTop: 3,
+                    marginBottom: 1,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center'
+                }}
+            >
+
+            </Box>
 
         </>
     );

@@ -9,7 +9,7 @@ const steps = [
     {
         label: '¿Qué puedo solicitar?',
         description: `Si has acordado fecha y hora y has realizado el servicio acordado puedes solicitar tus créditos a través del botón azul. 
-        Al solicitar tus créditos el usuario demandante recibirá un mensaje para validar tus créditos y que éstos añadirán a tu saldo.`,
+        Al solicitar tus créditos el usuario demandante al que has hecho el servicio recibirá un mensaje para validar tus créditos.`,
     },
     {
         label: '¿Puedo modificar el tiempo ofrecido?',

@@ -6,14 +6,12 @@ import ScrollToTop from "../../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../../components/Footer/Footer";
 import OfferMessagesList from "../../../components/MessagesList/OfferMessagesList/OfferMessagesList";
 import StepperSendMessage from "../../../components/Steppers/StepperSendMessage";
-import clockbdt from "../../../assets/clockbdt.png"
+import offermessages from "../../../assets/offermessages.png"
 import StepperTrackingOffer from "../../../components/Steppers/StepperTrackingOffer";
 
 
 
-export default function OfferTrackingView({ formik, services,
-    users
-}) {
+export default function OfferTrackingView({ formik, services, users }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -30,7 +28,7 @@ export default function OfferTrackingView({ formik, services,
 
             >
                 <Grid item xs={3}>
-                    <img src={clockbdt} width={600} />
+                    <img src={offermessages} width={600} />
                 </Grid>
             </Grid>
             <Box

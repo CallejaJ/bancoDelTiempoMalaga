@@ -31,6 +31,8 @@ import ServiceFormikDetails from "./views/ServicesDetails/ServiceFormikDetails";
 import DrawerUser from "./views/DrawerUser/DrawerUser";
 import AddServiceFormik from "./views/AddService/AddServiceFormik";
 import OfferTracking from "./views/Tracking/OfferTracking/OfferTracking";
+import RequestTracking from "./views/Tracking/RequestTracking/RequestTracking";
+
 
 const orangeTheme = createTheme({
   palette: {
@@ -152,7 +154,7 @@ export default function App() {
                       <Route path="/panel/addrequest/" element={<AddRequestFormik />} />
                       {/* <Route path="/panel/messagerie/" element={<Messagerie />} /> */}
                       <Route path="/panel/offertracking/:id" element={<OfferTracking />} />
-                      {/* <Route path="/panel/requesttracking/:id" element={<RequestTracking />} /> */}
+                      <Route path="/panel/requesttracking/:id" element={<RequestTracking />} />
                     </Route>
                   </Route>
                   <Route path="adminpanel" element={<PrivateRoute allowedRoles={[roles.ADMIN]} />}>

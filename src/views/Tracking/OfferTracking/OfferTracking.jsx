@@ -103,7 +103,8 @@ export default function OfferTracking() {
             validationSchema={OffersFormikSchema}
             onSubmit={onSubmit}
         >
-            {(props) => <OfferTrackingView formik={props}
+            {(props) => <OfferTrackingView
+                formik={props}
                 users={usersList}
                 services={servicesList} />}
         </Formik>

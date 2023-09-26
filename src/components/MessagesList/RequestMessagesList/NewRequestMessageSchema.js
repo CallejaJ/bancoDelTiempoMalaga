@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const NewOfferMessageSchema = yup.object().shape({
+export const NewRequestMessageSchema = yup.object().shape({
     message: yup
         .string()
         .min(10, "La descripción debe tener al menos 10 caracteres.")
