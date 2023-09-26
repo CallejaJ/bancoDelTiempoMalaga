@@ -42,12 +42,12 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    {
-        id: 'id',
-        numeric: true,
-        disablePadding: true,
-        label: 'ID',
-    },
+    // {
+    //     id: 'id',
+    //     numeric: true,
+    //     disablePadding: true,
+    //     label: 'ID',
+    // },
     {
         id: 'name',
         numeric: false,
@@ -108,7 +108,7 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        // align={headCell.numeric ? 'right' : 'left'}
+                        align={"center"}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -276,9 +276,9 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                     rowCount={userRequestsList.length}
                                 />
                                 <TableBody>
-                                    {visibleRows.map((row, index) => {
+                                    {visibleRows.map((row) => {
                                         const isItemSelected = isSelected(row.id);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
+                                        // const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -293,14 +293,14 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell
+                                                {/* <TableCell
                                                     component="th"
                                                     id={labelId}
                                                     scope="row"
                                                     padding="none"
                                                 >
                                                     {row.id}
-                                                </TableCell>
+                                                </TableCell> */}
                                                 <TableCell align="left">{row.name}</TableCell>
                                                 <TableCell align="left">{row.description}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>

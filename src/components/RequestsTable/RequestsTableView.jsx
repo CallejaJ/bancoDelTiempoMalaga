@@ -71,7 +71,7 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'user_id',
+        id: 'request_user_name',
         numeric: true,
         disablePadding: false,
         label: 'Usuario'
@@ -300,7 +300,7 @@ export default function RequestsTableView({ requestsList }) {
                                                 <TableCell align="left">{row.description}</TableCell>
                                                 <TableCell align="center">{row.register_date}</TableCell>
                                                 <TableCell align="center">{row.update_date}</TableCell>
-                                                <TableCell align="center">{row.user_id}</TableCell>
+                                                <TableCell align="center">{row.request_user_name}</TableCell>
                                                 <TableCell align="center">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Link to={`/panel/requesttracking/${row.id}`}>

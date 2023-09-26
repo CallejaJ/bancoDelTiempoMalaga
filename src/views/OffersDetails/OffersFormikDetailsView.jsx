@@ -85,6 +85,7 @@ export default function OffersFormikDetailsView({ formik, services }) {
                                             margin="normal"
                                             required
                                             fullWidth
+                                            multiline
                                             id="description"
                                             label="Descripción de la oferta"
                                             name="description"

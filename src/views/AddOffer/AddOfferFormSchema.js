@@ -9,7 +9,7 @@ export const AddOfferFormSchema = yup.object().shape({
   description: yup
     .string()
     .min(30, "La descripción debe tener al menos 30 caracteres.")
-    .max(60, "La descripción debe tener menos de 60 caracteres.")
+    .max(100, "La descripción debe tener menos de 100 caracteres.")
     .required("Requerido"),
   services_id: yup
     .number()

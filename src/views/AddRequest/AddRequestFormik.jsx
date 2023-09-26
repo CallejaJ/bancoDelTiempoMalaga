@@ -5,6 +5,7 @@ import AddRequestFormikView from "./AddRequestFormikView";
 import { AddRequestFormSchema } from "./AddRequestFormSchema";
 import { useAuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function AddRequestFormik() {
@@ -30,11 +31,14 @@ export default function AddRequestFormik() {
 
     const { addRequest } = useAuthContext()
 
+    const navigate = useNavigate();
 
     function onSubmit(values, actions) {
-        console.log("onsubmit")
         addRequest(values);
         actions.resetForm()
+        setTimeout(() => {
+            navigate('/requests');
+        }, 3000);
     }
 
 

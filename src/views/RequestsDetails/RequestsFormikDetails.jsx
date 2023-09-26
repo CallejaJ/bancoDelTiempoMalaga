@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { usePanelContext } from "../../context/PanelContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { initialValuesRequest } from "./UI/requestsForm";
 import { RequestFormikSchema } from "./RequestFormikSchema";
 import RequestsFormikDetailsView from "./RequestsFormikDetailsView";
@@ -15,6 +15,7 @@ export default function RequestsFormikDetails() {
     const { updateRequest } = usePanelContext()
     const { id } = useParams();
 
+    const navigate = useNavigate();
 
     async function onSubmit(values) {
         try {
@@ -29,7 +30,10 @@ export default function RequestsFormikDetails() {
 
             if (response.ok) {
                 updateRequest(id) // le mando el id a la función del contexto
-                console.log("Tu demanda ha sido actualizada.")
+                setTimeout(() => {
+                    navigate('/panel');
+                }, 3000);
+
             } else {
                 console.log("Inténtalo de nuevo.")
             }

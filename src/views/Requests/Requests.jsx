@@ -53,7 +53,7 @@ export default function Requests() {
                 margin={4}
                 display={'flex'}
                 justifyContent={'center'}>
-                <Button variant='outlined' onClick={handleOpen}>
+                <Button variant='contained' onClick={handleOpen}>
                     Quiero añadir una demanda
                 </Button>
                 <Modal

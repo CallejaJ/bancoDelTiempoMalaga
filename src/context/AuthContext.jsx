@@ -98,6 +98,13 @@ export default function AuthContextProvider({ children }) {
         setNewServiceMessage(null)
     }, 3000)
 
+    setTimeout(() => {
+        setNewOfferMessage(null)
+    }, 3000)
+
+    setTimeout(() => {
+        setNewRequestMessage(null)
+    }, 3000)
 
 
 

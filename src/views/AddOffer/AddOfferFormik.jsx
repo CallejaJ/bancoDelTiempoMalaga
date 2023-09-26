@@ -5,6 +5,7 @@ import AddOfferFormikView from "./AddOfferFormikView";
 import { AddOfferFormSchema } from "./AddOfferFormSchema";
 import { useAuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function AddOfferFormik() {
@@ -37,10 +38,14 @@ export default function AddOfferFormik() {
     const { addOffer } = useAuthContext()
 
 
+    const navigate = useNavigate();
     function onSubmit(values, actions) {
-        console.log("onsubmit")
+
         addOffer(values);
         actions.resetForm()
+        setTimeout(() => {
+            navigate('/offers');
+        }, 3000);
     }
 
     return (

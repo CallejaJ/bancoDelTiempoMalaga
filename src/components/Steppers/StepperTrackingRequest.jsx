@@ -7,40 +7,27 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Qué puedo solicitar?',
-        description: `Cualquier tarea que se traduzca en tiempo sabiendo que las horas
-        de todas las personas que forman el banco valen lo mismo. Es importante explicar lo mejor 
-        posible en qué consiste la tarea a realizar, para eso puedes añadir el tipo de servicio o categoría (acompañamiento, clases, taller, apoyo)  .`,
+        label: '¿Puedo transferir mis créditos?',
+        description: `Si has acordado fecha y hora y has recibido el servicio acordado puedes transferir tus créditos a través del botón azul. 
+        Al transferir tus créditos el usuario ofertante que te ha realizado el servicio recibirá los créditos y se descontarán de tu saldo.`,
     },
     {
-        label: '¿Puedo solicitar una tarea si no tengo créditos?',
+        label: '¿Puedo modificar el tiempo ofrecido?',
         description:
-            'Si, hasta un máximo de -20 créditos. Ten en cuenta que por registrarte en la aplicación te regalamos un crédito.'
+            'Claro que si, es muy importante que en el campo de créditos transferidos aparezca el número de horas de la tarea.',
     },
     {
-        label: '¿Quién puede ver mis demandas o solicitudes?',
-        description: `Al aceptar las condiciones generales del banco del tiempo  
-        tus demandas estarán disponibles para todos los visitantes de la aplicación web.`,
+        label: '¿Puedo eliminar mi demanda?',
+        description: `En el caso de que hayan cambiado tus necesidades puedes eliminar la demanda desde tu panel de usuario.`,
     },
-    {
-        label: '¿Cómo contactan conmigo?',
-        description: `A través del hilo de mensajes de la información detallada de cada oferta o demanda solicitada, se acuerda fecha y hora, tiempo convenido y lugar. 
-        En ningún caso en la demanda se facilitará información confidencial como teléfono o dirección.`,
-    },
-    {
-        label: '¿Cómo transfiero mis créditos?',
-        description: `Los créditos se miden en horas, y los transfiere el usuario que recibe el servicio. 
-        Un gestor del banco del tiempo comprobará que el registro se ha realizado correctamente.`,
-    },
-
     {
         label: '¿Qué hago si algo sale mal?',
         description: `Ante cualquier incidencia puedes ponerte en contacto con 
-        los gestores del banco del tiempo A través del teléfono del Banco del Tiempo de tu distrito atención al usuario.`,
+        los gestores del banco del tiempo llamando al teléfono del Banco del Tiempo de tu distrito.`,
     },
 ];
 
-export default function StepperAddRequest() {
+export default function StepperTrackingRequest() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -57,10 +44,10 @@ export default function StepperAddRequest() {
 
     return (
         <Box
-            sx={{ maxWidth: 600 }}
-            marginTop={4}
+            sx={{ maxWidth: 800 }}
+            marginTop={5}
             marginBottom={4}
-            padding={5}
+            padding={6}
         >
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
@@ -68,7 +55,9 @@ export default function StepperAddRequest() {
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption"></Typography>
+                                    <Typography variant="caption"
+                                        align={'justify'}
+                                    ></Typography>
                                 ) : null
                             }
                         >
@@ -100,8 +89,8 @@ export default function StepperAddRequest() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Has terminado el tour.</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                    <Typography>Completa el formulario para solicitar tus créditos.</Typography>
+                    <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
                         Reiniciar
                     </Button>
                 </Paper>

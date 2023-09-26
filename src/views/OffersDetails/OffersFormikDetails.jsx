@@ -3,7 +3,7 @@ import OffersFormikDetailsView from "./OffersFormikDetailsView";
 import { OffersFormikSchema } from "./OffersFormikSchema";
 import { Formik } from "formik";
 import { usePanelContext } from "../../context/PanelContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { initialValuesOffer } from "./UI/offersForm";
 
 
@@ -14,6 +14,7 @@ export default function OffersFormikDetails() {
     const [userOffer, setUserOffer] = useState(null)
     const { updateOffer } = usePanelContext()
     const { id } = useParams();
+    const navigate = useNavigate();
 
 
     async function onSubmit(values) {
@@ -29,7 +30,9 @@ export default function OffersFormikDetails() {
 
             if (response.ok) {
                 updateOffer(id) // le mando el id a la función del contexto
-                console.log("Tu oferta ha sido actualizada.")
+                setTimeout(() => {
+                    navigate('/panel');
+                }, 3000);
             } else {
                 console.log("Inténtalo de nuevo.")
             }

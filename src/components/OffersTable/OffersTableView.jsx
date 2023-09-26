@@ -72,7 +72,7 @@ const headCells = [
         label: 'Fecha de actualización'
     },
     {
-        id: 'user_id',
+        id: 'offer_user_name',
         numeric: true,
         disablePadding: false,
         label: 'Usuario'
@@ -301,7 +301,7 @@ export default function OffersTableView({ offersList }) {
                                                     <TableCell align="left">{row.description}</TableCell>
                                                     <TableCell align="left">{row.register_date}</TableCell>
                                                     <TableCell align="left">{row.update_date}</TableCell>
-                                                    <TableCell align="left">{row.user_id}</TableCell>
+                                                    <TableCell align="left">{row.offer_user_name}</TableCell>
                                                     <TableCell align="left">{row.credits}</TableCell>
                                                     <TableCell align="center">
                                                         <Link to={`/panel/offertracking/${row.id}`}>

@@ -75,8 +75,6 @@ export default function PanelContextProvider({ children }) {
 
     const value = {
         updateOffer, updateOfferMessage, offer,
-        // addOffer, addOfferMessage ,
-        // addRequestMessage, deleteRequestMessage, 
         updateRequestMessage, updateRequest, request
     };
 

@@ -128,6 +128,7 @@ export default function OfferTrackingView({ formik, services, users }) {
                                         />
                                         <TextField
                                             margin="normal"
+                                            multiline
                                             required
                                             fullWidth
                                             label="Descripción de la oferta"

@@ -10,10 +10,9 @@ import StepperAddRequest from "../../components/Steppers/StepperAddRequest";
 
 
 export default function AddRequestFormikView({ formik, services }) {
+
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     const { newRequestMessage } = useAuthContext();
-
-
 
     return (
         <>
@@ -83,7 +82,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                         />
                                         <TextField
                                             sx={{ width: 400 }}
-
+                                            multiline
                                             margin="normal"
                                             required
                                             fullWidth
@@ -104,7 +103,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                             label="Tipo de servicio"
                                             placeholder="Por favor, selecciona uno de los servicios de la lista:"
 
-                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }} name="services_id"
+                                            sx={{ width: 400, marginTop: 2, marginBottom: 1 }} name="services_id"
                                             select
                                             onChange={handleChange}
                                             onBlur={handleBlur}
@@ -135,7 +134,8 @@ export default function AddRequestFormikView({ formik, services }) {
                                             error={touched.credits && Boolean(errors.credits)}
                                             helperText={touched.credits && errors.credits}
                                         />
-                                        <Checkbox type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT." />
+                                        <Checkbox
+                                            type="checkbox" name="acceptedTC" label="Acepto los términos y condiciones del BDT." />
                                         {newRequestMessage ? (
                                             <Alert
                                                 sx={{ mt: 2, mb: 2, height: "54px" }}
@@ -150,7 +150,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                             variant="contained"
                                             type="submit"
                                             fullWidth
-                                            sx={{ mt: 2, mb: 2, height: "54px" }}
+                                            sx={{ mt: 1, mb: 1, height: "54px" }}
                                         >
                                             <span>Crear demanda</span>
                                         </LoadingButton>

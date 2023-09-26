@@ -7,7 +7,7 @@ import Footer from "../../../components/Footer/Footer";
 import RequestMessagesList from "../../../components/MessagesList/RequestMessagesList/RequestMessagesList";
 import StepperSendMessage from "../../../components/Steppers/StepperSendMessage";
 import requestmessages from "../../../assets/requestmessages.png"
-import StepperTrackingOffer from "../../../components/Steppers/StepperTrackingOffer";
+import StepperTrackingRequest from "../../../components/Steppers/StepperTrackingRequest";
 
 
 
@@ -69,7 +69,7 @@ export default function OfferTrackingView({ formik, services, users }) {
                     >
                         <Grid container>
                             <CssBaseline />
-                            <StepperTrackingOffer />
+                            <StepperTrackingRequest />
                             <Grid
                                 item
                                 xs={6}
@@ -88,8 +88,6 @@ export default function OfferTrackingView({ formik, services, users }) {
                                         alignItems: "center",
                                     }}
                                 >
-
-
                                     <Box
                                         component="form"
                                         noValidate
@@ -130,6 +128,7 @@ export default function OfferTrackingView({ formik, services, users }) {
                                             margin="normal"
                                             required
                                             fullWidth
+                                            multiline
                                             label="Descripción de la demanda"
                                             name="description"
                                             autoComplete="description"
