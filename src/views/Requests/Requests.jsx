@@ -39,7 +39,7 @@ export default function Requests() {
 
             >
                 <Grid item xs={3}>
-                    <img src={requests} width={600} />
+                    <img src={requests} width={300} />
                 </Grid>
             </Grid>
             <Box

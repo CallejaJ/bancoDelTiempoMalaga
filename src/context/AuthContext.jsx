@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext(
     {
@@ -129,13 +130,15 @@ export default function AuthContextProvider({ children }) {
                 setLoginMessage("Ya puedes navegar")
             }
             else {
-                setLoginMessage("Hay errores en el formulario. Inténtalo de nuevo")
+                setLoginMessage("¡Inténtalo de nuevo!")
             }
         }
         catch (err) {
             throw new Error(err)
         }
     }
+
+    const navigate = useNavigate();
 
     async function register(
         { name, surname, district, address, pobox, newEmail, password }) {
@@ -150,7 +153,10 @@ export default function AuthContextProvider({ children }) {
             if (response.ok) {
                 setRegisterMessage("¡Registro correcto! Ya puedes iniciar sesión.")
             } else {
-                setRegisterMessage("El usuario ya existe. Inicia sesión.")
+                setRegisterMessage("El usuario ya existe.")
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
             }
         }
         catch (err) {

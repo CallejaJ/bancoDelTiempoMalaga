@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { RequestsFormikSchema } from "./RequestsFormikSchema";
+import { UltimateRequestSchema } from "./UltimateRequestSchema";
 import { Formik } from "formik";
-import { useParams } from "react-router-dom";
-import { initialValuesRequest } from "./UI/requestsForm";
+// import { useParams } from "react-router-dom";
+import { ultimateValuesRequest } from "./UI/ultimateRequestsForm";
 import RequestTrackingView from "./RequestTrackingView";
 
 
@@ -10,49 +10,32 @@ import RequestTrackingView from "./RequestTrackingView";
 
 export default function RequestTracking() {
 
-    const [userRequest, setuserRequest] = useState(null)
-    const { id } = useParams();
+    // const [ultimateRequest, setUltimateRequest] = useState(null)
+    // const { id } = useParams();
 
 
-    async function onSubmit(values) {
-        try {
-            const response = await fetch(`http://localhost:3006/requests/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values)
-            })
-            if (response.ok) {
-                console.log("Tu solicitud se ha enviado.")
-            } else {
-                console.log("Inténtalo de nuevo.")
-            }
-        }
+    // async function onSubmit(values) {
+    //     try {
+    //         const response = await fetch(`http://localhost:3006/requests/${id}`, {
+    //             method: "PUT",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(values)
+    //         })
+    //         if (response.ok) {
+    //             setUltimateRequest("Tu solicitud se ha enviado.")
+    //         } else {
+    //             setUltimateRequest("Inténtalo de nuevo.")
+    //         }
+    //     }
 
-        catch (err) {
-            throw new Error(err)
-        }
-    }
+    //     catch (err) {
+    //         throw new Error(err)
+    //     }
+    // }
 
 
-
-    useEffect(function () {
-        async function getRequest() {
-            try {
-                const response = await fetch(`http://localhost:3006/requests/${id}`)
-                if (response.ok) {
-                    setuserRequest(await response.json())
-                }
-            }
-            catch (err) {
-                throw new Error(err)
-            }
-        }
-        getRequest()
-    },
-        [id, setuserRequest]
-    )
 
     const [servicesList, setServicesList] = useState([]);
 
@@ -98,10 +81,12 @@ export default function RequestTracking() {
 
     return (
         <Formik
-            initialValues={userRequest ?? initialValuesRequest}
+            initialValues={
+                // ultimateRequest ?? 
+                ultimateValuesRequest}
             enableReinitialize={true}
-            validationSchema={RequestsFormikSchema}
-            onSubmit={onSubmit}
+            validationSchema={UltimateRequestSchema}
+            // onSubmit={onSubmit}
         >
             {(props) => <RequestTrackingView
                 formik={props}

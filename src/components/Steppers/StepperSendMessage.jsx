@@ -7,7 +7,7 @@ import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
 
 const steps = [
     {
-        label: '¿Puedo enviar mensajes al usuario de la oferta?',
+        label: '¿Puedo enviar mensajes al usuario de la demanda?',
         description: `Claro que sí, pulsando el botón naranja, puedes enviar una 
         consulta al usuario de la oferta para conocer los detalles y acordar fecha y hora.
         Es muy importante que no facilites tus datos personales, puedes acordar un lugar de 
@@ -59,7 +59,7 @@ export default function StepperSendMessage() {
 
     return (
         <Box
-            sx={{ maxWidth: 800 }}
+            sx={{ maxWidth: 500 }}
             marginTop={1}
             marginBottom={1}
         >

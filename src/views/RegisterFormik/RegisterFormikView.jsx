@@ -318,7 +318,7 @@ export default function RegisterFormikView({ formik }) {
 
                                         {registerMessage ? (
                                             <Alert
-                                                sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                sx={{ mt: 2, mb: 2, height: "54px", width: "280px" }}
                                                 variant="outlined" severity="info" >
                                                 {registerMessage}
                                             </Alert>
@@ -342,7 +342,7 @@ export default function RegisterFormikView({ formik }) {
                                             <Grid item xs>
                                                 <Link to="/login" style={{ textDecoration: 'none' }} >
                                                     <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00", alignContent: "center" }}>
-                                                        ¿Tienes cuenta? Iniciar sesion
+                                                        ¿Tienes cuenta?
                                                     </Typography>
                                                 </Link>
                                             </Grid>

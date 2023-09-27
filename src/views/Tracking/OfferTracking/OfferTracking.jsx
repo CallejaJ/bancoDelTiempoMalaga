@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { OffersFormikSchema } from "./OffersFormikSchema";
+import { UltimateOfferSchema } from "./UltimateOfferSchema";
 import { Formik } from "formik";
-import { useParams } from "react-router-dom";
-import { initialValuesOffer } from "./UI/offersForm";
+// import { useParams } from "react-router-dom";
+import { ultimateOfferForm } from "./UI/ultimateOfferForm";
 import OfferTrackingView from "./OfferTrackingView";
 
 
@@ -10,49 +10,32 @@ import OfferTrackingView from "./OfferTrackingView";
 
 export default function OfferTracking() {
 
-    const [userOffer, setUserOffer] = useState(null)
-    const { id } = useParams();
+    // const [ultimateOffer, setUltimateOffer] = useState(null)
+    // const { id } = useParams();
 
 
-    async function onSubmit(values) {
-        try {
-            const response = await fetch(`http://localhost:3006/offers/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values)
-            })
-            if (response.ok) {
-                console.log("Tu solicitud se ha enviado.")
-            } else {
-                console.log("Inténtalo de nuevo.")
-            }
-        }
+    // async function onSubmit(values) {
+    //     try {
+    //         const response = await fetch(`http://localhost:3006`, {
+    //             method: "PUT",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(values)
+    //         })
+    //         if (response.ok) {
+    //             setUltimateOffer("Tu solicitud se ha enviado.")
+    //         } else {
+    //             setUltimateOffer("Inténtalo de nuevo.")
+    //         }
+    //     }
 
-        catch (err) {
-            throw new Error(err)
-        }
-    }
+    //     catch (err) {
+    //         throw new Error(err)
+    //     }
+    // }
 
 
-
-    useEffect(function () {
-        async function getOffer() {
-            try {
-                const response = await fetch(`http://localhost:3006/offers/${id}`)
-                if (response.ok) {
-                    setUserOffer(await response.json())
-                }
-            }
-            catch (err) {
-                throw new Error(err)
-            }
-        }
-        getOffer()
-    },
-        [id, setUserOffer]
-    )
 
     const [servicesList, setServicesList] = useState([]);
 
@@ -98,10 +81,12 @@ export default function OfferTracking() {
 
     return (
         <Formik
-            initialValues={userOffer ?? initialValuesOffer}
+            initialValues={
+                // ultimateOffer ?? 
+                ultimateOfferForm}
             enableReinitialize={true}
-            validationSchema={OffersFormikSchema}
-            onSubmit={onSubmit}
+            validationSchema={UltimateOfferSchema}
+            // onSubmit={onSubmit}
         >
             {(props) => <OfferTrackingView
                 formik={props}

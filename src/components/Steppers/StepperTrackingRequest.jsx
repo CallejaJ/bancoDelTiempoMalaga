@@ -44,7 +44,7 @@ export default function StepperTrackingRequest() {
 
     return (
         <Box
-            sx={{ maxWidth: 800 }}
+            sx={{ maxWidth: 700 }}
             marginTop={5}
             marginBottom={4}
             padding={6}
@@ -89,8 +89,10 @@ export default function StepperTrackingRequest() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>Completa el formulario para solicitar tus créditos.</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
+                    <Typography>
+                        Completa el formulario para transferir tus créditos.</Typography>
+                    <Button
+                        onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
                         Reiniciar
                     </Button>
                 </Paper>

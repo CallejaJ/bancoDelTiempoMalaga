@@ -2,8 +2,8 @@ import { useAuthContext } from '../../context/AuthContext';
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -152,10 +152,10 @@ export default function LoginFormikView({ formik }) {
                                         helperText={touched.password && errors.password}
                                     />
 
-                                    <FormControlLabel
+                                    {/* <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
                                         label="Recordarme"
-                                    />
+                                    /> */}
                                     {loginMessage ? (
                                         <Alert
                                             sx={{ mt: 2, mb: 2, height: "54px" }}
@@ -173,15 +173,9 @@ export default function LoginFormikView({ formik }) {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link to="/home" style={{ textDecoration: 'none' }}>
-                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
-                                                    ¿Olvidaste tu contraseña?                                                </Typography>
-                                            </Link>
-                                        </Grid>
-                                        <Grid item xs>
                                             <Link to="/register" style={{ textDecoration: 'none' }}>
-                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00" }}>
-                                                    ¿No tienes cuenta? Ir a registro
+                                                <Typography variant="subtitle2" sx={{ marginTop: 1, color: "#ef6c00", alignContent: "center" }}>
+                                                    ¿No tienes cuenta? Ir a registro de usuario
                                                 </Typography>
                                             </Link>
                                         </Grid>

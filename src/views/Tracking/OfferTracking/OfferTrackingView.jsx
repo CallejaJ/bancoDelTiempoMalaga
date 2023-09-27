@@ -8,10 +8,11 @@ import OfferMessagesList from "../../../components/MessagesList/OfferMessagesLis
 import StepperSendMessage from "../../../components/Steppers/StepperSendMessage";
 import offermessages from "../../../assets/offermessages.png"
 import StepperTrackingOffer from "../../../components/Steppers/StepperTrackingOffer";
+import OfferDetailsCard from "../../../components/OfferDetailsCard/OfferDetailsCard";
 
 
 
-export default function OfferTrackingView({ formik, services, users }) {
+export default function OfferTrackingView({ formik, users }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -30,6 +31,8 @@ export default function OfferTrackingView({ formik, services, users }) {
                 <Grid item xs={3}>
                     <img src={offermessages} width={600} />
                 </Grid>
+                <Grid item xs={3}>
+                </Grid>
             </Grid>
             <Box
                 alignItems={'center'}
@@ -39,7 +42,7 @@ export default function OfferTrackingView({ formik, services, users }) {
                 margin={1}
             >
                 <StepperSendMessage />
-
+                <OfferDetailsCard />
             </Box>
             <Box
                 padding={1}
@@ -47,6 +50,7 @@ export default function OfferTrackingView({ formik, services, users }) {
                 display={'flex'}
                 justifyContent={'center'}>
             </Box>
+            <OfferMessagesList />
             <Box
                 sx={{
                     top: "modal",
@@ -55,7 +59,6 @@ export default function OfferTrackingView({ formik, services, users }) {
                     marginBottom: 1
                 }}
             >
-                <OfferMessagesList />
                 <Container
                     component="main">
                     <Box
@@ -97,74 +100,9 @@ export default function OfferTrackingView({ formik, services, users }) {
                                         sx={{ mt: 8 }}
                                     >
                                         <TextField
-                                            margin="normal"
-                                            required
-                                            fullWidth
-                                            label="Usuario ofertante"
-                                            name="offer_user_name"
-                                            autoComplete="offer_user_name"
-                                            placeholder="Usuario ofertante"
-                                            autoFocus
-                                            type="text"
-                                            onBlur={handleBlur}
-                                            value={values.offer_user_name}
-                                        />
-                                        <TextField
-                                            margin="normal"
-                                            required
-                                            fullWidth
-                                            id="name"
-                                            label="Título"
-                                            name="name"
-                                            autoComplete="name"
-                                            autoFocus
-                                            type="text"
-                                            placeholder="Título de la oferta"
-                                            value={values.name}
-                                            onBlur={handleBlur}
-                                            onChange={handleChange}
-                                            error={touched.name && Boolean(errors.name)}
-                                            helperText={touched.name && errors.name}
-                                        />
-                                        <TextField
-                                            margin="normal"
-                                            multiline
-                                            required
-                                            fullWidth
-                                            label="Descripción de la oferta"
-                                            name="description"
-                                            autoComplete="description"
-                                            autoFocus
-                                            type="text"
-                                            placeholder="Describe que ofreces"
-                                            value={values.description}
-                                            onBlur={handleBlur}
-                                            onChange={handleChange}
-                                            error={touched.description && Boolean(errors.description)}
-                                            helperText={touched.description && errors.description}
-                                        />
-                                        <TextField
                                             select
                                             sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
-                                            label="Tipo de servicio"
-                                            placeholder="Por favor, selecciona uno de los servicios de la lista:"
-                                            name="services_id"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.services_id}
-                                            error={touched.services_id && Boolean(errors.services_id)}
-                                            helperText={touched.services_id && errors.services_id}
-                                        >
-                                            {services.map((service) => (
-                                                <MenuItem key={service.id} value={`${service.id}`}>
-                                                    {service.name}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
-                                        <TextField
-                                            select
-                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
-                                            label="Usuario demandante"
+                                            label="Usuario que ha realizado la tarea"
                                             placeholder="Por favor, selecciona tu nombre de usuario de la lista:"
                                             name="holder_user_name"
                                             onChange={handleChange}
@@ -184,11 +122,11 @@ export default function OfferTrackingView({ formik, services, users }) {
                                             required
                                             fullWidth
                                             id="credits"
-                                            label="Créditos"
+                                            label="Créditos a solicitar"
                                             name="credits"
                                             autoComplete="credits"
                                             autoFocus
-                                            type="text"
+                                            type="number"
                                             placeholder="Describe el tiempo de la tarea"
                                             value={values.credits}
                                             onBlur={handleBlur}

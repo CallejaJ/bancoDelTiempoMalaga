@@ -109,8 +109,8 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={"center"}
-                        padding={headCell.disablePadding ? 'none' : 'normal'}
+                        align={'left'}
+                        // padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
                         <TableSortLabel
@@ -344,8 +344,7 @@ export default function UserOffersTableView({ userOffersList }) {
                             </Table>
                         </TableContainer>
                         <TablePagination
-                            rowsPerPageOptions={[3, 5]}
-                            component="div"
+                            rowsPerPageOptions={[5, 10]} component="div"
                             count={userOffersList.length}
                             rowsPerPage={rowsPerPage}
                             page={page}

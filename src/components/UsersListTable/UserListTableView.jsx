@@ -96,8 +96,8 @@ function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        // align={headCell.numeric ? 'right' : 'left'}
-                        padding={headCell.disablePadding ? 'none' : 'normal'}
+                        align={'left'}
+                        // padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         <TableSortLabel
                             onClick={createSortHandler(headCell.id)}

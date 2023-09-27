@@ -41,7 +41,7 @@ export default function Offers() {
 
             >
                 <Grid item xs={3}>
-                    <img src={offers} width={600} />
+                    <img src={offers} width={300} />
                 </Grid>
             </Grid>
             <Box
