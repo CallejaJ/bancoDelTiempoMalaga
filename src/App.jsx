@@ -19,7 +19,7 @@ import RequestsFormikDetails from "./views/RequestsDetails/RequestsFormikDetails
 import { roles } from "./const/roles";
 
 
-import { blue, orange } from "@mui/material/colors";
+import { blue, orange, grey } from "@mui/material/colors";
 import { CssBaseline, createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import "./App.css";
@@ -28,10 +28,11 @@ import AddOfferformik from "./views/AddOffer/AddOfferFormik";
 import AddRequestFormik from "./views/AddRequest/AddrequestFormik";
 import PanelAdminFormik from "./views/PanelAdmin/PanelAdminFormik";
 import ServiceFormikDetails from "./views/ServicesDetails/ServiceFormikDetails";
-import DrawerUser from "./views/DrawerUser/DrawerUser";
+import DrawerUser from "./components/DrawerUser/DrawerUser";
 import AddServiceFormik from "./views/AddService/AddServiceFormik";
 import OfferTracking from "./views/Tracking/OfferTracking/OfferTracking";
 import RequestTracking from "./views/Tracking/RequestTracking/RequestTracking";
+import TransferOrders from "./views/TransferOrders/TransferOrders";
 
 
 const orangeTheme = createTheme({
@@ -45,11 +46,18 @@ const orangeTheme = createTheme({
       light: blue[400],
       main: blue[600],
       dark: blue[800],
+
+      grey: {
+        light: grey[400],
+        main: grey[600],
+        dark: grey[800],
+      }
     },
     text: {
       primary: "#006cff",
       secondary: "#242424",
-      grey: '#f5f5f5'
+      grey: '#f5f5f5',
+      white: 'ghostwhite'
     }
   },
   components: {
@@ -100,16 +108,11 @@ const orangeTheme = createTheme({
           padding: "14px",
           typography: 'body1'
         }
-
-
       },
     }
   }
 });
 
-// const socket = socketIO.connect('http://localhost:4000');
-
-{/* <SkewLoader color="rgba(0, 108, 255, 1)" /> */ }
 
 
 export default function App() {
@@ -121,6 +124,8 @@ export default function App() {
     }, [location.pathname]);
     return children;
   };
+
+
   return (
     <>
       <BrowserRouter>
@@ -152,7 +157,7 @@ export default function App() {
                       <Route path="/panel/requestsdetails/:id" element={<RequestsFormikDetails />} />
                       <Route path="/panel/addoffer/" element={<AddOfferformik />} />
                       <Route path="/panel/addrequest/" element={<AddRequestFormik />} />
-                      {/* <Route path="/panel/messagerie/" element={<Messagerie />} /> */}
+                      <Route path="/panel/transferorders/" element={<TransferOrders />} />
                       <Route path="/panel/offertracking/:id" element={<OfferTracking />} />
                       <Route path="/panel/requesttracking/:id" element={<RequestTracking />} />
                     </Route>

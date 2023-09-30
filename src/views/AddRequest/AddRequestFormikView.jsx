@@ -59,7 +59,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                         component="form"
                                         noValidate
                                         onSubmit={handleSubmit}
-                                        sx={{ mt: 8 }}
+                                        sx={{ mt: 8, width: "400px" }}
                                     >
                                         <TextField
                                             sx={{ width: 400 }}
@@ -71,7 +71,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                             label="Título de la demanda"
                                             name="name"
                                             autoComplete="name"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Resumen tu demanda"
                                             value={values.name}
@@ -90,7 +90,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                             label="Descripción de la demanda"
                                             name="description"
                                             autoComplete="description"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Describe que necesitas"
                                             value={values.description}
@@ -125,7 +125,7 @@ export default function AddRequestFormikView({ formik, services }) {
                                             label="Créditos"
                                             name="credits"
                                             autoComplete="credits"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Describe el tiempo de la tarea"
                                             value={values.credits}

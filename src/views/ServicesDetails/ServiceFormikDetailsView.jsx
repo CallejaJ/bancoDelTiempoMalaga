@@ -72,7 +72,7 @@ export default function ServiceFormikDetailsView({ formik }) {
                                             label="Típo de servicio"
                                             name="name"
                                             autoComplete="name"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Título de la categoría"
                                             // value={values.name}

@@ -3,102 +3,56 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
+import { useAuthContext } from '../../context/AuthContext';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'react-router-dom';
-import { useAuthContext } from '../../../context/AuthContext';
-import EmailIcon from '@mui/icons-material/Email';
 
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-
-function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0]);
-        if (order !== 0) {
-            return order;
-        }
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-}
 
 const headCells = [
-
+    {
+        id: 'id',
+        numeric: true,
+        disablePadding: true,
+        label: 'ID',
+    },
     {
         id: 'name',
         numeric: false,
         disablePadding: true,
-        label: 'Título',
+        label: 'Nombre',
     },
     {
-        id: 'description',
+        id: 'surname',
         numeric: false,
         disablePadding: false,
-        label: 'Descripción',
+        label: 'Apellidos',
     },
     {
         id: 'register_date',
-        numeric: false,
-        disablePadding: false,
-        label: 'Fecha de publicación',
-    },
-    {
-        id: 'update_date',
-        numeric: false,
-        disablePadding: false,
-        label: 'Fecha de actualización'
-    },
-    {
-        id: 'services_id',
         numeric: true,
         disablePadding: false,
-        label: 'Categoría'
+        label: 'Registrado',
     },
     {
         id: 'credits',
-        numeric: false,
+        numeric: true,
         disablePadding: false,
         label: 'Créditos',
     },
     {
-        id: 'info',
-        numeric: false,
+        id: '',
+        numeric: true,
         disablePadding: false,
         label: 'Acciones',
-    },
-    {
-        id: 'messages',
-        numeric: false,
-        disablePadding: false,
-        label: 'Mensajes',
     },
 ];
 
 function EnhancedTableHead(props) {
-    const { order, orderBy, onRequestSort } =
-        props;
+    props;
     const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
+        (event, property);
     };
 
     return (
@@ -111,17 +65,13 @@ function EnhancedTableHead(props) {
                     <TableCell
                         key={headCell.id}
                         align={'left'}
-                        // padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.id ? order : false}
+                    // padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
                         >
-                            {orderBy === headCell.id ? (
+                            {headCell.id ? (
                                 <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                 </Box>
                             ) : null}
                             {headCell.label}
@@ -135,10 +85,7 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-    orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
 };
 
@@ -161,7 +108,7 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Tus demandas publicadas
+                Usuarios registrados
             </Typography>
 
 
@@ -179,25 +126,18 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function UserRequestsTableView({ userRequestsList }) {
+export default function CreditMessagesTableView({ creditMessagesList }) {
 
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('Título');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const { deleteRequest } = useAuthContext();
+    const { deleteUser } = useAuthContext();
 
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = userRequestsList.map((n) => n.id);
+            const newSelected = creditMessagesList.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -239,15 +179,15 @@ export default function UserRequestsTableView({ userRequestsList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userRequestsList.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - creditMessagesList.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            stableSort(userRequestsList, getComparator(order, orderBy)).slice(
+            (creditMessagesList).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage, userRequestsList],
+        [page, rowsPerPage, creditMessagesList],
     );
 
     return (
@@ -259,8 +199,8 @@ export default function UserRequestsTableView({ userRequestsList }) {
             >
 
                 <Box
-
-                    padding={2} margin={2}
+                    padding={2}
+                    margin={2}
                     sx={{ width: '90%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
                         <EnhancedTableToolbar numSelected={selected.length} />
@@ -271,16 +211,13 @@ export default function UserRequestsTableView({ userRequestsList }) {
                             >
                                 <EnhancedTableHead
                                     numSelected={selected.length}
-                                    order={order}
-                                    orderBy={orderBy}
                                     onSelectAllClick={handleSelectAllClick}
-                                    onRequestSort={handleRequestSort}
-                                    rowCount={userRequestsList.length}
+                                    rowCount={creditMessagesList.length}
                                 />
                                 <TableBody>
-                                    {visibleRows.map((row) => {
+                                    {visibleRows.map((row, index) => {
                                         const isItemSelected = isSelected(row.id);
-                                        // const labelId = `enhanced-table-checkbox-${index}`;
+                                        const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -295,47 +232,29 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
+                                                <TableCell
+                                                    component="th"
+                                                    id={labelId}
+                                                    scope="row"
+                                                    padding="none"
+                                                >
+                                                    {row.id}
+                                                </TableCell>
                                                 <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.description}</TableCell>
+                                                <TableCell align="left">{row.surname}</TableCell>
+                                                <TableCell align="left">{row.district}</TableCell>
+                                                <TableCell align="left">{row.email}</TableCell>
+                                                <TableCell align="left">{row.address}</TableCell>
+                                                <TableCell align="left">{row.pobox}</TableCell>
+                                                <TableCell align="left">{row.role}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">{row.services_id}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
-                                                    <Link to={`/panel/requestsdetails/${row.id}`}>
-                                                        <Tooltip title="Editar">
-                                                        <IconButton
-                                                            aria-label="edit"
-                                                            color="secondary"
-                                                            variant="contained"
-                                                            type="submit"
-                                                        >
-                                                            <EditIcon />
-                                                        </IconButton>
-                                                        </Tooltip>
-                                                    </Link>
                                                     <Tooltip title="Eliminar">
-                                                        <IconButton onClick={() => deleteRequest(row.id)} aria-label="delete" color="secondary">
-                                                            <DeleteIcon />
-                                                        </IconButton>
+                                                        <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
-                                                <TableCell align="center">{row.messages}
-                                                    <Link to={`/panel/requesttracking/${row.id}`}>
-                                                        <Tooltip title="Mensajes recibidos">
-                                                            <IconButton
-                                                                aria-label="edit"
-                                                                color="secondary"
-                                                                variant="contained"
-                                                                type="submit"
-                                                            >
-                                                                <EmailIcon />
-                                                            </IconButton>
-                                                        </Tooltip>
-                                                    </Link>
-                                                </TableCell>
                                             </TableRow>
-
                                         );
                                     })}
                                     {emptyRows > 0 && (
@@ -351,13 +270,14 @@ export default function UserRequestsTableView({ userRequestsList }) {
                             </Table>
                         </TableContainer>
                         <TablePagination
-                            rowsPerPageOptions={[5, 10]} component="div"
-                            count={userRequestsList.length}
+                            rowsPerPageOptions={[5, 10]}
+                            component="div"
+                            count={creditMessagesList.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                            labelRowsPerPage={"Ofertas por página"}
+                            labelRowsPerPage={"Mensajes por página"}
                         />
                     </Paper>
                 </Box>

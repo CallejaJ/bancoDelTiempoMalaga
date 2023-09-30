@@ -80,8 +80,17 @@ export default function Home() {
 
             {/* bloque de texto */}
 
-            <Box pt={1} sx={{ width: '100%' }}>
-                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+            <Box
+                display={'flex'}
+                justifyContent={'center'}
+                pt={1}
+                sx={{ width: '100%', backgroundColor: "#fafafa" }}>
+                <Grid container
+                    maxWidth="md"
+                    padding={5}
+                    rowSpacing={3}
+                    columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             El Banco del Tiempo es un proyecto que se desarrolla en varios países del mundo
@@ -114,19 +123,23 @@ export default function Home() {
                     </Grid>
                 </Grid>
             </Box>
-
-
-
-
+            <Box marginTop={4} marginBottom={4}>
             <CarouselHome />
+            </Box>
 
             {/* bloque de texto */}
 
             <Box
+                display={'flex'}
+                justifyContent={'center'}
                 pt={1}
-                sx={{ width: '100%' }}
+                sx={{ width: '100%', backgroundColor: "#fafafa" }}
             >
-                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+                <Grid container
+                    maxWidth="md"
+                    padding={5}
+                    rowSpacing={3}
+                    columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             Una hora siempre es a cambio de otra hora, independientemente

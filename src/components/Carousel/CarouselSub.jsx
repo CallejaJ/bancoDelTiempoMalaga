@@ -3,19 +3,20 @@ import { Paper, Box, Typography } from "@mui/material";
 function Item({ item }) {
     return (
         <Paper
-            elevation={0}>
+            elevation={0}
+        >
             <Box alignItems="center" justifyContent="center" sx={{ display: { xs: "none", sm: "flex" } }}>
                 <img
                     src={item.image}
                     alt={item.title}
-                    style={{ width: "20%", height: "20%" }}
+                    style={{ width: "15%", height: "15%" }}
                 />
             </Box>
             <Box alignItems="center" justifyContent="center" sx={{ display: { xs: "flex", sm: "none" } }}>
                 <img
                     src={item.image}
                     alt={item.title}
-                    style={{ width: "20%", height: "20% " }}
+                    style={{ width: "15%", height: "15% " }}
                 />
             </Box>
             <Box

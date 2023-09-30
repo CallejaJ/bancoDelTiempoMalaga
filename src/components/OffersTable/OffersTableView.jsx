@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-// import EmailIcon from '@mui/icons-material/Email';
 import { Watch } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import InfoIcon from '@mui/icons-material/Info';
@@ -41,12 +40,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    // {
-    //     id: 'id',
-    //     numeric: true,
-    //     disablePadding: true,
-    //     label: 'ID',
-    // },
+
     {
         id: 'name',
         numeric: false,
@@ -289,14 +283,6 @@ export default function OffersTableView({ offersList }) {
                                                 >
                                                     <TableCell>
                                                     </TableCell>
-                                                    {/* <TableCell
-                                                        component="th"
-                                                        id={labelId}
-                                                        scope="row"
-                                                        padding="none"
-                                                    >
-                                                        {row.id}
-                                                    </TableCell> */}
                                                     <TableCell align="left">{row.name}</TableCell>
                                                     <TableCell align="left">{row.description}</TableCell>
                                                     <TableCell align="left">{row.register_date}</TableCell>
@@ -311,7 +297,9 @@ export default function OffersTableView({ offersList }) {
                                                                 variant="contained"
                                                                 type="submit"
                                                             >
+                                                                <Tooltip title="Debes estar logueado para ver los detalles">
                                                                 <InfoIcon />
+                                                                </Tooltip>
                                                             </IconButton>
                                                         </Link>
                                                     </TableCell>
@@ -353,7 +341,7 @@ export default function OffersTableView({ offersList }) {
                         height="80"
                         width="80"
                         radius="48"
-                        color="#4fa94d"
+                        color="#ef6c00"
                         ariaLabel="watch-loading"
                         wrapperStyle={{}}
                         wrapperClassName=""

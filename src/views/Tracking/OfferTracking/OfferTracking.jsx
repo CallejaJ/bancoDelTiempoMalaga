@@ -1,39 +1,43 @@
 import { useEffect, useState } from "react";
 import { UltimateOfferSchema } from "./UltimateOfferSchema";
 import { Formik } from "formik";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ultimateOfferForm } from "./UI/ultimateOfferForm";
 import OfferTrackingView from "./OfferTrackingView";
+import { useAuthContext } from "../../../context/AuthContext";
 
 
 
 
 export default function OfferTracking() {
 
-    // const [ultimateOffer, setUltimateOffer] = useState(null)
-    // const { id } = useParams();
+    const [ultimateOffer, setUltimateOffer] = useState(null)
+    const { id } = useParams();
+    const { token } = useAuthContext();
 
 
-    // async function onSubmit(values) {
-    //     try {
-    //         const response = await fetch(`http://localhost:3006`, {
-    //             method: "PUT",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(values)
-    //         })
-    //         if (response.ok) {
-    //             setUltimateOffer("Tu solicitud se ha enviado.")
-    //         } else {
-    //             setUltimateOffer("Inténtalo de nuevo.")
-    //         }
-    //     }
+    async function onSubmit(values) {
+        try {
+            const response = await fetch(`http://localhost:3006/transfers/offer/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
 
-    //     catch (err) {
-    //         throw new Error(err)
-    //     }
-    // }
+                },
+                body: JSON.stringify(values)
+            })
+            if (response.ok) {
+                setUltimateOffer("Tu solicitud se ha enviado.")
+            } else {
+                setUltimateOffer("Inténtalo de nuevo.")
+            }
+        }
+
+        catch (err) {
+            throw new Error(err)
+        }
+    }
 
 
 
@@ -82,11 +86,11 @@ export default function OfferTracking() {
     return (
         <Formik
             initialValues={
-                // ultimateOffer ?? 
+                ultimateOffer ?? 
                 ultimateOfferForm}
             enableReinitialize={true}
             validationSchema={UltimateOfferSchema}
-            // onSubmit={onSubmit}
+            onSubmit={onSubmit}
         >
             {(props) => <OfferTrackingView
                 formik={props}

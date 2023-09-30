@@ -1,11 +1,9 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { useAuthContext } from '../../context/AuthContext';
@@ -282,8 +280,9 @@ export default function UsersListTableView({ usersList }) {
                                                 <TableCell align="left">{row.register_date}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
+                                                    <Tooltip title="Eliminar">
                                                     <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
-
+                                                    </Tooltip>
                                                 </TableCell>
                                             </TableRow>
                                         );

@@ -276,7 +276,6 @@ export default function OfferMessagesListView({ messagesList, formik, newMessage
                                 label="Responder al hilo de mensajes"
                                 name="message"
                                 autoComplete="message"
-                                autoFocus
                                 type="text"
                                 text="Responder al hilo de mensajes"
                                 value={values.message}
@@ -397,10 +396,10 @@ export default function OfferMessagesListView({ messagesList, formik, newMessage
                     marginBottom={6}
                 >
                     <Watch
-                        height="200"
-                        width="200"
+                        height="80"
+                        width="80"
                         radius="48"
-                        color="#1565c0"
+                        color="#ef6c00"
                         ariaLabel="watch-loading"
                         wrapperStyle={{}}
                         wrapperClassName=""

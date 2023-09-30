@@ -3,15 +3,15 @@ import { useAuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Box, Container, AppBar, MenuItem, ListItemText, Toolbar, IconButton, Typography, Menu, Tooltip, Button, CssBaseline } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
-// import menu from "../../assets/icons/menu.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from '@emotion/styled';
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
-// import { roles } from "../../const/roles";
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
 import PropTypes from 'prop-types';
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 import { menu } from "./menu"
+import logotr from "../../assets/logotr.png"
+
 
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -110,6 +110,7 @@ export default function Header({ title, props }) {
 
                                     </Menu>
                                 </Box>
+                                <img src={logotr} height={"48px"} />
                                 <Typography
                                     variant="h6"
                                     component="div"

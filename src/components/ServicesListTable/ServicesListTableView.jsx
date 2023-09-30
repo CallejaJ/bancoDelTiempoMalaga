@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { useAuthContext } from '../../context/AuthContext';
@@ -230,25 +230,28 @@ export default function servicesListTableView({ servicesList }) {
                                                 sx={{ cursor: 'pointer' }}
                                             >
                                                 <TableCell
-                                                    align="left">
+                                                >
                                                 </TableCell>
                                                 <TableCell
                                                     component="th"
                                                     id={labelId}
                                                     scope="row"
                                                     padding="none"
-                                                    align="center"
+                                                    align="left "
                                                 >
                                                     {row.id}
                                                 </TableCell>
-                                                <TableCell align="center">{row.name}</TableCell>
-                                                <TableCell align="center">{row.register_date}</TableCell>
-                                                <TableCell align="center">{row.update_date}</TableCell>
-                                                <TableCell align="center">
+                                                <TableCell align="left">{row.name}</TableCell>
+                                                <TableCell align="left">{row.register_date}</TableCell>
+                                                <TableCell align="left">{row.update_date}</TableCell>
+                                                <TableCell align="left">
+                                                    <Tooltip title="Eliminar">
                                                     <IconButton onClick={() => deleteService(row.id)} aria-label="delete" color="secondary">
                                                         <DeleteIcon />
                                                     </IconButton>
+                                                    </Tooltip>
                                                     <Link to={`/adminpanel/servicedetails/${row.id}`}>
+                                                        <Tooltip title="Editar">
                                                         <IconButton
                                                             aria-label="edit"
                                                             color="secondary"
@@ -257,6 +260,7 @@ export default function servicesListTableView({ servicesList }) {
                                                         >
                                                             <EditIcon />
                                                         </IconButton>
+                                                        </Tooltip>
                                                     </Link>
                                                 </TableCell>
                                             </TableRow>

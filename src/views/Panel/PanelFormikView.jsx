@@ -85,7 +85,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Nombre"
                                             name="name"
                                             autoComplete="name"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Escribe tu nombre"
                                             value={values.name}
@@ -102,7 +102,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Apellidos"
                                             name="surname"
                                             autoComplete="surname"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Escribe tus apellidos"
                                             value={values.surname}
@@ -120,7 +120,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Dirección"
                                             name="address"
                                             autoComplete="address"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Escribe tu dirección"
                                             value={values.address}
@@ -137,7 +137,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Distrito"
                                             name="district"
                                             autoComplete="district"
-                                            autoFocus
+
                                             type="number"
                                             placeholder="Escribe tu distrito"
                                             value={values.district}
@@ -155,7 +155,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Código postal"
                                             name="pobox"
                                             autoComplete="pobox"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Escribe tu código postal"
                                             value={values.pobox}
@@ -173,7 +173,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Créditos disponibles"
                                             name="credits"
                                             autoComplete="credits"
-                                            autoFocus
+
                                             type="text"
                                             value={values.credits}
                                         />
@@ -215,7 +215,7 @@ export default function PanelFormikView({ formik }) {
                                             label="Correo electrónico"
                                             name="email"
                                             autoComplete="newEmail"
-                                            autoFocus
+
                                             type="email"
                                             placeholder="Modifica tu correo electrónico"
                                             value={values.email}
@@ -286,7 +286,6 @@ export default function PanelFormikView({ formik }) {
                                         >
                                             <span>Actualizar</span>
                                         </LoadingButton>
-
                                     </Box>
                                 </Box>
                             </Grid>
@@ -308,7 +307,6 @@ export default function PanelFormikView({ formik }) {
                                         alignItems: "center",
                                     }}
                                 >
-
                                     <StepperDataPanel />
                                 </Box>
                             </Grid>

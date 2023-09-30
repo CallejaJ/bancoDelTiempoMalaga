@@ -9,7 +9,7 @@ export default function PublicRoute() {
     const { user } = useAuthContext()
 
     if (user) {
-        return <Navigate to="/requests" />;
+        return <Navigate to="/panel/transferorders" />;
     }
     return (
         <div>

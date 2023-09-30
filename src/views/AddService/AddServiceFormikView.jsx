@@ -70,7 +70,7 @@ export default function AddServiceFormikView({ formik }) {
                                             label="Título"
                                             name="name"
                                             autoComplete="name"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Título de la categoría"
                                             value={values.name}

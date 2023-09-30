@@ -2,6 +2,9 @@ import Footer from '../../components/Footer/Footer';
 import guide from "../../assets/guide.png"
 import clockbdt from "../../assets/clockbdt.png"
 import credit from "../../assets/credit.png"
+import userguide from "../../assets/userguide.png"
+
+userguide
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import { Box, Typography, Grid, Button, Modal } from '@mui/material';
 import Header from '../../components/Header/Header';
@@ -51,8 +54,17 @@ export default function UserGuide() {
 
             {/* bloque de texto */}
 
-            <Box sx={{ width: '100%' }}>
-                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+            <Box
+                display={'flex'}
+                justifyContent={'center'}
+                pt={1}
+                sx={{ width: '100%', backgroundColor: "#fafafa" }}
+            >
+                <Grid container
+                    maxWidth="md"
+                    padding={5}
+                    rowSpacing={3}
+                    columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             El intercambio consiste en ofrecer un determinado servicio
@@ -104,8 +116,17 @@ export default function UserGuide() {
 
             {/* bloque de texto */}
 
-            <Box sx={{ width: '100%' }}>
-                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+            <Box
+                display={'flex'}
+                justifyContent={'center'}
+                pt={1}
+                sx={{ width: '100%', backgroundColor: "#fafafa" }}
+            >
+                <Grid container
+                    maxWidth="md"
+                    padding={5}
+                    rowSpacing={3}
+                    columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             Para formar parte del Banco del Tiempo y formar partes de los intercambios
@@ -148,17 +169,27 @@ export default function UserGuide() {
             >
                 <Grid
                     item xs={3}
-                    marginTop={0}
-                    marginBottom={0}
+
                 >
-                    <img src={guide} width={500} />
+                    <img src={guide} width={500}
+                    />
                 </Grid>
             </Grid>
 
             {/* bloque de texto */}
 
-            <Box pt={1} sx={{ width: '100%' }}>
-                <Grid container padding={5} rowSpacing={3} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+
+            <Box
+                display={'flex'}
+                justifyContent={'center'}
+                pt={1}
+                sx={{ width: '100%', backgroundColor: "#fafafa" }}
+            >
+                <Grid container
+                    maxWidth="md"
+                    padding={5}
+                    rowSpacing={3}
+                    columnSpacing={{ xs: 2, sm: 3, md: 4 }}>                    
                     <Grid item xs={6}>
                         <Typography variant="subtitle1" align="justify" style={{ color: 'grey' }} gutterBottom>
                             Por ejemplo, si un usuario ha realizado servicios a
@@ -196,12 +227,17 @@ export default function UserGuide() {
 
                 {/* ventana de texto */}
 
+            </Box>
+
+
+
                 <Box
                     padding={2}
                     margin={4}
+                marginBottom={6}
                     display={'flex'}
                     justifyContent={'center'}>
-                    <Button variant='outlined' onClick={handleOpen}>Me interesa el Banco del Tiempo</Button>
+                <Button variant='contained' onClick={handleOpen}>Me interesa el Banco del Tiempo</Button>
                     <Modal
                         open={open}
                         onClose={handleClose}
@@ -216,10 +252,25 @@ export default function UserGuide() {
                                 Accede al formulario de registro <Link to="/register">aquí</Link>
                             </Typography>
                         </Box>
-                    </Modal>
-                </Box>
-
+                </Modal>
             </Box>
+
+            <Grid
+                container
+                justifyContent={'center'}
+                direction={'column'}
+                alignItems={'center'}
+                marginTop={3}
+                marginBottom={3}
+            >
+                <Grid
+                    item xs={3}
+                    marginTop={0}
+                    marginBottom={0}
+                >
+                    <img src={userguide} width={500} />
+                </Grid>
+            </Grid>
             <Footer />
             <ScrollToTop />
         </>

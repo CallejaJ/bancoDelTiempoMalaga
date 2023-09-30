@@ -5,7 +5,7 @@ const userMenuPages = [
     { Text: "Panel de usuario", location: "/panel" },
     { Text: "Ofertas", location: "/offers" },
     { Text: "Demandas", location: "/requests" },
-    { Text: "Mensajes", location: "/messagerie" },
+    { Text: "Transferencias", location: "/panel/transferorders" },
     { Text: "¿Cómo funciona?", location: "/userguide" },
 ]
 
@@ -14,6 +14,7 @@ const adminMenuPages = [
     { Text: "Panel de administrador", location: "/adminpanel" },
     { Text: "Ofertas", location: "/offers" },
     { Text: "Demandas", location: "/requests" },
+    { Text: "Transferencias", location: "/panel/transferorders" },
     { Text: "¿Cómo funciona?", location: "/userguide" },
 ]
 

@@ -73,7 +73,7 @@ export default function RequestsFormikDetailsView({ formik, services }) {
                                             label="Título de la demanda"
                                             name="name"
                                             autoComplete="name"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Título de la demanda"
                                             value={values.name}
@@ -90,7 +90,7 @@ export default function RequestsFormikDetailsView({ formik, services }) {
                                             label="Descripción de la demanda"
                                             name="description"
                                             autoComplete="description"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Describe que necesitas"
                                             value={values.description}
@@ -127,7 +127,7 @@ export default function RequestsFormikDetailsView({ formik, services }) {
                                             label="Créditos"
                                             name="credits"
                                             autoComplete="credits"
-                                            autoFocus
+
                                             type="text"
                                             placeholder="Describe el tiempo de la tarea"
                                             value={values.credits}

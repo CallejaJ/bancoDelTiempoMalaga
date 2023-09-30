@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 // import EmailIcon from '@mui/icons-material/Email';
@@ -310,7 +310,9 @@ export default function RequestsTableView({ requestsList }) {
                                                         variant="contained"
                                                         type="submit"
                                                     >
-                                                        <InfoIcon />
+                                                            <Tooltip title="Debes estar logueado para ver los detalles">
+                                                                <InfoIcon />
+                                                            </Tooltip>
                                                     </IconButton>
                                                     </Link>
                                                 </TableCell>

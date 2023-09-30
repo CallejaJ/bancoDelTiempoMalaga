@@ -125,7 +125,7 @@ export default function OfferTrackingView({ formik, users }) {
                                             label="Créditos a solicitar"
                                             name="credits"
                                             autoComplete="credits"
-                                            autoFocus
+
                                             type="number"
                                             placeholder="Describe el tiempo de la tarea"
                                             value={values.credits}

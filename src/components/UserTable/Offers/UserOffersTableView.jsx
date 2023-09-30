@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton,
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useAuthContext } from '../../../context/AuthContext';
+import EmailIcon from '@mui/icons-material/Email';
 
 
 
@@ -43,12 +44,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    // {
-    //     id: 'id',
-    //     numeric: true,
-    //     disablePadding: true,
-    //     label: 'ID',
-    // },
+
     {
         id: 'name',
         numeric: false,
@@ -90,6 +86,12 @@ const headCells = [
         numeric: false,
         disablePadding: false,
         label: 'Acciones',
+    },
+    {
+        id: 'messages',
+        numeric: false,
+        disablePadding: false,
+        label: 'Mensajes',
     },
 ];
 
@@ -295,14 +297,6 @@ export default function UserOffersTableView({ userOffersList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                {/* <TableCell
-                                                    component="th"
-                                                    id={labelId}
-                                                    scope="row"
-                                                    padding="none"
-                                                >
-                                                    {row.id}
-                                                </TableCell> */}
                                                 <TableCell align="left">{row.name}</TableCell>
                                                 <TableCell align="left">{row.description}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
@@ -311,6 +305,7 @@ export default function UserOffersTableView({ userOffersList }) {
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Link to={`/panel/offersdetails/${row.id}`}>
+                                                        <Tooltip title="Editar">
                                                         <IconButton
                                                             aria-label="edit"
                                                             color="secondary"
@@ -319,9 +314,29 @@ export default function UserOffersTableView({ userOffersList }) {
                                                         >
                                                             <EditIcon />
                                                         </IconButton>
+                                                        </Tooltip>
                                                     </Link>
-                                                    <IconButton onClick={() => deleteOffer(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
+                                                    <Tooltip title="Eliminar">
+                                                        <IconButton onClick={() => deleteOffer(row.id)} aria-label="delete" color="secondary">
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </TableCell>
+                                                <TableCell align="center">{row.messages}
+                                                    <Link to={`/panel/offertracking/${row.id}`}>
+                                                        <Tooltip title="Mensajes recibidos">
+                                                            <IconButton
+                                                                aria-label="edit"
+                                                                color="secondary"
+                                                                variant="contained"
+                                                                type="submit"
+                                                            >
+                                                                <EmailIcon />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </Link>
+                                                </TableCell>
+
                                             </TableRow>
 
                                         );
