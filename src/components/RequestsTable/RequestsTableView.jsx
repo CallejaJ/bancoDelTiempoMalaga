@@ -9,6 +9,7 @@ import { visuallyHidden } from '@mui/utils';
 // import EmailIcon from '@mui/icons-material/Email';
 import InfoIcon from '@mui/icons-material/Info';
 import { Link } from 'react-router-dom';
+import { Watch } from 'react-loader-spinner';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -245,6 +246,7 @@ export default function RequestsTableView({ requestsList }) {
 
     return (
         <>
+            {requestsList.length > 0 ? (
             <Box
                 alignItems={'center'}
                 display={'flex'}
@@ -342,7 +344,25 @@ export default function RequestsTableView({ requestsList }) {
                         />
                     </Paper>
                 </Box>
-</Box>
+                </Box>) : (<Box
+                    alignItems={'center'}
+                    display={'flex'}
+                    justifyContent={'center'}
+                    marginTop={4}
+                    marginBottom={6}
+                >
+                    <Watch
+                        height="80"
+                        width="80"
+                        radius="48"
+                        color="#ef6c00"
+                        ariaLabel="watch-loading"
+                        wrapperStyle={{}}
+                        wrapperClassName=""
+                        visible={true}
+                    />
+                </Box>
+            )}
 </>
     );
 }
