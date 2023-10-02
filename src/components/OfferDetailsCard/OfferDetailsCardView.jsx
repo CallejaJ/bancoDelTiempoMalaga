@@ -52,7 +52,6 @@ export default function OfferDetailsCardView({ userOffer }) {
                     >
                         Publicado por {userOffer.offer_user_name}
                     </Typography>
-
                 </CardContent>
             </CardActionArea>
         </Card>

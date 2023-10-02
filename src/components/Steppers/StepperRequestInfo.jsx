@@ -16,11 +16,11 @@ const steps = [
     },
     {
         label: '¿Cómo puedo conocer los detalles de la demanda?',
-        description: 'Al hacer click en el icono azul del buzón de mensajería podrás ver una nueva pantalla con un campo para incluir un mensaje directo al usuario ofertante.  ',
+        description: 'Al hacer click en el icono azul de información podrás ver una nueva pantalla con una guía para incluir los mensajes que necesites para conocer más detalles de la demanda y del usuario demandante.  ',
     },
     {
         label: '¿Cómo puedo ver si el usuario demandante ha respondido a mis mensajes?',
-        description: `En tu panel de usuario hay un campo donde puedes leer los mensajes recibidos.`,
+        description: `En tu panel de usuario encontrarás tus ofertas y un icono con un sobre, es un enlace a una nueva pantalla donde puedes leer los mensajes recibidos de otros usuarios.`,
     },
     {
         label: '¿Qué hago si no contactan conmigo?',
@@ -28,7 +28,7 @@ const steps = [
     },
     {
         label: '¿Puedo facilitar mi teléfono a otros usuarios?',
-        description: `Es recomendable que todos los mensajes queden reflejados en la aplicación, para que, en caso de alguna incidencia, el equipo de gestores pueda conoces el proceso de intercambio.`,
+        description: `Es recomendable que todos los mensajes queden reflejados en la aplicación, para que, en caso de alguna incidencia, el equipo de gestores pueda conocer las conversaciones y detalles del proceso de intercambio.`,
     },
 
     {

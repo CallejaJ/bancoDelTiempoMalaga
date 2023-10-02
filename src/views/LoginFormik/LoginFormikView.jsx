@@ -40,7 +40,7 @@ export default function LoginFormikView({ formik }) {
                 display={'flex'}
                 justifyContent={'center'}
                 marginBottom={3}
-                marginTop={2}
+                marginTop={3}
                 style={{ position: 'sticky' }}
             >
                 <Container
