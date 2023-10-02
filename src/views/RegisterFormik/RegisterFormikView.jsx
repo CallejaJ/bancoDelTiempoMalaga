@@ -316,7 +316,7 @@ export default function RegisterFormikView({ formik }) {
 
                                         {registerMessage ? (
                                             <Alert
-                                                sx={{ mt: 2, mb: 2, height: "54px", width: "280px" }}
+                                                sx={{ mt: 5, mb: 2, height: "70px", width: "320px" }}
                                                 variant="outlined" severity="info" >
                                                 {registerMessage}
                                             </Alert>

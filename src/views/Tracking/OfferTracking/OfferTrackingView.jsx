@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
+import { Alert, Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
 import Header from "../../../components/Header/Header";
 import { LoadingButton } from "@mui/lab";
 import EmailIcon from '@mui/icons-material/Email';
@@ -12,7 +12,7 @@ import OfferDetailsCard from "../../../components/OfferDetailsCard/OfferDetailsC
 
 
 
-export default function OfferTrackingView({ formik, users }) {
+export default function OfferTrackingView({ formik, users, ultimateOfferMessage }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -102,14 +102,14 @@ export default function OfferTrackingView({ formik, users }) {
                                         <TextField
                                             select
                                             sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
-                                            label="Usuario que ha realizado la tarea"
+                                            label="Usuario que ha recibido el servicio"
                                             placeholder="Por favor, selecciona tu nombre de usuario de la lista:"
-                                            name="holder_user_name"
+                                            name="service_recipient"
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            value={values.holder_user_name}
-                                            error={touched.holder_user_name && Boolean(errors.holder_user_name)}
-                                            helperText={touched.holder_user_name && errors.holder_user_name}
+                                            value={values.service_recipient}
+                                            error={touched.service_recipient && Boolean(errors.service_recipient)}
+                                            helperText={touched.service_recipient && errors.service_recipient}
                                         >
                                             {users.map((user) => (
                                                 <MenuItem key={user.id} value={`${user.id}`}>
@@ -124,8 +124,6 @@ export default function OfferTrackingView({ formik, users }) {
                                             id="credits"
                                             label="Créditos a solicitar"
                                             name="credits"
-                                            autoComplete="credits"
-
                                             type="number"
                                             placeholder="Describe el tiempo de la tarea"
                                             value={values.credits}
@@ -134,6 +132,13 @@ export default function OfferTrackingView({ formik, users }) {
                                             error={touched.credits && Boolean(errors.credits)}
                                             helperText={touched.credits && errors.credits}
                                         />
+                                        {ultimateOfferMessage ? (
+                                            <Alert
+                                                sx={{ mt: 0, mb: 2, height: "54px", width: "280px" }}
+                                                variant="outlined" severity="info" >
+                                                {ultimateOfferMessage}
+                                            </Alert>
+                                        ) : null}
                                         <LoadingButton
                                             color="secondary"
                                             loadingPosition="start"
@@ -145,6 +150,7 @@ export default function OfferTrackingView({ formik, users }) {
                                         >
                                             <span>Solicitar créditos</span>
                                         </LoadingButton>
+
                                     </Box>
                                 </Box>
                             </Grid>

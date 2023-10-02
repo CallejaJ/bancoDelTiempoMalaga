@@ -1,4 +1,4 @@
 export const ultimateOfferForm = {
-    holder_user_name: "",
+    service_recipient: "",
     credits: 0,
 };

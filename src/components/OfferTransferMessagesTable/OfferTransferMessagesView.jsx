@@ -3,47 +3,40 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import {
     Box, Table, TableBody, TableCell, TableContainer,
-    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, IconButton, Tooltip
+    TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Tooltip, IconButton
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import { useAuthContext } from '../../context/AuthContext';
-import DeleteIcon from '@mui/icons-material/Delete';
+import SavingsIcon from '@mui/icons-material/Savings';
 
 
 const headCells = [
     {
-        id: 'id',
-        numeric: true,
-        disablePadding: true,
-        label: 'ID',
-    },
-    {
-        id: 'name',
+        id: 'urecipientname',
         numeric: false,
         disablePadding: true,
-        label: 'Nombre',
+        label: 'Solicitante',
     },
     {
-        id: 'surname',
+        id: 'ofername',
         numeric: false,
-        disablePadding: false,
-        label: 'Apellidos',
-    },
-    {
-        id: 'register_date',
-        numeric: true,
-        disablePadding: false,
-        label: 'Registrado',
+        disablePadding: true,
+        label: 'Tarea realizada',
     },
     {
         id: 'credits',
         numeric: true,
-        disablePadding: false,
+        disablePadding: true,
         label: 'Créditos',
     },
     {
+        id: 'register_date',
+        numeric: false,
+        disablePadding: false,
+        label: 'Fecha de solicitud',
+    },
+    {
         id: '',
-        numeric: true,
+        numeric: false,
         disablePadding: false,
         label: 'Acciones',
     },
@@ -65,7 +58,6 @@ function EnhancedTableHead(props) {
                     <TableCell
                         key={headCell.id}
                         align={'left'}
-                    // padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         <TableSortLabel
                             onClick={createSortHandler(headCell.id)}
@@ -108,7 +100,7 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Usuarios registrados
+                Solicitudes de transferencias pendientes
             </Typography>
 
 
@@ -126,18 +118,17 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function CreditMessagesTableView({ creditMessagesList }) {
+export default function OfferTransferMessagesView({ offerTransferMessagesList }) {
 
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const { deleteUser } = useAuthContext();
 
 
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = creditMessagesList.map((n) => n.id);
+            const newSelected = offerTransferMessagesList.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -179,15 +170,16 @@ export default function CreditMessagesTableView({ creditMessagesList }) {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - creditMessagesList.length) : 0;
-
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - offerTransferMessagesList.length) : 0;
+    console.log(offerTransferMessagesList);
     const visibleRows = React.useMemo(
+
         () =>
-            (creditMessagesList).slice(
+            (offerTransferMessagesList).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [page, rowsPerPage, creditMessagesList],
+        [page, rowsPerPage, offerTransferMessagesList],
     );
 
     return (
@@ -201,23 +193,23 @@ export default function CreditMessagesTableView({ creditMessagesList }) {
                 <Box
                     padding={2}
                     margin={2}
-                    sx={{ width: '90%' }}>
+                    sx={{ width: '100%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
                         <EnhancedTableToolbar numSelected={selected.length} />
                         <TableContainer>
                             <Table
-                                sx={{ minWidth: 750 }}
+                                sx={{ minWidth: 800 }}
                                 aria-labelledby="tableTitle"
                             >
                                 <EnhancedTableHead
                                     numSelected={selected.length}
                                     onSelectAllClick={handleSelectAllClick}
-                                    rowCount={creditMessagesList.length}
+                                    rowCount={offerTransferMessagesList.length}
                                 />
                                 <TableBody>
-                                    {visibleRows.map((row, index) => {
+                                    {visibleRows.map((row) => {
                                         const isItemSelected = isSelected(row.id);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
+                                        // const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -232,26 +224,17 @@ export default function CreditMessagesTableView({ creditMessagesList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell
-                                                    component="th"
-                                                    id={labelId}
-                                                    scope="row"
-                                                    padding="none"
-                                                >
-                                                    {row.id}
-                                                </TableCell>
-                                                <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.surname}</TableCell>
-                                                <TableCell align="left">{row.district}</TableCell>
-                                                <TableCell align="left">{row.email}</TableCell>
-                                                <TableCell align="left">{row.address}</TableCell>
-                                                <TableCell align="left">{row.pobox}</TableCell>
-                                                <TableCell align="left">{row.role}</TableCell>
-                                                <TableCell align="left">{row.register_date}</TableCell>
+                                                <TableCell align="left">{row.urecipientname}</TableCell>
+                                                <TableCell align="left">{row.offername}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
-                                                <TableCell align="center">
-                                                    <Tooltip title="Eliminar">
-                                                        <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
+                                                <TableCell align="left">{row.register_date}</TableCell>
+                                                <TableCell align="left">
+                                                    <Tooltip title="Transferir créditos">
+                                                        <IconButton
+                                                            // onClick={() => transfercredits(row.id)}
+                                                            aria-label="delete" color="secondary">
+                                                            <SavingsIcon />
+                                                        </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
                                             </TableRow>
@@ -272,12 +255,12 @@ export default function CreditMessagesTableView({ creditMessagesList }) {
                         <TablePagination
                             rowsPerPageOptions={[5, 10]}
                             component="div"
-                            count={creditMessagesList.length}
+                            count={offerTransferMessagesList.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                            labelRowsPerPage={"Mensajes por página"}
+                            labelRowsPerPage={"Peticiones por página"}
                         />
                     </Paper>
                 </Box>

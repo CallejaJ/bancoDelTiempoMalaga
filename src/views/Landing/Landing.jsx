@@ -5,6 +5,7 @@ import { Watch } from 'react-loader-spinner';
 
 
 export default function Landing() {
+
     const navigate = useNavigate();
 
     setTimeout(() => {

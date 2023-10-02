@@ -1,10 +1,10 @@
-
 .clear {
   clear: both;
   height: 100px;
 }
+
 .heading {
-    padding: 1rem 0;
+  padding: 1rem 0;
     font-size: 3.5rem;
     text-align: center;
   }
@@ -27,11 +27,13 @@ body {
   background-size: 140% 140%;
   animation: gradient-animation 16s ease infinite;
 }
+
 .gradient_footer {
   background: linear-gradient(624deg, #ffa726, #1e88e5, #1565c0);
   background-size: 100% 150%;
   animation: gradient-animation 32s ease infinite;
 }
+
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -258,6 +260,7 @@ body {
 .br-footer.inverted .br-list {
   --background: var(--background-light);
 }
+
 @media (min-width: 1440px) {
   html {
     zoom: 1.5;
@@ -332,6 +335,7 @@ body {
     transform: translateY(0px);
   }
 }
+
 /* BOX SHADOW */
 
 .boxShadowPink {
@@ -369,7 +373,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   width: 120px;
-    height: 120px;
+  height: 120px;
   border-radius: 50%;
   position: absolute;
   color: #bdbdbd;
@@ -522,6 +526,7 @@ body {
   color: ghostwhite;
   background-color: #4b5ea3;
 }
+
 /* CAROUSEL HOME */
 
 .CarouselHome {

@@ -70,9 +70,9 @@ export default function AuthContextProvider({ children }) {
         setLoginMessage(null)
     }, 3000)
 
-    setTimeout(() => {
-        setRegisterMessage(null)
-    }, 3000)
+    // setTimeout(() => {
+    //     setRegisterMessage(null)
+    // }, 3000)
 
 
     setTimeout(() => {

@@ -26,8 +26,9 @@ export const RegisterFormikSchema = yup.object().shape({
         .required("Requerido"),
 
     pobox: yup
-        .string()
+        .number()
         .min(5, "Al menos 5 digitos numéricos.")
+        .typeError('Cinco digitos numéricos que empiecen por 29')
         .required("Requerido"),
 
     newEmail: yup.string().email("Por favor, escriba un email válido").required("Requerido"),

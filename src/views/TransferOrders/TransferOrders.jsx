@@ -2,9 +2,8 @@ import { Grid } from "@mui/material";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import transfermessages from "../../assets/transfermessages.png"
-
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-// import CreditMessagesTable from "../../components/CreditsMessagesTable/CreditsMessagesTable";
+import OfferTransferMessages from "../../components/OfferTransferMessagesTable/OfferTransferMessages";
 
 export default function TransferOrders() {
 
@@ -25,7 +24,7 @@ export default function TransferOrders() {
                     <img src={transfermessages} width={600} />
                 </Grid>
                 <Grid item xs={3}>
-                    {/* <CreditMessagesTable /> */}
+                    <OfferTransferMessages />
                 </Grid>
             </Grid>
 

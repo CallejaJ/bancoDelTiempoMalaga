@@ -9,14 +9,19 @@ import { useAuthContext } from "../../../context/AuthContext";
 
 
 
+
 export default function OfferTracking() {
 
-    const [ultimateOffer, setUltimateOffer] = useState(null)
     const { id } = useParams();
     const { token } = useAuthContext();
+    const [ultimateOfferMessage, setultimateOfferMessage] = useState(null)
 
 
-    async function onSubmit(values) {
+    setTimeout(() => {
+        setultimateOfferMessage(null)
+    }, 3000)
+
+    async function onSubmit(values, actions) {
         try {
             const response = await fetch(`http://localhost:3006/transfers/offer/${id}`, {
                 method: "POST",
@@ -28,9 +33,10 @@ export default function OfferTracking() {
                 body: JSON.stringify(values)
             })
             if (response.ok) {
-                setUltimateOffer("Tu solicitud se ha enviado.")
+                setultimateOfferMessage("Tu solicitud se ha enviado.")
+                actions.resetForm()
             } else {
-                setUltimateOffer("Inténtalo de nuevo.")
+                setultimateOfferMessage("Inténtalo de nuevo.")
             }
         }
 
@@ -85,9 +91,7 @@ export default function OfferTracking() {
 
     return (
         <Formik
-            initialValues={
-                ultimateOffer ?? 
-                ultimateOfferForm}
+            initialValues={ultimateOfferForm}
             enableReinitialize={true}
             validationSchema={UltimateOfferSchema}
             onSubmit={onSubmit}
@@ -95,7 +99,8 @@ export default function OfferTracking() {
             {(props) => <OfferTrackingView
                 formik={props}
                 users={usersList}
-                services={servicesList} />}
+                services={servicesList}
+                ultimateOfferMessage={ultimateOfferMessage} />}
         </Formik>
     )
 }
