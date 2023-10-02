@@ -62,6 +62,7 @@ const orangeTheme = createTheme({
   },
   components: {
     MuiTypography: {
+      fontFamily: 'Raleway, Arial',
       defaultProps: {
         variantMapping: {
           h1: 'h2',
@@ -76,6 +77,7 @@ const orangeTheme = createTheme({
           body2: 'span',
         },
       },
+
     },
   },
 

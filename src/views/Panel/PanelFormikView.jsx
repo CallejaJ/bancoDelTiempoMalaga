@@ -68,7 +68,11 @@ export default function PanelFormikView({ formik }) {
                                     }}
                                 >
 
-                                    <Typography color="primary" component="h5" variant="h6">
+                                    <Typography
+                                        color="slategray"
+                                        component="h5"
+                                        variant="h6"
+                                    >
                                         ¡Hola de nuevo {user.name} !
                                     </Typography>
                                     <Box

@@ -2,16 +2,18 @@ import { useNavigate } from "react-router-dom";
 // import hourglass5 from "../../assets/hourglass5.gif"
 import { Box, Grid } from "@mui/material";
 import { Watch } from 'react-loader-spinner';
+import { useEffect } from "react";
 
 
 export default function Landing() {
 
     const navigate = useNavigate();
 
-    setTimeout(() => {
+    useEffect(function () {
+        setTimeout(() => {
         navigate('/home');
     }, 4000);
-
+    })
 
 
     return (

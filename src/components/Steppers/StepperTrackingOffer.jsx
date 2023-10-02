@@ -3,7 +3,11 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import React from "react";
-import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
+import { Step, StepContent, StepLabel, Stepper, createTheme, responsiveFontSizes } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 const steps = [
     {
@@ -49,6 +53,14 @@ export default function StepperTrackingOffer() {
             marginBottom={4}
             padding={6}
         >
+            <ThemeProvider theme={theme}>
+                <Typography
+                    mb={2}
+                    variant="h5"
+                    sx={{ color: "orangered" }}
+                >¿Necesitas ayuda?
+                </Typography>
+            </ThemeProvider>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                     <Step key={step.label}>
