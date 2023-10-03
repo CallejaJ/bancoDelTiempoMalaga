@@ -330,7 +330,8 @@ export default function OffersTableView({ offersList }) {
                             />
                         </Paper>
                     </Box>
-                </Box>) : (<Box
+                </Box>) :
+                (<Box
                     alignItems={'center'}
                     display={'flex'}
                     justifyContent={'center'}
@@ -348,8 +349,7 @@ export default function OffersTableView({ offersList }) {
                         visible={true}
                     />
                 </Box>
-            )}
-
+                )}
         </>
     );
 }

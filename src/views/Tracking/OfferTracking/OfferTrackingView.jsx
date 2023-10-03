@@ -12,7 +12,7 @@ import OfferDetailsCard from "../../../components/OfferDetailsCard/OfferDetailsC
 
 
 
-export default function OfferTrackingView({ formik, users, ultimateOfferMessage }) {
+export default function OfferTrackingView({ formik, users, ultimateOfferMessage, token }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -51,113 +51,117 @@ export default function OfferTrackingView({ formik, users, ultimateOfferMessage 
                 justifyContent={'center'}>
             </Box>
             <OfferMessagesList />
-            <Box
-                sx={{
-                    top: "modal",
-                    position: "center",
-                    marginTop: 1,
-                    marginBottom: 1
-                }}
-            >
-                <Container
-                    component="main">
-                    <Box
-                        sx={{
-                            marginTop: 3,
-                            marginBottom: 3,
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Grid container>
-                            <CssBaseline />
-                            <StepperTrackingOffer />
-                            <Grid
-                                item
-                                xs={6}
-                                sm={4}
-                                md={3}
-                                component={Paper}
-                                elevation={0}
-                                square
-                            >
-                                <Box
-                                    sx={{
-                                        my: 1,
-                                        mx: 1,
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        alignItems: "center",
-                                    }}
+            {token ? (
+                <Box
+                    sx={{
+                        top: "modal",
+                        position: "center",
+                        marginTop: 1,
+                        marginBottom: 1
+                    }}
+                >
+                    <Container
+                        component="main">
+                        <Box
+                            sx={{
+                                marginTop: 3,
+                                marginBottom: 3,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Grid container>
+                                <CssBaseline />
+                                <StepperTrackingOffer />
+                                <Grid
+                                    item
+                                    xs={6}
+                                    sm={4}
+                                    md={3}
+                                    component={Paper}
+                                    elevation={0}
+                                    square
                                 >
-
-
                                     <Box
-                                        component="form"
-                                        noValidate
-                                        onSubmit={handleSubmit}
-                                        sx={{ mt: 8 }}
+                                        sx={{
+                                            my: 1,
+                                            mx: 1,
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "center",
+                                        }}
                                     >
-                                        <TextField
-                                            select
-                                            sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
-                                            label="Usuario que ha recibido el servicio"
-                                            placeholder="Por favor, selecciona tu nombre de usuario de la lista:"
-                                            name="service_recipient"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.service_recipient}
-                                            error={touched.service_recipient && Boolean(errors.service_recipient)}
-                                            helperText={touched.service_recipient && errors.service_recipient}
-                                        >
-                                            {users.map((user) => (
-                                                <MenuItem key={user.id} value={`${user.id}`}>
-                                                    {user.name}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
-                                        <TextField
-                                            margin="normal"
-                                            required
-                                            fullWidth
-                                            id="credits"
-                                            label="Créditos a solicitar"
-                                            name="credits"
-                                            type="number"
-                                            placeholder="Describe el tiempo de la tarea"
-                                            value={values.credits}
-                                            onBlur={handleBlur}
-                                            onChange={handleChange}
-                                            error={touched.credits && Boolean(errors.credits)}
-                                            helperText={touched.credits && errors.credits}
-                                        />
-                                        {ultimateOfferMessage ? (
-                                            <Alert
-                                                sx={{ mt: 0, mb: 2, height: "54px", width: "280px" }}
-                                                variant="outlined" severity="info" >
-                                                {ultimateOfferMessage}
-                                            </Alert>
-                                        ) : null}
-                                        <LoadingButton
-                                            color="secondary"
-                                            loadingPosition="start"
-                                            startIcon={<EmailIcon />}
-                                            variant="contained"
-                                            type="submit"
-                                            fullWidth
-                                            sx={{ mt: 1, mb: 1, height: "54px" }}
-                                        >
-                                            <span>Solicitar créditos</span>
-                                        </LoadingButton>
 
+
+                                        <Box
+                                            component="form"
+                                            noValidate
+                                            onSubmit={handleSubmit}
+                                            sx={{ mt: 10 }}
+                                            padding={4}
+                                        >
+                                            <TextField
+                                                select
+                                                sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                                                label="Usuario que ha recibido el servicio"
+                                                placeholder="Por favor, selecciona tu nombre de usuario de la lista:"
+                                                name="service_recipient"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.service_recipient}
+                                                error={touched.service_recipient && Boolean(errors.service_recipient)}
+                                                helperText={touched.service_recipient && errors.service_recipient}
+                                            >
+                                                {users.map((user) => (
+                                                    <MenuItem key={user.id} value={`${user.id}`}>
+                                                        {user.name}
+                                                    </MenuItem>
+                                                ))}
+                                            </TextField>
+                                            <TextField
+                                                margin="normal"
+                                                required
+                                                fullWidth
+                                                id="credits"
+                                                label="Créditos a solicitar"
+                                                name="credits"
+                                                type="number"
+                                                placeholder="Describe el tiempo de la tarea"
+                                                value={values.credits}
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                error={touched.credits && Boolean(errors.credits)}
+                                                helperText={touched.credits && errors.credits}
+                                            />
+                                            {ultimateOfferMessage ? (
+                                                <Alert
+                                                    sx={{ mt: 0, mb: 2, height: "54px", width: "280px" }}
+                                                    variant="outlined" severity="info" >
+                                                    {ultimateOfferMessage}
+                                                </Alert>
+                                            ) : null}
+                                            <LoadingButton
+                                                color="secondary"
+                                                loadingPosition="start"
+                                                startIcon={<EmailIcon />}
+                                                variant="contained"
+                                                type="submit"
+                                                fullWidth
+                                                sx={{ mt: 1, mb: 1, height: "54px" }}
+                                            >
+                                                <span>Solicitar créditos</span>
+                                            </LoadingButton>
+
+                                        </Box>
                                     </Box>
-                                </Box>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Box>
-                </Container>
-            </Box>
+                        </Box>
+                    </Container>
+                </Box>
+            ) : null}
+
             <ScrollToTop />
             <Footer />
         </>

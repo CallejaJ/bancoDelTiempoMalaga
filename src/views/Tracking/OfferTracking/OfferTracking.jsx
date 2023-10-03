@@ -100,7 +100,8 @@ export default function OfferTracking() {
                 formik={props}
                 users={usersList}
                 services={servicesList}
-                ultimateOfferMessage={ultimateOfferMessage} />}
+                ultimateOfferMessage={ultimateOfferMessage}
+                token={token} />}
         </Formik>
     )
 }
