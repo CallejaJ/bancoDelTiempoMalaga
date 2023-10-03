@@ -246,7 +246,7 @@ export default function servicesListTableView({ servicesList }) {
                                                 <TableCell align="left">{row.update_date}</TableCell>
                                                 <TableCell align="left">
                                                     <Tooltip title="Eliminar">
-                                                    <IconButton onClick={() => deleteService(row.id)} aria-label="delete" color="secondary">
+                                                        <IconButton onClick={() => deleteService(row.id)} aria-label="delete" color="red">
                                                         <DeleteIcon />
                                                     </IconButton>
                                                     </Tooltip>

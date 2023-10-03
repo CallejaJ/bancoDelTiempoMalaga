@@ -243,7 +243,7 @@ export default function RequestMessagesListView({ messagesList, formik, newMessa
                 justifyContent={'center'}>
                 <Button
                     variant='contained'
-                    sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
+                    sx={{ width: 200, marginTop: 2, marginBottom: 1 }}
                     onClick={handleOpen}
                 >Enviar mensaje
                 </Button>

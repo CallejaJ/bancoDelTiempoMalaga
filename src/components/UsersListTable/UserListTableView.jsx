@@ -281,7 +281,9 @@ export default function UsersListTableView({ usersList }) {
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Tooltip title="Eliminar">
-                                                    <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="secondary"> <DeleteIcon /> </IconButton>
+                                                        <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="red">
+                                                            <DeleteIcon />
+                                                        </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
                                             </TableRow>

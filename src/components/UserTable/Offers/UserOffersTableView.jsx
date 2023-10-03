@@ -317,7 +317,7 @@ export default function UserOffersTableView({ userOffersList }) {
                                                         </Tooltip>
                                                     </Link>
                                                     <Tooltip title="Eliminar">
-                                                        <IconButton onClick={() => deleteOffer(row.id)} aria-label="delete" color="secondary">
+                                                        <IconButton onClick={() => deleteOffer(row.id)} aria-label="delete" color="red">
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>

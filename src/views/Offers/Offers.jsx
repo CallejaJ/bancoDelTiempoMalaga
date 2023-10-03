@@ -56,7 +56,7 @@ export default function Offers() {
                 display={'flex'}
                 justifyContent={'center'}>
                 <Button variant='contained' onClick={handleOpen}>
-                    Quiero añadir una oferta
+                    Añadir nueva oferta
                 </Button>
                 <Modal
                     open={open}

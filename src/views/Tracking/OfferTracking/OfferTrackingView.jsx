@@ -12,7 +12,7 @@ import OfferDetailsCard from "../../../components/OfferDetailsCard/OfferDetailsC
 
 
 
-export default function OfferTrackingView({ formik, users, ultimateOfferMessage, token }) {
+export default function OfferTrackingView({ formik, users, ultimateOfferMessage, userOffer, user }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -51,7 +51,7 @@ export default function OfferTrackingView({ formik, users, ultimateOfferMessage,
                 justifyContent={'center'}>
             </Box>
             <OfferMessagesList />
-            {token ? (
+            {userOffer.user_id == user.id ? (
                 <Box
                     sx={{
                         top: "modal",
@@ -136,7 +136,7 @@ export default function OfferTrackingView({ formik, users, ultimateOfferMessage,
                                             />
                                             {ultimateOfferMessage ? (
                                                 <Alert
-                                                    sx={{ mt: 0, mb: 2, height: "54px", width: "280px" }}
+                                                    sx={{ mt: 1, mb: 1, height: "60px", width: "300px" }}
                                                     variant="outlined" severity="info" >
                                                     {ultimateOfferMessage}
                                                 </Alert>
@@ -160,7 +160,7 @@ export default function OfferTrackingView({ formik, users, ultimateOfferMessage,
                         </Box>
                     </Container>
                 </Box>
-            ) : null}
+            ) : null} 
 
             <ScrollToTop />
             <Footer />

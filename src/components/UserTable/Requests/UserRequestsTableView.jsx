@@ -315,7 +315,7 @@ export default function UserRequestsTableView({ userRequestsList }) {
                                                         </Tooltip>
                                                     </Link>
                                                     <Tooltip title="Eliminar">
-                                                        <IconButton onClick={() => deleteRequest(row.id)} aria-label="delete" color="secondary">
+                                                        <IconButton onClick={() => deleteRequest(row.id)} aria-label="delete" color="red">
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>

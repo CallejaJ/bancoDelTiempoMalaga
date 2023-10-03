@@ -13,8 +13,9 @@ import { useAuthContext } from "../../../context/AuthContext";
 export default function OfferTracking() {
 
     const { id } = useParams();
-    const { token } = useAuthContext();
+    const { user, token } = useAuthContext();
     const [ultimateOfferMessage, setultimateOfferMessage] = useState(null)
+    const [userOffer, setUserOffer] = useState([])
 
 
     setTimeout(() => {
@@ -85,6 +86,23 @@ export default function OfferTracking() {
         [setUsersList]
     )
 
+    useEffect(function () {
+        async function getOffer() {
+            try {
+                const response = await fetch(`http://localhost:3006/offers/${id}`)
+                if (response.ok) {
+                    setUserOffer(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getOffer()
+    },
+        [id, setUserOffer]
+    )
+
 
 
 
@@ -101,7 +119,8 @@ export default function OfferTracking() {
                 users={usersList}
                 services={servicesList}
                 ultimateOfferMessage={ultimateOfferMessage}
-                token={token} />}
+                userOffer={userOffer}
+                user={user} />}
         </Formik>
     )
 }

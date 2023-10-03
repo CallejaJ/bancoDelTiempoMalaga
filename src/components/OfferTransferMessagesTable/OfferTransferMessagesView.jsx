@@ -6,12 +6,13 @@ import {
     TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Tooltip, IconButton
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import SavingsIcon from '@mui/icons-material/Savings';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const headCells = [
     {
-        id: 'urecipientname',
+        id: 'uownername',
         numeric: false,
         disablePadding: true,
         label: 'Solicitante',
@@ -224,7 +225,7 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell align="left">{row.urecipientname}</TableCell>
+                                                <TableCell align="left">{row.uownername}</TableCell>
                                                 <TableCell align="left">{row.offername}</TableCell>
                                                 <TableCell align="left">{row.credits}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
@@ -233,7 +234,14 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
                                                         <IconButton
                                                             // onClick={() => transfercredits(row.id)}
                                                             aria-label="delete" color="secondary">
-                                                            <SavingsIcon />
+                                                            <CheckCircleIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                    <Tooltip title="Eliminar">
+                                                        <IconButton
+                                                            // onClick={() => deleteService(row.id)} 
+                                                            aria-label="delete" color="red">
+                                                            <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </TableCell>
