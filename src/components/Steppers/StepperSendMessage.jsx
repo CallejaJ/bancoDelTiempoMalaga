@@ -71,7 +71,7 @@ export default function StepperSendMessage() {
                 <Typography
                     mb={2}
                     variant="h5"
-                    sx={{ color: "orangered" }}
+                    sx={{ color: "darkgray" }}
                 >¿Necesitas ayuda?
                 </Typography>
             </ThemeProvider>

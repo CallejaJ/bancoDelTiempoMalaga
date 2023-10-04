@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField } from "@mui/material";
+import { Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField, ThemeProvider, Typography, createTheme, responsiveFontSizes } from "@mui/material";
 import Header from "../../../components/Header/Header";
 import { LoadingButton } from "@mui/lab";
 import EmailIcon from '@mui/icons-material/Email';
@@ -10,9 +10,12 @@ import requestmessages from "../../../assets/requestmessages.png"
 import StepperTrackingRequest from "../../../components/Steppers/StepperTrackingRequest";
 import RequestDetailsCard from "../../../components/RequestDetailsCard/RequestDetailsCard";
 
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 
-export default function OfferTrackingView({ formik, users }) {
+
+export default function RequestTrackingView({ formik, users, userRequest, user }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -58,6 +61,7 @@ export default function OfferTrackingView({ formik, users }) {
                 }}
             >
                 <RequestMessagesList />
+                {userRequest.user_id == user.id ? (
                 <Container
                     component="main">
                     <Box
@@ -94,9 +98,18 @@ export default function OfferTrackingView({ formik, users }) {
                                         component="form"
                                         noValidate
                                         onSubmit={handleSubmit}
-                                        padding={5}
-                                        sx={{ mt: 4 }}
+                                            padding={4}
+                                            sx={{ mt: 6.2 }}
+
                                     >
+                                            <ThemeProvider theme={theme}>
+                                                <Typography
+                                                    mb={1}
+                                                    variant="h5"
+                                                    sx={{ color: "darkgray" }}
+                                                >Transferir mis créditos
+                                                </Typography>
+                                            </ThemeProvider>
                                         <TextField
                                             select
                                             sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
@@ -149,6 +162,8 @@ export default function OfferTrackingView({ formik, users }) {
                         </Grid>
                     </Box>
                 </Container>
+                ) : null}
+
             </Box>
             <ScrollToTop />
             <Footer />

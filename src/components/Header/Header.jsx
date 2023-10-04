@@ -10,7 +10,7 @@ import Slide from '@mui/material/Slide';
 import PropTypes from 'prop-types';
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 import { menu } from "./menu"
-import logoimg from "../../assets/logoimg.png"
+import logonavbar from "../../assets/logonavbar.png"
 
 
 function HideOnScroll(props) {
@@ -110,7 +110,7 @@ export default function Header({ title, props }) {
 
                                     </Menu>
                                 </Box>
-                                <img src={logoimg} height={"32px"} />
+                                <img src={logonavbar} height={"64px"} />
                                 <Typography
                                     variant="h6"
                                     component="div"

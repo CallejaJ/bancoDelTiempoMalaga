@@ -297,7 +297,7 @@ export default function OffersTableView({ offersList }) {
                                                                 variant="contained"
                                                                 type="submit"
                                                             >
-                                                                <Tooltip title="Debes estar logueado para ver los detalles">
+                                                                <Tooltip title="Inicia sesión para ver los detalles">
                                                                 <InfoIcon />
                                                                 </Tooltip>
                                                             </IconButton>

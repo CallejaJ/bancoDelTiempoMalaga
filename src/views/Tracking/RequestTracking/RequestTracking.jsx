@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { UltimateRequestSchema } from "./UltimateRequestSchema";
+import { useParams } from "react-router-dom";
+import { useAuthContext } from "../../../context/AuthContext";
 import { Formik } from "formik";
-// import { useParams } from "react-router-dom";
 import { ultimateValuesRequest } from "./UI/ultimateRequestsForm";
+import { UltimateRequestSchema } from "./UltimateRequestSchema";
 import RequestTrackingView from "./RequestTrackingView";
 
 
@@ -10,16 +11,26 @@ import RequestTrackingView from "./RequestTrackingView";
 
 export default function RequestTracking() {
 
+    const { user,
+        // token 
+    } = useAuthContext();
+    const { id } = useParams();
     // const [ultimateRequest, setUltimateRequest] = useState(null)
-    // const { id } = useParams();
+    const [userRequest, setUserRequest] = useState([])
+    const [ultimateRequestMessage, setUltimateRequestMessage] = useState(null)
+
+    setTimeout(() => {
+        setUltimateRequestMessage(null)
+    }, 3000)
 
 
     // async function onSubmit(values) {
     //     try {
-    //         const response = await fetch(`http://localhost:3006/requests/${id}`, {
-    //             method: "PUT",
+    //         const response = await fetch(`http://localhost:3006/credits`, {
+    //             method: "POST",
     //             headers: {
     //                 "Content-Type": "application/json",
+    //                 "Authorization": `Bearer ${token}`,
     //             },
     //             body: JSON.stringify(values)
     //         })
@@ -75,15 +86,28 @@ export default function RequestTracking() {
         [setUsersList]
     )
 
-
+    useEffect(function () {
+        async function getRequest() {
+            try {
+                const response = await fetch(`http://localhost:3006/requests/${id}`)
+                if (response.ok) {
+                    setUserRequest(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getRequest()
+    },
+        [id, setUserRequest]
+    )
 
 
 
     return (
         <Formik
-            initialValues={
-                // ultimateRequest ?? 
-                ultimateValuesRequest}
+            initialValues={ultimateValuesRequest}
             enableReinitialize={true}
             validationSchema={UltimateRequestSchema}
             // onSubmit={onSubmit}
@@ -91,7 +115,12 @@ export default function RequestTracking() {
             {(props) => <RequestTrackingView
                 formik={props}
                 users={usersList}
-                services={servicesList} />}
+                services={servicesList}
+                userRequest={userRequest}
+                user={user}
+                ultimateRequestMessage={ultimateRequestMessage}
+            // ultimateRequest={ultimateRequest}
+            />}
         </Formik>
     )
 }

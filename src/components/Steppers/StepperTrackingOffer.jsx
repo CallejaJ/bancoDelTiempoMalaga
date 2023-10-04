@@ -57,7 +57,7 @@ export default function StepperTrackingOffer() {
                 <Typography
                     mb={2}
                     variant="h5"
-                    sx={{ color: "orangered" }}
+                    sx={{ color: "darkgray" }}
                 >¿Necesitas ayuda?
                 </Typography>
             </ThemeProvider>

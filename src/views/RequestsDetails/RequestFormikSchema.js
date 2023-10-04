@@ -18,8 +18,8 @@ export const RequestFormikSchema = yup.object().shape({
         .required("Requerido"),
 
     credits: yup
-        .number()
-        .min(1, "Escribe el tiempo necesario para la tarea: 1 crédito = 1 hora")
+            .number()
         .typeError('Un número del 1 al 10')
-        .required("Requerido")
+        .min(0.5, "Escribe el tiempo necesario para la tarea: 1 crédito = 1 hora")
+        .required("Requerido"),
 });

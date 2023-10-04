@@ -73,11 +73,12 @@ export default function StepperAddOffer() {
                 <Typography
                     mb={2}
                     variant="h5"
-                    sx={{ color: "orangered" }}
+                    sx={{ color: "darkgray" }}
                 >¿Necesitas ayuda?
                 </Typography>
             </ThemeProvider>
-            <Stepper activeStep={activeStep} orientation="vertical">
+            <Stepper
+                activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                     <Step key={step.label}>
                         <StepLabel

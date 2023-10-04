@@ -8,7 +8,7 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import ChatSharpIcon from '@mui/icons-material/ChatSharp';
 
 const headCells = [
     {
@@ -172,7 +172,6 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - offerTransferMessagesList.length) : 0;
-    console.log(offerTransferMessagesList);
     const visibleRows = React.useMemo(
 
         () =>
@@ -210,7 +209,6 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
                                 <TableBody>
                                     {visibleRows.map((row) => {
                                         const isItemSelected = isSelected(row.id);
-                                        // const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -232,14 +230,14 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
                                                 <TableCell align="left">
                                                     <Tooltip title="Transferir créditos">
                                                         <IconButton
-                                                            // onClick={() => transfercredits(row.id)}
+                                                            // onClick={() => addCreditsTransfer(row.id)}
                                                             aria-label="delete" color="secondary">
                                                             <CheckCircleIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                     <Tooltip title="Eliminar">
                                                         <IconButton
-                                                            // onClick={() => deleteService(row.id)} 
+                                                            // onClick={() => deleteCreditsRequest(row.id)} 
                                                             aria-label="delete" color="red">
                                                             <DeleteIcon />
                                                         </IconButton>
@@ -275,85 +273,23 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
             </Box>
             ) : (
                 <Box
-                    alignItems={'center'}
-                    display={'flex'}
-                    justifyContent={'center'}
-                >
+                        alignItems={'center'}
+                        display={'flex'}
+                        justifyContent={'center'}
+                        marginTop={3}
+                        marginBottom={5}
+                    >
 
-                    <Box
-                        padding={2}
-                        margin={2}
-                        sx={{ width: '100%' }}>
-                        <Paper sx={{ width: '100%', mb: 2 }}>
-                            <EnhancedTableToolbar numSelected={selected.length} />
-                            <TableContainer>
-                                <Table
-                                    sx={{ minWidth: 800 }}
-                                    aria-labelledby="tableTitle"
-                                >
-                                    <EnhancedTableHead
-                                        numSelected={selected.length}
-                                        onSelectAllClick={handleSelectAllClick}
-                                        rowCount={offerTransferMessagesList.length}
-                                    />
-                                    <TableBody>
-                                        {visibleRows.map((row) => {
-                                            const isItemSelected = isSelected(row.id);
-                                            // const labelId = `enhanced-table-checkbox-${index}`;
-
-                                            return (
-                                                <TableRow
-                                                    hover
-                                                    onClick={(event) => handleClick(event, row.id)}
-                                                    role="checkbox"
-                                                    aria-checked={isItemSelected}
-                                                    tabIndex={-1}
-                                                    key={row.id}
-                                                    selected={isItemSelected}
-                                                    sx={{ cursor: 'pointer' }}
-                                                >
-                                                    <TableCell>
-                                                    </TableCell>
-                                                    <TableCell align="left">
-                                                        {/* <Typography>
-                                                            No hay peticiones de transferencias pendientes
-                                                        </Typography> */}
-                                                    </TableCell>
-
-                                                </TableRow>
-                                            );
-                                        })}
-                                        {emptyRows > 0 && (
-                                            <TableRow
-                                                style={{
-                                                    height: (53) * emptyRows,
-                                                }}
-                                            >
-                                                <TableCell colSpan={6} />
-                                                {/* <TableCell align="left">
-                                                    <Typography>
-                                                        No hay peticiones de transferencias pendientes
-                                                    </Typography>
-                                                </TableCell> */}
-                                            </TableRow>
-                                        )}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                            <TablePagination
-                                rowsPerPageOptions={[5, 10]}
-                                component="div"
-                                count={offerTransferMessagesList.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                labelRowsPerPage={"Peticiones por página"}
-                            />
-                        </Paper>
+                        <ChatSharpIcon
+                            color="secondary"
+                            sx={{ fontSize: 40 }}
+                        />
+                        <Typography
+                            marginLeft={2}
+                        >
+                            No hay peticiones de transferencias pendientes
+                        </Typography>
                     </Box>
-                </Box>
-
             )}
         </>
     );

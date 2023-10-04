@@ -18,6 +18,7 @@ export const PanelAdminFormikSchema = yup.object().shape({
     district: yup
         .number()
         .min(1, "Escriba el código en números de su distrito.")
+        .max(11, "Un número del 1 al 11")
         .required("Requerido"),
 
     address: yup

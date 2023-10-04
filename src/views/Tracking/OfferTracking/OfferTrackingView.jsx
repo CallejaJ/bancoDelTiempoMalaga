@@ -152,7 +152,6 @@ export default function OfferTrackingView({ formik, users, ultimateOfferMessage,
                                             >
                                                 <span>Solicitar créditos</span>
                                             </LoadingButton>
-
                                         </Box>
                                     </Box>
                                 </Grid>

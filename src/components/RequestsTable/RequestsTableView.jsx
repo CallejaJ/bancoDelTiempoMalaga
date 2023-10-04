@@ -41,12 +41,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    // {
-    //     id: 'id',
-    //     numeric: true,
-    //     disablePadding: true,
-    //     label: 'ID',
-    // },
+
     {
         id: 'name',
         numeric: false,
@@ -290,14 +285,6 @@ export default function RequestsTableView({ requestsList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                {/* <TableCell
-                                                    component="th"
-                                                    id={labelId}
-                                                    scope="row"
-                                                    padding="none"
-                                                >
-                                                    {row.id}
-                                                </TableCell> */}
                                                 <TableCell align="left">{row.name}</TableCell>
                                                 <TableCell align="left">{row.description}</TableCell>
                                                 <TableCell align="center">{row.register_date}</TableCell>
@@ -312,7 +299,7 @@ export default function RequestsTableView({ requestsList }) {
                                                         variant="contained"
                                                         type="submit"
                                                     >
-                                                            <Tooltip title="Debes estar logueado para ver los detalles">
+                                                            <Tooltip title="Inicia sesión para ver los detalles">
                                                                 <InfoIcon />
                                                             </Tooltip>
                                                     </IconButton>

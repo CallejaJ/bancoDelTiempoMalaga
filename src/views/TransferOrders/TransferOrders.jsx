@@ -16,9 +16,8 @@ export default function TransferOrders() {
                 justifyContent={'center'}
                 direction={'column'}
                 alignItems={'center'}
-                marginTop={3}
-                padding={1}
-
+                marginTop={5}
+                padding={3}
             >
                 <Grid item xs={3}>
                     <img src={transfermessages} width={600} />
