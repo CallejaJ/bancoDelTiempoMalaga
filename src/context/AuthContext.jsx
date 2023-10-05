@@ -27,7 +27,8 @@ const AuthContext = createContext(
         deleteUser: () => { },
         updateService: () => { },
         setUpdateServiceMessage: () => { },
-        addService: () => { }
+        addService: () => { },
+        deleteOfferTransferMessage: () => { }
     });
 
 const USER_KEY = "USER_KEY"
@@ -58,8 +59,8 @@ export default function AuthContextProvider({ children }) {
     let [userOffersList, setUserOffersList] = useState([])
     let [userRequestsList, setUserRequestsList] = useState([])
     let [usersList, setUsersList] = useState([])
-
     let [servicesList, setServicesList] = useState([]);
+
 
     const [updateServiceMessage, setUpdateServiceMessage] = useState(null)
 
@@ -334,6 +335,8 @@ export default function AuthContextProvider({ children }) {
     }
 
 
+
+
     function logout() {
         localStorage.removeItem(USER_KEY);
         localStorage.removeItem(TOKEN_KEY);
@@ -355,7 +358,7 @@ export default function AuthContextProvider({ children }) {
         deleteRequest, deleteRequestMessage,
         servicesList, setServicesList,
         updateServiceMessage, setUpdateServiceMessage,
-        addService, newServiceMessage
+        addService, newServiceMessage,
     };
 
     return (

@@ -119,12 +119,11 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function OfferTransferMessagesView({ offerTransferMessagesList }) {
+export default function OfferTransferMessagesView({ offerTransferMessagesList, deleteOfferTransferMessage }) {
 
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
 
 
     const handleSelectAllClick = (event) => {
@@ -237,7 +236,7 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList })
                                                     </Tooltip>
                                                     <Tooltip title="Eliminar">
                                                         <IconButton
-                                                            // onClick={() => deleteCreditsRequest(row.id)} 
+                                                            onClick={() => deleteOfferTransferMessage(row.id)} 
                                                             aria-label="delete" color="red">
                                                             <DeleteIcon />
                                                         </IconButton>

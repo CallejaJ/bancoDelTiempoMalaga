@@ -110,7 +110,10 @@ export default function Header({ title, props }) {
 
                                     </Menu>
                                 </Box>
-                                <img src={logonavbar} height={"64px"} />
+                                <img
+                                    src={logonavbar}
+                                    height={"42px"}
+                                />
                                 <Typography
                                     variant="h6"
                                     component="div"
