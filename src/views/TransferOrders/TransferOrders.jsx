@@ -1,34 +1,39 @@
-import { Grid } from "@mui/material";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import transfermessages from "../../assets/transfermessages.png"
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import OfferTransferMessages from "../../components/OfferTransferMessagesTable/OfferTransferMessages";
+import TransferOrdersView from "./TransferOrdersView";
+import { useAuthContext } from "../../context/AuthContext";
+import { useEffect, useState } from "react";
 
 export default function TransferOrders() {
 
+    const { user, token } = useAuthContext()
+
+    const [userDetails, setUserDetails] = useState([])
+
+    useEffect(function () {
+        async function getUser() {
+            try {
+                const response = await fetch(
+                    `http://localhost:3006/user/${user.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                })
+                if (response.ok) {
+                    setUserDetails(await response.json())
+                }
+            }
+            catch (err) {
+                throw new Error(err)
+            }
+        }
+        getUser()
+    },
+        [setUserDetails, token, user.id]
+    )
+
 
     return (
-        <>
-            <Header title="Transferencias pendientes" />
-            <Grid
-                container
-                justifyContent={'center'}
-                direction={'column'}
-                alignItems={'center'}
-                marginTop={5}
-                padding={3}
-            >
-                <Grid item xs={3}>
-                    <img src={transfermessages} width={600} />
-                </Grid>
-                <Grid item xs={3}>
-                    <OfferTransferMessages />
-                </Grid>
-            </Grid>
-
-            <ScrollToTop />
-            <Footer />
-        </>
+        <TransferOrdersView userDetails={userDetails} />
     )
 }

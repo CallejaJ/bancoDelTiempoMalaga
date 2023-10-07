@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import { usePanelContext } from "../../context/PanelContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { initialValuesOffer } from "./UI/offersForm";
+import { useAuthContext } from "../../context/AuthContext";
 
 
 
@@ -13,6 +14,8 @@ export default function OffersFormikDetails() {
 
     const [userOffer, setUserOffer] = useState(null)
     const { updateOffer } = usePanelContext()
+    const { user } = useAuthContext()
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -30,9 +33,16 @@ export default function OffersFormikDetails() {
 
             if (response.ok) {
                 updateOffer(id) // le mando el id a la función del contexto
-                setTimeout(() => {
-                    navigate('/panel');
-                }, 3000);
+                if (user.role === 1) {
+                    setTimeout(() => {
+                        navigate('/adminpanel');
+                    }, 3000);
+                } else {
+                    setTimeout(() => {
+                        navigate('/panel');
+                    }, 3000);
+                }
+
             } else {
                 console.log("Inténtalo de nuevo.")
             }

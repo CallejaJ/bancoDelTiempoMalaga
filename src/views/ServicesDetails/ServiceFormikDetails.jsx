@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { initialServiceValues } from "./UI/serviceForm";
 import { ServiceFormikSchema } from "./ServiceFormikSchema";
 import ServiceFormikDetailsView from "./ServiceFormikDetailsView";
@@ -11,9 +11,10 @@ import { useAuthContext } from "../../context/AuthContext";
 
 export default function ServiceFormikDetails() {
 
-    const { token, setUpdateServiceMessage } = useAuthContext()
+    const { token, setUpdateServiceMessage, user } = useAuthContext()
     const { id } = useParams();
     let [servicesList, setServicesList] = useState([])
+    const navigate = useNavigate();
 
 
     async function onSubmit(values) {
@@ -29,6 +30,15 @@ export default function ServiceFormikDetails() {
 
             if (response.ok) {
                 setUpdateServiceMessage("¡Categoría actualizada!.")
+                if (user.role === 1) {
+                    setTimeout(() => {
+                        navigate('/adminpanel');
+                    }, 3000);
+                } else {
+                    setTimeout(() => {
+                        navigate('/panel');
+                    }, 3000);
+                }
             } else {
                 setUpdateServiceMessage("Inténtalo de nuevo.")
             }

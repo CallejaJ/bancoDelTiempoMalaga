@@ -136,7 +136,7 @@ export default function OfferTrackingView({ formik, users, ultimateOfferMessage,
                                             />
                                             {ultimateOfferMessage ? (
                                                 <Alert
-                                                    sx={{ mt: 1, mb: 1, height: "60px", width: "300px" }}
+                                                    sx={{ mt: 1, mb: 1, alignItems: "center", height: "60px", width: "300px" }}
                                                     variant="outlined" severity="info" >
                                                     {ultimateOfferMessage}
                                                 </Alert>

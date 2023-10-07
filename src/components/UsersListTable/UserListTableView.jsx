@@ -11,12 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const headCells = [
-    {
-        id: 'id',
-        numeric: true,
-        disablePadding: true,
-        label: 'ID',
-    },
+
     {
         id: 'name',
         numeric: false,
@@ -95,7 +90,6 @@ function EnhancedTableHead(props) {
                     <TableCell
                         key={headCell.id}
                         align={'left'}
-                        // padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         <TableSortLabel
                             onClick={createSortHandler(headCell.id)}
@@ -134,6 +128,7 @@ function EnhancedTableToolbar() {
         >
             <Typography
                 sx={{ flex: '1 1 100%' }}
+                marginLeft={4}
                 variant="h6"
                 id="tableTitle"
                 component="div"
@@ -245,9 +240,8 @@ export default function UsersListTableView({ usersList }) {
                                     rowCount={usersList.length}
                                 />
                                 <TableBody>
-                                    {visibleRows.map((row, index) => {
+                                    {visibleRows.map((row) => {
                                         const isItemSelected = isSelected(row.id);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -261,14 +255,6 @@ export default function UsersListTableView({ usersList }) {
                                                 sx={{ cursor: 'pointer' }}
                                             >
                                                 <TableCell>
-                                                </TableCell>
-                                                <TableCell
-                                                    component="th"
-                                                    id={labelId}
-                                                    scope="row"
-                                                    padding="none"
-                                                >
-                                                    {row.id}
                                                 </TableCell>
                                                 <TableCell align="left">{row.name}</TableCell>
                                                 <TableCell align="left">{row.surname}</TableCell>

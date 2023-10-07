@@ -21,9 +21,7 @@ export default function RegisterFormikView({ formik }) {
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
     const { registerMessage } = useAuthContext();
 
-    setTimeout(() => {
-        registerMessage
-    }, 4000)
+
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -316,7 +314,7 @@ export default function RegisterFormikView({ formik }) {
 
                                         {registerMessage ? (
                                             <Alert
-                                                sx={{ mt: 5, mb: 2, height: "70px", width: "320px" }}
+                                                sx={{ mt: 6, mb: 2, alignItems: "center", height: "54px", width: "320px" }}
                                                 variant="outlined" severity="info" >
                                                 {registerMessage}
                                             </Alert>

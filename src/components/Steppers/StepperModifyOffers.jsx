@@ -59,18 +59,19 @@ export default function StepperModifyOffers() {
                 <Typography
                     mb={2}
                     variant="h5"
-                    sx={{ color: "darkgray" }}
+                    sx={{ color: "GrayText" }}
                 >¿Necesitas ayuda?
                 </Typography>
-            </ThemeProvider>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                     <Step key={step.label}>
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption"
+                                    <Typography
+                                        variant="caption"
                                         align={'justify'}
+                                        sx={{ color: "GrayText" }}
                                     ></Typography>
                                 ) : null
                             }
@@ -78,7 +79,10 @@ export default function StepperModifyOffers() {
                             {step.label}
                         </StepLabel>
                         <StepContent>
-                            <Typography>{step.description}</Typography>
+                            <Typography
+                                sx={{ color: "GrayText" }}
+                            >{step.description}
+                            </Typography>
                             <Box sx={{ mb: 2 }}>
                                 <div>
                                     <Button
@@ -103,12 +107,15 @@ export default function StepperModifyOffers() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>¡Perfecto! Ya puedes modificar tu oferta.</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 0, mr: 0 }}>
+                        <Typography
+                            sx={{ color: "GrayText" }}
+                        >¡Perfecto! Ya puedes modificar tus ofertas.</Typography>
+                        <Button onClick={handleReset} sx={{ mt: 2, mr: 0 }}>
                         Reiniciar
                     </Button>
                 </Paper>
             )}
+            </ThemeProvider>
         </Box>
     );
 }

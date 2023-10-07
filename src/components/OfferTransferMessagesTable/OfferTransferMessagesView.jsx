@@ -21,7 +21,7 @@ const headCells = [
         id: 'ofername',
         numeric: false,
         disablePadding: true,
-        label: 'Tarea realizada',
+        label: 'Servicio realizado',
     },
     {
         id: 'credits',
@@ -97,11 +97,12 @@ function EnhancedTableToolbar() {
         >
             <Typography
                 sx={{ flex: '1 1 100%' }}
+                marginLeft={4}
                 variant="h6"
                 id="tableTitle"
                 component="div"
             >
-                Solicitudes de transferencias pendientes
+                Solicitudes de transferencias recibidas
             </Typography>
 
 
@@ -230,14 +231,14 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                                                     <Tooltip title="Transferir créditos">
                                                         <IconButton
                                                             // onClick={() => addCreditsTransfer(row.id)}
-                                                            aria-label="delete" color="secondary">
+                                                            aria-label="addcredittransfer" color="secondary">
                                                             <CheckCircleIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                     <Tooltip title="Eliminar">
                                                         <IconButton
                                                             onClick={() => deleteOfferTransferMessage(row.id)} 
-                                                            aria-label="delete" color="red">
+                                                            aria-label="deleteoffertransfermessage" color="red">
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </Tooltip>
@@ -275,16 +276,18 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                         alignItems={'center'}
                         display={'flex'}
                         justifyContent={'center'}
-                        marginTop={3}
+                        marginTop={5}
                         marginBottom={5}
                     >
 
                         <ChatSharpIcon
-                            color="secondary"
-                            sx={{ fontSize: 40 }}
+                            color="grey"
+                            sx={{ fontSize: 40, color: "GrayText" }}
                         />
                         <Typography
                             marginLeft={2}
+                            sx={{ color: "GrayText" }}
+
                         >
                             No hay peticiones de transferencias pendientes
                         </Typography>

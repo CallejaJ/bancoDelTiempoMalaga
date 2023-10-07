@@ -106,7 +106,7 @@ export default function RequestTrackingView({ formik, users, userRequest, user }
                                                 <Typography
                                                     mb={1}
                                                     variant="h5"
-                                                    sx={{ color: "darkgray" }}
+                                                    sx={{ color: "GrayText" }}
                                                 >Transferir mis créditos
                                                 </Typography>
                                             </ThemeProvider>

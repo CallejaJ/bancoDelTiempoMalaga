@@ -58,6 +58,7 @@ export default function OfferTransferMessages() {
     return (
         <OfferTransferMessagesView
             offerTransferMessagesList={offerTransferMessagesList}
-            deleteOfferTransferMessage={deleteOfferTransferMessage} />
+            deleteOfferTransferMessage={deleteOfferTransferMessage}
+        />
     )
 }

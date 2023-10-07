@@ -15,12 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 const headCells = [
-    {
-        id: 'id',
-        numeric: true,
-        disablePadding: true,
-        label: 'Clave',
-    },
+
     {
         id: 'name',
         numeric: false,
@@ -103,6 +98,7 @@ function EnhancedTableToolbar() {
         >
             <Typography
                 sx={{ flex: '1 1 100%' }}
+                marginLeft={4}
                 variant="h6"
                 id="tableTitle"
                 component="div"
@@ -200,12 +196,12 @@ export default function servicesListTableView({ servicesList }) {
                 <Box
                     padding={2}
                     margin={2}
-                    sx={{ width: '90%' }}>
+                    sx={{ width: '80%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
                         <EnhancedTableToolbar numSelected={selected.length} />
                         <TableContainer>
                             <Table
-                                sx={{ minWidth: 750 }}
+                                sx={{ minWidth: 500 }}
                                 aria-labelledby="tableTitle"
                             >
                                 <EnhancedTableHead
@@ -214,9 +210,8 @@ export default function servicesListTableView({ servicesList }) {
                                     rowCount={servicesList.length}
                                 />
                                 <TableBody>
-                                    {visibleRows.map((row, index) => {
+                                    {visibleRows.map((row) => {
                                         const isItemSelected = isSelected(row.id);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
@@ -232,15 +227,7 @@ export default function servicesListTableView({ servicesList }) {
                                                 <TableCell
                                                 >
                                                 </TableCell>
-                                                <TableCell
-                                                    component="th"
-                                                    id={labelId}
-                                                    scope="row"
-                                                    padding="none"
-                                                    align="left "
-                                                >
-                                                    {row.id}
-                                                </TableCell>
+
                                                 <TableCell align="left">{row.name}</TableCell>
                                                 <TableCell align="left">{row.register_date}</TableCell>
                                                 <TableCell align="left">{row.update_date}</TableCell>

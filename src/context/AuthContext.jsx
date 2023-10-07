@@ -71,9 +71,9 @@ export default function AuthContextProvider({ children }) {
         setLoginMessage(null)
     }, 3000)
 
-    // setTimeout(() => {
-    //     setRegisterMessage(null)
-    // }, 3000)
+    setTimeout(() => {
+        setRegisterMessage(null)
+    }, 5000)
 
 
     setTimeout(() => {
@@ -157,7 +157,7 @@ export default function AuthContextProvider({ children }) {
                 setRegisterMessage("El usuario ya existe.")
                 setTimeout(() => {
                     navigate('/login');
-                }, 3000);
+                }, 5000);
             }
         }
         catch (err) {
@@ -327,6 +327,15 @@ export default function AuthContextProvider({ children }) {
                 const newServicesList = await response.json()
                 setServicesList(newServicesList)
                 setNewServiceMessage("Categoría creada")
+                if (user.role === 1) {
+                    setTimeout(() => {
+                        navigate('/adminpanel');
+                    }, 3000);
+                } else {
+                    setTimeout(() => {
+                        navigate('/panel');
+                    }, 3000);
+                }
             }
         }
         catch (err) {

@@ -5,6 +5,7 @@ import { LoadingButton } from "@mui/lab";
 import SaveIcon from '@mui/icons-material/Save';
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Footer from "../../components/Footer/Footer";
+import userguide from "../../assets/userguide.png"
 
 
 
@@ -15,6 +16,8 @@ export default function AddServiceFormikView({ formik }) {
     return (
         <>
             <Header title='Crear nuevo servicio' />
+
+
             <Box
                 sx={{
                     top: "modal",
@@ -37,6 +40,21 @@ export default function AddServiceFormikView({ formik }) {
                         <Grid container>
                             <CssBaseline />
                             <Grid
+                                container
+                                justifyContent={'center'}
+                                direction={'column'}
+                                alignItems={'center'}
+                                marginTop={3}
+                                marginBottom={3}
+                            >
+                                <Grid
+                                    item xs={3}
+                                    marginTop={0}
+                                    marginBottom={0}
+                                >
+                                    <img src={userguide} width={500} />
+                                </Grid>
+                                <Grid
                                 item
                                 xs={6}
                                 sm={4}
@@ -60,7 +78,7 @@ export default function AddServiceFormikView({ formik }) {
                                         component="form"
                                         noValidate
                                         onSubmit={handleSubmit}
-                                        sx={{ mt: 8 }}
+                                            sx={{ mt: 3, alignContent: "center" }}
                                     >
                                         <TextField
                                             margin="normal"
@@ -94,14 +112,15 @@ export default function AddServiceFormikView({ formik }) {
                                             variant="contained"
                                             type="submit"
                                             fullWidth
-                                            sx={{ mt: 2, mb: 2, height: "54px" }}
+                                                sx={{ mt: 2, mb: 2, height: "54px", width: "220px", }}
                                         >
                                             <span>Guardar cambios</span>
                                         </LoadingButton>
                                     </Box>
                                 </Box>
                             </Grid>
-                            {/* <StepperModifyServices /> */}
+                            </Grid>
+
                         </Grid>
                     </Box>
                 </Container>

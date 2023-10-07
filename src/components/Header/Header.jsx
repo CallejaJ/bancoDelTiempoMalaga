@@ -112,7 +112,7 @@ export default function Header({ title, props }) {
                                 </Box>
                                 <img
                                     src={logonavbar}
-                                    height={"42px"}
+                                    height={"64px"}
                                 />
                                 <Typography
                                     variant="h6"
@@ -146,13 +146,14 @@ export default function Header({ title, props }) {
                                 ) : (
                                     <>
                                         <Box>
-                                            <IconButton
+                                                <IconButton
                                                 size="large"
                                                 aria-label="account of current user"
                                                 aria-controls="menu-appbar"
                                                 aria-haspopup="true"
-                                                color="inherit"
+                                                    color="primary"
                                             >
+                                                    <AccountCircle style={{ color: '#FFF' }} />
                                             </IconButton>
                                             <Button >
                                                 <Link style={{

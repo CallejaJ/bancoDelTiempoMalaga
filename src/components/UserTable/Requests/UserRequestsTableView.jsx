@@ -157,6 +157,7 @@ function EnhancedTableToolbar() {
         >
             <Typography
                 sx={{ flex: '1 1 100%' }}
+                marginLeft={4}
                 variant="h6"
                 id="tableTitle"
                 component="div"
