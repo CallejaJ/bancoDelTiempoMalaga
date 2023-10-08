@@ -29,7 +29,6 @@ export default function OffersFormikDetails() {
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
 
             if (response.ok) {
                 updateOffer(id) // le mando el id a la función del contexto
@@ -42,9 +41,6 @@ export default function OffersFormikDetails() {
                         navigate('/panel');
                     }, 3000);
                 }
-
-            } else {
-                console.log("Inténtalo de nuevo.")
             }
         }
 

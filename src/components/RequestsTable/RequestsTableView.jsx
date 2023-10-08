@@ -286,13 +286,23 @@ export default function RequestsTableView({ requestsList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.description}</TableCell>
-                                                <TableCell align="center">{row.register_date}</TableCell>
-                                                <TableCell align="center">{row.update_date}</TableCell>
-                                                <TableCell align="center">{row.request_user_name}</TableCell>
-                                                <TableCell align="center">{row.credits}</TableCell>
-                                                <TableCell align="center">
+                                                <TableCell align="left"
+                                                    sx={{ color: 'GrayText' }}
+                                                >
+                                                    {row.name}</TableCell>
+                                                <TableCell align="left"
+                                                    sx={{ color: 'GrayText' }}
+                                                >{row.description}</TableCell>
+                                                <TableCell align="center" sx={{ color: 'GrayText' }}
+                                                >{row.register_date}</TableCell>
+                                                <TableCell align="center" sx={{ color: 'GrayText' }}
+                                                >{row.update_date}</TableCell>
+                                                <TableCell align="center" sx={{ color: 'GrayText' }}
+                                                >{row.request_user_name}</TableCell>
+                                                <TableCell align="center" sx={{ color: 'GrayText' }}
+                                                >{row.credits}</TableCell>
+                                                <TableCell align="center" sx={{ color: 'GrayText' }}
+                                                >
                                                     <Link to={`/panel/requesttracking/${row.id}`}>
                                                     <IconButton
                                                         aria-label="edit"

@@ -298,12 +298,18 @@ export default function UserOffersTableView({ userOffersList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.description}</TableCell>
-                                                <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">{row.services_id}</TableCell>
-                                                <TableCell align="left">{row.credits}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.name}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.description}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.register_date}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.update_date}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.services_id}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Link to={`/panel/offersdetails/${row.id}`}>
                                                         <Tooltip title="Editar">

@@ -14,7 +14,6 @@ export default function OfferDetailsCard() {
                 const response = await fetch(`http://localhost:3006/offers/${id}`)
                 if (response.ok) {
                     setUserOffer(await response.json())
-                    console.log(setUserOffer);
                 }
             }
             catch (err) {

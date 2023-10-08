@@ -41,8 +41,6 @@ const ImageUpload = () => {
         }
     }, []);
 
-    console.log(files);
-
     const {
         getRootProps,
         getInputProps,

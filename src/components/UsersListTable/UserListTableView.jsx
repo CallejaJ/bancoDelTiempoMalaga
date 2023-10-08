@@ -256,15 +256,24 @@ export default function UsersListTableView({ usersList }) {
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.surname}</TableCell>
-                                                <TableCell align="left">{row.district}</TableCell>
-                                                <TableCell align="left">{row.email}</TableCell>
-                                                <TableCell align="left">{row.address}</TableCell>
-                                                <TableCell align="left">{row.pobox}</TableCell>
-                                                <TableCell align="left">{row.role}</TableCell>
-                                                <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">{row.credits}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.name}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.surname}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.district}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.email}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.address}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.pobox}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.role}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.register_date}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.credits}</TableCell>
                                                 <TableCell align="center">
                                                     <Tooltip title="Eliminar">
                                                         <IconButton onClick={() => deleteUser(row.id)} aria-label="delete" color="red">

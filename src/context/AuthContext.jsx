@@ -196,8 +196,6 @@ export default function AuthContextProvider({ children }) {
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
-
             if (response.ok) {
                 setNewOfferMessage("Tu oferta ha sido creada.")
             } else {

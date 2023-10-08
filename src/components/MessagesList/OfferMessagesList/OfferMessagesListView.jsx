@@ -55,12 +55,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    // {
-    //     id: 'id',
-    //     numeric: true,
-    //     disablePadding: true,
-    //     label: 'ID',
-    // },
+
     {
         id: 'name',
         numeric: true,
@@ -336,8 +331,6 @@ export default function OfferMessagesListView({ messagesList, formik, newMessage
                                     <TableBody>
                                         {visibleRows.map((row) => {
                                             const isItemSelected = isSelected(row.id);
-                                            // const labelId = `enhanced-table-checkbox-${index}`;
-
                                             return (
                                                 <TableRow
                                                     hover
@@ -351,17 +344,12 @@ export default function OfferMessagesListView({ messagesList, formik, newMessage
                                                 >
                                                     <TableCell>
                                                     </TableCell>
-                                                    {/* <TableCell
-                                                        component="th"
-                                                        id={labelId}
-                                                        scope="row"
-                                                        padding="none"
-                                                    >
-                                                        {row.id}
-                                                    </TableCell> */}
-                                                    <TableCell align="left" > {row.name}</TableCell>
-                                                    <TableCell align="left">{row.message}</TableCell>
-                                                    <TableCell align="left">{row.register_date}</TableCell>
+                                                    <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                    > {row.name}</TableCell>
+                                                    <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                    >{row.message}</TableCell>
+                                                    <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                    >{row.register_date}</TableCell>
                                                 </TableRow>
                                             );
                                         })}

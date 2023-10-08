@@ -25,7 +25,6 @@ export default function RequestMessagesList() {
                 })
                 if (response.ok) {
                     setMessagesList(await response.json())
-                    console.log(setMessagesList);
                 }
             }
             catch (err) {

@@ -35,43 +35,35 @@ export default function TransferOrdersView({ userDetails }) {
                     justifyContent={'center'}
                     marginTop={1}
                     marginBottom={1}
+                    sx={{ width: '100%', backgroundColor: "#fafafa" }}
                 >
 
                     <AccessTimeIcon
                         color="primary"
                         sx={{ fontSize: 40 }}
                     />
-                    {userDetails.map((user, index) => {
-                        return (
-                            <>
-                                <Typography
-                                    color="secondary"
-                                    marginLeft={2}
-                                    variant="h5"
-                                    key={index}
-                                >
-                                    Dispones de
-                                </Typography>
-                                <Typography
-                                    color="primary"
-                                    marginLeft={2}
-                                    variant="h4"
-                                    key={index}
-                                >
-                                    {user.credits}
-                                </Typography>
-                                <Typography
-                                    color="secondary"
-                                    marginLeft={2}
-                                    variant="h5"
-                                    key={index}
-                                >
-                                    {user.credits === 1 || user.credits === -1 ? ("crédito") : ("créditos")}
-                                </Typography>
-                            </>
-                        );
-                    })}
 
+                    <Typography
+                        color="secondary"
+                        marginLeft={2}
+                        variant="h5"
+                    >
+                        Saldo de tu cuenta
+                    </Typography>
+                    <Typography
+                        color="primary"
+                        marginLeft={2}
+                        variant="h4"
+                    >
+                        {userDetails.credits}
+                    </Typography>
+                    <Typography
+                        color="secondary"
+                        marginLeft={2}
+                        variant="h5"
+                    >
+                        {userDetails.credits === 1 || userDetails.credits === -1 ? ("crédito") : ("créditos")}
+                    </Typography>
                 </Box>
                 <Grid
                     marginTop={0} item xs={3}>

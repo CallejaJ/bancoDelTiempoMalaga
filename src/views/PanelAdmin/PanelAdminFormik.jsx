@@ -21,14 +21,10 @@ export default function PanelAdminFormik() {
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
 
             if (response.ok) {
                 refresh()
-                console.log("Tus datos han sido actualizados.")
-            } else {
-                console.log("Inténtalo de nuevo.")
-            }
+            } 
         }
 
         catch (err) {

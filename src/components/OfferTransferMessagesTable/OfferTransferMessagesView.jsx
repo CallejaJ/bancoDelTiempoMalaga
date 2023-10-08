@@ -223,11 +223,16 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                                             >
                                                 <TableCell>
                                                 </TableCell>
-                                                <TableCell align="left">{row.uownername}</TableCell>
-                                                <TableCell align="left">{row.offername}</TableCell>
-                                                <TableCell align="left">{row.credits}</TableCell>
-                                                <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.uownername}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.offername}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.credits}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.register_date}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >
                                                     <Tooltip title="Transferir créditos">
                                                         <IconButton
                                                             // onClick={() => addCreditsTransfer(row.id)}
@@ -266,7 +271,7 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                            labelRowsPerPage={"Peticiones por página"}
+                                labelRowsPerPage={"Solicitudes por página"}
                         />
                     </Paper>
                 </Box>

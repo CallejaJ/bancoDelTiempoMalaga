@@ -228,10 +228,15 @@ export default function servicesListTableView({ servicesList }) {
                                                 >
                                                 </TableCell>
 
-                                                <TableCell align="left">{row.name}</TableCell>
-                                                <TableCell align="left">{row.register_date}</TableCell>
-                                                <TableCell align="left">{row.update_date}</TableCell>
-                                                <TableCell align="left">
+                                                <TableCell align="left"
+                                                    sx={{ color: 'GrayText' }}
+                                                >{row.name}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.register_date}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >{row.update_date}</TableCell>
+                                                <TableCell align="left" sx={{ color: 'GrayText' }}
+                                                >
                                                     <Tooltip title="Eliminar">
                                                         <IconButton onClick={() => deleteService(row.id)} aria-label="delete" color="red">
                                                         <DeleteIcon />

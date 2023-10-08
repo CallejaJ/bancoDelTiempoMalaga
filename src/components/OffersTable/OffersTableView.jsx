@@ -284,12 +284,33 @@ export default function OffersTableView({ offersList }) {
                                                 >
                                                     <TableCell>
                                                     </TableCell>
-                                                    <TableCell align="left">{row.name}</TableCell>
-                                                    <TableCell align="left">{row.description}</TableCell>
-                                                    <TableCell align="left">{row.register_date}</TableCell>
-                                                    <TableCell align="left">{row.update_date}</TableCell>
-                                                    <TableCell align="left">{row.offer_user_name}</TableCell>
-                                                    <TableCell align="left">{row.credits}</TableCell>
+                                                    <TableCell
+                                                        align="left"
+                                                        sx={{ color: 'GrayText' }}
+                                                    >{row.name}</TableCell>
+                                                    <TableCell
+                                                        align="left"
+                                                        sx={{ color: 'GrayText' }}
+                                                    >{row.description}</TableCell>
+                                                    <TableCell
+                                                        align="left"
+                                                        sx={{ color: 'GrayText' }}
+                                                    >{row.register_date}
+                                                    </TableCell>
+                                                    <TableCell
+                                                        align="left"
+                                                        sx={{ color: 'GrayText' }}
+                                                    >{row.update_date}
+                                                    </TableCell>
+                                                    <TableCell
+                                                        align="left"
+                                                        sx={{ color: 'GrayText' }}
+                                                    >{row.offer_user_name}
+                                                    </TableCell>
+                                                    <TableCell
+                                                        align="left"
+                                                        sx={{ color: 'GrayText' }}
+                                                    >{row.credits}</TableCell>
                                                     <TableCell align="center">
                                                         <Link to={`/panel/offertracking/${row.id}`}>
                                                             <IconButton

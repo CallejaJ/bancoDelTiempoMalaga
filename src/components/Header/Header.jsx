@@ -74,7 +74,6 @@ export default function Header({ title, props }) {
                                             edge="start"
                                             color="primary"
                                             aria-label="menu"
-                                            sx={{ mr: 2, p: 2 }}
                                             onClick={handleOpenUserMenu}>
                                             <MenuIcon />
                                         </IconButton>
@@ -158,7 +157,7 @@ export default function Header({ title, props }) {
                                             <Button >
                                                 <Link style={{
                                                     color: '#FFF',
-                                                    m: 1,
+                                                        // m: 1,
                                                     textDecoration: "none"
                                                 }}
                                                     to="/login">Iniciar sesión</Link>

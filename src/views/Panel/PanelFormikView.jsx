@@ -58,6 +58,7 @@ export default function PanelFormikView({ formik }) {
                                 elevation={0}
                                 square
                             >
+
                                 <Box
                                     sx={{
                                         my: 1,
@@ -75,6 +76,7 @@ export default function PanelFormikView({ formik }) {
                                     >
                                         ¡Hola de nuevo {user.name} !
                                     </Typography>
+
                                     <Box
                                         component="form"
                                         noValidate

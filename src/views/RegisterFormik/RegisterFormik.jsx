@@ -8,7 +8,6 @@ export default function RegisterFormik() {
     const { register } = useAuthContext();
 
     function onSubmit(values, actions) {
-        console.log("onsubmit")
         register(values);
         actions.resetForm();
     }

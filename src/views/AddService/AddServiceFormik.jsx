@@ -13,7 +13,6 @@ export default function AddServiceFormik() {
 
 
     function onSubmit(values, actions) {
-        console.log("onsubmit")
         addService(values);
         actions.resetForm()
     }

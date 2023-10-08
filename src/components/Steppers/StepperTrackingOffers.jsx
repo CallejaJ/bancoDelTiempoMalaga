@@ -112,7 +112,7 @@ export default function StepperTrackingOffers() {
                     <Paper square elevation={0} sx={{ p: 3 }}>
                         <Typography
                             sx={{ color: "GrayText" }}
-                        >Si la petición es correcta puedes transferir tus créditos.</Typography>
+                        >Si las solicitudes son correctas puedes transferir tus créditos.</Typography>
                         <Button onClick={handleReset} sx={{ mt: 2, mr: 0 }}>
                             Reiniciar
                         </Button>

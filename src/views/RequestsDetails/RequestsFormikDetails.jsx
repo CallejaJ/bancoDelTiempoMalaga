@@ -26,17 +26,13 @@ export default function RequestsFormikDetails() {
                 },
                 body: JSON.stringify(values)
             })
-            console.log(values);
-
             if (response.ok) {
                 updateRequest(id) // le mando el id a la función del contexto
                 setTimeout(() => {
                     navigate('/panel');
                 }, 3000);
 
-            } else {
-                console.log("Inténtalo de nuevo.")
-            }
+            } 
         }
 
         catch (err) {
