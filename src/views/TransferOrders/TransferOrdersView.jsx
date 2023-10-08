@@ -8,7 +8,7 @@ import StepperTrackingOffers from "../../components/Steppers/StepperTrackingOffe
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
-export default function TransferOrdersView({ userDetails }) {
+export default function TransferOrdersView({ userDetails, setUserDetails }) {
 
 
 
@@ -26,16 +26,13 @@ export default function TransferOrdersView({ userDetails }) {
                 <Grid item xs={3}>
                     <img src={transfermessages} width={500} />
                 </Grid>
-                <Grid item xs={3}>
-                    <OfferTransferMessages />
-                </Grid>
                 <Box
                     alignItems={'center'}
                     display={'flex'}
                     justifyContent={'center'}
                     marginTop={1}
                     marginBottom={1}
-                    sx={{ width: '100%', backgroundColor: "#fafafa" }}
+                    sx={{ width: '45%', backgroundColor: "#fafafa" }}
                 >
 
                     <AccessTimeIcon
@@ -48,7 +45,7 @@ export default function TransferOrdersView({ userDetails }) {
                         marginLeft={2}
                         variant="h5"
                     >
-                        Saldo de tu cuenta
+                        Saldo de {userDetails.name} {userDetails.surname}
                     </Typography>
                     <Typography
                         color="primary"
@@ -65,6 +62,10 @@ export default function TransferOrdersView({ userDetails }) {
                         {userDetails.credits === 1 || userDetails.credits === -1 ? ("crédito") : ("créditos")}
                     </Typography>
                 </Box>
+                <Grid item xs={3}>
+                    <OfferTransferMessages setUserDetails={setUserDetails} />
+                </Grid>
+
                 <Grid
                     marginTop={0} item xs={3}>
                     <StepperTrackingOffers />

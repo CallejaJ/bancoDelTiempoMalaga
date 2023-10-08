@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import OfferTransferMessagesView from "./OfferTransferMessagesView"
 import { useAuthContext } from "../../context/AuthContext"
 
-export default function OfferTransferMessages() {
+export default function OfferTransferMessages({ setUserDetails }) {
     const { token } = useAuthContext()
     const [offerTransferMessagesList, setOfferTransferMessagesList] = useState([])
+
 
 
     useEffect(function () {
@@ -51,7 +52,26 @@ export default function OfferTransferMessages() {
         }
     }
 
-
+    async function addCreditsTransfer(id) {
+        try {
+            const response = await fetch(
+                `http://localhost:3006/credits/transfer/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            })
+            if (response.ok) {
+                const apiResponse = await response.json()
+                setOfferTransferMessagesList(apiResponse.offerTransferList)
+                setUserDetails(apiResponse.userDetails)
+            }
+        }
+        catch (err) {
+            throw new Error(err)
+        }
+    }
 
 
 
@@ -59,6 +79,7 @@ export default function OfferTransferMessages() {
         <OfferTransferMessagesView
             offerTransferMessagesList={offerTransferMessagesList}
             deleteOfferTransferMessage={deleteOfferTransferMessage}
+            addCreditsTransfer={addCreditsTransfer}
         />
     )
 }

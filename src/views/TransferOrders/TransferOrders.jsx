@@ -33,7 +33,8 @@ export default function TransferOrders() {
     )
 
 
+
     return (
-        <TransferOrdersView userDetails={userDetails} />
+        <TransferOrdersView userDetails={userDetails} setUserDetails={setUserDetails} />
     )
 }

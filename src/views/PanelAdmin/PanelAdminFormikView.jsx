@@ -365,7 +365,7 @@ export default function PanelAdminFormikView({ formik }) {
                 margin={4}
                 display={'flex'}
                 justifyContent={'center'}>
-                <Button variant='outlined' onClick={handleOpen}>¿Cómo se añade un nuevo servicio o categoría?</Button>
+                <Button variant='contained' onClick={handleOpen}> Añadir un nuevo servicio o categoría</Button>
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -373,7 +373,7 @@ export default function PanelAdminFormikView({ formik }) {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2 }}>
+                        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ mb: 2, color: 'GrayText' }}>
                             ¿Cómo se añade un nuevo servicio o categoría?
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>

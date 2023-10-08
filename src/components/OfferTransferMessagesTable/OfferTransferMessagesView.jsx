@@ -120,7 +120,7 @@ function EnhancedTableToolbar() {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
-export default function OfferTransferMessagesView({ offerTransferMessagesList, deleteOfferTransferMessage }) {
+export default function OfferTransferMessagesView({ offerTransferMessagesList, deleteOfferTransferMessage, addCreditsTransfer }) {
 
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
@@ -235,7 +235,7 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                                                 >
                                                     <Tooltip title="Transferir créditos">
                                                         <IconButton
-                                                            // onClick={() => addCreditsTransfer(row.id)}
+                                                            onClick={() => addCreditsTransfer(row.id)}
                                                             aria-label="addcredittransfer" color="secondary">
                                                             <CheckCircleIcon />
                                                         </IconButton>
