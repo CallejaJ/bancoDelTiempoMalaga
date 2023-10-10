@@ -1,4 +1,4 @@
 export const ultimateValuesRequest = {
-    holder_user_name: "",
+    beneficiaryID: "",
     credits: 0,
 };

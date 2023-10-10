@@ -102,7 +102,7 @@ function EnhancedTableToolbar() {
                 id="tableTitle"
                 component="div"
             >
-                Solicitudes de transferencias recibidas
+                Solicitudes recibidas de otros usuarios
             </Typography>
 
 
@@ -284,7 +284,6 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                         marginTop={5}
                         marginBottom={5}
                     >
-
                         <ChatSharpIcon
                             color="grey"
                             sx={{ fontSize: 40, color: "GrayText" }}
@@ -292,9 +291,8 @@ export default function OfferTransferMessagesView({ offerTransferMessagesList, d
                         <Typography
                             marginLeft={2}
                             sx={{ color: "GrayText" }}
-
                         >
-                            No hay peticiones de transferencias pendientes
+                            No hay peticiones de transferencias de otros usuarios
                         </Typography>
                     </Box>
             )}

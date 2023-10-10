@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField, ThemeProvider, Typography, createTheme, responsiveFontSizes } from "@mui/material";
+import { Alert, Box, Container, CssBaseline, Grid, MenuItem, Paper, TextField, ThemeProvider, Typography, createTheme, responsiveFontSizes } from "@mui/material";
 import Header from "../../../components/Header/Header";
 import { LoadingButton } from "@mui/lab";
 import EmailIcon from '@mui/icons-material/Email';
@@ -15,7 +15,7 @@ theme = responsiveFontSizes(theme);
 
 
 
-export default function RequestTrackingView({ formik, users, userRequest, user }) {
+export default function RequestTrackingView({ formik, users, userRequest, user, ultimateRequestMessage }) {
 
     const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
@@ -102,6 +102,7 @@ export default function RequestTrackingView({ formik, users, userRequest, user }
                                             sx={{ mt: 6.2 }}
 
                                     >
+
                                             <ThemeProvider theme={theme}>
                                                 <Typography
                                                     mb={1}
@@ -115,12 +116,12 @@ export default function RequestTrackingView({ formik, users, userRequest, user }
                                             sx={{ width: 300, marginTop: 2, marginBottom: 1 }}
                                             label="Usuario que ha realizado la tarea"
                                             placeholder="Por favor, selecciona su nombre de usuario en la lista:"
-                                            name="holder_user_name"
+                                                name="beneficiaryID"
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            value={values.holder_user_name}
-                                            error={touched.holder_user_name && Boolean(errors.holder_user_name)}
-                                            helperText={touched.holder_user_name && errors.holder_user_name}
+                                                value={values.beneficiaryID}
+                                                error={touched.beneficiaryID && Boolean(errors.beneficiaryID)}
+                                                helperText={touched.beneficiaryID && errors.beneficiaryID}
                                         >
                                             {users.map((user) => (
                                                 <MenuItem key={user.id} value={`${user.id}`}>
@@ -145,6 +146,13 @@ export default function RequestTrackingView({ formik, users, userRequest, user }
                                             error={touched.credits && Boolean(errors.credits)}
                                             helperText={touched.credits && errors.credits}
                                         />
+                                            {ultimateRequestMessage ? (
+                                                <Alert
+                                                    sx={{ mt: 2, mb: 2, height: "54px", width: "300px" }}
+                                                    variant="outlined" severity="info" >
+                                                    {ultimateRequestMessage}
+                                                </Alert>
+                                            ) : null}
                                         <LoadingButton
                                             color="secondary"
                                             loadingPosition="start"

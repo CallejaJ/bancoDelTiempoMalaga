@@ -11,5 +11,6 @@ export const UltimateOfferSchema = yup.object().shape({
         .number()
         .typeError('Un número del 1 al 10')
         .min(0.5, "Escribe el tiempo necesario para la tarea: 1 crédito = 1 hora")
+        .max(10, "Máximo permitido 10 créditos")
         .required("Requerido"),
 });

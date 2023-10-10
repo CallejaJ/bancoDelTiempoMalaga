@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../../context/AuthContext";
 import { Formik } from "formik";
 import { ultimateValuesRequest } from "./UI/ultimateRequestsForm";
@@ -11,11 +11,8 @@ import RequestTrackingView from "./RequestTrackingView";
 
 export default function RequestTracking() {
 
-    const { user,
-        // token 
-    } = useAuthContext();
+    const { user, token } = useAuthContext();
     const { id } = useParams();
-    // const [ultimateRequest, setUltimateRequest] = useState(null)
     const [userRequest, setUserRequest] = useState([])
     const [ultimateRequestMessage, setUltimateRequestMessage] = useState(null)
 
@@ -23,28 +20,34 @@ export default function RequestTracking() {
         setUltimateRequestMessage(null)
     }, 3000)
 
+    const navigate = useNavigate();
 
-    // async function onSubmit(values) {
-    //     try {
-    //         const response = await fetch(`http://localhost:3006/credits`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 "Authorization": `Bearer ${token}`,
-    //             },
-    //             body: JSON.stringify(values)
-    //         })
-    //         if (response.ok) {
-    //             setUltimateRequest("Tu solicitud se ha enviado.")
-    //         } else {
-    //             setUltimateRequest("Inténtalo de nuevo.")
-    //         }
-    //     }
+    async function onSubmit(values, actions) {
+        console.log(values);
+        try {
+            const response = await fetch(`http://localhost:3006/credits/transfer`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(values)
+            })
+            if (response.ok) {
+                setUltimateRequestMessage("¡Transferencia realizada!")
+                actions.resetForm()
+                setTimeout(() => {
+                    navigate('/panel/transferorders/');
+                }, 3000);
+            } else {
+                setUltimateRequestMessage("Inténtalo de nuevo.")
+            }
+        }
 
-    //     catch (err) {
-    //         throw new Error(err)
-    //     }
-    // }
+        catch (err) {
+            throw new Error(err)
+        }
+    }
 
 
 
@@ -110,7 +113,7 @@ export default function RequestTracking() {
             initialValues={ultimateValuesRequest}
             enableReinitialize={true}
             validationSchema={UltimateRequestSchema}
-            // onSubmit={onSubmit}
+            onSubmit={onSubmit}
         >
             {(props) => <RequestTrackingView
                 formik={props}
@@ -119,7 +122,6 @@ export default function RequestTracking() {
                 userRequest={userRequest}
                 user={user}
                 ultimateRequestMessage={ultimateRequestMessage}
-            // ultimateRequest={ultimateRequest}
             />}
         </Formik>
     )
