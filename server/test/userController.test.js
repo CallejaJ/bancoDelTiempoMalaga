@@ -1,14 +1,10 @@
 const userController = require('../app/controllers/userController');
 const dao = require("../app/services/dao")
 
-// instalamos jest con npm i jest
-
 let req;
 let res;
 let send;
 let status;
-
-// Add user test //
 
 beforeEach(() => {
     send = jest.fn((message) => { });
