@@ -75,10 +75,10 @@ creditController.transferCredits = async (req, res) => {
     [beneficiaryCredits] = beneficiaryCredits
     beneficiaryCredits = beneficiaryCredits.credits
 
-    // no es necesario comprobar que el usuario que hace la petición 
-    // sea el que envía los créditos porque lo recibo del payload.id
+    /* no es necesario comprobar que el usuario que hace la petición
+     sea el que envía los créditos porque lo recibo del payload.id */
 
-    // realizar la resta de créditos de quien envía y la suma de quien recibe
+    // realiza la resta de créditos de quien envía y la suma de quien recibe
     const newSenderCredits = senderCredits - credits
     const newBeneficiaryCredits = beneficiaryCredits + credits
 
@@ -86,9 +86,7 @@ creditController.transferCredits = async (req, res) => {
     // (update credits)
     await dao.updateCreditsBalance(beneficiaryID, newBeneficiaryCredits)
     await dao.updateCreditsBalance(payload.id, newSenderCredits)
-
     return res.send("transferencia realizada")
-
 }
 
 module.exports = creditController;
